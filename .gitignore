@@ -1,2 +1,4 @@
 .DS_Store
 scrape/
+/node_modules
+.env
