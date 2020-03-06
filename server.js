@@ -17,6 +17,13 @@ app.get("/", (req, res)=>{
  res.send("Testing");
 });
 
+app.post("/register", (req, res)=>{
+
+});
+
+app.post("/login", (req, res)=>{
+
+});
 
 app.listen(PORT, ()=>{
     console.log("Backend listening on port:",PORT);
