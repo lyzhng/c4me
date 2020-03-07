@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET_KEY || "pokTGERW54389e#@$%mans12$@!$!#$^#%$";
 
-const withAuth = function(req, res, next) {
+const jwtAuth = function(req, res, next) {
   const token = 
       req.body.token ||
       req.query.token ||
@@ -15,11 +15,11 @@ const withAuth = function(req, res, next) {
       if (err) {
         res.status(401).send('Unauthorized: Invalid token');
       } else {
-        req.email = decoded.email;
+        req.username = decoded.username;
         next();
       }
     });
   }
 }
 
-module.exports = withAuth;
+module.exports = jwtAuth;

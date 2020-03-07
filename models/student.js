@@ -31,7 +31,7 @@ bcrypt.compare(password, this.password, function(err, same) {
     if (err) {
     callback(err);
     } else {
-    callback(err, same);
+    callback(same);
     }
 });
 }

@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const jwtAuth = require('./jwt_middleware'); 
 const axios = require('axios');
 const db = require('./models');
 
@@ -13,11 +14,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
+mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
+
 app.get("/", (req, res)=>{
  res.send("Testing");
 });
 
-app.post("/register", (req, res)=>{
+app.post("/api/register", (req, res)=>{
+  console.log("HELLO");
   db.Student.find({$or: [{username:req.body.username}, {email:req.body.email}]}, "email username").lean().then((resp) => {
     if(resp.length === 0){
       db.Student.create(req.body).then((dbmodel)=>{
@@ -31,14 +35,14 @@ app.post("/register", (req, res)=>{
   });
 });
 
-app.post("/login", (req, res)=>{
+app.post("/api/login", (req, res)=>{
   const { username, password } = req.body;
-    db.User.findOne({ username }).then((user)=>{
+    db.Student.findOne({ username }).then((user)=>{
       if (!user) {
         res.status(401).json({error: 'Incorrect username or password'});
       } 
       else {
-        user.isCorrectPassword(password).then((same)=>{
+        user.isCorrectPassword(password,(same)=>{
           if (!same) {
             res.status(401)
               .json({
@@ -55,10 +59,16 @@ app.post("/login", (req, res)=>{
             res.cookie('token', token, { httpOnly: true })
               .sendStatus(200);
           }
-        });
+        })
       }
     });
 });
+
+//CHECKS IF WE ARE LOGGED IN OR NOT WITH MIDDLEWARE
+app.get('/checkToken', jwtAuth, (req, res)=>{
+  res.sendStatus(200);
+});
+
 
 app.listen(PORT, ()=>{
     console.log("Backend listening on port:",PORT);
