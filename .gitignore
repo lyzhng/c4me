@@ -1,5 +1,4 @@
 .DS_Store
-scrape/
 /node_modules
 .env
 .idea/c4me.iml
@@ -7,3 +6,4 @@ scrape/
 .idea/modules.xml
 .idea/vcs.xml
 .idea/workspace.xml
+/experimental
