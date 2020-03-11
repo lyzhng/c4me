@@ -17,16 +17,15 @@ app.use(cookieParser());
 mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
 
 app.get("/", (req, res)=>{
- res.send("Testing");
+  res.send("Testing");
 });
 
 app.post("/api/register", (req, res)=>{
-  console.log("HELLO");
   db.Student.find({$or: [{username:req.body.username}, {email:req.body.email}]}, "email username").lean().then((resp) => {
     if(resp.length === 0){
       db.Student.create(req.body).then((dbmodel)=>{
         console.log("Created new user:", dbmodel);
-        res.status(200);
+        res.status(200).json({status:"OK"});
       });
     }
     else{
@@ -56,7 +55,7 @@ app.post("/api/login", (req, res)=>{
             const token = jwt.sign(payload, secret, {
               expiresIn: '1d'
             });
-            res.cookie('token', token, { httpOnly: true })
+            res.cookie('token', token, { httpOnly: false })
               .sendStatus(200);
           }
         })
@@ -71,5 +70,5 @@ app.get('/checkToken', jwtAuth, (req, res)=>{
 
 
 app.listen(PORT, ()=>{
-    console.log("Backend listening on port:",PORT);
+  console.log("Backend listening on port:",PORT);
 });
