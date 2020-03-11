@@ -5,7 +5,6 @@ const jwtAuth = function(req, res, next) {
   const token = 
       req.body.token ||
       req.query.token ||
-      req.headers['x-access-token'] ||
       req.cookies.token;
 
   if (!token) {

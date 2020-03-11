@@ -6,7 +6,16 @@ const StudentSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    // sat:{type: Schema.Types.ObjectId, ref:'Sat'},
+    sat:{
+        math:Number,
+        ebrw:Number,
+        literature:Number,
+        MathI:Number,
+        MathII:Number,
+        usHist:Number,
+        worldHist:Number,
+        
+        },
     // act:{type: Schema.Types.ObjectId, ref:'Act'},
     // applications:[{type: Schema.Types.ObjectId, ref:'Application'}],
     location:{type:String, default:""},
@@ -35,5 +44,6 @@ bcrypt.compare(password, this.password, function(err, same) {
     }
 });
 }
+
 const Student = mongoose.model("Student", StudentSchema);
 module.exports = Student;
