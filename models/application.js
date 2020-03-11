@@ -6,6 +6,6 @@ const ApplicationSchema = mongoose.Schema({
 	status: String //Denied, Pending, Accepted
 });
 
-const Application = mongoose.model(ApplicationSchema);
+const Application = mongoose.model("Application", ApplicationSchema);
 
 module.exports = Application;
