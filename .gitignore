@@ -1,4 +1,9 @@
 .DS_Store
-scrape/
 /node_modules
 .env
+.idea/c4me.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+/experimental
