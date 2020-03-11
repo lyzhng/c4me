@@ -10,7 +10,6 @@ mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewU
 
 module.exports = function()
 {
-	console.log("hello");
 	return new Promise (function(resolve, reject)
 	{
 		college.find(async function(err, collegeArr)
