@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const axios = require('axios');
 const papa = require('papaparse');
 const fs = require('fs');
-const collections = require('../models')
+const collections = require('../models');
 
 mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
 
@@ -26,7 +26,11 @@ const importStudentProfiles = (studentCsv) => {
 				collections.Student.create(student).catch(err => { console.log(err); });
 		});
 	});
-}
+};
+
+const importCollegeRankings = () {
+	
+};
 
 module.exports = {
 	importStudentProfiles: importStudentProfiles
