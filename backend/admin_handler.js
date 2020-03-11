@@ -28,8 +28,6 @@ const importStudentProfiles = (studentCsv) => {
 	});
 }
 
-importStudentProfiles("students-1.csv");
-
 module.exports = {
 	importStudentProfiles: importStudentProfiles
 }
