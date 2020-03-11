@@ -21,7 +21,7 @@ app.get("/", (req, res)=>{
 });
 
 app.post("/api/register", (req, res)=>{
-  db.Student.find({$or: [{username:req.body.username}, {email:req.body.email}]}, "email username").lean().then((resp) => {
+  db.Student.find({$or: [{userid:req.body.userid}, {email:req.body.email}]}, "email userid").lean().then((resp) => {
     if(resp.length === 0){
       db.Student.create(req.body).then((dbmodel)=>{
         console.log("Created new user:", dbmodel);
@@ -29,28 +29,28 @@ app.post("/api/register", (req, res)=>{
       });
     }
     else{
-      res.status(401).json({error:"Username or email already taken!"});
+      res.status(401).json({error:"userid or email already taken!"});
     }
   });
 });
 
 app.post("/api/login", (req, res)=>{
-  const { username, password } = req.body;
-    db.Student.findOne({ username }).then((user)=>{
+  const { userid, password } = req.body;
+    db.Student.findOne({ userid }).then((user)=>{
       if (!user) {
-        res.status(401).json({error: 'Incorrect username or password'});
+        res.status(401).json({error: 'Incorrect userid or password'});
       } 
       else {
         user.isCorrectPassword(password,(same)=>{
           if (!same) {
             res.status(401)
               .json({
-                error: 'Incorrect username or password'
+                error: 'Incorrect userid or password'
             });
           } 
           else {
             //Put values that we will need inside the token
-            const payload = { username };
+            const payload = { userid };
             // Issue token
             const token = jwt.sign(payload, secret, {
               expiresIn: '1d'
