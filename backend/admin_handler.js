@@ -4,12 +4,17 @@ const axios = require('axios');
 const papa = require('papaparse');
 const fs = require('fs');
 const collections = require('../models');
+const request = require("request");
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
+const initCollege = require("./init_colleges.js");
 
 mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
 
 const importStudentProfiles = (studentCsv) => {
-	var studentData;
-	var file = fs.readFileSync("../datasets/"+studentCsv,"utf-8")
+	let studentData;
+	let file = fs.readFileSync("../datasets/"+studentCsv,"utf-8")
 	papa.parse(file,{
 		header: true,
 		dynamicTyping: true,
@@ -28,10 +33,39 @@ const importStudentProfiles = (studentCsv) => {
 	});
 };
 
-const importCollegeRankings = () {
+//fill ranking / description field for each college in database
+const importCollegeRankings = async function () {
+	let college = collections.College;
+
+	await initCollege(); //if no colleges in database, this will populate the database
 	
+	let url = "https://www.timeshighereducation.com/rankings/united-states/2020#!/page/0/length/-1/sort_by/rank/sort_order/asc/cols/stats";
+	college.find(async function (err, collegeArr)
+	{
+		await new Promise(function(resolve, reject)
+		{
+			request(url, function(error, response, body)
+			{
+				if (error || response.statusCode !== 200)
+				{
+					console.log("failed to request ranking data!");
+					reject();
+				}
+				else
+				{
+					let dom = new JSDOM(body);
+					console.log("SUASDFASFASFASFSADFASd");
+					console.log(dom.window.document.querySelectorAll(".td.rank"));
+					resolve();
+				}
+			});
+		});
+	});
+
 };
 
 module.exports = {
 	importStudentProfiles: importStudentProfiles
-}
+};
+
+importCollegeRankings();

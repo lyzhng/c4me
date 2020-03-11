@@ -17,14 +17,14 @@ module.exports = function()
 			if (err)
 			{
 				console.log("error with the database (init_colleges.js)");
-				reject();
+				resolve();
 			}
 			else
 			{
 				if (collegeArr.length != 0)
 				{
 					console.log("colleges have already been initialized");
-					reject();
+					resolve();
 				}
 				else
 				{
@@ -53,5 +53,3 @@ module.exports = function()
 		});
 	});
 }
-
-module.exports();
