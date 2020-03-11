@@ -1,13 +1,10 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-Student.sat.math = 700; //my way
-Student.SAT_MATH_1 = 700; // stoller
 
 const StudentSchema = new mongoose.Schema({
-    email: { type: String, required: true, unique: true },
-    userid: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    userid: String,
+    password: String,
     SAT_math: Number,
     SAT_ebrw: Number,
     SAT_literature: Number,
