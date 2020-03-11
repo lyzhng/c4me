@@ -20,17 +20,16 @@ const importStudentProfiles = (studentCsv) => {
 		dynamicTyping: true,
 		complete: (results)=>{
 			studentData = results.data;
+			studentData = JSON.parse(JSON.stringify(studentData).replace(/\s(?=\w+":)/g, ""));
+			studentData.forEach((student)=>{
+				collections.Student.find({userid:student.userid}).lean().then((resp)=>{
+					if(resp.length === 0)
+						collections.Student.create(student).catch(err => { console.log(err); });
+				});
+			});
 		}
 	});
 	//Converts json to a String version of json to use regex to remove all the whitespaces and then convert it back to json
-	studentData = JSON.parse(JSON.stringify(studentData).replace(/\s(?=\w+":)/g, ""));
-	
-	studentData.forEach((student)=>{
-		collections.Student.find({userid:student.userid}).lean().then((resp)=>{
-			if(resp.length === 0)
-				collections.Student.create(student).catch(err => { console.log(err); });
-		});
-	});
 };
 
 //fill ranking / description field for each college in database
@@ -68,4 +67,4 @@ module.exports = {
 	importStudentProfiles: importStudentProfiles
 };
 
-importCollegeRankings();
+importStudentProfiles("students-1.csv");
