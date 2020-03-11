@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-module.exports = async function()
+module.exports = function()
 {
 	return new Promise(function(resolve, reject)
 	{
