@@ -10,5 +10,5 @@ const HighschoolSchema = mongoose.Schema({
     ranking: Number
 });
 
-const Highschool = mongoose.model(HighschoolSchema);
+const Highschool = mongoose.model("Highschool", HighschoolSchema);
 module.exports = Highschool
