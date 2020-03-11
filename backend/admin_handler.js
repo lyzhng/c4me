@@ -53,9 +53,9 @@ const importCollegeRankings = async function () {
 				}
 				else
 				{
-					let dom = new JSDOM(body);
-					console.log("SUASDFASFASFASFSADFASd");
-					console.log(dom.window.document.querySelectorAll(".td.rank"));
+					const dom = new JSDOM(body, { resources: "usable", runScripts: "dangerously"});
+					var nodelist = dom.window.document.querySelectorAll("div");
+					console.log(nodelist);
 					resolve();
 				}
 			});
