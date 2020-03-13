@@ -5,8 +5,7 @@ import axios from "axios";
 export default class Register extends React.Component{
     state={
         err: "",
-        username: "",
-        email: "",
+        userid: "",
         password:"",
         
     }
@@ -20,8 +19,7 @@ export default class Register extends React.Component{
 
     register = (event)=>{
         event.preventDefault();
-        let newUser = {username: this.state.username,
-                        email: this.state.email,
+        let newUser = { userid: this.state.userid,
                         password: this.state.password};
         console.log(newUser)
         axios.post("/api/register", newUser).then(res=>{
@@ -33,19 +31,15 @@ export default class Register extends React.Component{
     }
     
     componentDidMount(){
-        this.setState({err:"", email:"", username:"", password:""});
+        this.setState({err:"", email:"",  userid:"", password:""});
     }
 
     render(){
         return(
             <form>
                 <h3>Sign Up Page</h3>
-                <label htmlFor="username">Username:</label>
-                <input type="text" name = "username" onChange={this.handleInputChange}/>
-                <br/>
-                <br/>
-                <label htmlFor="email">Email:</label>
-                <input type="email" type="email" name="email" onChange={this.handleInputChange}/>
+                <label htmlFor="userid"> userid:</label>
+                <input type="text" name = "userid" onChange={this.handleInputChange}/>
                 <br/>
                 <br/>
                 <label htmlFor="password">Password:</label>

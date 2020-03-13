@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const jwtAuth = require('./jwt_middleware'); 
 const axios = require('axios');
-const db = require('./models');
+const collections = require('./models');
 
 const PORT = process.env.PORT || 3001;
 const secret = process.env.JWT_SECRET_KEY || "pokTGERW54389e#@$%mans12$@!$!#$^#%$";
@@ -21,10 +21,11 @@ app.get("/", (req, res)=>{
 });
 
 app.post("/api/register", (req, res)=>{
-  db.Student.find({$or: [{userid:req.body.userid}, {email:req.body.email}]}, "email userid").lean().then((resp) => {
+  console.log("hi");
+  collections.Student.find({userid:req.body.userid}).lean().then((resp) => {
     if(resp.length === 0){
-      db.Student.create(req.body).then((dbmodel)=>{
-        console.log("Created new user:", dbmodel);
+      collections.Student.create(req.body).then((collectionsmodel)=>{
+        console.log("Created new user:", collectionsmodel);
         res.status(200).json({status:"OK"});
       });
     }
@@ -36,18 +37,15 @@ app.post("/api/register", (req, res)=>{
 
 app.post("/api/login", (req, res)=>{
   const { userid, password } = req.body;
-    db.Student.findOne({ userid }).then((user)=>{
+  console.log(req.body);
+    collections.Student.findOne({ userid }).then((user)=>{
       if (!user) {
         res.status(401).json({error: 'Incorrect userid or password'});
       } 
       else {
         user.isCorrectPassword(password,(same)=>{
-          if (!same) {
-            res.status(401)
-              .json({
-                error: 'Incorrect userid or password'
-            });
-          } 
+          if (!same)
+            res.status(401).json({error: 'Incorrect userid or password'});
           else {
             //Put values that we will need inside the token
             const payload = { userid };
@@ -55,8 +53,7 @@ app.post("/api/login", (req, res)=>{
             const token = jwt.sign(payload, secret, {
               expiresIn: '1d'
             });
-            res.cookie('token', token, { httpOnly: false })
-              .sendStatus(200);
+            res.cookie('token', token, { httpOnly: false }).sendStatus(200);
           }
         })
       }

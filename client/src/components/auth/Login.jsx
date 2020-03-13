@@ -5,7 +5,7 @@ import axios from 'axios'
 export default class Login extends React.Component{
     state={
         err:"",
-        username:"",
+        userid:"",
         password:""
     }
 
@@ -18,24 +18,24 @@ export default class Login extends React.Component{
 
     login = (event)=>{
         event.preventDefault();
-        let user = {username:this.state.username, password:this.state.password}
+        let user = { userid:this.state.userid, password:this.state.password}
         axios.post("/api/login", user).then(res=>{
             this.props.history.push("/blah");
         }).catch(err=>{
-            this.setState({err:"Incorrect username or password"})
+            this.setState({err:"Incorrect  userid or password"})
         });
     }
 
     componentDidMount(){
-        this.setState({err:"", email:"", username:"", password:""});
+        this.setState({err:"", email:"",  userid:"", password:""});
     }
 
     render(){
         return(
             <form>
                 <h3>Login Here</h3>
-                <label htmlFor="username">Username:</label>
-                <input name="username" onChange={this.handleInputChange}/>
+                <label htmlFor=" userid"> userid:</label>
+                <input name="userid" onChange={this.handleInputChange}/>
                 <br/>
                 <br/>
                 <label htmlFor="password">Password:</label>
