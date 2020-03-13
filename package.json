@@ -27,7 +27,6 @@
     "jsdom": "^16.2.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.3",
-    "papaparse": "^5.1.1",
-    "request": "^2.88.2"
+    "papaparse": "^5.1.1"
   }
 }
