@@ -8,6 +8,7 @@ const request = require("request");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
+const getCollegeNames = require('../backend/get_college_names');
 const initCollege = require("./init_colleges.js");
 
 mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
@@ -63,8 +64,67 @@ const importCollegeRankings = async function () {
 
 };
 
+const csvFilePath = '../datasets/college_scorecard.csv';
+
+// { excel.csv: colleges.txt }
+const remappedColleges = {
+	'Franklin and Marshall College': 'Franklin & Marshall College',
+	'Indiana University-Bloomington': 'Indiana University Bloomington',
+	'The College of Saint Scholastica': 'The College of St Scholastica',
+	'The University of Alabama': 'University of Alabama',
+	'The University of Montana': 'University of Montana',
+	'University of Massachusetts-Amherst': 'University of Massachusetts Amherst',
+};
+
+const importScorecardData = async function () {
+	fs.readFile(csvFilePath, 'utf8', async (err, data) => {
+		if (err) {
+			console.log(err);
+			return;
+		}
+		const colleges = [];
+		const collegeNames = await getCollegeNames();
+		// convert colleges.txt to excel.csv style to match with parser
+		const collegesExcelStyle = collegeNames.map((college) => college.replace(', ', '-'));
+		papa.parse(data, {
+			worker: true,
+			header: true,
+			dynamicTyping: true,
+			step: (row) => {
+				let collegeName = row.data.INSTNM;
+				// convert line-by-line excel.csv data to colleges.txt style
+				if (collegeName in remappedColleges) {
+					collegeName = remappedColleges[collegeName];
+				}
+				// compare with colleges.txt
+				if (collegeName && collegesExcelStyle.includes(collegeName)) {
+					const college = {};
+					for (const column in row.data) {
+						if (COLUMNS.includes(column)) {
+							// convert back to colleges.txt naming style
+							collegeName = collegeName.replace('-', ', ');
+							college[column] = (column === 'INSTNM') ? collegeName : row.data[column];
+						}
+					}
+					colleges.push(college);
+				}
+			},
+			complete: (results) => {
+				const scorecardData = JSON.parse(JSON.stringify(colleges));
+				scorecardData.forEach((college) => {
+					console.log(college);
+					// collections.College.updateOne({ name: college.INSTNM }, {
+					// });
+				});
+			}
+		});
+	});
+}
+
+
 module.exports = {
 	importStudentProfiles: importStudentProfiles
 };
 
-importStudentProfiles("students-1.csv");
+importScorecardData();
+// importStudentProfiles("students-1.csv");
