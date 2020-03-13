@@ -8,13 +8,13 @@ const CollegeSchema = new mongoose.Schema({
         state : String,
         zip : Number,
     },
-    urls : {type: String},
-    admission_rate : {type:String},
+    url : {type: String},
+    admission_rate : {type: Number},
     cost : {
         in_state: Number,
         out_state : Number,
     },
-    gpa: {type: String},
+    gpa: {type: Number},
     sat:{
         reading_25 : Number,
         reading_50 : Number,
@@ -25,7 +25,7 @@ const CollegeSchema = new mongoose.Schema({
         math_25 : Number,
         math_50 : Number,
         math_75 : Number,
-        AVG : Number,
+        avg : Number,
     },
     act:{
         reading_25 : Number,
@@ -37,10 +37,10 @@ const CollegeSchema = new mongoose.Schema({
         math_25 : Number,
         math_50 : Number,
         math_75 : Number,
-        AVG: Number,
+        avg: Number,
     },
     ranking : {type: Number}
 });
 
-const Colleges = mongoose.model("College",CollegeSchema);
-module.exports = Colleges;
+const College = mongoose.model("College",CollegeSchema);
+module.exports = College;
