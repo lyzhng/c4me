@@ -81,8 +81,8 @@ const deleteAllStudents = () => {
 	});
 }
 
-//fill ranking / description field for each college in database
-const importCollegeRankings = async function () {
+//fill ranking field for each college in database
+const importCollegeRankings = async function (callback) {
 	let college = collections.College;
 
 	await initCollege(); //if no colleges in database, this will populate the database
@@ -100,13 +100,21 @@ const importCollegeRankings = async function () {
 			await page.goto(allRankingsUrl);
 			allRankings = await page.evaluate(() =>
 			{
-				let collegeNames = {};
-				let rankings = document.querySelectorAll("a.ranking-institution-title");
-				for (let i = 0; i < rankings.length; i ++)
+				let collegeRankingsMap = {};
+				let names = document.querySelectorAll("a.ranking-institution-title");
+				let rankings = document.querySelectorAll(".rank.sorting_1.sorting_2");
+				for (let i = 0; i < names.length; i ++)
 				{
-					collegeNames[rankings[i].textContent] = i + 1;
+					if (rankings[i].textContent.indexOf("=") != -1)
+					{
+						collegeRankingsMap[names[i].textContent] = parseInt(rankings[i].textContent.substring(1));
+					}
+					else
+					{
+						collegeRankingsMap[names[i].textContent] = i + 1;
+					}
 				}
-				return collegeNames;
+				return collegeRankingsMap;
 			});
 			browser.close();
 
@@ -126,10 +134,60 @@ const importCollegeRankings = async function () {
 				console.log("updated ranking for " + collegeArr[i].name + ": " + allRankings[collegeArr[i].name]);
 			}
 		}
+		if (typeof(callback) === "function")
+		{
+			callback();
+		}
 	});
-
-
 };
+
+//fill description field for each college in database
+const importCollegeDescriptions = async function (callback) {
+	let college = collections.College;
+
+	await initCollege(); //if no colleges in database, this will populate the database
+	
+	let url = "https://www.timeshighereducation.com/world-university-rankings/";//harvard-university";
+	
+	college.find(async function (err, collegeArr)
+	{
+		for (let i = 0; i < collegeArr.length; i ++)
+		{
+			await new Promise (function(resolve, reject)
+			{
+				request(url + collegeArr[i].name.split(" ").join("-"), function(error, response, body)
+				{
+					if (error || response.statusCode !== 200)
+					{
+						console.log("couldn't pull description for " + collegeArr[i].name)
+						console.log(error);
+						console.log("response code: " + response.statusCode);
+					}
+					else
+					{
+						let dom = new JSDOM(body);
+						let nodelist = dom.window.document.querySelectorAll(".pane-content p");
+						let description = "";
+						for (let i = 0; i < nodelist.length; i ++)
+						{
+							description += nodelist[i].textContent + "\n";
+						}
+						collegeArr[i].description = description;
+						collegeArr[i].save();
+						console.log("updated description for " + collegeArr[i].name + " at index " + i);
+					}
+					resolve();
+				});
+			});
+		}
+		if (typeof(callback) === "function")
+		{
+			callback();
+		}
+	});
+};
+
+
 
 const csvFilePath = '../datasets/college_scorecard.csv';
 
@@ -255,10 +313,12 @@ module.exports = {
 	importStudentProfiles: importStudentProfiles,
 	importScorecardData: importScorecardData,
 	importCollegeRankings: importCollegeRankings,
-	deleteAllStudents: deleteAllStudents
+	deleteAllStudents: deleteAllStudents,
+	importCollegeDescriptions : importCollegeDescriptions
 };
 
 //importScorecardData();
 //importStudentProfiles("students-1.csv");
 //importCollegeRankings();
-deleteAllStudents();
+//deleteAllStudents();
+//importCollegeDescriptions();
