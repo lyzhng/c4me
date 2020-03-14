@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
 const mongoose = require('mongoose');
 const axios = require('axios');
-const papa = require('papaparse');
+const Papa = require('papaparse');
 const fs = require('fs');
 const collections = require('../models');
 const request = require("request");
@@ -14,26 +14,59 @@ const initCollege = require("./init_colleges.js");
 
 mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
 
+//import student profile csv and takes in name of csv file
 const importStudentProfiles = (studentCsv) => {
 	let studentData;
 	let file = fs.readFileSync("../datasets/"+studentCsv,"utf-8")
-	papa.parse(file,{
+	Papa.parse(file,{
 		header: true,
 		dynamicTyping: true,
 		complete: (results)=>{
 			studentData = results.data;
 			studentData = JSON.parse(JSON.stringify(studentData).replace(/\s(?=\w+":)/g, ""));
-			studentData.forEach((student)=>{
-				collections.Student.find({userid:student.userid}).lean().then((resp)=>{
-					if(resp.length === 0)
-					{
-						collections.Student.create(student).catch(err => { console.log(err); });
+	
+			const studentsInsert =studentData.map((student)=>{
+					collections.Student.find({userid:student.userid}).lean().then((resp)=>{
+						if(resp.length === 0)
+						{
+							collections.Student.create(student).then((resp)=>{
+								console.log("Created", resp);
+							}).catch(err => { console.log(err); });
+						}
+					});
+				});
+			Promise.all(studentsInsert).then(()=>{
+				importApplicationData("applications-1.csv");
+			})		
+		}
+	});
+	//Converts json to a String version of json to use regex to remove all the whitespaces and then convert it back to json
+};
+
+//imports application csv and takes in string containing name of csv
+const importApplicationData = (applicationCSV) =>{
+	let applicationData;
+	let file = fs.readFileSync("../datasets/"+applicationCSV, "utf-8");
+	Papa.parse(file, {
+		header: true,
+		dynamicTyping: true,
+		complete: (results) => {
+			applicationData = results.data;
+			applicationData.forEach((newApp, index) =>{
+				collections.Student.findOne({userid: newApp.userid}, "userid, applications").then((resp) =>{
+					if(resp){
+						//checks for duplicated applications by checking the array length of the duplicate array
+						let duplicate = resp.applications.filter((app)=>{return app.college === newApp.college});
+						if(duplicate.length === 0){
+							collections.Student.updateOne({userid: newApp.userid}, {$push:{applications:{college:newApp.college, status:newApp.status}}}).then((resp)=>{
+								console.log("Added application for "+ newApp.userid+" with college: "+newApp.college+" and status:"+newApp.status);
+							})
+						}
 					}
 				});
 			});
 		}
 	});
-	//Converts json to a String version of json to use regex to remove all the whitespaces and then convert it back to json
 };
 
 //fill ranking / description field for each college in database
@@ -152,4 +185,4 @@ module.exports = {
 
 //importScorecardData();
 //importStudentProfiles("students-1.csv");
-importCollegeRankings();
+//importCollegeRankings();
