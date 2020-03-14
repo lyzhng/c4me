@@ -8,16 +8,20 @@ export default function Auth(AuthorizedComponent) {
       this.state = {
         loading: true,
         redirect: false,
+        admin: -1
       };
     }
 
     componentDidMount() {
-      axios.get('/checkToken')
-        .then(res => {
-            this.setState({ loading: false });
-        })
-        .catch(err => {
-          this.setState({ loading: false, redirect: true });
+      axios.get('/checkToken').then(res => {
+        if(res.data.status === "admin"){
+          this.setState({ loading: false, admin: 1});
+        }          
+        else{
+          this.setState({loading: false, admin: 0});
+        }
+      }).catch(err => {
+        this.setState({ loading: false, redirect: true });
         });
     }
 

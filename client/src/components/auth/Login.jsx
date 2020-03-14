@@ -34,11 +34,11 @@ export default class Login extends React.Component{
         return(
             <form>
                 <h3>Login Here</h3>
-                <label htmlFor=" userid"> userid:</label>
+                <label htmlFor=" userid"> userid: </label>
                 <input name="userid" onChange={this.handleInputChange}/>
                 <br/>
                 <br/>
-                <label htmlFor="password">Password:</label>
+                <label htmlFor="password">Password: </label>
                 <input type="password" name="password"onChange={this.handleInputChange}/>
                 <br/>
                 <br/>
