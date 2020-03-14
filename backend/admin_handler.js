@@ -174,10 +174,73 @@ const importScorecardData = async function () {
 			}
 		});
 	});
-}
+};
+
+const importCollegeGPA = async function () {
+	let college = collections.College;
+	let collegeName = await getCollegeNames();
+	let collegeUrl;
+	// let gpa_data = new Map();
+	for (let i = 0; i < collegeName.length; i++){
+		collegeUrl = collegeName[i];
+		if (remapped_names.has(collegeName[i])){
+			console.log(remapped_names.get(collegeName[i]));
+			collegeUrl = remapped_names.get(collegeName[i]);
+		}
+		let regex = /\b(The)\s\b/gi;
+		collegeUrl = collegeUrl.replace(regex,'');
+		collegeUrl = collegeUrl.replace(/,|&/g, '');
+		collegeUrl = collegeUrl.replace(/\s+/g, '-');
+		await new Promise(function(resolve, reject)
+		{
+			request({
+				method: "GET",
+				url: 'https://www.collegedata.com/college/' + collegeUrl,
+			},(err,res,body)=>{
+				if (err || res.statusCode !== 200)
+				{
+					console.log("failed to request ranking data!");
+					reject();
+				}
+				else
+				{
+					let $ = cheerio.load(body);
+					let dt_tags = $("dt").map(function() {
+						return $(this).text();
+					}).get();
+					let dd_tags = $("dd").map(function() {
+						return $(this).text();
+					}).get();
+					// let dd_tags = overview.find('dl').find('dd');
+					let GPA;
+					let AVG_ACT;
+					for (let j=0; j < dt_tags.length; j++){
+						if (dt_tags[j] === "Average GPA"){
+							GPA = dd_tags[j];
+						}
+						if (dt_tags[j] === ("ACT Composite")){
+							AVG_ACT = dd_tags[j];
+						}
+					}
+					college[collegeName].gpa = GPA;
+					college[collegeName].act.avg = AVG_ACT;
+					college[collegeName].save();
+					resolve();
+				}
+			})
+		});
+	}
+};
+
+let remapped_names = new Map();
+remapped_names.set('Franklin and Marshall College', 'Franklin Marshall College');
+remapped_names.set('SUNY College of Environmental Science and Forestry', 'State University of New York College of Environmental Science and Forestry');
+remapped_names.set('The College of Saint Scholastica', 'College of St. Scholastica');
+
 
 
 module.exports = {
+	importCollegeGPA : importCollegeGPA,
 	importStudentProfiles: importStudentProfiles,
 	importScorecardData: importScorecardData,
 	importCollegeRankings: importCollegeRankings
