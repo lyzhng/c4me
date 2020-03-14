@@ -17,7 +17,7 @@ mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewU
 //import student profile csv and takes in name of csv file
 const importStudentProfiles = (studentCsv) => {
 	let studentData;
-	let file = fs.readFileSync("../datasets/"+studentCsv,"utf-8")
+	let file = fs.readFileSync("./datasets/"+studentCsv,"utf-8")
 	Papa.parse(file,{
 		header: true,
 		dynamicTyping: true,
@@ -46,7 +46,7 @@ const importStudentProfiles = (studentCsv) => {
 //imports application csv and takes in string containing name of csv
 const importApplicationData = (applicationCSV) =>{
 	let applicationData;
-	let file = fs.readFileSync("../datasets/"+applicationCSV, "utf-8");
+	let file = fs.readFileSync("./datasets/"+applicationCSV, "utf-8");
 	Papa.parse(file, {
 		header: true,
 		dynamicTyping: true,
@@ -84,7 +84,7 @@ const deleteAllStudents = () => {
 //fill ranking field for each college in database
 const importCollegeRankings = async function (callback) {
 	let college = collections.College;
-
+	console.log("ranking");
 	await initCollege(); //if no colleges in database, this will populate the database
 	
 	let allRankingsUrl = "https://www.timeshighereducation.com/rankings/united-states/2020#!/page/0/length/-1/sort_by/rank/sort_order/asc/cols/stats";
@@ -189,7 +189,7 @@ const importCollegeDescriptions = async function (callback) {
 
 
 
-const csvFilePath = '../datasets/college_scorecard.csv';
+const csvFilePath = './datasets/college_scorecard.csv';
 
 // { excel.csv: colleges.txt }
 const remappedColleges = {

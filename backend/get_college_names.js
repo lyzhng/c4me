@@ -4,7 +4,7 @@ module.exports = function()
 {
 	return new Promise(function(resolve, reject)
 	{
-		fs.readFile('../datasets/colleges.txt', 'utf8', function(err, contents)
+		fs.readFile('./datasets/colleges.txt', 'utf8', function(err, contents)
 		{
 			if (err)
 			{
