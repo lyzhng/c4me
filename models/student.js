@@ -26,7 +26,7 @@ const StudentSchema = new mongoose.Schema({
     high_school_city: String,
     high_school_sate: String,
     high_school_name: String,
-    applications:[{type: Object, default:[]}],
+    applications:[{type: mongoose.Schema.ObjectId, ref:"Application", default:[]}],
   });
 
 StudentSchema.pre('save', function(next) {

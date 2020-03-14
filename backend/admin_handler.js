@@ -53,15 +53,13 @@ const importApplicationData = (applicationCSV) =>{
 		complete: (results) => {
 			applicationData = results.data;
 			applicationData.forEach((newApp, index) =>{
-				collections.Student.findOne({userid: newApp.userid}, "userid, applications").then((resp) =>{
-					if(resp){
-						//checks for duplicated applications by checking the array length of the duplicate array
-						let duplicate = resp.applications.filter((app)=>{return app.college === newApp.college});
-						if(duplicate.length === 0){
-							collections.Student.updateOne({userid: newApp.userid}, {$push:{applications:{college:newApp.college, status:newApp.status}}}).then((resp)=>{
+				collections.Application.findOne({userid: newApp.userid, college: newApp.college}).lean().then((resp) =>{
+					if(!resp){
+						collections.Application.create(newApp).then((resp) =>{
+							collections.Student.updateOne({userid: newApp.userid}, {$push:{applications: resp._id}}).then((resp)=>{
 								console.log("Added application for "+ newApp.userid+" with college: "+newApp.college+" and status:"+newApp.status);
-							})
-						}
+							});
+						});		
 					}
 				});
 			});
@@ -238,14 +236,13 @@ remapped_names.set('SUNY College of Environmental Science and Forestry', 'State 
 remapped_names.set('The College of Saint Scholastica', 'College of St. Scholastica');
 
 
-
 module.exports = {
 	importCollegeGPA : importCollegeGPA,
 	importStudentProfiles: importStudentProfiles,
 	importScorecardData: importScorecardData,
-	importCollegeRankings: importCollegeRankings
+	importCollegeRankings: importCollegeRankings,
 };
 
 //importScorecardData();
-//importStudentProfiles("students-1.csv");
+importStudentProfiles("students-1.csv");
 //importCollegeRankings();
