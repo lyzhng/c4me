@@ -67,6 +67,20 @@ const importApplicationData = (applicationCSV) =>{
 	});
 };
 
+//Drops student collection
+const deleteAllStudents = () => {
+	collections.Student.collection.drop().then(resp => {
+		console.log("Dropped student collection");
+	}).catch( err => {
+		console.log("Student database already deleted");
+	});
+	collections.Application.collection.drop().then(resp => {
+		console.log("Dropped application collection");
+	}).catch( err => {
+		console.log("Application database already deleted");
+	});
+}
+
 //fill ranking / description field for each college in database
 const importCollegeRankings = async function () {
 	let college = collections.College;
@@ -241,8 +255,10 @@ module.exports = {
 	importStudentProfiles: importStudentProfiles,
 	importScorecardData: importScorecardData,
 	importCollegeRankings: importCollegeRankings,
+	deleteAllStudents: deleteAllStudents
 };
 
 //importScorecardData();
-importStudentProfiles("students-1.csv");
+//importStudentProfiles("students-1.csv");
 //importCollegeRankings();
+deleteAllStudents();
