@@ -5,6 +5,7 @@ const papa = require('papaparse');
 const fs = require('fs');
 const collections = require('../models');
 const request = require("request");
+const puppeteer = require('puppeteer');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
@@ -25,7 +26,9 @@ const importStudentProfiles = (studentCsv) => {
 			studentData.forEach((student)=>{
 				collections.Student.find({userid:student.userid}).lean().then((resp)=>{
 					if(resp.length === 0)
+					{
 						collections.Student.create(student).catch(err => { console.log(err); });
+					}
 				});
 			});
 		}
@@ -39,28 +42,47 @@ const importCollegeRankings = async function () {
 
 	await initCollege(); //if no colleges in database, this will populate the database
 	
-	let url = "https://www.timeshighereducation.com/rankings/united-states/2020#!/page/0/length/-1/sort_by/rank/sort_order/asc/cols/stats";
+	let allRankingsUrl = "https://www.timeshighereducation.com/rankings/united-states/2020#!/page/0/length/-1/sort_by/rank/sort_order/asc/cols/stats";
+	
 	college.find(async function (err, collegeArr)
 	{
-		await new Promise(function(resolve, reject)
+		let allRankings;
+		await new Promise(async function(resolve, reject)
 		{
-			request(url, function(error, response, body)
+			let browser = await puppeteer.launch();
+			let page = await browser.newPage();
+
+			await page.goto(allRankingsUrl);
+			allRankings = await page.evaluate(() =>
 			{
-				if (error || response.statusCode !== 200)
+				let collegeNames = {};
+				let rankings = document.querySelectorAll("a.ranking-institution-title");
+				for (let i = 0; i < rankings.length; i ++)
 				{
-					console.log("failed to request ranking data!");
-					reject();
+					collegeNames[rankings[i].textContent] = i + 1;
 				}
-				else
-				{
-					const dom = new JSDOM(body, { resources: "usable", runScripts: "dangerously"});
-					var nodelist = dom.window.document.querySelectorAll("div");
-					console.log(nodelist);
-					resolve();
-				}
+				return collegeNames;
 			});
+			browser.close();
+
+			resolve();
 		});
+
+		for (let i = 0; i < collegeArr.length; i ++)
+		{
+			if (allRankings[collegeArr[i].name] === null)
+			{
+				console.log("could not pull ranking for " + collegeArr[i].name);
+			}
+			else
+			{
+				collegeArr[i].ranking = allRankings[collegeArr[i].name];
+				collegeArr[i].save();
+				console.log("updated ranking for " + collegeArr[i].name + ": " + allRankings[collegeArr[i].name]);
+			}
+		}
 	});
+
 
 };
 
@@ -123,8 +145,11 @@ const importScorecardData = async function () {
 
 
 module.exports = {
-	importStudentProfiles: importStudentProfiles
+	importStudentProfiles: importStudentProfiles,
+	importScorecardData: importScorecardData,
+	importCollegeRankings: importCollegeRankings
 };
 
-importScorecardData();
-// importStudentProfiles("students-1.csv");
+//importScorecardData();
+//importStudentProfiles("students-1.csv");
+importCollegeRankings();
