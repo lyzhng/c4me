@@ -272,61 +272,78 @@ const importScorecardData = async () => {
 	});
 }
 
-const importCollegeGPA = async function (filepath) {
+const importCollegeGPA = async function (filepath,callback) {
 	let college = collections.College;
-	let collegeName = await getCollegeNames();
 	await initCollege(filepath);
 	let collegeUrl;
 	// let gpa_data = new Map();
-	for (let i = 0; i < collegeName.length; i++){
-		collegeUrl = collegeName[i];
-		if (remapped_names.has(collegeName[i])){
-			console.log(remapped_names.get(collegeName[i]));
-			collegeUrl = remapped_names.get(collegeName[i]);
-		}
-		let regex = /\b(The)\s\b/gi;
-		collegeUrl = collegeUrl.replace(regex,'');
-		collegeUrl = collegeUrl.replace(/,|&/g, '');
-		collegeUrl = collegeUrl.replace(/\s+/g, '-');
-		await new Promise(function(resolve, reject)
-		{
-			request({
-				method: "GET",
-				url: 'https://www.collegedata.com/college/' + collegeUrl,
-			},(err,res,body)=>{
-				if (err || res.statusCode !== 200)
-				{
-					console.log("failed to request ranking data!");
-					reject();
-				}
-				else
-				{
-					let $ = cheerio.load(body);
-					let dt_tags = $("dt").map(function() {
-						return $(this).text();
-					}).get();
-					let dd_tags = $("dd").map(function() {
-						return $(this).text();
-					}).get();
-					// let dd_tags = overview.find('dl').find('dd');
-					let GPA;
-					let AVG_ACT;
-					for (let j=0; j < dt_tags.length; j++){
-						if (dt_tags[j] === "Average GPA"){
-							GPA = dd_tags[j];
-						}
-						if (dt_tags[j] === ("ACT Composite")){
-							AVG_ACT = dd_tags[j];
-						}
+	college.find(async function (err, collegeArr) {
+		for (let i = 0; i < collegeArr.length; i++){
+			collegeUrl = collegeArr[i].name;
+			if (remapped_names.has(collegeArr[i].name)){
+				collegeUrl = remapped_names.get(collegeArr[i].name);
+			}
+			let regex = /\b(The)\s\b/gi;
+			collegeUrl = collegeUrl.replace(regex,'');
+			collegeUrl = collegeUrl.replace(/,|&/g, '');
+			collegeUrl = collegeUrl.replace(/\s+/g, '-');
+			await new Promise(function(resolve, reject)
+			{
+				request({
+					method: "GET",
+					url: 'https://www.collegedata.com/college/' + collegeUrl,
+				},(err,res,body)=>{
+					if (err || res.statusCode !== 200)
+					{
+						console.log("failed to request ranking data!");
+						reject();
 					}
-					college[collegeName].gpa = GPA;
-					college[collegeName].act.avg = AVG_ACT;
-					college[collegeName].save();
+					else
+					{
+						let $ = cheerio.load(body);
+						let dt_tags = $("dt").map(function() {return $(this).text();}).get();
+						let dd_tags = $("dd").map(function() {return $(this).text();}).get();
+						// let dd_tags = overview.find('dl').find('dd');
+						let GPA;
+						let AVG_ACT;
+						for (let j=0; j < dt_tags.length; j++){
+							if (dt_tags[j] === "Average GPA"){
+								if (dd_tags[j] === "Not reported"){
+									GPA = -1;
+								}
+								else
+									GPA = dd_tags[j];
+							}
+							else if(dt_tags[j] === ("ACT Composite")){
+								if (dd_tags[j].includes("average")){
+									AVG_ACT = dd_tags[j].split("average")[0];
+								}
+								else{
+									AVG_ACT = dd_tags[j];
+									if (dd_tags[j] === "Not reported"){
+										AVG_ACT = -1;
+									}
+									else{
+										AVG_ACT = AVG_ACT.split(" ")[0];
+										AVG_ACT = AVG_ACT.split("-");
+										AVG_ACT = Math.ceil((parseInt(AVG_ACT[0])+parseInt(AVG_ACT[1]))/2);
+									}
+								}
+							}
+						}
+						collegeArr[i].gpa = GPA;
+						collegeArr[i].act.avg = AVG_ACT;
+						collegeArr[i].save();
+					}
 					resolve();
-				}
-			})
-		});
-	}
+				})
+			});
+		}
+		if (typeof(callback) === "function")
+		{
+			callback();
+		}
+	});
 };
 
 let remapped_names = new Map();
