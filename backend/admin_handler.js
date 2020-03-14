@@ -187,8 +187,8 @@ const importCollegeDescriptions = async function (filepath, callback) {
 };
 
 
-
-const csvFilePath = './datasets/college_scorecard.csv';
+const COLUMNS = ['INSTNM', 'CITY', 'STABBR', 'ZIP', 'INSTURL', 'ADM_RATE', 'TUITIONFEE_IN', 'TUITIONFEE_OUT', 'SATVR25', 'SATVR75', 'SATMT25', 'SATMT75', 'SATWR25', 'SATWR75', 'SATVRMID', 'SATMTMID', 'SATRMID', 'ACTCM25', 'ACTCM75', 'ACTEN25', 'ACTEN75', 'ACTMT25', 'ACTM75', 'ACTWR25', 'ACTWR75', 'ACTCMMID', 'ACTENMID', 'ACTMTMID', 'ACTWRMID', 'SAT_AVG'];
+const csvFilePath = '../datasets/college_scorecard.csv';
 
 // { excel.csv: colleges.txt }
 const remappedColleges = {
@@ -200,7 +200,16 @@ const remappedColleges = {
 	'University of Massachusetts-Amherst': 'University of Massachusetts Amherst',
 };
 
-const importScorecardData = async function (filepath) {
+const importScorecardData = async () => {
+	await initCollege();
+	// if (!fs.existsSync(csvFilePath)) {
+	await new Promise((resolve, reject) => {
+		request('https://ed-public-download.app.cloud.gov/downloads/Most-Recent-Cohorts-All-Data-Elements.csv')
+			.pipe(fs.createWriteStream(csvFilePath))
+			.on('finish', resolve)
+			.on('error', reject);
+	});
+	// }
 	fs.readFile(csvFilePath, 'utf8', async (err, data) => {
 		if (err) {
 			console.log(err);
@@ -208,14 +217,13 @@ const importScorecardData = async function (filepath) {
 		}
 		const colleges = [];
 		const collegeNames = await getCollegeNames();
-		await initCollege(filepath);
 		// convert colleges.txt to excel.csv style to match with parser
 		const collegesExcelStyle = collegeNames.map((college) => college.replace(', ', '-'));
-		papa.parse(data, {
+		Papa.parse(data, {
 			worker: true,
 			header: true,
 			dynamicTyping: true,
-			step: (row) => {
+			step(row) {
 				let collegeName = row.data.INSTNM;
 				// convert line-by-line excel.csv data to colleges.txt style
 				if (collegeName in remappedColleges) {
@@ -232,19 +240,37 @@ const importScorecardData = async function (filepath) {
 						}
 					}
 					colleges.push(college);
+					// console.log(college.INSTNM);
 				}
 			},
-			complete: (results) => {
+			complete: () => {
 				const scorecardData = JSON.parse(JSON.stringify(colleges));
-				scorecardData.forEach((college) => {
-					console.log(college);
-					// collections.College.updateOne({ name: college.INSTNM }, {
-					// });
+				scorecardData.forEach(async (college) => {
+					let zipCode = college.ZIP;
+					if (typeof college.ZIP === 'string') {
+						const dashIndex = college.ZIP.indexOf('-');
+						zipCode = +college.ZIP.substring(0, dashIndex);
+					}
+					console.log(college.INSTNM);
+					await collections.College.updateOne({ name: college.INSTNM }, {
+						location: {
+							city: college.CITY,
+							state: college.STABBR,
+							zip: zipCode,
+						},
+						url: college.INSTURL.toLowerCase(),
+						admission_rate: college.ADM_RATE !== 'NULL' ? college.ADM_RATE * 100 : -1,
+						cost: {
+							in_state: college.TUITIONFEE_IN,
+							out_state: college.TUITIONFEE_OUT,
+						},
+					}, { upsert: true });
 				});
+				console.log('I am done!');
 			}
 		});
 	});
-};
+}
 
 const importCollegeGPA = async function (filepath) {
 	let college = collections.College;
@@ -318,8 +344,9 @@ module.exports = {
 	importCollegeDescriptions : importCollegeDescriptions
 };
 
-//importScorecardData();
+// importScorecardData();
 //importStudentProfiles("students-1.csv");
-//importCollegeRankings();
+// importCollegeRankings();
 //deleteAllStudents();
-//importCollegeDescriptions();
+// importCollegeDescriptions();
+importCollegeGPA();
