@@ -82,10 +82,9 @@ const deleteAllStudents = () => {
 }
 
 //fill ranking field for each college in database
-const importCollegeRankings = async function (callback) {
+const importCollegeRankings = async function (filepath, callback) {
 	let college = collections.College;
-	console.log("ranking");
-	await initCollege(); //if no colleges in database, this will populate the database
+	await initCollege(filepath); //if no colleges in database, this will populate the database
 	
 	let allRankingsUrl = "https://www.timeshighereducation.com/rankings/united-states/2020#!/page/0/length/-1/sort_by/rank/sort_order/asc/cols/stats";
 	
@@ -142,10 +141,10 @@ const importCollegeRankings = async function (callback) {
 };
 
 //fill description field for each college in database
-const importCollegeDescriptions = async function (callback) {
+const importCollegeDescriptions = async function (filepath, callback) {
 	let college = collections.College;
 
-	await initCollege(); //if no colleges in database, this will populate the database
+	await initCollege(filepath); //if no colleges in database, this will populate the database
 	
 	let url = "https://www.timeshighereducation.com/world-university-rankings/";//harvard-university";
 	
@@ -201,7 +200,7 @@ const remappedColleges = {
 	'University of Massachusetts-Amherst': 'University of Massachusetts Amherst',
 };
 
-const importScorecardData = async function () {
+const importScorecardData = async function (filepath) {
 	fs.readFile(csvFilePath, 'utf8', async (err, data) => {
 		if (err) {
 			console.log(err);
@@ -209,6 +208,7 @@ const importScorecardData = async function () {
 		}
 		const colleges = [];
 		const collegeNames = await getCollegeNames();
+		await initCollege(filepath);
 		// convert colleges.txt to excel.csv style to match with parser
 		const collegesExcelStyle = collegeNames.map((college) => college.replace(', ', '-'));
 		papa.parse(data, {
@@ -246,9 +246,10 @@ const importScorecardData = async function () {
 	});
 };
 
-const importCollegeGPA = async function () {
+const importCollegeGPA = async function (filepath) {
 	let college = collections.College;
 	let collegeName = await getCollegeNames();
+	await initCollege(filepath);
 	let collegeUrl;
 	// let gpa_data = new Map();
 	for (let i = 0; i < collegeName.length; i++){

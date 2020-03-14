@@ -1,10 +1,14 @@
 const fs = require('fs');
 
-module.exports = function()
+module.exports = function(filepath)
 {
+	if (!filepath)
+	{
+		filepath = "../datasets/colleges.txt";
+	}
 	return new Promise(function(resolve, reject)
 	{
-		fs.readFile('./datasets/colleges.txt', 'utf8', function(err, contents)
+		fs.readFile(filepath, 'utf8', function(err, contents)
 		{
 			if (err)
 			{

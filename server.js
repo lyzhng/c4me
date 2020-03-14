@@ -72,17 +72,17 @@ app.get("/importstudentdatasets", (req, res)=>{
 });
 
 app.get("/scrapecollegerankings", (req, res)=>{
-  backend.adminHandler.importCollegeRankings();
+  backend.adminHandler.importCollegeRankings("./datasets/colleges.txt", callback);
   res.status(200).send();
 });
 
 app.get("/scrapecollegedata", (req, res)=>{
-  backend.adminHandler.importCollegeGPA();
+  backend.adminHandler.importCollegeGPA("./datasets/colleges.txt");
   res.status(200).send();
 });
 
 app.get("/importcollegescorecard", (req, res)=>{
-  backend.adminHandler.importScorecardData();
+  backend.adminHandler.importScorecardData("./datasets/colleges.txt", );
   res.status(200).send();
 });
 
