@@ -447,10 +447,32 @@ const importCollegeData = async function (filepath,callback) {
 						collegeArr[i].cost.attendance.out_state = isNaN(cos_att.out_state) ? -1: cos_att.out_state;
 						collegeArr[i].cost.tuition.in_state = isNaN(cos_fee.in_state) ? -1: cos_fee.in_state;
 						collegeArr[i].cost.tuition.out_state = isNaN(cos_fee.out_state) ? -1: cos_fee.out_state;
-						collegeArr[i].save();
+						//collegeArr[i].save();
+						request({
+							method: "GET",
+							url: 'https://www.collegedata.com/college/' + collegeUrl +'?tab=profile-academics-tab',
+						},(err,res,body)=>{
+							if (err || res.statusCode !== 200)
+							{
+								console.log("failed to request ranking data!");
+								reject();
+							}
+							else
+							{
+								let $ = cheerio.load(body);
+								let li_tags = $("#profile-academics .card:nth-child(2) .card-body .row .col-sm-6 .list--nice li").map(function() {
+									return $(this).text();
+								}).get();
+								for (let j= 0; j < li_tags.length; j++){
+									collegeArr[i].majors.push(li_tags[j]);
+								}
+								collegeArr[i].save();
+							}
+							resolve();
+						});
 					}
 					resolve();
-				})
+				});
 			});
 		}
 		console.log("Finish");
