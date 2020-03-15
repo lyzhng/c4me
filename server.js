@@ -105,7 +105,7 @@ app.get('/checkToken', jwtAuth, (req, res)=>{
 });
 
 app.post("/searchforcolleges", async (req, res) => {
-  let colleges = await backend.studentHandler.searchCollege(req.body.query);
+  let colleges = await backend.collegeSearch.searchCollege(req.body.query);
   res.status(200).send({colleges : colleges});
 });
 
