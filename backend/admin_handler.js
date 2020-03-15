@@ -8,7 +8,7 @@ const request = require("request");
 const puppeteer = require('puppeteer');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-
+const userAgents = require("./user_agents");
 const getCollegeNames = require('../backend/get_college_names');
 const initCollege = require("./init_colleges.js");
 
@@ -195,7 +195,7 @@ const importCollegeDescriptions = async function (filepath, callback) {
 
 const NUMERIC_COLUMNS = ['SATVR25', 'SATVRMID', 'SATVR75', 'SATMT25', 'SATMTMID', 'SATMT75', 'SATWR25', 'SATWRMID', 'SATWR75', 'ACTCM25', 'ACTCM75', 'ACTEN25', 'ACTEN75', 'ACTMT25', 'ACTMT75', 'ACTWR25', 'ACTWR75', 'ACTCMMID', 'ACTENMID', 'ACTMTMID', 'ACTWRMID', 'SAT_AVG', 'GRAD_DEBT_MDN', 'C100_4', 'ADM_RATE'];
 const COLUMNS = ['INSTNM', 'CITY', 'STABBR', 'ZIP', 'INSTURL', 'CONTROL', 'TUITIONFEE_IN', 'TUITIONFEE_OUT', ...NUMERIC_COLUMNS];
-const csvFilePath = '../datasets/college_scorecard.csv';
+const csvFilePath = './datasets/college_scorecard.csv';
 
 // { excel.csv: colleges.txt }
 const remappedColleges = {
@@ -488,10 +488,6 @@ remapped_names.set('Franklin and Marshall College', 'Franklin Marshall College')
 remapped_names.set('SUNY College of Environmental Science and Forestry', 'State University of New York College of Environmental Science and Forestry');
 remapped_names.set('The College of Saint Scholastica', 'College of St. Scholastica');
 
-const userAgents = ['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36',
-'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:74.0) Gecko/20100101 Firefox/74.0', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36',
-'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36'];
-
 const scrapeAcademicRanking = ($) => {
 	let grades = $("#report-card .card--profile .report-card .profile__buckets .profile__bucket--2 .ordered__list__bucket li .profile-grade--two").map(function(){return $(this).text()}).get();
 	//grades[0] returns AcademicsA-, e.g. AcademicsA+, so take substring starting with index 9
@@ -545,13 +541,15 @@ const scrapeSimilarAppliedColleges = ($) => {
  return popularCollegeList;
 };
 
+let userAgentsIndex = 0;
+
 const importHighschoolData = (name, city, state) => {
 	let url ="https://www.niche.com/k12/"+ name + "-" +city + "-" +state;
 	url = url.split(" ").join("-");
 	axios.get(url, 
 	{headers:{
 		'Host': 'www.niche.com',
-		'User-Agent':  Math.floor(Math.random() * 3),
+		'User-Agent':userAgents[userAgentsIndex++],
 		'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 		'Accept-Language': 'en-US,en;q=0.5',
 		'Accept-Encoding': 'gzip, deflate, br',
@@ -562,6 +560,9 @@ const importHighschoolData = (name, city, state) => {
 		'TE': 'Trailers'
 	}}
 	).then((resp) => {
+	if(userAgentsIndex > userAgents.length){
+		userAgentsIndex = 0;
+	}
 	let html = cheerio.load(resp.data);
 	let highschool = {
 		name,
@@ -597,10 +598,10 @@ module.exports = {
 //importCollegeRankings();
 //deleteAllStudents();
 //importCollegeDescriptions();
-importCollegeData();
+//importCollegeData();
 //importHighschoolData("blah", "blah", "blah");
 //importHighschoolData("central high school", "park hills", "mo");
-//importHighschoolData("Ward Melville Senior High School", "East Setauket", "ny");
-//importHighschoolData("James Madison High School", "Brooklyn", "ny");
-//importHighschoolData("The queens school of inquiry", "flushing", "ny");
-//importHighschoolData("Francis Lewis High school","fresh meadows", "ny");
+// importHighschoolData("Ward Melville Senior High School", "East Setauket", "ny");
+// importHighschoolData("James Madison High School", "Brooklyn", "ny");
+// importHighschoolData("The queens school of inquiry", "flushing", "ny");
+// importHighschoolData("Francis Lewis High school","fresh meadows", "ny");

@@ -1,6 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import {Redirect} from 'react-router-dom';
+import SearchResults from './SearchResults';
 
 export default class SearchColleges extends React.Component{
     state = {
@@ -36,6 +37,7 @@ export default class SearchColleges extends React.Component{
 							<label htmlFor="name">Filter by Name:</label>
 							<input type="text" name = "name" onChange ={this.handleChange} />
 							<button onClick= {this.search}>Search</button>
+							{this.state.colleges.map((college) => {return <SearchResults college = {college}/>})}
             </div>
 				)
 				return <Redirect to = "/login" />;

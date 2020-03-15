@@ -47,11 +47,11 @@ const searchCollege = function (query)
 		});
 	}
 }
+ 
 
 
 
 
-
-module.exports = {
-	searchCollege: searchCollege 
-};
+// module.exports = {
+// 	searchCollege: searchCollege 
+// };

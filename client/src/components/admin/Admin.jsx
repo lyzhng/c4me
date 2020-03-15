@@ -61,7 +61,7 @@ export default class Admin extends React.Component{
 		if(this.props.userid && this.props.userid === "admin")
 			return(
 				<div>
-					<button onClick = {this.scrapeCollegeRankings}>Scrape College Rankings</button>
+					<button onClick = {this.scrapeCollegeRankings}>Scrape Times Higher Education Rankings</button>
 					<br/>
 					<button onClick = {this.importCollegeScorecard}>Import College Scorecard data file</button>
 					<br/>
