@@ -68,7 +68,8 @@ app.get("/deletestudents", (req, res)=>{
 });
 
 app.get("/importstudentdatasets", (req, res)=>{
-  backend.adminHandler.importStudentProfiles(studentDatasets[0]);
+  backend.adminHandler.importStudentProfiles(studentDatasets[0], applicationDatasets[0]);
+  res.status(200).send();
 });
 
 app.get("/scrapecollegerankings", (req, res)=>{
@@ -91,7 +92,9 @@ app.get('/checkToken', jwtAuth, (req, res)=>{
   res.sendStatus(200).send();
 });
 
-
+app.post("/searchforcolleges", (req, res) => {
+  res.sendStatus(200).send();
+});
 app.listen(PORT, ()=>{
   console.log("Backend listening on port:",PORT);
 });
