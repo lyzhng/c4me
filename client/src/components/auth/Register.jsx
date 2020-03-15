@@ -23,11 +23,10 @@ export default class Register extends React.Component{
                         password: this.state.password};
         console.log(newUser)
         axios.post("/api/register", newUser).then(res=>{
-            if(res.data.status === "OK")
                 this.props.history.push("/login");
-            else
-                this.setState({err: res.data.status});
-        })
+        }).catch(err => {
+            this.setState({err: "Userid is already taken!"})
+        });
     }
     
     componentDidMount(){

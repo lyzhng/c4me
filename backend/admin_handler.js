@@ -27,7 +27,7 @@ const importStudentProfiles = (studentCsv, applicationCSV) => {
 	
 			const studentsInsert =studentData.map((student)=>{
 					collections.Student.find({userid:student.userid}).lean().then((resp)=>{
-						if(resp.length === 0)
+						if(resp.length === 0 && student.userid !== "admin")
 						{
 							collections.Student.create(student).then((resp)=>{
 								console.log("Created", resp);

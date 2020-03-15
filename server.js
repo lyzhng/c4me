@@ -25,23 +25,26 @@ app.get("/", (req, res)=>{
 });
 
 app.post("/api/register", (req, res)=>{
-  collections.Student.find({userid:req.body.userid}).lean().then((resp) => {
-    if(resp.length === 0){
-      collections.Student.create(req.body).then((collectionsmodel)=>{
-        console.log("Created new user:", collectionsmodel);
-        res.status(200).json({status:"OK"});
-      });
-    }
-    else{
-      res.status(401).json({error:"userid or email already taken!"});
-    }
-  });
+  if(req.body.userid !== "admin"){
+    collections.Student.find({userid:req.body.userid}).lean().then((resp) => {
+      if(resp.length === 0){
+        collections.Student.create(req.body).then((collectionsmodel)=>{
+          console.log("Created new user:", collectionsmodel);
+          res.status(200).json({status:"OK"});
+        });
+      }
+      else{
+        res.status(401).json({error:"userid or email already taken!"});
+      }
+    });
+  }
+  res.status(401).json({error:"userid or email already taken!"});
 });
 
 app.post("/api/login", (req, res)=>{
   const { userid, password } = req.body;
   //HARD CODED ADMIN
-  if(userid === "sam" && password === "chen"){
+  if(userid === "admin" && password === "admin"){
     const payload = {userid: "admin"}
     const token = jwt.sign(payload, secret, {
       expiresIn: '1d'
