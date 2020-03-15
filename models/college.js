@@ -10,7 +10,8 @@ const CollegeSchema = new mongoose.Schema({
     },
     url : {type: String},
     admission_rate : {type: Number},
-    cost : {
+    cost: {
+        attendance: Number,
         in_state: Number,
         out_state : Number,
     },
