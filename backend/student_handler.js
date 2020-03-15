@@ -15,19 +15,37 @@ function escapeRegExp(str) {
 
 const searchCollege = function (query)
 {
-	//query = typeof(query) === "string" ? query : "";
 	let college = collections.College;
-	let queryRegex = query.split(/ +/).filter((substr) => {return substr !== ""})
-	.map((substr) => {return {name: {$regex: new RegExp(escapeRegExp(substr)), $options: 'i'}}});
-		queryRegex = queryRegex.length !== 0 ? queryRegex : null;
 
-	return new Promise(function (resolve, reject)
+	if (query === "")
 	{
-		college.find({$and : queryRegex}, function (err, collegeArr)
+		return new Promise(function (resolve, reject)
 		{
-			resolve(collegeArr);
+			college.find({}, function (err, collegeArr)
+			{
+				if (err)
+				{
+					console.log("error searching for colleges!");
+				}
+				resolve(collegeArr);
+			});
 		});
-	});
+	}
+	else
+	{
+		query = typeof(query) === "string" ? query : "";
+		let queryRegex = query.split(/ +/).filter((substr) => {return substr !== ""})
+		.map((substr) => {return {name: {$regex: new RegExp(escapeRegExp(substr)), $options: 'i'}}});
+			queryRegex = queryRegex.length !== 0 ? queryRegex : null;
+
+		return new Promise(function (resolve, reject)
+		{
+			college.find({$and : queryRegex}, function (err, collegeArr)
+			{
+				resolve(collegeArr);
+			});
+		});
+	}
 }
 
 
