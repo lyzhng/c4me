@@ -20,10 +20,9 @@ const CollegeSchema = new mongoose.Schema({
             in_state: Number,
             out_state : Number,
         }
-
     },
-    grad_debt_med:{type : Number},
-    complete_rate:{type : Number},
+    grad_debt_mdn:{type : Number},
+    completion_rate:{type : Number},
     gpa: {type: Number},
     sat:{
         reading_25 : Number,
