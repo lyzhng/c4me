@@ -32,7 +32,8 @@ export default class Login extends React.Component{
 
     render(){
         return(
-            <form>
+            <div>
+            <div>
                 <h3>Login Here</h3>
                 <label htmlFor=" userid"> userid: </label>
                 <input name="userid" onChange={this.handleInputChange}/>
@@ -48,7 +49,9 @@ export default class Login extends React.Component{
                 <span style={{color:"red"}}>{this.state.err}
                 <br/>
                 <br/></span>
-            </form>
+            </div>
+            <a href="/register">Signup Here!</a>
+            </div>
         )
     }
 }

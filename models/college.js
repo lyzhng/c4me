@@ -39,7 +39,8 @@ const CollegeSchema = new mongoose.Schema({
         math_75 : Number,
         composite_25: Number,
         composite_50: Number,
-        composite_75: Number
+        composite_75: Number,
+        avg : Number,
     },
     ranking : {type: Number}
 });

@@ -315,7 +315,6 @@ const importCollegeGPA = async function (filepath,callback) {
 	let college = collections.College;
 	await initCollege(filepath);
 	let collegeUrl;
-	// let gpa_data = new Map();
 	college.find(async function (err, collegeArr) {
 		for (let i = 0; i < collegeArr.length; i++){
 			collegeUrl = collegeArr[i].name;
@@ -342,7 +341,6 @@ const importCollegeGPA = async function (filepath,callback) {
 						let $ = cheerio.load(body);
 						let dt_tags = $("dt").map(function() {return $(this).text();}).get();
 						let dd_tags = $("dd").map(function() {return $(this).text();}).get();
-						// let dd_tags = overview.find('dl').find('dd');
 						let GPA;
 						let AVG_ACT;
 						for (let j=0; j < dt_tags.length; j++){
@@ -494,15 +492,15 @@ module.exports = {
 	importHighschoolData : importHighschoolData
 };
 
-// importScorecardData();
+//importScorecardData();
 //importStudentProfiles("students-1.csv","applications-1.csv");
-// importCollegeRankings();
+//importCollegeRankings();
 //deleteAllStudents();
-// importCollegeDescriptions();
+//importCollegeDescriptions();
 //importCollegeGPA();
-// importHighschoolData("blah", "blah", "blah");
-// importHighschoolData("central high school", "park hills", "mo");
-// importHighschoolData("Ward Melville Senior High School", "East Setauket", "ny");
-// importHighschoolData("James Madison High School", "Brooklyn", "ny");
-// importHighschoolData("The queens school of inquiry", "flushing", "ny");
-// importHighschoolData("Francis Lewis High school","fresh meadows", "ny");
+//importHighschoolData("blah", "blah", "blah");
+//importHighschoolData("central high school", "park hills", "mo");
+//importHighschoolData("Ward Melville Senior High School", "East Setauket", "ny");
+//importHighschoolData("James Madison High School", "Brooklyn", "ny");
+//importHighschoolData("The queens school of inquiry", "flushing", "ny");
+//importHighschoolData("Francis Lewis High school","fresh meadows", "ny");
