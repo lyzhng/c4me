@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const CollegeSchema = new mongoose.Schema({
     name: { type: String, required: true, unique: true },
+    type:{type :String},
     description : {type: String},
     location :{
         city : String,
@@ -10,10 +11,19 @@ const CollegeSchema = new mongoose.Schema({
     },
     url : {type: String},
     admission_rate : {type: Number},
-    cost : {
-        in_state: Number,
-        out_state : Number,
+    cost: {
+        attendance: {
+            in_state: Number,
+            out_state : Number,
+        },
+        tuition :{
+            in_state: Number,
+            out_state : Number,
+        }
+
     },
+    grad_debt_med:{type : Number},
+    complete_rate:{type : Number},
     gpa: {type: Number},
     sat:{
         reading_25 : Number,
