@@ -36,7 +36,8 @@ export default class Register extends React.Component{
 
     render(){
         return(
-            <form>
+            <div>
+            <div>
                 <h3>Sign Up Page</h3>
                 <label htmlFor="userid"> userid:</label>
                 <input type="text" name = "userid" onChange={this.handleInputChange}/>
@@ -52,7 +53,9 @@ export default class Register extends React.Component{
                 <span style={{color:"red"}}>{this.state.err}
                 <br/>
                 <br/></span>
-            </form>
+            </div>
+             <a href="/login">Login</a>
+             </div>
         )
     }
 }
