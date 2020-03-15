@@ -421,18 +421,6 @@ const importCollegeData = async function (filepath,callback) {
 								}
 							}
 							else if (dt_tags[j] === "Cost of Attendance") {
-								let cos_list = dd_tags[j].split("Out-of-state:");
-								cos_att.in_state = parseInt(cos_list[0]);
-								cos_att.out_state = parseInt(cos_list[1]);
-								console.log(cos_att);
-							}
-							else if (dt_tags[j] === "Tuition and Fees"){
-								let cos_list = dd_tags[j].split("Out-of-state:");
-								cos_fee.in_state = parseInt(cos_list[0]);
-								cos_fee.out_state = parseInt(cos_list[1]);
-								console.log(cos_fee);
-							}
-							else if (dt_tags[j] === "Cost of Attendance") {
 								if (dd_tags[j].includes("Out-of-state:")){
 									let cos_list = dd_tags[j].split("Out-of-state:");
 									cos_att.in_state = parseInt(cos_list[0].replace(/\$|,|(In-state:)|\b/g,''));
@@ -456,9 +444,9 @@ const importCollegeData = async function (filepath,callback) {
 						collegeArr[i].gpa = GPA;
 						collegeArr[i].act.avg = AVG_ACT;
 						collegeArr[i].cost.attendance.in_state = isNaN(cos_att.in_state) ? -1: cos_att.in_state;
-						collegeArr[i].cost.attendance.out_state = isNaN(cos_att.out_state) ? -1: cos_att.in_state;
-						collegeArr[i].cost.tuition.in_state = isNaN(cos_fee.in_state) ? -1: cos_fee.in_state;
-						collegeArr[i].cost.tuition.out_state = isNaN(cos_fee.out_state) ? -1: cos_fee.in_state;
+						collegeArr[i].cost.attendance.out_state = isNaN(cos_att.out_state) ? -1: cos_att.out_state;
+						collegeArr[i].cost.tuition.in_state = isNaN(cos_fee.in_state) ? -1: cos_fee.out_state;
+						collegeArr[i].cost.tuition.out_state = isNaN(cos_fee.out_state) ? -1: cos_fee.out_state;
 						collegeArr[i].save();
 					}
 					resolve();
@@ -586,7 +574,7 @@ module.exports = {
 //importCollegeRankings();
 //deleteAllStudents();
 //importCollegeDescriptions();
-//importCollegeData();
+importCollegeData();
 //importHighschoolData("blah", "blah", "blah");
 //importHighschoolData("central high school", "park hills", "mo");
 //importHighschoolData("Ward Melville Senior High School", "East Setauket", "ny");
