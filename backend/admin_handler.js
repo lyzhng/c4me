@@ -453,6 +453,7 @@ const importCollegeData = async function (filepath,callback) {
 				})
 			});
 		}
+		console.log("Finish");
 		if (typeof(callback) === "function")
 		{
 			callback();
