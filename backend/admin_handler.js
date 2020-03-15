@@ -85,7 +85,7 @@ const deleteAllStudents = () => {
 	}).catch( err => {
 		console.log("Application database already deleted");
 	});
-}
+};
 
 //fill ranking field for each college in database
 const importCollegeRankings = async function (filepath, callback) {
@@ -276,13 +276,12 @@ const importScorecardData = async () => {
 			}
 		});
 	});
-}
+};
 
 const importCollegeGPA = async function (filepath,callback) {
 	let college = collections.College;
 	await initCollege(filepath);
 	let collegeUrl;
-	// let gpa_data = new Map();
 	college.find(async function (err, collegeArr) {
 		for (let i = 0; i < collegeArr.length; i++){
 			collegeUrl = collegeArr[i].name;
@@ -309,7 +308,6 @@ const importCollegeGPA = async function (filepath,callback) {
 						let $ = cheerio.load(body);
 						let dt_tags = $("dt").map(function() {return $(this).text();}).get();
 						let dd_tags = $("dd").map(function() {return $(this).text();}).get();
-						// let dd_tags = overview.find('dl').find('dd');
 						let GPA;
 						let AVG_ACT;
 						for (let j=0; j < dt_tags.length; j++){
@@ -371,7 +369,7 @@ const scrapeCollegePrepRanking = ($) => {
 	let grades = $("#report-card .card--profile .report-card .profile__buckets .profile__bucket--2 .ordered__list__bucket li .profile-grade--two").map(function(){return $(this).text()}).get();
 	//grades[3] returns College PrepGrade, e.g. College PrepA+, so take substring starting with index 12
 	return grades[3].substring(12, grades[3].length);
-}
+};
 
 const scrapeSAT = ($) => {
 	let scalarLabels = $("#academics .profile__bucket--3 div .blank__bucket .scalar--three div").map((function(){return $(this).text();})).get();
@@ -407,12 +405,12 @@ const scrapeAP_enrollment = ($) =>{
 		if(!isNaN(apEnrollment)) return apEnrollment;
 	}
 	return null;
-}
+};
 
 const scrapeSimilarAppliedColleges = ($) => {
  let popularCollegeList = $(".popular-entity-link").map(function(){return $(this).text()}).get();
  return popularCollegeList;
-}
+};
 
 const importHighschoolData = (name, city, state) => {
 	let url ="https://www.niche.com/k12/"+ name + "-" +city + "-" +state;
@@ -435,7 +433,7 @@ const importHighschoolData = (name, city, state) => {
 	let highschool = {
 		name,
 		location: city+", "+state
-	}
+	};
 	highschool.avg_SAT = scrapeSAT(html);
 	highschool.avg_ACT = scrapeACT(html);
 	highschool.AP_enrollment = scrapeAP_enrollment(html);
@@ -448,7 +446,7 @@ const importHighschoolData = (name, city, state) => {
 	}).catch((err)=>{
 		console.log("Scrape for high school:",name, city, state, "Gave the following error:",err.response.status, err.response.statusText);
 	});
-}
+};
 
 
 module.exports = {
@@ -461,15 +459,15 @@ module.exports = {
 	importHighschoolData : importHighschoolData
 };
 
-// importScorecardData();
+//importScorecardData();
 //importStudentProfiles("students-1.csv","applications-1.csv");
-// importCollegeRankings();
+//importCollegeRankings();
 //deleteAllStudents();
-// importCollegeDescriptions();
+//importCollegeDescriptions();
 //importCollegeGPA();
-// importHighschoolData("blah", "blah", "blah");
-// importHighschoolData("central high school", "park hills", "mo");
-// importHighschoolData("Ward Melville Senior High School", "East Setauket", "ny");
-// importHighschoolData("James Madison High School", "Brooklyn", "ny");
-// importHighschoolData("The queens school of inquiry", "flushing", "ny");
-// importHighschoolData("Francis Lewis High school","fresh meadows", "ny");
+//importHighschoolData("blah", "blah", "blah");
+//importHighschoolData("central high school", "park hills", "mo");
+//importHighschoolData("Ward Melville Senior High School", "East Setauket", "ny");
+//importHighschoolData("James Madison High School", "Brooklyn", "ny");
+//importHighschoolData("The queens school of inquiry", "flushing", "ny");
+//importHighschoolData("Francis Lewis High school","fresh meadows", "ny");
