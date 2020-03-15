@@ -9,10 +9,23 @@ import Navbar from './components/navbar/CNavbar';
 import Admin from './components/admin/Admin.jsx';
 
 export default class App extends React.Component {
+  state = {
+    userid: ""
+  }
+
+  changeUserid = (name) =>{
+    this.setState(userid);
+  }
+
+  componentDidMount(){
+    this.setState({userid: ""});
+  }
+
   render(){
+    const navAuth = Auth(Navbar);
     return (
       <div className="App">
-        <Navbar />
+        <navAuth userid ={this.state.userid} changeUserid = {this.changeUserid} />
        <BrowserRouter>
               <Switch>
                 <Route exact path = "/" component = {HomeScreen} />

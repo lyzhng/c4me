@@ -55,7 +55,7 @@ app.post("/api/login", (req, res)=>{
             const token = jwt.sign(payload, secret, {
               expiresIn: '1d'
             });
-            res.cookie('token', token, { httpOnly: false }).sendStatus(200);
+            res.cookie('token', token, { httpOnly: false }).status(200).send();
           }
         })
       }
@@ -89,7 +89,8 @@ app.get("/importcollegescorecard", (req, res)=>{
 
 //CHECKS IF WE ARE LOGGED IN OR NOT WITH MIDDLEWARE
 app.get('/checkToken', jwtAuth, (req, res)=>{
-  res.sendStatus(200).send();
+  console.log(req.userid);
+  res.status(200).json({userid:req.userid});
 });
 
 app.post("/searchforcolleges", async (req, res) => {

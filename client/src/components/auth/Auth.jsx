@@ -13,10 +13,12 @@ export default function Auth(AuthorizedComponent) {
 
     componentDidMount() {
       axios.get('/checkToken').then(res => {
-        if(res.data.status === "admin"){
+        if(res.data.user === "admin"){
+          this.props.changeUserid("admin");
           this.setState({ loading: false});
         }          
         else{
+          this.props.changeUserid(res.data.user);
           this.setState({loading: false});
         }
       }).catch(err => {

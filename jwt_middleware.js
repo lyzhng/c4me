@@ -14,7 +14,7 @@ const jwtAuth = function(req, res, next) {
       if (err) {
         res.status(401).send('Unauthorized: Invalid token');
       } else {
-        req.username = decoded.username;
+        req.userid = decoded.userid;
         next();
       }
     });
