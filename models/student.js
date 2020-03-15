@@ -24,7 +24,7 @@ const StudentSchema = new mongoose.Schema({
     college_class: {type: Number, default: null},
     num_AP_passed: {type: Number, default: null},
     high_school_city: {type: String, default: null},
-    high_school_sate: {type: String, default: null},
+    high_school_state: {type: String, default: null},
     high_school_name: {type: String, default: null},
     applications:[{type: mongoose.Schema.ObjectId, ref:"Application", default:[]}],
   });

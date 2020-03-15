@@ -7,7 +7,9 @@ const HighschoolSchema = mongoose.Schema({
     AP_enrollment: Number, //its actually a percentage e.g. a 96 would be 96%
     avg_SAT: Number,
     avg_ACT: Number,
-    ranking: Number
+    academic_ranking: String,
+    college_prep_ranking: String
+
 });
 
 const Highschool = mongoose.model("Highschool", HighschoolSchema);
