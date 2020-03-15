@@ -40,6 +40,16 @@ app.post("/api/register", (req, res)=>{
 
 app.post("/api/login", (req, res)=>{
   const { userid, password } = req.body;
+  //HARD CODED ADMIN
+  if(userid === "sam" && password === "chen"){
+    const payload = {userid: "admin"}
+    const token = jwt.sign(payload, secret, {
+      expiresIn: '1d'
+    });
+    res.cookie('token', token, { httpOnly: false }).status(200).json({userid:"admin"});
+  }
+  //NORMAL STUDENTS
+  else{
     collections.Student.findOne({ userid }).then((user)=>{
       if (!user) {
         res.status(401).json({error: 'Incorrect userid or password'});
@@ -60,6 +70,7 @@ app.post("/api/login", (req, res)=>{
         })
       }
     });
+  }  
 });
 
 app.get("/deletestudents", (req, res)=>{
@@ -89,7 +100,6 @@ app.get("/importcollegescorecard", (req, res)=>{
 
 //CHECKS IF WE ARE LOGGED IN OR NOT WITH MIDDLEWARE
 app.get('/checkToken', jwtAuth, (req, res)=>{
-  console.log(req.userid);
   res.status(200).json({userid:req.userid});
 });
 
