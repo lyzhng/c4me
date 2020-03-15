@@ -1,17 +1,26 @@
 import React from 'react';
 
 export default class SearchResults extends React.Component {
-    state = {
-    	name:"",
-    }
 
+  state = {
+
+  }
     componentDidMount(){
-    	this.setState({name: this.props.name});
+    	this.setState({college: this.props.college});
     }
 
     render(){
-        <div>
-          <h3>{this.state.name}</h3>
-        </div>
+      if(this.state.college){
+        return(
+          <div>
+            <h3>{this.state.college.name}</h3>
+            <span>{this.state.college.location.city}, {this.state.college.location.state}</span>
+          </div>
+        )
+      }
+      else{
+        return null
+      }
     }
+   
 }
