@@ -1,5 +1,8 @@
 import React from 'react';
-import Axios from 'axios'
+import Axios from 'axios';
+import {Redirect} from 'react-router-dom';
+
+
 export default class Admin extends React.Component{
 	state = {
 		status: ""
@@ -55,6 +58,7 @@ export default class Admin extends React.Component{
 	}
 
 	render(){
+		if(this.props.userid && this.props.userid === "admin")
 			return(
 				<div>
 					<button onClick = {this.scrapeCollegeRankings}>Scrape College Rankings</button>
@@ -73,5 +77,10 @@ export default class Admin extends React.Component{
 					</div>
 				</div>		
 			);
+		return (
+			<div>
+				<h1>MUST BE AN ADMIN TO ACCESS!!!</h1>
+			</div>
+		)
 	}
 }

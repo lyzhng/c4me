@@ -20,7 +20,13 @@ export default class Login extends React.Component{
         event.preventDefault();
         let user = { userid:this.state.userid, password:this.state.password}
         axios.post("/api/login", user).then(res=>{
-            this.props.history.push("/blah");
+					console.log(res.data);
+					if(res.data.userid === "admin"){
+						window.location.href = "/admin";
+					}
+					else{
+					window.location.href = "/";
+					}
         }).catch(err=>{
             this.setState({err:"Incorrect  userid or password"})
         });

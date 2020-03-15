@@ -54,8 +54,8 @@ export default class Register extends React.Component{
                 <br/>
                 <br/></span>
             </div>
-             <a href="/login">Login</a>
-             </div>
+            <a href="/login">Login</a>
+            </div>
         )
     }
 }

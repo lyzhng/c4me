@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
 export default class SearchColleges extends React.Component{
     state = {
@@ -27,6 +28,7 @@ export default class SearchColleges extends React.Component{
     }
 
     render(){
+			if(this.props.userid)
         return(
             <div>
 							<h1>Search for Colleges!</h1>
@@ -35,6 +37,7 @@ export default class SearchColleges extends React.Component{
 							<input type="text" name = "name" onChange ={this.handleChange} />
 							<button onClick= {this.search}>Search</button>
             </div>
-        )
-    }
+				)
+				return <Redirect to = "/login" />;
+		}
 }

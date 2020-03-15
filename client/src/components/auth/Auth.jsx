@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
+
 export default function Auth(AuthorizedComponent) {
   return class extends Component {
     constructor() {
@@ -8,18 +8,17 @@ export default function Auth(AuthorizedComponent) {
       this.state = {
         loading: true,
         redirect: false,
+        userid: ""
       };
     }
 
     componentDidMount() {
       axios.get('/checkToken').then(res => {
         if(res.data.user === "admin"){
-          this.props.changeUserid("admin");
-          this.setState({ loading: false});
+          this.setState({ loading: false, userid: "admin"});
         }          
         else{
-          this.props.changeUserid(res.data.user);
-          this.setState({loading: false});
+          this.setState({loading: false, userid: res.data.userid});
         }
       }).catch(err => {
         this.setState({ loading: false, redirect: true });
@@ -33,9 +32,9 @@ export default function Auth(AuthorizedComponent) {
         return null;
       }
       if (redirect) {
-        return <Redirect to="/login" />;
+        return <AuthorizedComponent {...this.props}/>;
       }
-      return <AuthorizedComponent {...this.props} />;
+      return <AuthorizedComponent {...this.props} userid = {this.state.userid}/>;
     }
   }
 }
