@@ -193,8 +193,8 @@ const importCollegeDescriptions = async function (filepath, callback) {
 };
 
 
-const SCORE_COLUMNS = ['SATVR25', 'SATVRMID', 'SATVR75', 'SATMT25', 'SATMTMID', 'SATMT75', 'SATWR25', 'SATWRMID', 'SATWR75', 'ACTCM25', 'ACTCM75', 'ACTEN25', 'ACTEN75', 'ACTMT25', 'ACTMT75', 'ACTWR25', 'ACTWR75', 'ACTCMMID', 'ACTENMID', 'ACTMTMID', 'ACTWRMID', 'SAT_AVG']
-const COLUMNS = ['INSTNM', 'CITY', 'STABBR', 'ZIP', 'INSTURL', 'ADM_RATE', 'TUITIONFEE_IN', 'TUITIONFEE_OUT', ...SCORE_COLUMNS];
+const NUMERIC_COLUMNS = ['SATVR25', 'SATVRMID', 'SATVR75', 'SATMT25', 'SATMTMID', 'SATMT75', 'SATWR25', 'SATWRMID', 'SATWR75', 'ACTCM25', 'ACTCM75', 'ACTEN25', 'ACTEN75', 'ACTMT25', 'ACTMT75', 'ACTWR25', 'ACTWR75', 'ACTCMMID', 'ACTENMID', 'ACTMTMID', 'ACTWRMID', 'SAT_AVG', 'GRAD_DEBT_MDN', 'C100_4', 'ADM_RATE'];
+const COLUMNS = ['INSTNM', 'CITY', 'STABBR', 'ZIP', 'INSTURL', 'CONTROL', 'TUITIONFEE_IN', 'TUITIONFEE_OUT', ...NUMERIC_COLUMNS];
 const csvFilePath = '../datasets/college_scorecard.csv';
 
 // { excel.csv: colleges.txt }
@@ -219,7 +219,7 @@ const importScorecardData = async () => {
 	// }
 	fs.readFile(csvFilePath, 'utf8', async (err, data) => {
 		if (err) {
-			console.log(err);
+			console.err(err);
 			return;
 		}
 		const colleges = [];
@@ -240,13 +240,23 @@ const importScorecardData = async () => {
 				if (collegeName && collegesExcelStyle.includes(collegeName)) {
 					const college = {};
 					for (const column in row.data) {
-						if (SCORE_COLUMNS.includes(column)) {
+						if (NUMERIC_COLUMNS.includes(column)) {
 							collegeName = collegeName.replace('-', ', ');
-							college[column] = sanitizeString(row.data[column]);
+							if (typeof row.data[column] === 'string') {
+								college[column] = sanitizeString(row.data[column]);
+							}
+							if (typeof row.data[column] === 'number') {
+								college[column] = row.data[column];
+							}
 						} else if (COLUMNS.includes(column)) {
 							// convert back to colleges.txt naming style
 							collegeName = collegeName.replace('-', ', ');
-							college[column] = (column === 'INSTNM') ? collegeName : row.data[column];
+							if (column === 'CONTROL') {
+								const institutionType = getInstitutionType(row.data[column]);
+								college[column] = (institutionType !== null) ? institutionType : 'N/A';
+							} else {
+								college[column] = (column === 'INSTNM') ? collegeName : row.data[column];
+							}
 						}
 					}
 					colleges.push(college);
@@ -266,12 +276,17 @@ const importScorecardData = async () => {
 							state: college.STABBR,
 							zip: zipCode,
 						},
+						type: college.CONTROL,
 						url: college.INSTURL.toLowerCase(),
-						admission_rate: college.ADM_RATE !== 'NULL' ? college.ADM_RATE * 100 : -1,
+						admission_rate: convertToPercent(college.ADM_RATE),
+						completion_rate: convertToPercent(college.C100_4),
 						cost: {
-							in_state: college.TUITIONFEE_IN,
-							out_state: college.TUITIONFEE_OUT,
+							tuition: {
+								in_state: college.TUITIONFEE_IN,
+								out_state: college.TUITIONFEE_OUT,
+							}
 						},
+						grad_debt_mdn: college.GRAD_DEBT_MDN,
 						sat: {
 							reading_25: college.SATVR25,
 							reading_50: college.SATVRMID,
@@ -298,14 +313,44 @@ const importScorecardData = async () => {
 							composite_50: college.ACTCMMID,
 							composite_75: college.ACTCM75,
 							avg: -1,
-						}
+						},
+
 					}, { upsert: true });
 				});
 				console.log('I am done!');
 			}
 		});
 	});
-};
+}
+
+function sanitizeString(parsedValue) {
+	return (parsedValue !== null && typeof parsedValue === 'string') && (parsedValue === 'NULL' || parsedValue === '"NULL"') ? -1 : parsedValue;
+}
+
+function getInstitutionType(numType) {
+	let result;
+	switch (numType) {
+		case 1:
+			result = 'Public';
+			break;
+		case 2:
+			result = 'Private Non-Profit';
+			break;
+		case 3:
+			result = 'Private For-Profit';
+			break;
+		default:
+			result = null;
+	}
+	return result;
+}
+
+function convertToPercent(num) {
+	if (typeof num !== 'number') {
+		return null;
+	}
+	return num * 100;
+}
 
 function sanitizeString(parsedValue) {
 	return (parsedValue !== null && typeof parsedValue === 'string') && (parsedValue === 'NULL' || parsedValue === '"NULL"') ? -1 : parsedValue;
