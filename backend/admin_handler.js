@@ -305,13 +305,13 @@ const importScorecardData = async () => {
 			}
 		});
 	});
-}
+};
 
 function sanitizeString(parsedValue) {
 	return (parsedValue !== null && typeof parsedValue === 'string') && (parsedValue === 'NULL' || parsedValue === '"NULL"') ? -1 : parsedValue;
 }
 
-const importCollegeGPA = async function (filepath,callback) {
+const importCollegeData = async function (filepath,callback) {
 	let college = collections.College;
 	await initCollege(filepath);
 	let collegeUrl;
@@ -343,6 +343,14 @@ const importCollegeGPA = async function (filepath,callback) {
 						let dd_tags = $("dd").map(function() {return $(this).text();}).get();
 						let GPA;
 						let AVG_ACT;
+						let cos_att = {
+							in_state: null,
+							out_state: null,
+						};
+						let cos_fee ={
+							in_state: null,
+							out_state: null,
+						};
 						for (let j=0; j < dt_tags.length; j++){
 							if (dt_tags[j] === "Average GPA"){
 								if (dd_tags[j] === "Not reported"){
@@ -367,9 +375,45 @@ const importCollegeGPA = async function (filepath,callback) {
 									}
 								}
 							}
+							else if (dt_tags[j] === "Cost of Attendance") {
+								let cos_list = dd_tags[j].split("Out-of-state:");
+								cos_att.in_state = parseInt(cos_list[0]);
+								cos_att.out_state = parseInt(cos_list[1]);
+								console.log(cos_att);
+							}
+							else if (dt_tags[j] === "Tuition and Fees"){
+								let cos_list = dd_tags[j].split("Out-of-state:");
+								cos_fee.in_state = parseInt(cos_list[0]);
+								cos_fee.out_state = parseInt(cos_list[1]);
+								console.log(cos_fee);
+							}
+							else if (dt_tags[j] === "Cost of Attendance") {
+								if (dd_tags[j].includes("Out-of-state:")){
+									let cos_list = dd_tags[j].split("Out-of-state:");
+									cos_att.in_state = parseInt(cos_list[0].replace(/\$|,|(In-state:)|\b/g,''));
+									cos_att.out_state = parseInt(cos_list[1].replace(/\$|,/g,''));
+								}
+								else{
+									cos_att.in_state = cos_att.out_state = parseInt(dd_tags[j].replace(/\$|,/g,''));
+								}
+							}
+							else if (dt_tags[j] === "Tuition and Fees"){
+								if (dd_tags[j].includes("Out-of-state:")){
+									let cos_list = dd_tags[j].split("Out-of-state:");
+									cos_fee.in_state = parseInt(cos_list[0].replace(/\$|,|(In-state:)|\b/g,''));
+									cos_fee.out_state = parseInt(cos_list[1].replace(/\$|,/g,''));
+								}
+								else{
+									cos_fee.in_state = cos_fee.out_state = parseInt(dd_tags[j].replace(/\$|,/g,''));
+								}
+							}
 						}
 						collegeArr[i].gpa = GPA;
 						collegeArr[i].act.avg = AVG_ACT;
+						collegeArr[i].cost.attendance.in_state = isNaN(cos_att.in_state) ? -1: cos_att.in_state;
+						collegeArr[i].cost.attendance.out_state = isNaN(cos_att.out_state) ? -1: cos_att.in_state;
+						collegeArr[i].cost.tuition.in_state = isNaN(cos_fee.in_state) ? -1: cos_fee.in_state;
+						collegeArr[i].cost.tuition.out_state = isNaN(cos_fee.out_state) ? -1: cos_fee.in_state;
 						collegeArr[i].save();
 					}
 					resolve();
@@ -483,7 +527,7 @@ const importHighschoolData = (name, city, state) => {
 
 
 module.exports = {
-	importCollegeGPA : importCollegeGPA,
+	importCollegeData : importCollegeData,
 	importStudentProfiles: importStudentProfiles,
 	importScorecardData: importScorecardData,
 	importCollegeRankings: importCollegeRankings,
@@ -497,7 +541,7 @@ module.exports = {
 //importCollegeRankings();
 //deleteAllStudents();
 //importCollegeDescriptions();
-//importCollegeGPA();
+//importCollegeData();
 //importHighschoolData("blah", "blah", "blah");
 //importHighschoolData("central high school", "park hills", "mo");
 //importHighschoolData("Ward Melville Senior High School", "East Setauket", "ny");
