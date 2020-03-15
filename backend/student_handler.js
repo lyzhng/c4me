@@ -17,7 +17,8 @@ const searchCollege = function (query)
 {
 	//query = typeof(query) === "string" ? query : "";
 	let college = collections.College;
-	let queryRegex = query.split(/ +/).filter((substr) => {return substr !== ""}).map((substr) => {return {name: new RegExp(escapeRegExp(substr))}});
+	let queryRegex = query.split(/ +/).filter((substr) => {return substr !== ""})
+	.map((substr) => {return {name: {$regex: new RegExp(escapeRegExp(substr)), $options: 'i'}}});
 		queryRegex = queryRegex.length !== 0 ? queryRegex : null;
 
 	return new Promise(function (resolve, reject)
