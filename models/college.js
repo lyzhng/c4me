@@ -51,6 +51,7 @@ const CollegeSchema = new mongoose.Schema({
         composite_75: Number,
         avg : Number,
     },
+    majors :[{type: String}],
     ranking : {type: Number}
 });
 
