@@ -219,7 +219,7 @@ const importScorecardData = async (filepath) => {
 			return;
 		}
 		const colleges = [];
-		const collegeNames = await getCollegeNames();
+		const collegeNames = await getCollegeNames(filepath);
 		// convert colleges.txt to excel.csv style to match with parser
 		const collegesExcelStyle = collegeNames.map((college) => college.replace(', ', '-'));
 		Papa.parse(data, {
