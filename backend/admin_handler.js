@@ -626,7 +626,7 @@ module.exports = {
 //importCollegeRankings();
 //deleteAllStudents();
 //importCollegeDescriptions();
-importCollegeData();
+//importCollegeData();
 //importHighschoolData("blah", "blah", "blah");
 //importHighschoolData("central high school", "park hills", "mo");
 // importHighschoolData("Ward Melville Senior High School", "East Setauket", "ny");
