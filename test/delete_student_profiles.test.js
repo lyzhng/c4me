@@ -12,11 +12,11 @@ describe('delete student profiles', () => {
   before(async () => {
     await addDummyApplications();
     await addDummyStudents();
-    await deleteAllStudents();
   });
   it('should drop the student and application collections', async () => {
-    const studentCount = await collections.Student.count({});
-    const applicationCount = await collections.Application.count({});
+    await deleteAllStudents();
+    const studentCount = await collections.Student.countDocuments({});
+    const applicationCount = await collections.Application.countDocuments({});
     assert.equal(studentCount, 0);
     assert.equal(applicationCount, 0);
   });
