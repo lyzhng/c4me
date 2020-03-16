@@ -9,24 +9,53 @@ const { deleteAllStudents } = require('../backend/admin_handler');
 mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
 
 describe('delete student profiles', () => {
-  beforeEach(async () => {
-    await collections.Student.create({
-      userid: 'jcool',
-      password: 'joe$pass2',
-    });
-    await collections.Student.create({
-      userid: 'bobby',
-      password: 'bobbypassword',
-    });
-    await collections.Student.create({
-      userid: 'pasta',
-      password: 'pastapasta',
-    });
-    deleteAllStudents();
+  before(async () => {
+    await addDummyApplications();
+    await addDummyStudents();
+    await deleteAllStudents();
   });
-  it('should drop the student collection database', async () => {
+  it('should drop the student and application collections', async () => {
     const count = await collections.Student.count({});
     console.log(count);
     assert.equal(count, 0);
   });
 });
+
+async function addDummyStudents() {
+  await collections.Student.create({
+    userid: 'jcool',
+    password: 'joe$pass2',
+  });
+  console.log('Added jcool');
+  await collections.Student.create({
+    userid: 'bobby',
+    password: 'bobbypassword',
+  });
+  console.log('Added bobby');
+  await collections.Student.create({
+    userid: 'pasta',
+    password: 'pastapasta',
+  });
+  console.log('Added pasta');
+}
+
+async function addDummyApplications() {
+  await collections.Application.create({
+    userid: 'bobby',
+    college: 'Princeton University',
+    status: 'Accepted',
+  });
+  console.log('Added bobby\'s application to Princeton University');
+  await collections.Application.create({
+    userid: 'jane',
+    college: 'Carnegie Mellon University',
+    status: 'Waitlisted',
+  });
+  console.log('Added jane\'s application to Carnegie Mellon University');
+  await collections.Application.create({
+    userid: 'wilson',
+    college: 'Stony Brook University',
+    status: 'Denied',
+  });
+  console.log('Added wilson\'s application to Stony Brook University');
+}
