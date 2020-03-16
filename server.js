@@ -25,6 +25,7 @@ app.get("/", (req, res)=>{
 });
 
 app.post("/api/register", (req, res)=>{
+  req.body.userid = req.body.userid.toLowerCase();
   if(req.body.userid !== "admin"){
     collections.Student.find({userid:req.body.userid}).lean().then((resp) => {
       if(resp.length === 0){
@@ -38,7 +39,9 @@ app.post("/api/register", (req, res)=>{
       }
     });
   }
+  else{
   res.status(401).json({error:"userid or email already taken!"});
+  }
 });
 
 app.post("/api/login", (req, res)=>{
