@@ -474,7 +474,7 @@ const importCollegeData = async function (filepath,callback) {
 						}
 						collegeArr[i].gpa = GPA;
 						collegeArr[i].act.avg = AVG_ACT;
-						collegeArr[i].size = size[0] == null ? -1:size[0].replace(/,/g,'');
+						collegeArr[i].size = size[0] == null ? -1: parseInt(size[0].replace(/,/g,''));
  						collegeArr[i].sat.math_avg = isNaN(AVG_MAT) ? -1: AVG_MAT;
 						collegeArr[i].sat.EBRW_avg = isNaN(AVG_RW) ? -1: AVG_RW;
 						collegeArr[i].cost.attendance.in_state = isNaN(cos_att.in_state) ? -1: cos_att.in_state;
@@ -626,7 +626,7 @@ module.exports = {
 //importCollegeRankings();
 //deleteAllStudents();
 //importCollegeDescriptions();
-//importCollegeData();
+importCollegeData();
 //importHighschoolData("blah", "blah", "blah");
 //importHighschoolData("central high school", "park hills", "mo");
 // importHighschoolData("Ward Melville Senior High School", "East Setauket", "ny");
