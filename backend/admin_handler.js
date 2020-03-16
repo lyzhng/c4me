@@ -26,20 +26,21 @@ const importStudentProfiles = (studentCsv, applicationCSV) => {
 			studentData = JSON.parse(JSON.stringify(studentData).replace(/\s(?=\w+":)/g, ""));
 	
 			const studentsInsert =studentData.map((student)=>{
-					collections.Student.find({userid:student.userid}).lean().then((resp)=>{
-						if(resp.length === 0 && student.userid !== "admin")
-						{
-							collections.Student.create(student).then((resp)=>{
-								console.log("Created", resp);
-								let student = resp;
-								collections.HighSchool.find({name:resp.high_school_name, location:resp.high_school_city +", "+resp.high_school_state}).then((resp)=>{
-									if(resp.length === 0){
-										importHighschoolData(student.high_school_name, student.high_school_city, student.high_school_state);
-									}
-								});
-							}).catch(err => { console.log(err); });
-						}
-					});
+				student.userid = student.userid.toLowerCase();
+				collections.Student.find({userid:student.userid}).lean().then((resp)=>{
+					if(resp.length === 0 && student.userid !== "admin")
+					{
+						collections.Student.create(student).then((resp)=>{
+							console.log("Created", resp);
+							let student = resp;
+							collections.HighSchool.find({name:resp.high_school_name, location:resp.high_school_city +", "+resp.high_school_state}).then((resp)=>{
+								if(resp.length === 0){
+									importHighschoolData(student.high_school_name, student.high_school_city, student.high_school_state);
+								}
+							});
+						}).catch(err => { console.log(err); });
+					}
+				});
 				});
 			Promise.all(studentsInsert).then(()=>{
 				importApplicationData(applicationCSV);
@@ -347,7 +348,7 @@ function getInstitutionType(numType) {
 
 function convertToPercent(num) {
 	if (typeof num !== 'number') {
-		return null;
+		return -1;
 	}
 	return num * 100;
 }
@@ -510,7 +511,7 @@ const scrapeSAT = ($) => {
 			return satScores;
 		}
 	}
-	return null;
+	return -1;
 };
 
 const scrapeACT = ($) => {
@@ -523,7 +524,7 @@ const scrapeACT = ($) => {
 			return actScores;
 		}
 	}
-	return null;
+	return -1;
 };
 
 const scrapeAP_enrollment = ($) =>{
@@ -533,7 +534,7 @@ const scrapeAP_enrollment = ($) =>{
 		let apEnrollment = parseFloat(scalarLabels[indexOfScore + 1]);
 		if(!isNaN(apEnrollment)) return apEnrollment;
 	}
-	return null;
+	return -1;
 };
 
 const scrapeSimilarAppliedColleges = ($) => {
