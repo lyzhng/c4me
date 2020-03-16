@@ -592,9 +592,6 @@ const importHighschoolData = (name, city, state) => {
 		'TE': 'Trailers'
 	}}
 	).then((resp) => {
-	if(userAgentsIndex > userAgents.length){
-		userAgentsIndex = 0;
-	}
 	let html = cheerio.load(resp.data);
 	let highschool = {
 		name,
@@ -607,7 +604,7 @@ const importHighschoolData = (name, city, state) => {
 	highschool.college_prep_ranking = scrapeCollegePrepRanking(html);
 	highschool.similar_colleges_applied = scrapeSimilarAppliedColleges(html);
 	collections.HighSchool.create(highschool).then(resp => {
-		//console.log("Created:", resp);
+		console.log("Created:", resp);
 	}).catch(err =>{ console.log(err) });
 	}).catch((err)=>{
 		console.log("Scrape for high school:",name, city, state, "Gave the following error:",err.response.status, err.response.statusText);
