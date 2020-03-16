@@ -379,7 +379,7 @@ const importCollegeData = async function (filepath,callback) {
 				},(err,res,body)=>{
 					if (err || res.statusCode !== 200)
 					{
-						console.log("failed to request ranking data!");
+						console.log("failed to request collegeData!");
 						reject();
 					}
 					else
@@ -494,7 +494,7 @@ const importCollegeData = async function (filepath,callback) {
 						},(err,res,body)=>{
 							if (err || res.statusCode !== 200)
 							{
-								console.log("failed to request ranking data!");
+								console.log("failed to request collegeData!");
 								reject();
 							}
 							else
