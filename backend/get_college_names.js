@@ -4,7 +4,7 @@ module.exports = function(filepath)
 {
 	if (!filepath)
 	{
-		filepath = "./datasets/colleges.txt";
+		filepath = "../datasets/colleges.txt";
 	}
 	return new Promise(function(resolve, reject)
 	{

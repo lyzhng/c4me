@@ -385,10 +385,16 @@ const importCollegeData = async function (filepath,callback) {
 					else
 					{
 						let $ = cheerio.load(body);
+						let size = $("#profile-overview .statbar .statbar__item .h2").map(function() {
+							return $(this).text();
+						}).get();
+
 						let dt_tags = $("dt").map(function() {return $(this).text();}).get();
 						let dd_tags = $("dd").map(function() {return $(this).text();}).get();
 						let GPA;
 						let AVG_ACT;
+						let AVG_MAT;
+						let AVG_RW;
 						let cos_att = {
 							in_state: null,
 							out_state: null,
@@ -405,7 +411,37 @@ const importCollegeData = async function (filepath,callback) {
 								else
 									GPA = dd_tags[j];
 							}
-							else if(dt_tags[j] === ("ACT Composite")){
+							else if (dt_tags[j] === "SAT Math"){
+								if (dd_tags[j].includes("average")){
+									AVG_MAT = dd_tags[j].split("average")[0];
+								}
+								else {
+									if (dd_tags[j].includes("Not reported")){
+										AVG_MAT = -1;
+									}
+									else{
+										AVG_MAT = dd_tags[j].split(" ")[0];
+										AVG_MAT = AVG_MAT.split("-");
+										AVG_MAT = Math.ceil((parseInt(AVG_MAT[0])+parseInt(AVG_MAT[1]))/2);
+									}
+								}
+							}
+							else if (dt_tags[j] === "SAT EBRW"){
+								if (dd_tags[j].includes("average")){
+									AVG_RW = dd_tags[j].split("average")[0];
+								}
+								else {
+									if (dd_tags[j].includes("Not reported")){
+										AVG_RW = -1;
+									}
+									else{
+										AVG_RW = dd_tags[j].split(" ")[0];
+										AVG_RW = AVG_RW.split("-");
+										AVG_RW = Math.ceil((parseInt(AVG_RW[0])+parseInt(AVG_RW[1]))/2);
+									}
+								}
+							}
+							else if(dt_tags[j] === "ACT Composite"){
 								if (dd_tags[j].includes("average")){
 									AVG_ACT = dd_tags[j].split("average")[0];
 								}
@@ -444,6 +480,9 @@ const importCollegeData = async function (filepath,callback) {
 						}
 						collegeArr[i].gpa = GPA;
 						collegeArr[i].act.avg = AVG_ACT;
+						collegeArr[i].size = size[0] == null ? -1:size[0].replace(/,/g,'');
+ 						collegeArr[i].sat.math_avg = isNaN(AVG_MAT) ? -1: AVG_MAT;
+						collegeArr[i].sat.EBRW_avg = isNaN(AVG_RW) ? -1: AVG_RW;
 						collegeArr[i].cost.attendance.in_state = isNaN(cos_att.in_state) ? -1: cos_att.in_state;
 						collegeArr[i].cost.attendance.out_state = isNaN(cos_att.out_state) ? -1: cos_att.out_state;
 						collegeArr[i].cost.tuition.in_state = isNaN(cos_fee.in_state) ? -1: cos_fee.in_state;
@@ -599,7 +638,7 @@ module.exports = {
 //importCollegeRankings();
 //deleteAllStudents();
 //importCollegeDescriptions();
-//importCollegeData();
+importCollegeData();
 //importHighschoolData("blah", "blah", "blah");
 //importHighschoolData("central high school", "park hills", "mo");
 // importHighschoolData("Ward Melville Senior High School", "East Setauket", "ny");
