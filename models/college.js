@@ -4,6 +4,7 @@ const CollegeSchema = new mongoose.Schema({
     name: { type: String, required: true, unique: true },
     type:{type :String},
     description : {type: String},
+    size:{type: String},
     location :{
         city : String,
         state : String,
