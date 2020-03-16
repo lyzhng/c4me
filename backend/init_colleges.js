@@ -8,7 +8,7 @@ const getCollegeNames = require("./get_college_names.js");
 mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
 
 
-module.exports = function()
+module.exports = function(filepath)
 {
 	return new Promise (function(resolve, reject)
 	{
@@ -28,7 +28,7 @@ module.exports = function()
 				}
 				else
 				{
-					let collegeNames = await getCollegeNames();
+					let collegeNames = await getCollegeNames(filepath);
 					for (let i = 0; i < collegeNames.length; i ++)
 					{
 						await new Promise(function(resolve, reject)
