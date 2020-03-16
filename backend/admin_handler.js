@@ -75,16 +75,11 @@ const importApplicationData = (applicationCSV) =>{
 };
 
 //Drops student collection
-const deleteAllStudents = () => {
-	collections.Student.collection.drop().then(resp => {
-		console.log("Dropped student collection");
-	}).catch( err => {
-		console.log("Student database already deleted");
-	});
-	collections.Application.collection.drop().then(resp => {
-		console.log("Dropped application collection");
-	}).catch( err => {
-		console.log("Application database already deleted");
+const deleteAllStudents =  (callback) => {
+	return new Promise(async function (resolve, reject) {
+		await collections.Student.collection.drop();
+		await collections.Application.collection.drop();
+		resolve();
 	});
 };
 
@@ -208,8 +203,8 @@ const remappedColleges = {
 	'University of Massachusetts-Amherst': 'University of Massachusetts Amherst',
 };
 
-const importScorecardData = async () => {
-	await initCollege();
+const importScorecardData = async (filepath) => {
+	await initCollege(filepath);
 	// if (!fs.existsSync(csvFilePath)) {
 	await new Promise((resolve, reject) => {
 		request('https://ed-public-download.app.cloud.gov/downloads/Most-Recent-Cohorts-All-Data-Elements.csv')
