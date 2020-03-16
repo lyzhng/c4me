@@ -461,16 +461,16 @@ const importCollegeData = async function (filepath,callback) {
 									cos_att.in_state = cos_att.out_state = parseInt(dd_tags[j].replace(/\$|,/g,''));
 								}
 							}
-							else if (dt_tags[j] === "Tuition and Fees"){
-								if (dd_tags[j].includes("Out-of-state:")){
-									let cos_list = dd_tags[j].split("Out-of-state:");
-									cos_fee.in_state = parseInt(cos_list[0].replace(/\$|,|(In-state:)|\b/g,''));
-									cos_fee.out_state = parseInt(cos_list[1].replace(/\$|,/g,''));
-								}
-								else{
-									cos_fee.in_state = cos_fee.out_state = parseInt(dd_tags[j].replace(/\$|,/g,''));
-								}
-							}
+							// else if (dt_tags[j] === "Tuition and Fees"){
+							// 	if (dd_tags[j].includes("Out-of-state:")){
+							// 		let cos_list = dd_tags[j].split("Out-of-state:");
+							// 		cos_fee.in_state = parseInt(cos_list[0].replace(/\$|,|(In-state:)|\b/g,''));
+							// 		cos_fee.out_state = parseInt(cos_list[1].replace(/\$|,/g,''));
+							// 	}
+							// 	else{
+							// 		cos_fee.in_state = cos_fee.out_state = parseInt(dd_tags[j].replace(/\$|,/g,''));
+							// 	}
+							// }
 						}
 						collegeArr[i].gpa = GPA;
 						collegeArr[i].act.avg = AVG_ACT;
@@ -479,9 +479,9 @@ const importCollegeData = async function (filepath,callback) {
 						collegeArr[i].sat.EBRW_avg = isNaN(AVG_RW) ? -1: AVG_RW;
 						collegeArr[i].cost.attendance.in_state = isNaN(cos_att.in_state) ? -1: cos_att.in_state;
 						collegeArr[i].cost.attendance.out_state = isNaN(cos_att.out_state) ? -1: cos_att.out_state;
-						collegeArr[i].cost.tuition.in_state = isNaN(cos_fee.in_state) ? -1: cos_fee.in_state;
-						collegeArr[i].cost.tuition.out_state = isNaN(cos_fee.out_state) ? -1: cos_fee.out_state;
-						//collegeArr[i].save();
+						// collegeArr[i].cost.tuition.in_state = isNaN(cos_fee.in_state) ? -1: cos_fee.in_state;
+						// collegeArr[i].cost.tuition.out_state = isNaN(cos_fee.out_state) ? -1: cos_fee.out_state;
+						// collegeArr[i].save();
 						request({
 							method: "GET",
 							url: 'https://www.collegedata.com/college/' + collegeUrl +'?tab=profile-academics-tab',
