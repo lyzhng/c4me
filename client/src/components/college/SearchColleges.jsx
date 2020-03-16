@@ -98,7 +98,7 @@ export default class SearchColleges extends React.Component{
 	{
 		if (college.admission_rate !== -1)
 		{
-			return checkRange(college.admission_rate, this.admissionRateLower, this.admissionRateUpper, 0, 100);
+			return this.checkRange(college.admission_rate, this.admissionRateLower, this.admissionRateUpper, 0, 100);
 		}
 		else
 		{
@@ -110,7 +110,7 @@ export default class SearchColleges extends React.Component{
 	{
 		if (college.ranking !== -1)
 		{
-			return checkRange(college.ranking, this.rankingLower, this.rankingUpper, 0);
+			return this.checkRange(college.ranking, this.rankingLower, this.rankingUpper, 0);
 		}
 		else
 		{
