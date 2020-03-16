@@ -15,9 +15,10 @@ describe('delete student profiles', () => {
     await deleteAllStudents();
   });
   it('should drop the student and application collections', async () => {
-    const count = await collections.Student.count({});
-    console.log(count);
-    assert.equal(count, 0);
+    const studentCount = await collections.Student.count({});
+    const applicationCount = await collections.Application.count({});
+    assert.equal(studentCount, 0);
+    assert.equal(applicationCount, 0);
   });
 });
 
