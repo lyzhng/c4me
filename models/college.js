@@ -4,6 +4,7 @@ const CollegeSchema = new mongoose.Schema({
     name: { type: String, required: true, unique: true },
     type:{type :String},
     description : {type: String},
+    size:{type: String},
     location :{
         city : String,
         state : String,
@@ -31,9 +32,11 @@ const CollegeSchema = new mongoose.Schema({
         writing_25 : Number,
         writing_50 : Number,
         writing_75 : Number,
+        EBRW_avg: Number,
         math_25 : Number,
         math_50 : Number,
         math_75 : Number,
+        math_avg: Number,
         avg : Number,
     },
     act:{
