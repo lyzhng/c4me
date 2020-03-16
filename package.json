@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
@@ -34,9 +34,7 @@
     "mongodb": "^3.5.5",
     "mongoose": "^5.9.3",
     "papaparse": "^5.1.1",
-    "puppeteer": "^2.1.1"
-  },
-  "devDependencies": {
+    "puppeteer": "^2.1.1",
     "chai": "^4.2.0",
     "mocha": "^7.1.0"
   }
