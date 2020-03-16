@@ -24,7 +24,6 @@ const importStudentProfiles = (studentCsv, applicationCSV) => {
 		complete: (results)=>{
 			studentData = results.data;
 			studentData = JSON.parse(JSON.stringify(studentData).replace(/\s(?=\w+":)/g, ""));
-	
 			const studentsInsert =studentData.map((student)=>{
 				student.userid = student.userid.toLowerCase();
 				collections.Student.find({userid:student.userid}).lean().then((resp)=>{
