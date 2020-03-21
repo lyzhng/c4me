@@ -204,117 +204,113 @@ const remappedColleges = {
 
 const importScorecardData = async (filepath) => {
 	await initCollege(filepath);
-	// if (!fs.existsSync(csvFilePath)) {
-	await new Promise((resolve, reject) => {
-		request('https://ed-public-download.app.cloud.gov/downloads/Most-Recent-Cohorts-All-Data-Elements.csv')
-			.pipe(fs.createWriteStream(csvFilePath))
-			.on('finish', resolve)
-			.on('error', reject);
-	});
-	// }
-	fs.readFile(csvFilePath, 'utf8', async (err, data) => {
-		if (err) {
-			console.err(err);
-			return;
-		}
-		const colleges = [];
-		const collegeNames = await getCollegeNames(filepath);
-		// convert colleges.txt to excel.csv style to match with parser
-		const collegesExcelStyle = collegeNames.map((college) => college.replace(', ', '-'));
-		Papa.parse(data, {
-			worker: true,
-			header: true,
-			dynamicTyping: true,
-			step(row) {
-				let collegeName = row.data.INSTNM;
-				// convert line-by-line excel.csv data to colleges.txt style
-				if (collegeName in remappedColleges) {
-					collegeName = remappedColleges[collegeName];
-				}
-				// compare with colleges.txt
-				if (collegeName && collegesExcelStyle.includes(collegeName)) {
-					const college = {};
-					for (const column in row.data) {
-						if (NUMERIC_COLUMNS.includes(column)) {
-							collegeName = collegeName.replace('-', ', ');
-							if (typeof row.data[column] === 'string') {
-								college[column] = sanitizeString(row.data[column]);
-							}
-							if (typeof row.data[column] === 'number') {
-								college[column] = row.data[column];
-							}
-						} else if (COLUMNS.includes(column)) {
-							// convert back to colleges.txt naming style
-							collegeName = collegeName.replace('-', ', ');
-							if (column === 'CONTROL') {
-								const institutionType = getInstitutionType(row.data[column]);
-								college[column] = (institutionType !== null) ? institutionType : 'N/A';
-							} else {
-								college[column] = (column === 'INSTNM') ? collegeName : row.data[column];
-							}
+	if (!fs.existsSync(csvFilePath)) {
+		await new Promise((resolve, reject) => {
+			console.log('Downloading college_scorecard.csv...');
+			request('https://ed-public-download.app.cloud.gov/downloads/Most-Recent-Cohorts-All-Data-Elements.csv')
+				.pipe(fs.createWriteStream(csvFilePath))
+				.on('finish', resolve)
+				.on('error', reject);
+			console.log('Done writing to', csvFilePath);
+		});
+	}
+	let csvData = fs.readFileSync(csvFilePath, 'utf8');
+	const colleges = [];
+	const collegeNames = await getCollegeNames('./datasets/colleges.txt');
+	console.log('Got college names');
+	// convert colleges.txt to excel.csv style to match with parser
+	const collegesExcelStyle = collegeNames.map((college) => college.replace(', ', '-'));
+	await Papa.parse(csvData, {
+		worker: true,
+		header: true,
+		dynamicTyping: true,
+		step: (row) => {
+			let collegeName = row.data.INSTNM;
+			// convert line-by-line excel.csv data to colleges.txt style
+			if (collegeName in remappedColleges) {
+				collegeName = remappedColleges[collegeName];
+			}
+			// compare with colleges.txt
+			if (collegeName && collegesExcelStyle.includes(collegeName)) {
+				const college = {};
+				for (const column in row.data) {
+					if (NUMERIC_COLUMNS.includes(column)) {
+						collegeName = collegeName.replace('-', ', ');
+						if (typeof row.data[column] === 'string') {
+							college[column] = sanitizeString(row.data[column]);
+						}
+						if (typeof row.data[column] === 'number') {
+							college[column] = row.data[column];
+						}
+					} else if (COLUMNS.includes(column)) {
+						// convert back to colleges.txt naming style
+						collegeName = collegeName.replace('-', ', ');
+						if (column === 'CONTROL') {
+							const institutionType = getInstitutionType(row.data[column]);
+							college[column] = (institutionType !== null) ? institutionType : 'N/A';
+						} else {
+							college[column] = (column === 'INSTNM') ? collegeName : row.data[column];
 						}
 					}
-					colleges.push(college);
 				}
-			},
-			complete: () => {
-				const scorecardData = JSON.parse(JSON.stringify(colleges));
-				scorecardData.forEach(async (college) => {
-					let zipCode = college.ZIP;
-					if (typeof college.ZIP === 'string') {
-						const dashIndex = college.ZIP.indexOf('-');
-						zipCode = +college.ZIP.substring(0, dashIndex);
-					}
-					await collections.College.updateOne({ name: college.INSTNM }, {
-						location: {
-							city: college.CITY,
-							state: college.STABBR,
-							zip: zipCode,
-						},
-						type: college.CONTROL,
-						url: college.INSTURL.toLowerCase(),
-						admission_rate: convertToPercent(college.ADM_RATE),
-						completion_rate: convertToPercent(college.C100_4),
-						cost: {
-							tuition: {
-								in_state: college.TUITIONFEE_IN,
-								out_state: college.TUITIONFEE_OUT,
-							}
-						},
-						grad_debt_mdn: college.GRAD_DEBT_MDN,
-						sat: {
-							reading_25: college.SATVR25,
-							reading_50: college.SATVRMID,
-							reading_75: college.SATVR75,
-							writing_25: college.SATWR25,
-							writing_50: college.SATWRMID,
-							writing_75: college.SATVR75,
-							math_25: college.SATMT25,
-							math_50: college.SATMTMID,
-							math_75: college.SATMT75,
-							avg: -1,
-						},
-						act: {
-							reading_25: college.ACTEN25,
-							reading_50: college.ACTENMID,
-							reading_75: college.ACTEN75,
-							writing_25: college.ACTWR25,
-							writing_50: college.ACTWRMID,
-							writing_75: college.ACTWR75,
-							math_25: college.ACTMT25,
-							math_50: college.ACTMTMID,
-							math_75: college.ACTMT75,
-							composite_25: college.ACTCM25,
-							composite_50: college.ACTCMMID,
-							composite_75: college.ACTCM75,
-							avg: -1,
-						},
-
-					}, { upsert: true });
-				});
-				console.log('I am done!');
+				colleges.push(college);
 			}
-		});
+		},
+		complete: () => {
+			console.log('Done parsing and filtering', csvFilePath);
+			const scorecardData = JSON.parse(JSON.stringify(colleges));
+			scorecardData.forEach(async (college) => {
+				let zipCode = college.ZIP;
+				if (typeof college.ZIP === 'string') {
+					const dashIndex = college.ZIP.indexOf('-');
+					zipCode = +college.ZIP.substring(0, dashIndex);
+				}
+				await collections.College.updateOne({ name: college.INSTNM }, {
+					location: {
+						city: college.CITY,
+						state: college.STABBR,
+						zip: zipCode,
+					},
+					type: college.CONTROL,
+					url: college.INSTURL.toLowerCase(),
+					admission_rate: convertToPercent(college.ADM_RATE),
+					completion_rate: convertToPercent(college.C100_4),
+					cost: {
+						tuition: {
+							in_state: college.TUITIONFEE_IN,
+							out_state: college.TUITIONFEE_OUT,
+						}
+					},
+					grad_debt_mdn: college.GRAD_DEBT_MDN,
+					sat: {
+						reading_25: college.SATVR25,
+						reading_50: college.SATVRMID,
+						reading_75: college.SATVR75,
+						writing_25: college.SATWR25,
+						writing_50: college.SATWRMID,
+						writing_75: college.SATVR75,
+						math_25: college.SATMT25,
+						math_50: college.SATMTMID,
+						math_75: college.SATMT75,
+					},
+					act: {
+						english_25: college.ACTEN25,
+						english_50: college.ACTENMID,
+						english_75: college.ACTEN75,
+						writing_25: college.ACTWR25,
+						writing_50: college.ACTWRMID,
+						writing_75: college.ACTWR75,
+						math_25: college.ACTMT25,
+						math_50: college.ACTMTMID,
+						math_75: college.ACTMT75,
+						composite_25: college.ACTCM25,
+						composite_50: college.ACTCMMID,
+						composite_75: college.ACTCM75,
+					},
+				}, { upsert: true });
+			});
+			console.log('I am done!');
+		}
 	});
 }
 
@@ -621,12 +617,12 @@ module.exports = {
 	importHighschoolData : importHighschoolData
 };
 
-//importScorecardData();
+// (async () => await importScorecardData())();
 //importStudentProfiles("students-1.csv","applications-1.csv");
-//importCollegeRankings();
+// (async () => await importCollegeRankings())();
 //deleteAllStudents();
 //importCollegeDescriptions();
-importCollegeData();
+// importCollegeData();
 //importHighschoolData("blah", "blah", "blah");
 //importHighschoolData("central high school", "park hills", "mo");
 // importHighschoolData("Ward Melville Senior High School", "East Setauket", "ny");
