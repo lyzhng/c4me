@@ -8,7 +8,7 @@ const getCollegeNames = require("./get_college_names.js");
 mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
 
 
-module.exports = function(filepath)
+module.exports = function(filepath = '../datasets/colleges.txt')
 {
 	return new Promise (function(resolve, reject)
 	{
@@ -37,7 +37,9 @@ module.exports = function(filepath)
 							{
 								if (err)
 								{
-									console.log("error with the database (init_colleges.js)");
+									console.error(err);
+									console.log("error with creating in the database (init_colleges.js)");
+									reject();
 								}
 								else
 								{
