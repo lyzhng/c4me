@@ -46,7 +46,6 @@ describe('import college descriptions', () => {
     colleges.forEach((college) => {
       const { description } = college;
       assert.typeOf(description, 'string');
-      assert.notEqual(description, '');
     });
   });
 })
