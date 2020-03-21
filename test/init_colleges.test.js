@@ -6,17 +6,19 @@ const assert = require('chai').assert;
 const initColleges = require('../backend/init_colleges');
 const getCollegeNames = require('../backend/get_college_names');
 
-mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
-
 describe('initialize colleges', () => {
   before(async () => {
-    await collections.College.remove({});
+    mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
+    await collections.College.deleteMany({});
   });
-  it('should populate the database with all colleges in colleges.txt', async () => {
-    const colleges = await getCollegeNames();
-    await initColleges();
-    const collegeCount = await collections.College.countDocuments({});
-    assert.equal(collegeCount, 101);
+  it('should populate the database with all colleges in colleges.txt', async function () {
+    this.timeout(0);
+    const initialCollegeCount = await collections.College.countDocuments({});
+    assert.equal(initialCollegeCount, 0);
+    const colleges = await getCollegeNames('./datasets/colleges.txt');
+    await initColleges('./datasets/colleges.txt');
+    const finalCollegeCount = await collections.College.countDocuments({});
+    assert.equal(finalCollegeCount, 101);
     colleges.forEach(async (college) => {
       const foundCollege = await collections.College.find({ name: college }).lean();
       assert.notEqual(foundCollege, null);
