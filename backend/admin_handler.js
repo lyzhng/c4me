@@ -83,107 +83,107 @@ const deleteAllStudents =  (callback) => {
 };
 
 //fill ranking field for each college in database
-const importCollegeRankings = async function (filepath, callback) {
-	let college = collections.College;
-	await initCollege(filepath); //if no colleges in database, this will populate the database
-	
-	let allRankingsUrl = "https://www.timeshighereducation.com/rankings/united-states/2020#!/page/0/length/-1/sort_by/rank/sort_order/asc/cols/stats";
-	
-	college.find(async function (err, collegeArr)
+const importCollegeRankings = async function (filepath) {
+	return new Promise (async function(resolve, reject)
 	{
-		let allRankings;
-		await new Promise(async function(resolve, reject)
+		let college = collections.College;
+		await initCollege(filepath); //if no colleges in database, this will populate the database
+		
+		let allRankingsUrl = "https://www.timeshighereducation.com/rankings/united-states/2020#!/page/0/length/-1/sort_by/rank/sort_order/asc/cols/stats";
+		
+		college.find(async function (err, collegeArr)
 		{
-			let browser = await puppeteer.launch();
-			let page = await browser.newPage();
-
-			await page.goto(allRankingsUrl);
-			allRankings = await page.evaluate(() =>
+			let allRankings;
+			await new Promise(async function(resolve, reject)
 			{
-				let collegeRankingsMap = {};
-				let names = document.querySelectorAll("a.ranking-institution-title");
-				let rankings = document.querySelectorAll(".rank.sorting_1.sorting_2");
-				for (let i = 0; i < names.length; i ++)
-				{
-					if (rankings[i].textContent.indexOf("=") != -1)
-					{
-						collegeRankingsMap[names[i].textContent] = parseInt(rankings[i].textContent.substring(1));
-					}
-					else
-					{
-						collegeRankingsMap[names[i].textContent] = i + 1;
-					}
-				}
-				return collegeRankingsMap;
-			});
-			browser.close();
+				let browser = await puppeteer.launch();
+				let page = await browser.newPage();
 
+				await page.goto(allRankingsUrl);
+				allRankings = await page.evaluate(() =>
+				{
+					let collegeRankingsMap = {};
+					let names = document.querySelectorAll("a.ranking-institution-title");
+					let rankings = document.querySelectorAll(".rank.sorting_1.sorting_2");
+					for (let i = 0; i < names.length; i ++)
+					{
+						if (rankings[i].textContent.indexOf("=") != -1)
+						{
+							collegeRankingsMap[names[i].textContent] = parseInt(rankings[i].textContent.substring(1));
+						}
+						else
+						{
+							collegeRankingsMap[names[i].textContent] = i + 1;
+						}
+					}
+					return collegeRankingsMap;
+				});
+				browser.close();
+
+				resolve();
+			});
+
+			for (let i = 0; i < collegeArr.length; i ++)
+			{
+				if (allRankings[collegeArr[i].name] === null)
+				{
+					console.log("could not pull ranking for " + collegeArr[i].name);
+				}
+				else
+				{
+					collegeArr[i].ranking = allRankings[collegeArr[i].name];
+					collegeArr[i].save();
+					console.log("updated ranking for " + collegeArr[i].name + ": " + allRankings[collegeArr[i].name]);
+				}
+			}
 			resolve();
 		});
-
-		for (let i = 0; i < collegeArr.length; i ++)
-		{
-			if (allRankings[collegeArr[i].name] === null)
-			{
-				console.log("could not pull ranking for " + collegeArr[i].name);
-			}
-			else
-			{
-				collegeArr[i].ranking = allRankings[collegeArr[i].name];
-				collegeArr[i].save();
-				console.log("updated ranking for " + collegeArr[i].name + ": " + allRankings[collegeArr[i].name]);
-			}
-		}
-		if (typeof(callback) === "function")
-		{
-			callback();
-		}
 	});
 };
 
 //fill description field for each college in database
-const importCollegeDescriptions = async function (filepath, callback) {
-	let college = collections.College;
-
-	await initCollege(filepath); //if no colleges in database, this will populate the database
-	
-	let url = "https://www.timeshighereducation.com/world-university-rankings/";//harvard-university";
-	
-	college.find(async function (err, collegeArr)
+const importCollegeDescriptions = async function (filepath) {
+	return new Promise(function(resolve, reject)
 	{
-		for (let i = 0; i < collegeArr.length; i ++)
+		let college = collections.College;
+
+		await initCollege(filepath); //if no colleges in database, this will populate the database
+		
+		let url = "https://www.timeshighereducation.com/world-university-rankings/";//harvard-university";
+		
+		college.find(async function (err, collegeArr)
 		{
-			await new Promise (function(resolve, reject)
+			for (let i = 0; i < collegeArr.length; i ++)
 			{
-				request(url + collegeArr[i].name.split(" ").join("-"), function(error, response, body)
+				await new Promise (function(resolve, reject)
 				{
-					if (error || response.statusCode !== 200)
+					request(url + collegeArr[i].name.split(" ").join("-"), function(error, response, body)
 					{
-						console.log("couldn't pull description for " + collegeArr[i].name)
-						console.log(error);
-						console.log("response code: " + response.statusCode);
-					}
-					else
-					{
-						let dom = new JSDOM(body);
-						let nodelist = dom.window.document.querySelectorAll(".pane-content p");
-						let description = "";
-						for (let i = 0; i < nodelist.length; i ++)
+						if (error || response.statusCode !== 200)
 						{
-							description += nodelist[i].textContent + "\n";
+							console.log("couldn't pull description for " + collegeArr[i].name)
+							console.log(error);
+							console.log("response code: " + response.statusCode);
 						}
-						collegeArr[i].description = description;
-						collegeArr[i].save();
-						console.log("updated description for " + collegeArr[i].name + " at index " + i);
-					}
-					resolve();
+						else
+						{
+							let dom = new JSDOM(body);
+							let nodelist = dom.window.document.querySelectorAll(".pane-content p");
+							let description = "";
+							for (let i = 0; i < nodelist.length; i ++)
+							{
+								description += nodelist[i].textContent + "\n";
+							}
+							collegeArr[i].description = description;
+							collegeArr[i].save();
+							console.log("updated description for " + collegeArr[i].name + " at index " + i);
+						}
+						resolve();
+					});
 				});
-			});
-		}
-		if (typeof(callback) === "function")
-		{
-			callback();
-		}
+			}
+			resolve();
+		});
 	});
 };
 
