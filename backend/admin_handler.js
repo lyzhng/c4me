@@ -622,11 +622,7 @@ module.exports = {
 // (async () => await importCollegeRankings())();
 //deleteAllStudents();
 //importCollegeDescriptions();
-<<<<<<< HEAD
 // importCollegeData();
-=======
-//importCollegeData();
->>>>>>> 728da6ddf84ed51da090352127e6ddd2d2fcb80d
 //importHighschoolData("blah", "blah", "blah");
 //importHighschoolData("central high school", "park hills", "mo");
 // importHighschoolData("Ward Melville Senior High School", "East Setauket", "ny");
