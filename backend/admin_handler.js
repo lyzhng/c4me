@@ -143,7 +143,7 @@ const importCollegeRankings = async function (filepath) {
 
 //fill description field for each college in database
 const importCollegeDescriptions = async function (filepath) {
-	return new Promise(function(resolve, reject)
+	return new Promise(async function(resolve, reject)
 	{
 		let college = collections.College;
 
