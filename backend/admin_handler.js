@@ -220,7 +220,7 @@ const importScorecardData = async (filepath) => {
 	console.log('Got college names');
 	// convert colleges.txt to excel.csv style to match with parser
 	const collegesExcelStyle = collegeNames.map((college) => college.replace(', ', '-'));
-	await Papa.parse(csvData, {
+	Papa.parse(csvData, {
 		worker: true,
 		header: true,
 		dynamicTyping: true,
@@ -348,7 +348,7 @@ function sanitizeString(parsedValue) {
 }
 
 const importCollegeData = async function (filepath) {
-	await new Promise(async function (resolve, reject)
+	return new Promise(async function (resolve, reject)
 	{
 		let college = collections.College;
 		let collegeUrl;
@@ -383,13 +383,13 @@ const importCollegeData = async function (filepath) {
 
 							let dt_tags = $("dt").map(function() {return $(this).text();}).get();
 							let dd_tags = $("dd").map(function() {return $(this).text();}).get();
-							let GPA;
-							let AVG_ACT;
-							let AVG_MAT;
-							let AVG_RW;
+							let GPA = -1;
+							let AVG_ACT = -1;
+							let AVG_MAT = -1;
+							let AVG_RW = -1;
 							let cos_att = {
-								in_state: null,
-								out_state: null,
+								in_state: -1,
+								out_state: -1,
 							};
 							let cos_fee ={
 								in_state: null,
@@ -501,12 +501,12 @@ const importCollegeData = async function (filepath) {
 											collegeArr[i].majors.push(li_tags[j]);
 										}
 										collegeArr[i].save();
+										resolve();
 									}
-									resolve();
 								});
 							});
+							resolve();
 						}
-						resolve();
 					});
 				});
 			}

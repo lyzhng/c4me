@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const collections = require('../models');
-const describe = require('mocha').describe;
-const it = require('mocha').it;
+//const describe = require('mocha').describe;
+//const it = require('mocha').it;
 const assert = require('chai').assert;
 const { importCollegeData } = require('../backend/admin_handler');
 
@@ -15,6 +15,7 @@ describe('import college data', () => {
     }
   });
   it('should should have 101 colleges', async function () {
+    this.timeout(0);
     await importCollegeData('./datasets/colleges.txt');
     const collegeCount = await collections.College.countDocuments({});
     assert.equal(collegeCount, 101);
@@ -24,7 +25,7 @@ describe('import college data', () => {
     colleges.forEach((college) => {
       const { size } = college;
       assert.typeOf(size, 'number');
-      assert.isAtLeast(size, 0);
+      assert.isAtLeast(size, -1);
     });
   });
   it('should populate gpa', async () => {
