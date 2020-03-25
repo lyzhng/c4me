@@ -347,170 +347,174 @@ function sanitizeString(parsedValue) {
 	return (parsedValue !== null && typeof parsedValue === 'string') && (parsedValue === 'NULL' || parsedValue === '"NULL"') ? -1 : parsedValue;
 }
 
-const importCollegeData = async function (filepath,callback) {
-	let college = collections.College;
-	await initCollege(filepath);
-	let collegeUrl;
-	college.find(async function (err, collegeArr) {
-		for (let i = 0; i < collegeArr.length; i++){
-			collegeUrl = collegeArr[i].name;
-			if (remapped_names.has(collegeArr[i].name)){
-				collegeUrl = remapped_names.get(collegeArr[i].name);
-			}
-			let regex = /\b(The)\s\b/gi;
-			collegeUrl = collegeUrl.replace(regex,'');
-			collegeUrl = collegeUrl.replace(/,|&/g, '');
-			collegeUrl = collegeUrl.replace(/\s+/g, '-');
-			await new Promise(function(resolve, reject)
-			{
-				request({
-					method: "GET",
-					url: 'https://www.collegedata.com/college/' + collegeUrl,
-				},(err,res,body)=>{
-					if (err || res.statusCode !== 200)
-					{
-						console.log("failed to request collegeData!");
-						reject();
-					}
-					else
-					{
-						let $ = cheerio.load(body);
-						let size = $("#profile-overview .statbar .statbar__item .h2").map(function() {
-							return $(this).text();
-						}).get();
-
-						let dt_tags = $("dt").map(function() {return $(this).text();}).get();
-						let dd_tags = $("dd").map(function() {return $(this).text();}).get();
-						let GPA;
-						let AVG_ACT;
-						let AVG_MAT;
-						let AVG_RW;
-						let cos_att = {
-							in_state: null,
-							out_state: null,
-						};
-						let cos_fee ={
-							in_state: null,
-							out_state: null,
-						};
-						for (let j=0; j < dt_tags.length; j++){
-							if (dt_tags[j] === "Average GPA"){
-								if (dd_tags[j] === "Not reported"){
-									GPA = -1;
-								}
-								else
-									GPA = dd_tags[j];
-							}
-							else if (dt_tags[j] === "SAT Math"){
-								if (dd_tags[j].includes("average")){
-									AVG_MAT = dd_tags[j].split("average")[0];
-								}
-								else {
-									if (dd_tags[j].includes("Not reported")){
-										AVG_MAT = -1;
-									}
-									else{
-										AVG_MAT = dd_tags[j].split(" ")[0];
-										AVG_MAT = AVG_MAT.split("-");
-										AVG_MAT = Math.ceil((parseInt(AVG_MAT[0])+parseInt(AVG_MAT[1]))/2);
-									}
-								}
-							}
-							else if (dt_tags[j] === "SAT EBRW"){
-								if (dd_tags[j].includes("average")){
-									AVG_RW = dd_tags[j].split("average")[0];
-								}
-								else {
-									if (dd_tags[j].includes("Not reported")){
-										AVG_RW = -1;
-									}
-									else{
-										AVG_RW = dd_tags[j].split(" ")[0];
-										AVG_RW = AVG_RW.split("-");
-										AVG_RW = Math.ceil((parseInt(AVG_RW[0])+parseInt(AVG_RW[1]))/2);
-									}
-								}
-							}
-							else if(dt_tags[j] === "ACT Composite"){
-								if (dd_tags[j].includes("average")){
-									AVG_ACT = dd_tags[j].split("average")[0];
-								}
-								else{
-									AVG_ACT = dd_tags[j];
-									if (dd_tags[j] === "Not reported"){
-										AVG_ACT = -1;
-									}
-									else{
-										AVG_ACT = AVG_ACT.split(" ")[0];
-										AVG_ACT = AVG_ACT.split("-");
-										AVG_ACT = Math.ceil((parseInt(AVG_ACT[0])+parseInt(AVG_ACT[1]))/2);
-									}
-								}
-							}
-							else if (dt_tags[j] === "Cost of Attendance") {
-								if (dd_tags[j].includes("Out-of-state:")){
-									let cos_list = dd_tags[j].split("Out-of-state:");
-									cos_att.in_state = parseInt(cos_list[0].replace(/\$|,|(In-state:)|\b/g,''));
-									cos_att.out_state = parseInt(cos_list[1].replace(/\$|,/g,''));
-								}
-								else{
-									cos_att.in_state = cos_att.out_state = parseInt(dd_tags[j].replace(/\$|,/g,''));
-								}
-							}
-							// else if (dt_tags[j] === "Tuition and Fees"){
-							// 	if (dd_tags[j].includes("Out-of-state:")){
-							// 		let cos_list = dd_tags[j].split("Out-of-state:");
-							// 		cos_fee.in_state = parseInt(cos_list[0].replace(/\$|,|(In-state:)|\b/g,''));
-							// 		cos_fee.out_state = parseInt(cos_list[1].replace(/\$|,/g,''));
-							// 	}
-							// 	else{
-							// 		cos_fee.in_state = cos_fee.out_state = parseInt(dd_tags[j].replace(/\$|,/g,''));
-							// 	}
-							// }
+const importCollegeData = async function (filepath) {
+	await new Promise(function (resolve, reject)
+	{
+		let college = collections.College;
+		let collegeUrl;
+		await initCollege(filepath);
+		college.find(async function (err, collegeArr) {
+			for (let i = 0; i < collegeArr.length; i++){
+				collegeUrl = collegeArr[i].name;
+				if (remapped_names.has(collegeArr[i].name)){
+					collegeUrl = remapped_names.get(collegeArr[i].name);
+				}
+				let regex = /\b(The)\s\b/gi;
+				collegeUrl = collegeUrl.replace(regex,'');
+				collegeUrl = collegeUrl.replace(/,|&/g, '');
+				collegeUrl = collegeUrl.replace(/\s+/g, '-');
+				await new Promise(function(resolve, reject)
+				{
+					request({
+						method: "GET",
+						url: 'https://www.collegedata.com/college/' + collegeUrl,
+					},async (err,res,body)=>{
+						if (err || res.statusCode !== 200)
+						{
+							console.log("failed to request collegeData!");
+							reject();
 						}
-						collegeArr[i].gpa = GPA;
-						collegeArr[i].act.avg = AVG_ACT;
-						collegeArr[i].size = size[0] == null ? -1: parseInt(size[0].replace(/,/g,''));
- 						collegeArr[i].sat.math_avg = isNaN(AVG_MAT) ? -1: AVG_MAT;
-						collegeArr[i].sat.EBRW_avg = isNaN(AVG_RW) ? -1: AVG_RW;
-						collegeArr[i].cost.attendance.in_state = isNaN(cos_att.in_state) ? -1: cos_att.in_state;
-						collegeArr[i].cost.attendance.out_state = isNaN(cos_att.out_state) ? -1: cos_att.out_state;
-						// collegeArr[i].cost.tuition.in_state = isNaN(cos_fee.in_state) ? -1: cos_fee.in_state;
-						// collegeArr[i].cost.tuition.out_state = isNaN(cos_fee.out_state) ? -1: cos_fee.out_state;
-						// collegeArr[i].save();
-						request({
-							method: "GET",
-							url: 'https://www.collegedata.com/college/' + collegeUrl +'?tab=profile-academics-tab',
-						},(err,res,body)=>{
-							if (err || res.statusCode !== 200)
-							{
-								console.log("failed to request collegeData!");
-								reject();
-							}
-							else
-							{
-								let $ = cheerio.load(body);
-								let li_tags = $("#profile-academics .card:nth-child(2) .card-body .row .col-sm-6 .list--nice li").map(function() {
-									return $(this).text();
-								}).get();
-								for (let j= 0; j < li_tags.length; j++){
-									collegeArr[i].majors.push(li_tags[j]);
+						else
+						{
+							let $ = cheerio.load(body);
+							let size = $("#profile-overview .statbar .statbar__item .h2").map(function() {
+								return $(this).text();
+							}).get();
+
+							let dt_tags = $("dt").map(function() {return $(this).text();}).get();
+							let dd_tags = $("dd").map(function() {return $(this).text();}).get();
+							let GPA;
+							let AVG_ACT;
+							let AVG_MAT;
+							let AVG_RW;
+							let cos_att = {
+								in_state: null,
+								out_state: null,
+							};
+							let cos_fee ={
+								in_state: null,
+								out_state: null,
+							};
+							for (let j=0; j < dt_tags.length; j++){
+								if (dt_tags[j] === "Average GPA"){
+									if (dd_tags[j] === "Not reported"){
+										GPA = -1;
+									}
+									else
+										GPA = dd_tags[j];
 								}
-								collegeArr[i].save();
+								else if (dt_tags[j] === "SAT Math"){
+									if (dd_tags[j].includes("average")){
+										AVG_MAT = dd_tags[j].split("average")[0];
+									}
+									else {
+										if (dd_tags[j].includes("Not reported")){
+											AVG_MAT = -1;
+										}
+										else{
+											AVG_MAT = dd_tags[j].split(" ")[0];
+											AVG_MAT = AVG_MAT.split("-");
+											AVG_MAT = Math.ceil((parseInt(AVG_MAT[0])+parseInt(AVG_MAT[1]))/2);
+										}
+									}
+								}
+								else if (dt_tags[j] === "SAT EBRW"){
+									if (dd_tags[j].includes("average")){
+										AVG_RW = dd_tags[j].split("average")[0];
+									}
+									else {
+										if (dd_tags[j].includes("Not reported")){
+											AVG_RW = -1;
+										}
+										else{
+											AVG_RW = dd_tags[j].split(" ")[0];
+											AVG_RW = AVG_RW.split("-");
+											AVG_RW = Math.ceil((parseInt(AVG_RW[0])+parseInt(AVG_RW[1]))/2);
+										}
+									}
+								}
+								else if(dt_tags[j] === "ACT Composite"){
+									if (dd_tags[j].includes("average")){
+										AVG_ACT = dd_tags[j].split("average")[0];
+									}
+									else{
+										AVG_ACT = dd_tags[j];
+										if (dd_tags[j] === "Not reported"){
+											AVG_ACT = -1;
+										}
+										else{
+											AVG_ACT = AVG_ACT.split(" ")[0];
+											AVG_ACT = AVG_ACT.split("-");
+											AVG_ACT = Math.ceil((parseInt(AVG_ACT[0])+parseInt(AVG_ACT[1]))/2);
+										}
+									}
+								}
+								else if (dt_tags[j] === "Cost of Attendance") {
+									if (dd_tags[j].includes("Out-of-state:")){
+										let cos_list = dd_tags[j].split("Out-of-state:");
+										cos_att.in_state = parseInt(cos_list[0].replace(/\$|,|(In-state:)|\b/g,''));
+										cos_att.out_state = parseInt(cos_list[1].replace(/\$|,/g,''));
+									}
+									else{
+										cos_att.in_state = cos_att.out_state = parseInt(dd_tags[j].replace(/\$|,/g,''));
+									}
+								}
+								// else if (dt_tags[j] === "Tuition and Fees"){
+								// 	if (dd_tags[j].includes("Out-of-state:")){
+								// 		let cos_list = dd_tags[j].split("Out-of-state:");
+								// 		cos_fee.in_state = parseInt(cos_list[0].replace(/\$|,|(In-state:)|\b/g,''));
+								// 		cos_fee.out_state = parseInt(cos_list[1].replace(/\$|,/g,''));
+								// 	}
+								// 	else{
+								// 		cos_fee.in_state = cos_fee.out_state = parseInt(dd_tags[j].replace(/\$|,/g,''));
+								// 	}
+								// }
 							}
-							resolve();
-						});
-					}
-					resolve();
+							collegeArr[i].gpa = GPA;
+							collegeArr[i].act.avg = AVG_ACT;
+							collegeArr[i].size = size[0] == null ? -1: parseInt(size[0].replace(/,/g,''));
+	 						collegeArr[i].sat.math_avg = isNaN(AVG_MAT) ? -1: AVG_MAT;
+							collegeArr[i].sat.EBRW_avg = isNaN(AVG_RW) ? -1: AVG_RW;
+							collegeArr[i].cost.attendance.in_state = isNaN(cos_att.in_state) ? -1: cos_att.in_state;
+							collegeArr[i].cost.attendance.out_state = isNaN(cos_att.out_state) ? -1: cos_att.out_state;
+							// collegeArr[i].cost.tuition.in_state = isNaN(cos_fee.in_state) ? -1: cos_fee.in_state;
+							// collegeArr[i].cost.tuition.out_state = isNaN(cos_fee.out_state) ? -1: cos_fee.out_state;
+							// collegeArr[i].save();
+							await new Promise (function (resolve, reject)
+							{
+								request({
+								method: "GET",
+								url: 'https://www.collegedata.com/college/' + collegeUrl +'?tab=profile-academics-tab',
+								},(err,res,body)=>{
+									if (err || res.statusCode !== 200)
+									{
+										console.log("failed to request collegeData!");
+										reject();
+									}
+									else
+									{
+										let $ = cheerio.load(body);
+										let li_tags = $("#profile-academics .card:nth-child(2) .card-body .row .col-sm-6 .list--nice li").map(function() {
+											return $(this).text();
+										}).get();
+										for (let j= 0; j < li_tags.length; j++){
+											collegeArr[i].majors.push(li_tags[j]);
+										}
+										collegeArr[i].save();
+									}
+									resolve();
+								});
+							});
+						}
+						resolve();
+					});
 				});
-			});
-		}
-		console.log("Finish");
-		if (typeof(callback) === "function")
-		{
-			callback();
-		}
+			}
+			console.log("Finish");
+			resolve();
+		});
 	});
+	
 };
 
 let remapped_names = new Map();
