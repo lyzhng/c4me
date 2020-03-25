@@ -9,49 +9,22 @@ const puppeteer = require('puppeteer');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
-function escapeRegExp(str) {
-  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+
+const registerStudent = async (newUserid, password) => {
+	return await collections.Student.find({userid:newUserid}).lean().then(async (resp) => {
+		if(resp.length === 0){
+		  return await collections.Student.create({userid:newUserid, password: password});;
+		}
+		else{
+		  throw new Error("userid or email already taken!")
+		}
+	  });
 }
 
-const searchCollege = function (query)
-{
-	let college = collections.College;
+const login = async(userid, password, callback) => {
 
-	if (query === "")
-	{
-		return new Promise(function (resolve, reject)
-		{
-			college.find({}, function (err, collegeArr)
-			{
-				if (err)
-				{
-					console.log("error searching for colleges!");
-				}
-				resolve(collegeArr);
-			});
-		});
-	}
-	else
-	{
-		query = typeof(query) === "string" ? query : "";
-		let queryRegex = query.split(/ +/).filter((substr) => {return substr !== ""})
-		.map((substr) => {return {name: {$regex: new RegExp(escapeRegExp(substr)), $options: 'i'}}});
-			queryRegex = queryRegex.length !== 0 ? queryRegex : null;
-
-		return new Promise(function (resolve, reject)
-		{
-			college.find({$and : queryRegex}, function (err, collegeArr)
-			{
-				resolve(collegeArr);
-			});
-		});
-	}
 }
- 
 
-
-
-
-// module.exports = {
-// 	searchCollege: searchCollege 
-// };
+module.exports = {
+	registerStudent: registerStudent
+}

@@ -15,7 +15,7 @@ const initCollege = require("./init_colleges.js");
 mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
 
 //import student profile csv and takes in name of csv file
-const importStudentProfiles = (studentCsv, applicationCSV) => {
+const importStudentProfiles = async (studentCsv, applicationCSV) => {
 	let studentData;
 	let file = fs.readFileSync("./datasets/"+studentCsv,"utf-8")
 	Papa.parse(file,{
@@ -42,6 +42,7 @@ const importStudentProfiles = (studentCsv, applicationCSV) => {
 				});
 				});
 			Promise.all(studentsInsert).then(()=>{
+				if(applicationCSV)
 				importApplicationData(applicationCSV);
 			})		
 		}
@@ -50,7 +51,7 @@ const importStudentProfiles = (studentCsv, applicationCSV) => {
 };
 
 //imports application csv and takes in string containing name of csv
-const importApplicationData = (applicationCSV) =>{
+const importApplicationData = async (applicationCSV) =>{
 	let applicationData;
 	let file = fs.readFileSync("./datasets/"+applicationCSV, "utf-8");
 	Papa.parse(file, {
@@ -576,7 +577,7 @@ const scrapeSimilarAppliedColleges = ($) => {
  return popularCollegeList;
 };
 
-const importHighschoolData = (name, city, state) => {
+const importHighschoolData = async (name, city, state) => {
 	let url ="https://www.niche.com/k12/"+ name + "-" +city + "-" +state;
 	url = url.split(" ").join("-");
 	axios.get(url, 
