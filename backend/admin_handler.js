@@ -348,7 +348,7 @@ function sanitizeString(parsedValue) {
 }
 
 const importCollegeData = async function (filepath) {
-	await new Promise(function (resolve, reject)
+	await new Promise(async function (resolve, reject)
 	{
 		let college = collections.College;
 		let collegeUrl;
