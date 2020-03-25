@@ -16,7 +16,7 @@ describe('import scorecard data', () => {
     const collegeCount = await collections.College.countDocuments({});
     assert.equal(collegeCount, 101);
     try {
-      const colleges = await collections.College.find({});
+      const colleges = await collections.College.find({}).lean();
       colleges.forEach((college) => {
         checkGeneralInfo(college);
         checkACT(college.act);
