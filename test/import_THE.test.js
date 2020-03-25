@@ -3,7 +3,7 @@ const collections = require('../models');
 const describe = require('mocha').describe;
 const it = require('mocha').it;
 const assert = require('chai').assert;
-const { importCollegeRankings } = require('../backend/admin_handler');
+const { importCollegeRankings, importCollegeDescriptions } = require('../backend/admin_handler');
 
 describe('import college rankings', () => {
   before(async () => {
@@ -22,12 +22,12 @@ describe('import college rankings', () => {
     const colleges = await collections.College.find({});
     colleges.forEach((college) => {
       const { ranking } = college;
-      console.log(college);
       assert.typeOf(ranking, 'number');
     });
   });
   it('should import college descriptions from THE', async function () {
     this.timeout(0);
+    await importCollegeDescriptions('./datasets/colleges.txt');
     const colleges = await collections.College.find({});
     colleges.forEach((college) => {
       const { description } = college;
