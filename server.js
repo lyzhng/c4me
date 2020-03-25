@@ -24,20 +24,16 @@ app.get("/", (req, res)=>{
   res.send("Testing");
 });
 
-app.post("/api/register", (req, res)=>{
+app.post("/api/register", async (req, res)=>{
   req.body.userid = req.body.userid.toLowerCase();
   if(req.body.userid !== "admin"){
-    collections.Student.find({userid:req.body.userid}).lean().then((resp) => {
-      if(resp.length === 0){
-        collections.Student.create(req.body).then((collectionsmodel)=>{
-          console.log("Created new user:", collectionsmodel);
-          res.status(200).json({status:"OK"});
-        });
-      }
-      else{
-        res.status(401).json({error:"userid or email already taken!"});
-      }
-    });
+    try{
+      let newStudent = await backend.studentHandler.registerStudent(req.body.userid, req.body.password);
+      console.log("Created", newStudent);
+      res.status(200).json({status:"OK"});
+    }catch(err){
+      res.status(401).json({error: err.message});
+    }
   }
   else{
   res.status(401).json({error:"userid or email already taken!"});
