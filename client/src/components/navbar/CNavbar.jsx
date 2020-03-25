@@ -2,18 +2,12 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
-import { useHistory } from "react-router-dom";
-
+import  { Link } from 'react-router-dom';
 export default class CNavbar extends React.Component{
+
 	state = {
 		visibility: "visible",
 		userid: ""
-	}
-
-	logout = (event)=>{
-        event.preventDefault();
-        document.cookie = 'token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-		window.location.href = "/login";
 	}
 
 	componentDidMount(){
@@ -29,6 +23,7 @@ export default class CNavbar extends React.Component{
 	}
 
 	render(){
+		console.log(this.props);
 		return(
 			<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
 			<Navbar.Brand href="/">c4Me</Navbar.Brand>
@@ -40,8 +35,9 @@ export default class CNavbar extends React.Component{
 			</Nav>
 			<Nav>
 			{this.state.userid ? 
-			this.state.userid !== "admin" ? <React.Fragment><Nav.Link href={"/profile/"+this.state.userid}>{this.state.userid}</Nav.Link><Button variant = "link" onClick = {this.logout}>Logout</Button></React.Fragment> : <Button onClick = {this.logout}>Logout</Button>
-			: <React.Fragment><Nav.Link href="/register">Register</Nav.Link><Nav.Link href="/login">Login</Nav.Link></React.Fragment> 
+			this.state.userid !== "admin" ? <React.Fragment><Nav.Link href={"/profile/"+this.state.userid}>{this.state.userid}</Nav.Link><Button variant = "link" onClick = {this.props.logout}>Logout</Button></React.Fragment> : 
+			<Button onClick = {this.props.logout}>Logout</Button>
+			: <React.Fragment><Nav.Link href="/register"><Link to = "/register">Register</Link></Nav.Link><Nav.Link ><Link to = "/login">Login</Link></Nav.Link></React.Fragment> 
 			}
 			</Nav>
 			</Navbar.Collapse>

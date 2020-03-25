@@ -7,32 +7,35 @@ import Auth from './components/auth/Auth.jsx';
 import SearchColleges from './components/college/SearchColleges.jsx';
 import Navbar from './components/navbar/CNavbar';
 import Admin from './components/admin/Admin.jsx';
+import Profile from './components/profile/Profile.jsx';
 
 export default class App extends React.Component {
 
-  refresh = () =>{
-		this.setState({});
-  }
+	logout = (event)=>{
+    event.preventDefault();
+    document.cookie = 'token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    this.setState({})
+	}
   
   render(){
     const NavAuth = Auth(Navbar);
     return (
-      <div className="App">
-        <NavAuth />
-       <BrowserRouter>
-              <Switch>
-                <Route exact path = "/" component = {HomeScreen} />
-                <Route exact path = "/register" component = {Register} />
-                <Route exact path = "/login" component = {Login} />
-                {/* <Route path = "/profile/:userid" component={Auth(Profile)} /> */}
-                <Route path = "/colleges" component = {Auth(SearchColleges)} />
-                {/* <Route path  = "/college/:name" component = {Auth(College)} /> */}
-                {/* <Route path = "/highschools" component = {Auth(Highschools)} /> */}
-                <Route exact path = "/admin" component = {Auth(Admin)} />
-                <Route path = "/:any" component = {HomeScreen} />
-              </Switch>
-          </BrowserRouter>
-      </div>
+      <BrowserRouter>
+       <div className="App">
+       <NavAuth logout = {this.logout.bind(this)} />
+          <Switch>
+            <Route exact path = "/" component = {HomeScreen} />
+            <Route exact path = "/register" component = {Auth(Register)} />
+            <Route exact path = "/login" component = {Auth(Login)} />
+            <Route path = "/profile/:userid" component={Auth(Profile)} />
+            <Route path = "/colleges" component = {Auth(SearchColleges)} />
+            {/* <Route path  = "/college/:name" component = {Auth(College)} /> */}
+            {/* <Route path = "/highschools" component = {Auth(Highschools)} /> */}
+            <Route exact path = "/admin" component = {Auth(Admin)} />
+            <Route path = "/:any" component = {HomeScreen} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
   
