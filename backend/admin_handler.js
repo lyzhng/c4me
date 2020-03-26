@@ -14,64 +14,86 @@ const initCollege = require("./init_colleges.js");
 
 mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
 
+//Addes a student to the database. Used in the map function below
+const insertStudent = async (student, resolve) =>{
+	student.userid = student.userid.toLowerCase();
+	let resp = await collections.Student.find({userid:student.userid});
+	//if the student userid hasn't been used and it doesnt equal to admin we will create a new student
+	if(resp.length === 0 && student.userid !== "admin"){
+		//holds the student that is created
+		let created = await collections.Student.create(student);
+		console.log("created", created.userid);
+		//finds the highschool in database that student has, if it doesnt exist, we scrape for it
+		if(created.high_school_name && created.high_school_city && created.high_school_state){
+			let resp = await collections.HighSchool.find({name:created.high_school_name, location:created.high_school_city +", "+created.high_school_state});
+			if(resp.length === 0){
+				await importHighschoolData(created.high_school_name, created.high_school_city, created.high_school_state);
+			}			
+		}
+	}
+	resolve();
+}
+
 //import student profile csv and takes in name of csv file
 const importStudentProfiles = async (studentCsv, applicationCSV) => {
 	let studentData;
-	let file = fs.readFileSync("./datasets/"+studentCsv,"utf-8")
+	let file = fs.readFileSync("./datasets/"+studentCsv,"utf-8");
 	Papa.parse(file,{
+		worker:true,
 		header: true,
 		dynamicTyping: true,
 		complete: (results)=>{
 			studentData = results.data;
+			//CSV has random spacing inside the columns, so this removes it inorder to insert into db easier.
 			studentData = JSON.parse(JSON.stringify(studentData).replace(/\s(?=\w+":)/g, ""));
-			const studentsInsert =studentData.map((student)=>{
-				student.userid = student.userid.toLowerCase();
-				collections.Student.find({userid:student.userid}).lean().then((resp)=>{
-					if(resp.length === 0 && student.userid !== "admin")
-					{
-						collections.Student.create(student).then((resp)=>{
-							console.log("Created", resp);
-							let student = resp;
-							collections.HighSchool.find({name:resp.high_school_name, location:resp.high_school_city +", "+resp.high_school_state}).then((resp)=>{
-								if(resp.length === 0){
-									importHighschoolData(student.high_school_name, student.high_school_city, student.high_school_state);
-								}
-							});
-						}).catch(err => { console.log(err); });
-					}
-				});
-				});
-			Promise.all(studentsInsert).then(()=>{
-				if(applicationCSV)
-				importApplicationData(applicationCSV);
-			})		
 		}
 	});
-	//Converts json to a String version of json to use regex to remove all the whitespaces and then convert it back to json
+	const importAllStudents = studentData.map(student => {
+		return new Promise((resolve) => {
+			insertStudent(student, resolve);
+		});
+	});
+	
+	await Promise.all(importAllStudents);
+	console.log("done with importing students");
+	console.log("Done with importing highschools from students");
+	if(applicationCSV){
+		await importApplicationData(applicationCSV);
+		console.log("Done with import students, highschools, and applications");
+	}
 };
+
+//Adds an application to the database. Used for the map function below.
+const importApplication = async (newApp, resolve) => {
+	let resp = await collections.Application.findOne({userid: newApp.userid, college: newApp.college});
+	if(!resp){
+		let createdApp = await collections.Application.create(newApp);
+			await collections.Student.updateOne({userid: newApp.userid}, {$push:{applications: createdApp._id}});
+			console.log("Added application for "+ newApp.userid+" with college: "+newApp.college+" and status: "+newApp.status);
+	}
+	resolve();
+}
 
 //imports application csv and takes in string containing name of csv
 const importApplicationData = async (applicationCSV) =>{
 	let applicationData;
 	let file = fs.readFileSync("./datasets/"+applicationCSV, "utf-8");
 	Papa.parse(file, {
+		worker:true,
 		header: true,
 		dynamicTyping: true,
-		complete: (results) => {
+		complete: async (results) => {
 			applicationData = results.data;
-			applicationData.forEach((newApp, index) =>{
-				collections.Application.findOne({userid: newApp.userid, college: newApp.college}).lean().then((resp) =>{
-					if(!resp){
-						collections.Application.create(newApp).then((resp) =>{
-							collections.Student.updateOne({userid: newApp.userid}, {$push:{applications: resp._id}}).then((resp)=>{
-								console.log("Added application for "+ newApp.userid+" with college: "+newApp.college+" and status:"+newApp.status);
-							});
-						});		
-					}
-				});
-			});
 		}
 	});
+	//using map function to iterate through each application and inserting to database
+	const importApplications = applicationData.map((newApp) =>{
+		return new Promise((resolve) => {
+			importApplication(newApp, resolve);
+		});
+	});
+	await Promise.all(importApplications);
+	console.log("Done with importing all applications");
 };
 
 //Drops student collection
@@ -580,7 +602,7 @@ const scrapeSimilarAppliedColleges = ($) => {
 const importHighschoolData = async (name, city, state) => {
 	let url ="https://www.niche.com/k12/"+ name + "-" +city + "-" +state;
 	url = url.split(" ").join("-");
-	axios.get(url, 
+	await axios.get(url, 
 	{headers:{
 		'Host': 'www.niche.com',
 		'User-Agent':userAgents[Math.floor(Math.random() * 49)],
@@ -591,7 +613,7 @@ const importHighschoolData = async (name, city, state) => {
 		'Upgrade-Insecure-Requests': '1',
 		'TE': 'Trailers'
 	}}
-	).then((resp) => {
+	).then(async (resp) => {
 	let html = cheerio.load(resp.data);
 	let highschool = {
 		name,
@@ -603,9 +625,8 @@ const importHighschoolData = async (name, city, state) => {
 	highschool.academic_ranking = scrapeAcademicRanking(html);
 	highschool.college_prep_ranking = scrapeCollegePrepRanking(html);
 	highschool.similar_colleges_applied = scrapeSimilarAppliedColleges(html);
-	collections.HighSchool.create(highschool).then(resp => {
-		console.log("Created:", resp);
-	}).catch(err =>{ console.log(err) });
+	let created = await collections.HighSchool.create(highschool);
+	console.log("Created:", created);
 	}).catch((err)=>{
 		console.log("Scrape for high school:",name, city, state, "Gave the following error:",err.response.status, err.response.statusText);
 	});
