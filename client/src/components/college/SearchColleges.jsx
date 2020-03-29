@@ -11,6 +11,10 @@ const regionToStates  =
 	west: ["MT", "WY", "CO", "NM", "ID", "UT", "AZ", "WA", "OR", "NV", "CA"]
 }
 
+function isInt(n) {  //copied from https://stackoverflow.com/questions/5630123/javascript-string-integer-comparisons
+	  return /^[+-]?\d+$/.test(n);
+	};
+
 export default class SearchColleges extends React.Component{
     state = {
 			name: "",
@@ -18,64 +22,84 @@ export default class SearchColleges extends React.Component{
 			//filters
 			strict: false,
 			location: "", //4 regions
-			costOfAttendance: -1, //upperbound
+			costOfAttendance: Number.MAX_SAFE_INTEGER, //upperbound
 			major1: "",
 			major2: "",
-			admissionRateUpper: -1, //in %
-			admissionRateLower: -1, //in %
-			rankingUpper: -1,
-			rankingLower: -1,
-			sizeUpper: -1,
-			sizeLower: -1,
-			satMathUpper: -1,
-			satMathLower: -1,
-			satEngUpper: -1,
-			satEngLower: -1,
-			actUpper: -1,
-			actLower: -1
+			admissionRateUpper: 100, //in %
+			admissionRateLower: 0, //in %
+			rankingUpper: Number.MAX_SAFE_INTEGER,
+			rankingLower: 1,
+			sizeUpper: Number.MAX_SAFE_INTEGER,
+			sizeLower: 0,
+			satMathUpper: 800,
+			satMathLower: 200,
+			satEngUpper: 800,
+			satEngLower: 200,
+			actUpper: 36,
+			actLower: 1
+    }
+
+    setStateDefault = () => //resets all numeric fields to default, if fields are empty.
+    {
+    	this.setState({
+    		costOfAttendance : this.state.costOfAttendance === "" ? Number.MAX_SAFE_INTEGER : this.state.costOfAttendance,
+    		admissionRateUpper : this.state.admissionRateUpper === "" ? 100 : this.state.admissionRateUpper,
+    		admissionRateLower : this.state.admissionRateLower === "" ? 0 : this.state.admissionRateLower,
+    		rankingUpper : this.state.rankingUpper === "" ? Number.MAX_SAFE_INTEGER : this.state.rankingUpper,
+    		rankingLower : this.state.rankingLower === "" ? 0 : this.state.rankingLower,
+    		sizeUpper : this.state.sizeUpper === "" ? Number.MAX_SAFE_INTEGER : this.state.sizeUpper,
+    		sizeLower : this.state.sizeLower === "" ? 0 : this.state.sizeLower,
+    		satMathUpper : this.state.satMathUpper === "" ? 800 : this.state.satMathUpper,
+    		satMathLower : this.state.satMathLower === "" ? 5000 : this.state.satMathLower,
+    		satEngUpper : this.state.satEngUpper === "" ? 800 : this.state.satEngUpper,
+    		satEngLower : this.state.satEngLower === "" ? 200 : this.state.satEngLower,
+    		actUpper : this.state.actUpper === "" ? 36 : this.state.actUpper,
+    		actLower : this.state.actLower === "" ? 1 : this.state.actLower,
+    	});
     }
 
 	handleChange = (e) => {
 		this.setState({
-			[e.target.name] : e.target.value,
-		});
+			[e.target.name] : isInt(e.target.value) ? parseInt(e.target.value) : e.target.value,
+		}, this.setStateDefault);
+		console.log(this.state);
 	}
 
-	checkRange(value, lowerBound, upperBound, lowerLimit, upperLimit)
+	checkRange = (value, lowerBound, upperBound, lowerLimit, upperLimit) =>
 	{
-		if (lowerLimit && lowerBound < lowerLimit) //invalid lowerbound, return true (filters wont do anything)
+		if ((lowerLimit != undefined) && (lowerBound < lowerLimit)) //invalid lowerbound, return true (filters wont do anything)
 		{
 			return true;
 		}
-		if (upperLimit && upperBound > upperLimit) //invalid upperbound, return true (filters wont do anything)
+		if ((upperLimit != undefined) && (upperBound > upperLimit)) //invalid upperbound, return true (filters wont do anything)
 		{
 			return true;
 		}
 		if (lowerBound <= upperBound)
 		{
-			return value >= lowerBound && value <= upperBound;
+			return (value >= lowerBound) && (value <= upperBound);
 		}
 		else
 		{
-			return true; //lowerbound is greater than upperbound, return true (filters wont do anything)
+			return true; //lowerbound is greater than upperbound, return true as this is invalid input (filters wont do anything)
 		}
 	}
 
-	checkLocation(college) //returns true if college passes filters
+	checkLocation = (college) => //returns true if college passes filters
 	{
 		if (college.location && college.location.state)
 		{
-			if (this.location === "")
+			if (this.state.location === "")
 			{
 				return true;
 			}
-			else if (!regionToStates[this.location]) //if somehow user enters wrong location (through post or something)
+			else if (!regionToStates[this.state.location]) //if somehow user enters wrong location (through post or something)
 			{
 				return false;
 			}
 			else
 			{
-				return regionToStates[this.location].includes(college.location.state);
+				return regionToStates[this.state.location].includes(college.location.state);
 			}
 		}
 		else
@@ -84,38 +108,136 @@ export default class SearchColleges extends React.Component{
 		}
 	}
 
-	checkCost(college) //must get user state, to determine if cost is instate or out of state
+	checkCost = (college) =>//must get user state, to determine if cost is instate or out of state
 	{
-		return true;
+		if (college.cost.attendance.in_state != -1)
+		{
+			return this.checkRange(college.cost.attendance.in_state, 0, this.state.costOfAttendance, 0);
+		}
+		else
+		{
+			return this.state.strict ? false : true;
+		}
 	}
 
-	checkMajor(college) //annoying af
+	checkMajor = (college) => //annoying af
 	{
-		return true;
+		if (college.majors.length != 0)
+		{
+			let match = false;
+			for (let i = 0; i < college.majors.length; i ++)
+			{
+				if ((college.majors[i].toLowerCase().indexOf(this.state.major1.toLowerCase()) !== -1) && (college.majors[i].toLowerCase().indexOf(this.state.major2.toLowerCase()) !== -1))
+				{
+					match = true;
+					break;
+				}
+			}
+			return match;
+		}
+		else
+		{
+			return this.state.strict ? false : true;
+		}
 	}
 
-	checkAdmissionRate(college)
+	checkSize = (college) =>
+	{
+		if (college.size != -1)
+		{
+			return this.checkRange(college.size, this.state.sizeLower, this.state.sizeUpper, 0);
+		}
+		else
+		{
+			return this.state.strict ? false : true;
+		}
+	}
+
+	checkSatMath = (college) =>
+	{
+		if (college.sat.math_avg != -1)
+		{
+			return this.checkRange(college.sat.math_avg, this.state.satMathLower, this.state.satMathUpper, 200, 800);
+		}
+		else
+		{
+			return this.state.strict ? false : true;
+		}
+	}
+
+	checkSatEng = (college) =>
+	{
+		if (college.sat.EBRW_avg != -1)
+		{
+			return this.checkRange(college.sat.EBRW_avg, this.state.satEngLower, this.state.satEngUpper, 200, 800);
+		}
+		else
+		{
+			return this.state.strict ? false : true;
+		}
+	}
+
+	checkAct = (college) =>
+	{
+		if (college.act.avg != -1)
+		{
+			return this.checkRange(college.act.avg, this.state.actLower, this.state.actUpper, 1, 36);
+		}
+		else
+		{
+			return this.state.strict ? false : true;
+		}
+	}
+
+	checkAdmissionRate = (college) =>
 	{
 		if (college.admission_rate !== -1)
 		{
-			return this.checkRange(college.admission_rate, this.admissionRateLower, this.admissionRateUpper, 0, 100);
+			return this.checkRange(college.admission_rate, this.state.admissionRateLower, this.state.admissionRateUpper, 0, 100);
 		}
 		else
 		{
-			return this.strict ? false : true;
+			return this.state.strict ? false : true;
 		}
 	}
 
-	checkRanking(college)
+	checkRanking = (college) =>
 	{
 		if (college.ranking !== -1)
 		{
-			return this.checkRange(college.ranking, this.rankingLower, this.rankingUpper, 0);
+			return this.checkRange(college.ranking, this.state.rankingLower, this.state.rankingUpper, 1);
 		}
 		else
 		{
-			return this.strict ? false : true;
+			return this.state.strict ? false : true;
 		}
+	}
+
+	filter = (event) => {
+		event.preventDefault();
+		 //make a copy of colleges cause react
+		let colleges = this.state.colleges.map((college) => {return Object.assign({}, college)});
+		for (let i = 0; i < colleges.length; i ++)
+		{
+			let college = colleges[i];
+			//colleges[i].hidden = !this.checkAdmissionRate(college);
+			college.hidden = !(this.checkLocation(college) && this.checkCost(college) && this.checkMajor(college)
+			&& this.checkSize(college) && this.checkSatMath(college) && this.checkSatEng(college) && this.checkAct(college)
+			&& this.checkAdmissionRate(college) && this.checkRanking(college));
+
+			//console.log("location: " + this.checkLocation(college)); good
+			//console.log("major: " + this.checkMajor(college)); good?
+			// console.log("size: " + this.checkSize(college)); //good
+			// console.log("satmath: " + !this.checkSatMath(college)); //good
+			//console.log("sateng: " + this.checkSatEng(college)); //good
+			// console.log("act: " + this.checkAct(college)); //good
+			// console.log("admission: " + this.checkAdmissionRate(college)); //good
+			// console.log("ranking: " + this.checkRanking(college)); //good
+			// console.log("ranking: " + this.checkCost(college)); //good
+		}
+		//set the hidden field
+		this.setState({colleges : colleges});
+
 	}
 
     search = (event) => {
@@ -123,31 +245,6 @@ export default class SearchColleges extends React.Component{
 			Axios.post("/searchforcolleges", {query: this.state.name}).then((resp)=>{
 				this.setState ({colleges: resp.data.colleges});
 			});
-    }
-
-    componentDidMount(){
-			this.setState({
-			name: "",
-			colleges: [], 
-			//filters
-			strict: false,
-			location: "", //4 regions
-			costOfAttendance: -1, //upperbound
-			major1: "",
-			major2: "",
-			admissionRateUpper: -1, //in %
-			admissionRateLower: -1, //in %
-			rankingUpper: -1,
-			rankingLower: -1,
-			sizeUpper: -1,
-			sizeLower: -1,
-			satMathUpper: -1,
-			satMathLower: -1,
-			satEngUpper: -1,
-			satEngLower: -1,
-			actUpper: -1,
-			actLower: -1
-    });
     }
 
     render(){
@@ -162,6 +259,14 @@ export default class SearchColleges extends React.Component{
        					<div>
        						strict:
        						<input type = "checkbox" name = "strict" onChange ={this.handleChange} />
+       					</div>
+       					<div>
+       						rankingLower
+       						<input type = "number" name = "rankingLower" onChange ={this.handleChange}/>
+       					</div>
+       					<div>
+       						rankingUpper
+       						<input type = "number" name = "rankingUpper" onChange ={this.handleChange}/>
        					</div>
        					<div>
        						admissionRateLower
@@ -196,12 +301,12 @@ export default class SearchColleges extends React.Component{
        						<input type = "number" name = "satEngUpper" onChange ={this.handleChange}/>
        					</div>
        					<div>
-       						satEngLower
-       						<input type = "number" name = "satEngLower" onChange ={this.handleChange}/>
+       						actLower
+       						<input type = "number" name = "actLower" onChange ={this.handleChange}/>
        					</div>
        					<div>
-       						satEngUpper
-       						<input type = "number" name = "satEngUpper" onChange ={this.handleChange}/>
+       						actUpper
+       						<input type = "number" name = "actUpper" onChange ={this.handleChange}/>
        					</div>
        					<div>
        						major1
@@ -217,7 +322,7 @@ export default class SearchColleges extends React.Component{
        					</div>
        					<div>
        						location
-       						<select name = "location">
+       						<select name = "location" onChange ={this.handleChange}>
        						  <option value="">No preference</option>
 							  <option value="northeast">Northeast</option>
 							  <option value="midwest">Midwest</option>
@@ -225,12 +330,18 @@ export default class SearchColleges extends React.Component{
 							  <option value="west">West</option>
 							</select>
        					</div>
+       					<div>
+       						apply filters
+       						<input type = "button" name = "filter" onClick ={this.filter}/>
+       					</div>
        				</div>
        				<div className = "col-8">
        					<label htmlFor="name">Filter by Name:</label>
 						<input type="text" name = "name" onChange ={this.handleChange} />
 						<button onClick= {this.search}>Search</button>
-						{this.state.colleges.map((college) => {return <SearchResults key = {college._id} college = {college} display = {true}/>})}
+						{
+							this.state.colleges.map((college) => {return <SearchResults key = {college._id} college = {college} display = {college.hidden}/>})
+						}
        				</div>
        			</div>
             </div>
@@ -239,3 +350,4 @@ export default class SearchColleges extends React.Component{
 				return <Redirect to = "/login" />;
 		}
 }
+
