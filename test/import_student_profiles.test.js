@@ -6,31 +6,38 @@ const assert = require('chai').assert;
 const { importStudentProfiles } = require('../backend/admin_handler');
 
 
-describe('import Student Profiles', () => {
+describe('import student profiles', () => {
 	before(async () => {
-    mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
-    try {
-	  await collections.Student.collection.drop();
-	  await collections.HighSchool.collection.drop();
-	  await collections.Application.collection.drop();
-	  
-    } catch (err) {
-      console.log('cannot drop student database');
-    }
+	    mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
+	    try {
+		  await collections.Student.collection.drop();
+		  await collections.HighSchool.collection.drop();
+		  await collections.Application.collection.drop();
+		  
+	    } catch (err) {
+	      console.log('cannot drop student database');
+	    }
+	});
+
+	after(() => {
+		console.log("Finished testing import student profiles.");
 	});
 	
-	it('should have imported 3 students', async function(){
+	it('should have imported 3 students', async function() {
+		this.timeout(0);
 		await importStudentProfiles("students-1.csv","applications-1.csv");
 		let studentCount = await collections.Student.find({});
 		assert.equal(studentCount.length, 3);
 	});
 
-	it('should have imported 6 applications', async () => {
+	it('should have imported 6 applications', async function() {
+		this.timeout(0);
 		let applicationCount = await collections.Application.find({});
 		assert.equal(applicationCount.length, 6);
 	});
 
-	it('should have the correct number of applications for each student', async () => {
+	it('should have the correct number of applications for each student', async function() {
+		this.timeout(0);
 		let jcool = await collections.Student.findOne({userid:"jcool"});
 		let chuck = await collections.Student.findOne({userid:"chuck"});
 		let dummyStudent1 = await collections.Student.findOne({userid:"dummystudent1"});
@@ -39,12 +46,9 @@ describe('import Student Profiles', () => {
 		assert.equal(dummyStudent1.applications.length, 2);
 	});
 
-	it('should have added 3 high schools', async () => {
+	it('should have added 3 high schools', async function() {
+		this.timeout(0);
 		let highschoolCount = await collections.HighSchool.find({});
 		assert.equal(highschoolCount.length, 3);
-	});
-
-	after(() => {
-		console.log("Finished testing import student profiles.");
 	});
 }); 
