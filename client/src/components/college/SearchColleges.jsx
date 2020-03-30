@@ -331,8 +331,7 @@ export default class SearchColleges extends React.Component{
 							</select>
        					</div>
        					<div>
-       						apply filters
-       						<input type = "button" name = "filter" onClick ={this.filter}/>
+							<button name = "filter" onClick ={this.filter}>Apply Filters</button>
        					</div>
        				</div>
        				<div className = "col-8">
