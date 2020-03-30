@@ -262,10 +262,15 @@ const importScorecardData = async (filepath) => {
         colleges.push(college);
       }
     },
-    complete: () => {
+    complete: async () => {
       console.log('Done parsing and filtering', csvFilePath);
       const scorecardData = JSON.parse(JSON.stringify(colleges));
-      scorecardData.forEach(async (college) => {
+      const collegeArray = [];
+      scorecardData.forEach((college) => {
+        collegeArray.push(college);
+      });
+      for (let i = 0; i < collegeArray.length; i++) {
+        const college = collegeArray[i];
         let zipCode = college.ZIP;
         if (typeof college.ZIP === 'string') {
           const dashIndex = college.ZIP.indexOf('-');
@@ -314,7 +319,8 @@ const importScorecardData = async (filepath) => {
             composite_75: college.ACTCM75,
           },
         }, {upsert: true});
-      });
+        console.log('updated college');
+      }
       console.log('I am done!');
     },
   });
