@@ -225,6 +225,7 @@ const importScorecardData = async (filepath) => {
   const colleges = [];
   const collegeNames = await getCollegeNames('./datasets/colleges.txt');
   console.log('Got college names');
+  let scorecardData;
   // convert colleges.txt to excel.csv style to match with parser
   const collegesExcelStyle = collegeNames.map((college) => college.replace(', ', '-'));
   Papa.parse(csvData, {
@@ -263,21 +264,25 @@ const importScorecardData = async (filepath) => {
         colleges.push(college);
       }
     },
-    complete: async () => {
+    complete: () => {
       console.log('Done parsing and filtering', csvFilePath);
-      const scorecardData = JSON.parse(JSON.stringify(colleges));
-      const collegeArray = [];
-      scorecardData.forEach((college) => {
-        collegeArray.push(college);
-      });
-      for (let i = 0; i < collegeArray.length; i++) {
-        const college = collegeArray[i];
-        let zipCode = college.ZIP;
-        if (typeof college.ZIP === 'string') {
-          const dashIndex = college.ZIP.indexOf('-');
-          zipCode = +college.ZIP.substring(0, dashIndex);
-        }
-        await collections.College.updateOne({name: college.INSTNM}, {
+      scorecardData = JSON.parse(JSON.stringify(colleges));
+    },
+  });
+  const collegeArray = [];
+  scorecardData.forEach((college) => {
+    collegeArray.push(college);
+  });
+  for (let i = 0; i < collegeArray.length; i++) {
+    const college = collegeArray[i];
+    let zipCode = college.ZIP;
+    if (typeof college.ZIP === 'string') {
+      const dashIndex = college.ZIP.indexOf('-');
+      zipCode = +college.ZIP.substring(0, dashIndex);
+    }
+    await collections.College.updateOne(
+        {name: college.INSTNM},
+        {
           location: {
             city: college.CITY,
             state: college.STABBR,
@@ -319,12 +324,10 @@ const importScorecardData = async (filepath) => {
             composite_50: college.ACTCMMID,
             composite_75: college.ACTCM75,
           },
-        }, {upsert: false});
-        console.log('updated college');
-      }
-      console.log('I am done!');
-    },
-  });
+        },
+    );
+  }
+  console.log('I am done!');
 };
 
 function sanitizeString(parsedValue) {
