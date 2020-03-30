@@ -58,5 +58,4 @@ describe('import college data', () => {
       assert.typeOf(sat.EBRW_avg, 'number');
     });
   });
-})
-;
+});
