@@ -23,5 +23,4 @@ describe('initialize colleges', () => {
       assert.notEqual(found, undefined);
     });
   });
-})
-;
+});
