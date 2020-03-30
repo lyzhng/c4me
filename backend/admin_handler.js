@@ -358,8 +358,8 @@ const importCollegeData = async function(filepath) {
     college.find(async function(err, collegeArr) {
       for (let i = 0; i < collegeArr.length; i++) {
         collegeUrl = collegeArr[i].name;
-        if (remapped_names.has(collegeArr[i].name)) {
-          collegeUrl = remapped_names.get(collegeArr[i].name);
+        if (remappedNames.has(collegeArr[i].name)) {
+          collegeUrl = remappedNames.get(collegeArr[i].name);
         }
         const regex = /\b(The)\s\b/gi;
         collegeUrl = collegeUrl.replace(regex, '');
@@ -466,8 +466,8 @@ const importCollegeData = async function(filepath) {
               collegeArr[i].size = size[0] == null ? -1: parseInt(size[0].replace(/,/g, ''));
               collegeArr[i].sat.math_avg = isNaN(AVG_MAT) ? -1: AVG_MAT;
               collegeArr[i].sat.EBRW_avg = isNaN(AVG_RW) ? -1: AVG_RW;
-              collegeArr[i].cost.attendance.in_state = isNaN(cos_att.in_state) ? -1: cos_att.in_state;
-              collegeArr[i].cost.attendance.out_state = isNaN(cos_att.out_state) ? -1: cos_att.out_state;
+              collegeArr[i].cost.attendance.in_state = isNaN(costAttendance.in_state) ? -1: costAttendance.in_state;
+              collegeArr[i].cost.attendance.out_state = isNaN(costAttendance.out_state) ? -1: costAttendance.out_state;
               // collegeArr[i].cost.tuition.in_state = isNaN(cos_fee.in_state) ? -1: cos_fee.in_state;
               // collegeArr[i].cost.tuition.out_state = isNaN(cos_fee.out_state) ? -1: cos_fee.out_state;
               // collegeArr[i].save();
