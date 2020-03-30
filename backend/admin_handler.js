@@ -166,6 +166,7 @@ const importCollegeDescriptions = async function(filepath) {
     const url = 'https://www.timeshighereducation.com/world-university-rankings/';// harvard-university";
 
     college.find(async function(err, collegeArr) {
+      console.log(collegeArr.length);
       for (let i = 0; i < collegeArr.length; i ++) {
         await new Promise(function(resolve, reject) {
           request(url + collegeArr[i].name.split(' ').join('-'), function(error, response, body) {
@@ -318,7 +319,7 @@ const importScorecardData = async (filepath) => {
             composite_50: college.ACTCMMID,
             composite_75: college.ACTCM75,
           },
-        }, {upsert: true});
+        }, {upsert: false});
         console.log('updated college');
       }
       console.log('I am done!');
