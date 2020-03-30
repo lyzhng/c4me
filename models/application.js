@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
+const {Schema} = mongoose;
 
-const ApplicationSchema = mongoose.Schema({
-	userid: String,
-	college: String,
-    status: String, //Denied, Pending, Accepted
-    questionable: {type:Boolean, default:false}
+const ApplicationSchema = new Schema({
+  userid: String,
+  college: String,
+  status: String, // Denied, Pending, Accepted
+  questionable: {type: Boolean, default: false},
 });
 
-const Application = mongoose.model("Application", ApplicationSchema);
+const Application = mongoose.model('Application', ApplicationSchema);
 
 module.exports = Application;
