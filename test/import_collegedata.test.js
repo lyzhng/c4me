@@ -1,20 +1,18 @@
 const mongoose = require('mongoose');
 const collections = require('../models');
-//const describe = require('mocha').describe;
-//const it = require('mocha').it;
 const assert = require('chai').assert;
-const { importCollegeData } = require('../backend/admin_handler');
+const {importCollegeData} = require('../backend/admin_handler');
 
 describe('import college data', () => {
   before(async () => {
-    mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
+    mongoose.connect('mongodb://localhost/c4me', {useUnifiedTopology: true, useNewUrlParser: true});
     try {
       await collections.College.collection.drop();
     } catch (err) {
       console.log('cannot drop college database');
     }
   });
-  it('should should have 101 colleges', async function () {
+  it('should should have 101 colleges', async function() {
     this.timeout(0);
     await importCollegeData('./datasets/colleges.txt');
     const collegeCount = await collections.College.countDocuments({});
@@ -23,7 +21,7 @@ describe('import college data', () => {
   it('should populate college sizes', async () => {
     const colleges = await collections.College.find({});
     colleges.forEach((college) => {
-      const { size } = college;
+      const {size} = college;
       assert.typeOf(size, 'number');
       assert.isAtLeast(size, -1);
     });
@@ -31,14 +29,14 @@ describe('import college data', () => {
   it('should populate gpa', async () => {
     const colleges = await collections.College.find({});
     colleges.forEach((college) => {
-      const { gpa } = college;
+      const {gpa} = college;
       assert.typeOf(gpa, 'number');
     });
   });
   it('should populate costs', async () => {
     const colleges = await collections.College.find({});
     colleges.forEach((college) => {
-      const { cost } = college;
+      const {cost} = college;
       assert.notTypeOf(cost, 'null');
       assert.notTypeOf(cost, 'undefined');
       assert.notTypeOf(cost.attendance, 'null');
@@ -50,7 +48,7 @@ describe('import college data', () => {
   it('should populate avg ACT', async () => {
     const colleges = await collections.College.find({});
     colleges.forEach((college) => {
-      const { act, sat } = college;
+      const {act, sat} = college;
       assert.notTypeOf(act, 'null');
       assert.notTypeOf(act, 'undefined');
       assert.typeOf(act.avg, 'number');
@@ -61,3 +59,4 @@ describe('import college data', () => {
     });
   });
 })
+;

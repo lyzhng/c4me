@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
-const collections  = require('../models');
-// const describe = require('mocha').describe;
-// const it = require('mocha').it;
+const collections = require('../models');
 const assert = require('chai').assert;
-const { deleteAllStudents } = require('../backend/admin_handler');
+const {deleteAllStudents} = require('../backend/admin_handler');
 
 describe('delete student profiles', () => {
   before(async () => {
-    mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
+    mongoose.connect('mongodb://localhost/c4me', {useUnifiedTopology: true, useNewUrlParser: true});
     await addDummyApplications();
     await addDummyStudents();
+  });
+  after(() => {
+    console.log('Finished deleting student profiles.');
   });
   it('should drop the student and application collections', async function() {
     this.timeout(0);
@@ -18,9 +19,6 @@ describe('delete student profiles', () => {
     const applicationCount = await collections.Application.countDocuments({});
     assert.equal(studentCount, 0);
     assert.equal(applicationCount, 0);
-  });
-  after(() => {
-    console.log('I am done!');
   });
 });
 
@@ -46,14 +44,14 @@ async function addDummyApplications() {
 function createStudent(userid, password) {
   return {
     userid,
-    password
-  }
+    password,
+  };
 }
 
 function createApplication(userid, college, status) {
   return {
     userid,
     college,
-    status
-  }
+    status,
+  };
 }

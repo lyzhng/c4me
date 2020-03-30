@@ -1,16 +1,14 @@
 const mongoose = require('mongoose');
 const collections = require('../models');
-// const describe = require('mocha').describe;
-// const it = require('mocha').it;
 const assert = require('chai').assert;
-const { importScorecardData } = require('../backend/admin_handler');
+const {importScorecardData} = require('../backend/admin_handler');
 
 describe('import scorecard data', () => {
   before(() => {
-    mongoose.connect("mongodb://localhost/c4me", { useUnifiedTopology: true, useNewUrlParser: true });
+    mongoose.connect('mongodb://localhost/c4me', {useUnifiedTopology: true, useNewUrlParser: true});
     // await collections.College.deleteMany({})
   });
-  it('should import scorecard data', async function () {
+  it('should import scorecard data', async function() {
     this.timeout(0);
     await importScorecardData('./datasets/colleges.txt');
     const collegeCount = await collections.College.countDocuments({});
@@ -29,7 +27,15 @@ describe('import scorecard data', () => {
 });
 
 function checkGeneralInfo(college) {
-  const { name, type, location, url, admission_rate: admissionRate, cost, grad_debt_mdn: graduationDebtMdn } = college;
+  const {
+    name,
+    type,
+    location,
+    url,
+    admission_rate: admissionRate,
+    cost,
+    grad_debt_mdn: graduationDebtMdn,
+  } = college;
   assert.typeOf(name, 'string');
   assert.typeOf(type, 'string');
   assert.notTypeOf(location, 'null');
