@@ -2,9 +2,7 @@ import React from 'react';
 
 export default class SearchResults extends React.Component {
 
-  state = {
 
-  }
     // componentDidMount(){
     // 	this.setState({college: this.props.college});
     // }
@@ -13,16 +11,16 @@ export default class SearchResults extends React.Component {
     render(){
       if(this.props.college){
         return(
-          <div style = {{border : this.props.college.hidden ?  "2px dashed red" :""}}>
+          <div style = {{display : this.props.college.hidden ?  "none" : "block"}}>
             <h3>{this.props.college.name} rank: {this.props.college.ranking}</h3>
             <div>{this.props.college.location.city}, {this.props.college.location.state}</div>
             <div> size: {this.props.college.size}</div>
-            <div> satmathavg: {this.props.college.sat.math_avg}</div>
-            <div> satengavg: {this.props.college.sat.EBRW_avg}</div>
-            <div> actavg: {this.props.college.act.avg}</div>
+            <div> SAT Math avg: {this.props.college.sat.math_avg}</div>
+            <div> SAT Eng avg: {this.props.college.sat.EBRW_avg}</div>
+            <div> ACT avg: {this.props.college.act.avg}</div>
             <div> cost of attendance (assumes instate for now): {this.props.college.cost.attendance.in_state}</div>
             <div> admission_rate: {this.props.college.admission_rate}</div>
-            <div> majors: {this.props.college.majors.reduce((total, current)=>{return total + "|" + current;})}</div>
+            {/* <div> majors: {this.props.college.majors.reduce((total, current)=>{return total + "|" + current;})}</div> */}
           </div>
         )
       }
