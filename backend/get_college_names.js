@@ -1,29 +1,26 @@
+/* eslint-disable prefer-promise-reject-errors */
 const fs = require('fs');
 
-module.exports = function(filepath)
-{
-	if (!filepath)
-	{
-		filepath = "../datasets/colleges.txt";
-	}
-	return new Promise(function(resolve, reject)
-	{
-		fs.readFile(filepath, 'utf8', function(err, contents)
-		{
-			if (err)
-			{
-				console.log(err);
-				reject();
-			}
-			else
-			{
-				resolve(contents.split(/(\r\n|\r|\n)/).filter((str, i) => {return i % 2 == 0}));
-			}
-		});
-	});
-}
+module.exports = function(filepath) {
+  if (!filepath) {
+    filepath = '../datasets/colleges.txt';
+  }
+  return new Promise(function(resolve, reject) {
+    fs.readFile(filepath, 'utf8', function(err, contents) {
+      if (err) {
+        console.log(err);
+        reject();
+      } else {
+        resolve(contents.split(/(\r\n|\r|\n)/).filter((str, i) => {
+          return i % 2 == 0
+          ;
+        }));
+      }
+    });
+  });
+};
 
-//returns array of college names
+// returns array of college names
 // [ 'American University',
 //   'Barnard College',
 //   'Berry College',
