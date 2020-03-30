@@ -10,7 +10,7 @@ The necessary libraries are within the GitHub repository’s package.json. To in
 `npm install` again.
 
 ## Configuration
-
+To be updated in future homeworks.
 
 ## Running the Server and Client
 To start the backend server run `node server` on the base directory and then go to the client directory and run `npm start` to start the React client. The server will be running on localhost:3001 and the client will be running on localhost:3000.
