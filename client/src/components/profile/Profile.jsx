@@ -33,17 +33,14 @@ export default class Profile extends React.Component{
     }
   };
   
-  componentDidMount(){
-    //console.log("MY PROFILE HELLO???");
-    Axios.get("/getUser", {userId : this.props.userid}).then((resp)=>{
+  componentDidMount() {
+    Axios.post("/getuser", { userId: this.props.userid }).then((resp) => {
       console.log(resp.data);
-      console.log(123);
-      this.setState({user : resp.data.user});
-    })
+      this.setState({ user: resp.data.user });
+    });
   }
 
   render(){
-    console.log(this.props);
     if(this.props.userid){
     return(
         <div>
@@ -57,8 +54,6 @@ export default class Profile extends React.Component{
         </div>
     )
     }
-    else{
     return <Redirect to = "/login" />
-    }
   }
 }

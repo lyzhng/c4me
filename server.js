@@ -38,7 +38,8 @@ app.post('/api/register', async (req, res)=>{
   }
 });
 
-app.post('/api/login', (req, res)=> {
+app.post('/api/login', (req, res) => {
+  console.log("logging in");
   const {userid, password} = req.body;
   if (userid === 'admin' && password === 'admin') { // HARD CODED ADMIN
     const payload = {userid: 'admin'};
@@ -105,9 +106,16 @@ app.post('/searchforcolleges', async (req, res) => {
   res.status(200).send({colleges: colleges});
 });
 
-app.get('/getUser', async (req,res)=>{
-  const user = await backend.studentHandler.getStudentProfile(req.body.userid);
-  res.status(200).send({user:user});
+app.post('/getuser', async (req, res) => {
+  try {
+    const user = await backend.studentHandler.getStudentProfile(req.body.userId);
+    console.log(user);
+    res.status(200).json({user});
+  }
+  catch (error) {
+    console.log(error);
+    res.status(401).json({err: 'User does not exist'});
+  }
 });
 
 app.listen(PORT, ()=>{
