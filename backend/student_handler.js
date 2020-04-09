@@ -11,6 +11,17 @@ const registerStudent = async (newUserid, password) => {
   });
 };
 
+const getStudentProfile = async (userId) =>{
+  return await  collections.Student.find({userid: userId}).lean().then(async(resp)=>{
+    if (resp.length === 0){
+      throw new Error('no such user!');
+    }
+    else{
+      return await  collections.Student;
+    }
+  })
+};
+
 // eslint-disable-next-line no-unused-vars
 const login = async (userid, password, callback) => {
 
@@ -18,4 +29,5 @@ const login = async (userid, password, callback) => {
 
 module.exports = {
   registerStudent: registerStudent,
+  getStudentProfile: getStudentProfile,
 };

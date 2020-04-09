@@ -243,6 +243,7 @@ export default class SearchColleges extends React.Component{
     search = (event) => {
 			event.preventDefault();
 			Axios.post("/searchforcolleges", {query: this.state.name}).then((resp)=>{
+				console.log("zzpl");
 				this.setState ({colleges: resp.data.colleges});
 			});
     }

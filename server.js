@@ -105,6 +105,11 @@ app.post('/searchforcolleges', async (req, res) => {
   res.status(200).send({colleges: colleges});
 });
 
+app.get('/getUser', async (req,res)=>{
+  const user = await backend.studentHandler.getStudentProfile(req.body.userid);
+  res.status(200).send({user:user});
+});
+
 app.listen(PORT, ()=>{
   console.log('Backend listening on port:', PORT);
 });
