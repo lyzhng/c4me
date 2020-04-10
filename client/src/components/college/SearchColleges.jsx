@@ -15,13 +15,54 @@ function isInt(n) {  //copied from https://stackoverflow.com/questions/5630123/j
 	  return /^[+-]?\d+$/.test(n);
 	};
 
+//sort by name, admission rate, cost of attendance, and ranking
+function quicksort (arr, start, end, sortby)
+{
+	if (start < end)
+	{
+		//pick a index, swap with pivot
+		var randomIndex = Math.floor((Math.random() * (end - start - 1)) + start);
+		var temp = arr[randomIndex];
+		arr[randomIndex] = arr[end];
+		arr[end] = temp;
+
+		var partition = arr[end];
+		var low = start - 1;
+		var pointer = start;
+
+		//put everything higher than partition on the left
+		while (pointer < end)
+		{
+			if (sortby(arr[pointer], partition))
+			{
+				low ++;
+				temp = arr[low];
+				arr[low] = arr[pointer];
+				arr[pointer] = temp;
+			}
+			pointer ++;
+		}
+
+		//swap partition 
+		var temp = arr[low + 1];
+		arr[low + 1] = arr[end];
+		arr[end] = temp;
+
+		quicksort(arr, start, low, sortby);
+		quicksort(arr, low + 2, end, sortby);
+
+	}
+};
+
 export default class SearchColleges extends React.Component{
     state = {
 			name: "",
 			colleges: [], 
 			//filters
 			strict: false,
+			ascending : true,
 			location: "", //4 regions
+			sortCriteria: "", //sort by name, admission rate, cost of attendance, and ranking
 			costOfAttendance: Number.MAX_SAFE_INTEGER, //upperbound
 			major1: "",
 			major2: "",
@@ -239,6 +280,36 @@ export default class SearchColleges extends React.Component{
 		this.setState({colleges : colleges});
 
 	}
+	//sort by name, admission rate, cost of attendance, and ranking
+	sort = (event) => {
+		let colleges = this.state.colleges.map((college) => {return Object.assign({}, college)});
+		console.log(this.state.ascending);
+		if (this.state.sortCriteria === "name")
+		{
+			quicksort(colleges, 0, colleges.length - 1, (college1, college2) => {
+				return this.state.ascending ? college1.name.toLowerCase() > college2.name.toLowerCase() : college1.name.toLowerCase() < college2.name.toLowerCase();
+			});
+		}
+		else if (this.state.sortCriteria === "admissionRate")
+		{
+			quicksort(colleges, 0, colleges.length - 1, (college1, college2) => {
+				return this.state.ascending ? college1.admission_rate > college2.admission_rate : college1.admission_rate < college2.admission_rate;
+			});
+		}
+		else if (this.state.sortCriteria === "costOfAttendance")
+		{
+			quicksort(colleges, 0, colleges.length - 1, (college1, college2) => {
+				return this.state.ascending ? college1.cost.attendance.in_state > college2.cost.attendance.in_state : college1.cost.attendance.in_state < college2.cost.attendance.in_state;
+			});
+		}
+		else if (this.state.sortCriteria === "ranking")
+		{
+			quicksort(colleges, 0, colleges.length - 1, (college1, college2) => {
+				return this.state.ascending ? college1.ranking > college2.ranking : college1.ranking < college2.ranking;
+			});
+		}
+		this.setState({colleges : colleges});
+	}
 
     search = (event) => {
 			event.preventDefault();
@@ -251,7 +322,8 @@ export default class SearchColleges extends React.Component{
     render(){
 			if(this.props.userid)
 			{
-				console.log(this.state.colleges);
+				//console.log(this.state.colleges);
+				//console.log(typeof(this.handleChange));
         return(
             <div className = "container">
             	<h1 className = "text-center">Search for Colleges!</h1>
@@ -259,7 +331,7 @@ export default class SearchColleges extends React.Component{
        				<div className = "col-4">
        					<div>
        						strict:
-       						<input type = "checkbox" name = "strict" onChange ={this.handleChange} />
+       						<input type = "checkbox" onClick ={() => {this.state.strict = !this.state.strict}} />
        					</div>
        					<div>
        						rankingLower
@@ -332,7 +404,20 @@ export default class SearchColleges extends React.Component{
 							</select>
        					</div>
        					<div>
-							<button name = "filter" onClick ={this.filter}>Apply Filters</button>
+       						sort by
+       						<select name = "sortCriteria" onChange ={this.handleChange}>
+       						  <option value="">No option</option>
+							  <option value="name">by name</option>
+							  <option value="admissionRate">by admission rate</option>
+							  <option value="costOfAttendance">by cost</option>
+							  <option value="ranking">by ranking</option>
+							</select>
+       						ascending:
+       						<input type = "checkbox" onClick ={() => {this.state.ascending = !this.state.ascending}}/>
+       					</div>
+       					<div>
+							<button  onClick ={this.filter}>Apply Filters</button>
+							<button  onClick ={this.sort}>Apply Sort</button>
        					</div>
        				</div>
        				<div className = "col-8">
