@@ -43,7 +43,7 @@ StudentSchema.pre('save', function(next) {
   }
 });
 
-StudentSchema.pre('update', async function(next) {
+StudentSchema.pre('updateOne', async function(next) {
   const modifiedField = this.getUpdate().$set.password;
   if (!modifiedField) {
     return next();

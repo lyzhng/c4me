@@ -1,5 +1,6 @@
 const collections = require('../models');
 const adminHandler = require("./admin_handler");
+const map = require("cheerio");
 
 
 const registerStudent = async (newUserid, password) => {
@@ -34,13 +35,21 @@ const forEach = function (collection, callback, scope) {
 };
 
 const editStudentInfo = async (user) =>{
-  const student = collections.Student.find({userid : user.userid});
+  const student = await collections.Student.find({userid : user.userid}).lean();
+  console.log(student[0].password);
   forEach(user, async function (value,prop,obj) {
-    if (user[prop] !== null && student.find({[prop]:{"$exists":true}}) ){
-      await collections.Student.update( {userid : user.userid},{"$set":obj},{ "upsert": true, "new": true});
+    if (user[prop] !== null){
+      if (prop !== "password"){
+        await collections.Student.updateOne( {userid : user.userid},{"$set":{[prop]:user[prop]}},{ "upsert": true, "new": true});
+      }
+      else if( prop === "password" && user[prop]!== student[0].password){
+        await collections.Student.updateOne( {userid : user.userid},{"$set":{[prop]:user[prop]}},{ "upsert": true, "new": true});
+      }
+      else {
+        console.log("same password");
+      }
       //console.log(student);
-      //console.log(prop);
-      //console.log(user[prop]);
+
     }
   });
 };
