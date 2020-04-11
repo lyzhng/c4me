@@ -18,7 +18,7 @@ export default class SearchResults extends React.Component {
             <div> SAT Math avg: {this.props.college.sat.math_avg}</div>
             <div> SAT Eng avg: {this.props.college.sat.EBRW_avg}</div>
             <div> ACT avg: {this.props.college.act.avg}</div>
-            <div> cost of attendance (assumes instate for now): {this.props.college.cost.attendance.in_state}</div>
+            <div> cost of attendance: {this.props.college.cost.attendance.in_state}</div>
             <div> admission_rate: {this.props.college.admission_rate}</div>
             {/* <div> majors: {this.props.college.majors.reduce((total, current)=>{return total + "|" + current;})}</div> */}
           </div>

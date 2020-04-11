@@ -55,8 +55,12 @@ function quicksort (arr, start, end, sortby)
 };
 
 export default class SearchColleges extends React.Component{
-    state = {
-			name: "",
+
+    constructor(props)
+    {
+    	super(props);
+    	this.state = {
+    		name: "",
 			colleges: [], 
 			//filters
 			strict: false,
@@ -77,8 +81,16 @@ export default class SearchColleges extends React.Component{
 			satEngUpper: 800,
 			satEngLower: 200,
 			actUpper: 36,
-			actLower: 1
+			actLower: 1,
+
+			student: null
+    	}
+    	if (this.props.userid)
+    	{
+    		Axios.post("/getuser", {userId: this.props.userid}).then((resp) => {this.setState({student : resp.data.user});});
+    	}
     }
+
 
     setStateDefault = () => //resets all numeric fields to default, if fields are empty.
     {
@@ -108,11 +120,11 @@ export default class SearchColleges extends React.Component{
 
 	checkRange = (value, lowerBound, upperBound, lowerLimit, upperLimit) =>
 	{
-		if ((lowerLimit != undefined) && (lowerBound < lowerLimit)) //invalid lowerbound, return true (filters wont do anything)
+		if ((lowerLimit !== undefined) && (lowerBound < lowerLimit)) //invalid lowerbound, return true (filters wont do anything)
 		{
 			return true;
 		}
-		if ((upperLimit != undefined) && (upperBound > upperLimit)) //invalid upperbound, return true (filters wont do anything)
+		if ((upperLimit !== undefined) && (upperBound > upperLimit)) //invalid upperbound, return true (filters wont do anything)
 		{
 			return true;
 		}
@@ -151,19 +163,34 @@ export default class SearchColleges extends React.Component{
 
 	checkCost = (college) =>//must get user state, to determine if cost is instate or out of state
 	{
-		if (college.cost.attendance.in_state != -1)
+		if (college.type === "Public")
 		{
-			return this.checkRange(college.cost.attendance.in_state, 0, this.state.costOfAttendance, 0);
+			let cost = this.state.student.location === college.location.state ? college.cost.attendance.in_state : college.cost.attendance.out_state;
+			if (cost !== -1) //cost depends on user location
+			{
+				return this.checkRange(cost, 0, this.state.costOfAttendance, 0);
+			}
+			else
+			{
+				return this.state.strict ? false : true;
+			}
 		}
 		else
 		{
-			return this.state.strict ? false : true;
+			if (college.cost.attendance.in_state !== -1) //instate same as outofstate
+			{
+				return this.checkRange(college.cost.attendance.in_state, 0, this.state.costOfAttendance, 0);
+			}
+			else
+			{
+				return this.state.strict ? false : true;
+			}
 		}
 	}
 
 	checkMajor = (college) => //annoying af
 	{
-		if (college.majors.length != 0)
+		if (college.majors.length !== 0)
 		{
 			let match = false;
 			for (let i = 0; i < college.majors.length; i ++)
@@ -184,7 +211,7 @@ export default class SearchColleges extends React.Component{
 
 	checkSize = (college) =>
 	{
-		if (college.size != -1)
+		if (college.size !== -1)
 		{
 			return this.checkRange(college.size, this.state.sizeLower, this.state.sizeUpper, 0);
 		}
@@ -196,7 +223,7 @@ export default class SearchColleges extends React.Component{
 
 	checkSatMath = (college) =>
 	{
-		if (college.sat.math_avg != -1)
+		if (college.sat.math_avg !== -1)
 		{
 			return this.checkRange(college.sat.math_avg, this.state.satMathLower, this.state.satMathUpper, 200, 800);
 		}
@@ -208,7 +235,7 @@ export default class SearchColleges extends React.Component{
 
 	checkSatEng = (college) =>
 	{
-		if (college.sat.EBRW_avg != -1)
+		if (college.sat.EBRW_avg !== -1)
 		{
 			return this.checkRange(college.sat.EBRW_avg, this.state.satEngLower, this.state.satEngUpper, 200, 800);
 		}
@@ -220,7 +247,7 @@ export default class SearchColleges extends React.Component{
 
 	checkAct = (college) =>
 	{
-		if (college.act.avg != -1)
+		if (college.act.avg !== -1)
 		{
 			return this.checkRange(college.act.avg, this.state.actLower, this.state.actUpper, 1, 36);
 		}
@@ -314,7 +341,6 @@ export default class SearchColleges extends React.Component{
     search = (event) => {
 			event.preventDefault();
 			Axios.post("/searchforcolleges", {query: this.state.name}).then((resp)=>{
-				console.log("zzpl");
 				this.setState ({colleges: resp.data.colleges});
 			});
     }
@@ -322,6 +348,7 @@ export default class SearchColleges extends React.Component{
     render(){
 			if(this.props.userid)
 			{
+				console.log(this.state.student);
 				//console.log(this.state.colleges);
 				//console.log(typeof(this.handleChange));
         return(
