@@ -1,5 +1,5 @@
 import React from 'react';
-import AppTracker from '../components/apptracker/AppTracker';
+import AppTracker from '../apptracker/AppTracker';
 
 export default class SearchResults extends React.Component {
 
@@ -22,6 +22,7 @@ export default class SearchResults extends React.Component {
             <div> cost of attendance: {this.props.college.cost.attendance.in_state}</div>
             <div> admission_rate: {this.props.college.admission_rate}</div>
             {/* <div> majors: {this.props.college.majors.reduce((total, current)=>{return total + "|" + current;})}</div> */}
+            <AppTracker college = {this.props.college}/>
           </div>
         )
       }
