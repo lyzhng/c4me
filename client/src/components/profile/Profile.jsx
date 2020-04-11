@@ -1,7 +1,7 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import Axios from 'axios';
-import { Button } from 'react-bootstrap';
+import {Alert, Button} from 'react-bootstrap';
 import { Modal } from "react-bootstrap";
 
 export default class Profile extends React.Component{
@@ -85,7 +85,13 @@ export default class Profile extends React.Component{
     this.setState({disabled : !this.state.disabled});
     this.setState({btnState : "edit"});
     Axios.post("/setStudentInfo", {user : this.state}).then((resp) =>{
-
+      if (resp.data.msg !== undefined){
+        alert(resp.data.msg);
+      }
+      console.log(resp.data.err);
+      if (resp.data.err !== undefined){
+        alert(resp.data.err);
+      }
     })
   };
 

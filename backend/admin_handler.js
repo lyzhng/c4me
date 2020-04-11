@@ -617,6 +617,7 @@ const importHighschoolData = async (name, city, state) => {
     const created = await collections.HighSchool.create(highschool);
     console.log('Created:', created);
   }).catch((err) => {
+    throw new Error('Fail to scrape for high school');
     console.log('Scrape for high school:', name, city, state, 'Gave the following error:', err.response.status, err.response.statusText);
   });
 };
