@@ -39,7 +39,6 @@ app.post('/api/register', async (req, res)=>{
 });
 
 app.post('/api/login', (req, res) => {
-  console.log("logging in");
   const {userid, password} = req.body;
   if (userid === 'admin' && password === 'admin') { // HARD CODED ADMIN
     const payload = {userid: 'admin'};
@@ -109,22 +108,21 @@ app.post('/searchforcolleges', async (req, res) => {
 app.post('/getuser', async (req, res) => {
   try {
     const user = await backend.studentHandler.getStudentProfile(req.body.userId);
+    console.log(user);
     res.status(200).json({user});
-  }
-  catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(401).json({err: 'User does not exist'});
   }
 });
 
-app.post("/setStudentInfo", async (req, res)=>{
-  try{
+app.post('/setStudentInfo', async (req, res) => {
+  try {
     await backend.studentHandler.importStudentHS(req.body.user);
-    const student = await backend.studentHandler.editStudentInfo(req.body.user);
-    res.status(200).send({msg: "Your profile have been update"});
-  }
-  catch (e) {
-    res.status(200).json({err: "Data not saved because High School Doesn't exist check name city and state"})
+    await backend.studentHandler.editStudentInfo(req.body.user);
+    res.status(200).send({msg: 'Your profile have been update'});
+  } catch (e) {
+    res.status(200).json({err: 'Data not saved because High School Doesn\'t exist check name city and state'});
   }
 });
 

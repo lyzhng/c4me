@@ -3,7 +3,8 @@ const {Schema} = mongoose;
 
 const HighschoolSchema = new Schema({
   name: String,
-  location: String,
+  city: String,
+  state: String,
   similar_colleges_applied: [{type: String}],
   AP_enrollment: Number, // its actually a percentage e.g. a 96 would be 96%
   avg_SAT: Number,

@@ -589,37 +589,43 @@ const scrapeSimilarAppliedColleges = ($) => {
 };
 
 const importHighschoolData = async (name, city, state) => {
-  let url ='https://www.niche.com/k12/'+ name + '-' +city + '-' +state;
-  url = url.split(' ').join('-');
-  await axios.get(url,
-      {headers: {
-        'Host': 'www.niche.com',
-        'User-Agent': userAgents[Math.floor(Math.random() * 49)],
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.5',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'DNT': '1',
-        'Upgrade-Insecure-Requests': '1',
-        'TE': 'Trailers',
-      }},
-  ).then(async (resp) => {
-    const html = cheerio.load(resp.data);
-    const highschool = {
-      name,
-      location: city + ', ' + state,
-    };
-    highschool.avg_SAT = scrapeSAT(html);
-    highschool.avg_ACT = scrapeACT(html);
-    highschool.AP_enrollment = scrapeAPEnrollment(html);
-    highschool.academic_ranking = scrapeAcademicRanking(html);
-    highschool.college_prep_ranking = scrapeCollegePrepRanking(html);
-    highschool.similar_colleges_applied = scrapeSimilarAppliedColleges(html);
-    const created = await collections.HighSchool.create(highschool);
-    console.log('Created:', created);
-  }).catch((err) => {
-    throw new Error('Fail to scrape for high school');
-    console.log('Scrape for high school:', name, city, state, 'Gave the following error:', err.response.status, err.response.statusText);
-  });
+  const college = await collections.HighSchool.find({name, city, state});
+  if (college.length === 0) {
+    let url = 'https://www.niche.com/k12/' + name + '-' + city + '-' + state;
+    url = url.split(' ').join('-');
+    await axios.get(url,
+        {
+          headers: {
+            'Host': 'www.niche.com',
+            'User-Agent': userAgents[Math.floor(Math.random() * 49)],
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'DNT': '1',
+            'Upgrade-Insecure-Requests': '1',
+            'TE': 'Trailers',
+          }
+        },
+    ).then(async (resp) => {
+      const html = cheerio.load(resp.data);
+      const highschool = {
+        name,
+        city: city,
+        state: state,
+      };
+      highschool.avg_SAT = scrapeSAT(html);
+      highschool.avg_ACT = scrapeACT(html);
+      highschool.AP_enrollment = scrapeAPEnrollment(html);
+      highschool.academic_ranking = scrapeAcademicRanking(html);
+      highschool.college_prep_ranking = scrapeCollegePrepRanking(html);
+      highschool.similar_colleges_applied = scrapeSimilarAppliedColleges(html);
+      const created = await collections.HighSchool.create(highschool);
+      console.log('Created:', created);
+    }).catch((err) => {
+      throw new Error('Fail to scrape for high school');
+      console.log('Scrape for high school:', name, city, state, 'Gave the following error:', err.response.status, err.response.statusText);
+    });
+  }
 };
 
 
