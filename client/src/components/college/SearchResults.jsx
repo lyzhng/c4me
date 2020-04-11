@@ -1,4 +1,5 @@
 import React from 'react';
+import AppTracker from '../components/apptracker/AppTracker';
 
 export default class SearchResults extends React.Component {
 
