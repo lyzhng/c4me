@@ -109,13 +109,18 @@ app.post('/searchforcolleges', async (req, res) => {
 app.post('/getuser', async (req, res) => {
   try {
     const user = await backend.studentHandler.getStudentProfile(req.body.userId);
-    console.log(user);
     res.status(200).json({user});
   }
   catch (error) {
     console.log(error);
     res.status(401).json({err: 'User does not exist'});
   }
+});
+
+app.post("/setStudentInfo", async (req, res)=>{
+  //console.log(req.body.user);
+  const student = await backend.studentHandler.editStudentInfo(req.body.user);
+  res.status(200).send();
 });
 
 app.listen(PORT, ()=>{
