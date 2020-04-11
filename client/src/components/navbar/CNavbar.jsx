@@ -23,7 +23,6 @@ export default class CNavbar extends React.Component{
 	}
 
 	render(){
-		console.log(this.props);
 		return(
 			<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
 			<Navbar.Brand href="/">c4Me</Navbar.Brand>

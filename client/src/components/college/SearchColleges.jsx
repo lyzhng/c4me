@@ -15,13 +15,58 @@ function isInt(n) {  //copied from https://stackoverflow.com/questions/5630123/j
 	  return /^[+-]?\d+$/.test(n);
 	};
 
+//sort by name, admission rate, cost of attendance, and ranking
+function quicksort (arr, start, end, sortby)
+{
+	if (start < end)
+	{
+		//pick a index, swap with pivot
+		var randomIndex = Math.floor((Math.random() * (end - start - 1)) + start);
+		var temp = arr[randomIndex];
+		arr[randomIndex] = arr[end];
+		arr[end] = temp;
+
+		var partition = arr[end];
+		var low = start - 1;
+		var pointer = start;
+
+		//put everything higher than partition on the left
+		while (pointer < end)
+		{
+			if (sortby(arr[pointer], partition))
+			{
+				low ++;
+				temp = arr[low];
+				arr[low] = arr[pointer];
+				arr[pointer] = temp;
+			}
+			pointer ++;
+		}
+
+		//swap partition 
+		var temp = arr[low + 1];
+		arr[low + 1] = arr[end];
+		arr[end] = temp;
+
+		quicksort(arr, start, low, sortby);
+		quicksort(arr, low + 2, end, sortby);
+
+	}
+};
+
 export default class SearchColleges extends React.Component{
-    state = {
-			name: "",
+
+    constructor(props)
+    {
+    	super(props);
+    	this.state = {
+    		name: "",
 			colleges: [], 
 			//filters
 			strict: false,
+			ascending : true,
 			location: "", //4 regions
+			sortCriteria: "", //sort by name, admission rate, cost of attendance, and ranking
 			costOfAttendance: Number.MAX_SAFE_INTEGER, //upperbound
 			major1: "",
 			major2: "",
@@ -36,8 +81,16 @@ export default class SearchColleges extends React.Component{
 			satEngUpper: 800,
 			satEngLower: 200,
 			actUpper: 36,
-			actLower: 1
+			actLower: 1,
+
+			student: null
+    	}
+    	if (this.props.userid)
+    	{
+    		Axios.post("/getuser", {userId: this.props.userid}).then((resp) => {this.setState({student : resp.data.user});});
+    	}
     }
+
 
     setStateDefault = () => //resets all numeric fields to default, if fields are empty.
     {
@@ -67,11 +120,11 @@ export default class SearchColleges extends React.Component{
 
 	checkRange = (value, lowerBound, upperBound, lowerLimit, upperLimit) =>
 	{
-		if ((lowerLimit != undefined) && (lowerBound < lowerLimit)) //invalid lowerbound, return true (filters wont do anything)
+		if ((lowerLimit !== undefined) && (lowerBound < lowerLimit)) //invalid lowerbound, return true (filters wont do anything)
 		{
 			return true;
 		}
-		if ((upperLimit != undefined) && (upperBound > upperLimit)) //invalid upperbound, return true (filters wont do anything)
+		if ((upperLimit !== undefined) && (upperBound > upperLimit)) //invalid upperbound, return true (filters wont do anything)
 		{
 			return true;
 		}
@@ -110,19 +163,34 @@ export default class SearchColleges extends React.Component{
 
 	checkCost = (college) =>//must get user state, to determine if cost is instate or out of state
 	{
-		if (college.cost.attendance.in_state != -1)
+		if (college.type === "Public")
 		{
-			return this.checkRange(college.cost.attendance.in_state, 0, this.state.costOfAttendance, 0);
+			let cost = this.state.student.location === college.location.state ? college.cost.attendance.in_state : college.cost.attendance.out_state;
+			if (cost !== -1) //cost depends on user location
+			{
+				return this.checkRange(cost, 0, this.state.costOfAttendance, 0);
+			}
+			else
+			{
+				return this.state.strict ? false : true;
+			}
 		}
 		else
 		{
-			return this.state.strict ? false : true;
+			if (college.cost.attendance.in_state !== -1) //instate same as outofstate
+			{
+				return this.checkRange(college.cost.attendance.in_state, 0, this.state.costOfAttendance, 0);
+			}
+			else
+			{
+				return this.state.strict ? false : true;
+			}
 		}
 	}
 
 	checkMajor = (college) => //annoying af
 	{
-		if (college.majors.length != 0)
+		if (college.majors.length !== 0)
 		{
 			let match = false;
 			for (let i = 0; i < college.majors.length; i ++)
@@ -143,7 +211,7 @@ export default class SearchColleges extends React.Component{
 
 	checkSize = (college) =>
 	{
-		if (college.size != -1)
+		if (college.size !== -1)
 		{
 			return this.checkRange(college.size, this.state.sizeLower, this.state.sizeUpper, 0);
 		}
@@ -155,7 +223,7 @@ export default class SearchColleges extends React.Component{
 
 	checkSatMath = (college) =>
 	{
-		if (college.sat.math_avg != -1)
+		if (college.sat.math_avg !== -1)
 		{
 			return this.checkRange(college.sat.math_avg, this.state.satMathLower, this.state.satMathUpper, 200, 800);
 		}
@@ -167,7 +235,7 @@ export default class SearchColleges extends React.Component{
 
 	checkSatEng = (college) =>
 	{
-		if (college.sat.EBRW_avg != -1)
+		if (college.sat.EBRW_avg !== -1)
 		{
 			return this.checkRange(college.sat.EBRW_avg, this.state.satEngLower, this.state.satEngUpper, 200, 800);
 		}
@@ -179,7 +247,7 @@ export default class SearchColleges extends React.Component{
 
 	checkAct = (college) =>
 	{
-		if (college.act.avg != -1)
+		if (college.act.avg !== -1)
 		{
 			return this.checkRange(college.act.avg, this.state.actLower, this.state.actUpper, 1, 36);
 		}
@@ -239,6 +307,36 @@ export default class SearchColleges extends React.Component{
 		this.setState({colleges : colleges});
 
 	}
+	//sort by name, admission rate, cost of attendance, and ranking
+	sort = (event) => {
+		let colleges = this.state.colleges.map((college) => {return Object.assign({}, college)});
+		console.log(this.state.ascending);
+		if (this.state.sortCriteria === "name")
+		{
+			quicksort(colleges, 0, colleges.length - 1, (college1, college2) => {
+				return this.state.ascending ? college1.name.toLowerCase() > college2.name.toLowerCase() : college1.name.toLowerCase() < college2.name.toLowerCase();
+			});
+		}
+		else if (this.state.sortCriteria === "admissionRate")
+		{
+			quicksort(colleges, 0, colleges.length - 1, (college1, college2) => {
+				return this.state.ascending ? college1.admission_rate > college2.admission_rate : college1.admission_rate < college2.admission_rate;
+			});
+		}
+		else if (this.state.sortCriteria === "costOfAttendance")
+		{
+			quicksort(colleges, 0, colleges.length - 1, (college1, college2) => {
+				return this.state.ascending ? college1.cost.attendance.in_state > college2.cost.attendance.in_state : college1.cost.attendance.in_state < college2.cost.attendance.in_state;
+			});
+		}
+		else if (this.state.sortCriteria === "ranking")
+		{
+			quicksort(colleges, 0, colleges.length - 1, (college1, college2) => {
+				return this.state.ascending ? college1.ranking > college2.ranking : college1.ranking < college2.ranking;
+			});
+		}
+		this.setState({colleges : colleges});
+	}
 
     search = (event) => {
 			event.preventDefault();
@@ -250,7 +348,9 @@ export default class SearchColleges extends React.Component{
     render(){
 			if(this.props.userid)
 			{
-				console.log(this.state.colleges);
+				console.log(this.state.student);
+				//console.log(this.state.colleges);
+				//console.log(typeof(this.handleChange));
         return(
             <div className = "container">
             	<h1 className = "text-center">Search for Colleges!</h1>
@@ -258,7 +358,7 @@ export default class SearchColleges extends React.Component{
        				<div className = "col-4">
        					<div>
        						strict:
-       						<input type = "checkbox" name = "strict" onChange ={this.handleChange} />
+       						<input type = "checkbox" onClick ={() => {this.state.strict = !this.state.strict}} />
        					</div>
        					<div>
        						rankingLower
@@ -331,7 +431,20 @@ export default class SearchColleges extends React.Component{
 							</select>
        					</div>
        					<div>
-							<button name = "filter" onClick ={this.filter}>Apply Filters</button>
+       						sort by
+       						<select name = "sortCriteria" onChange ={this.handleChange}>
+       						  <option value="">No option</option>
+							  <option value="name">by name</option>
+							  <option value="admissionRate">by admission rate</option>
+							  <option value="costOfAttendance">by cost</option>
+							  <option value="ranking">by ranking</option>
+							</select>
+       						ascending:
+       						<input type = "checkbox" onClick ={() => {this.state.ascending = !this.state.ascending}}/>
+       					</div>
+       					<div>
+							<button  onClick ={this.filter}>Apply Filters</button>
+							<button  onClick ={this.sort}>Apply Sort</button>
        					</div>
        				</div>
        				<div className = "col-8">
