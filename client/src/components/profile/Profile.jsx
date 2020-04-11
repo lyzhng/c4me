@@ -3,7 +3,6 @@ import {Redirect} from 'react-router-dom';
 import Axios from 'axios';
 import { Button } from 'react-bootstrap';
 import { Modal } from "react-bootstrap";
-import EditableLabel from 'react-inline-editing';
 
 export default class Profile extends React.Component{
   constructor(props) {
