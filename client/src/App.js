@@ -8,6 +8,7 @@ import SearchColleges from './components/college/SearchColleges.jsx';
 import Navbar from './components/navbar/CNavbar';
 import Admin from './components/admin/Admin.jsx';
 import Profile from './components/profile/Profile.jsx';
+import College from './components/college/College';
 
 export default class App extends React.Component {
 
@@ -29,7 +30,7 @@ export default class App extends React.Component {
             <Route exact path = "/login" component = {Auth(Login)} />
             <Route path = "/profile/:userid" component={Auth(Profile)} />
             <Route path = "/colleges" component = {Auth(SearchColleges)} />
-            {/* <Route path  = "/college/:name" component = {Auth(College)} /> */}
+            { <Route path  = "/college/:name" component = {Auth(College)} /> }
             {/* <Route path = "/highschools" component = {Auth(Highschools)} /> */}
             <Route exact path = "/admin" component = {Auth(Admin)} />
             <Route path = "/:any" component = {HomeScreen} />
