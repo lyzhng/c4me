@@ -76,13 +76,13 @@ export default class Profile extends React.Component{
   }
 
   edit = (event) =>{
-    this.setState({disabled : !this.state.disabled});
+    this.setState({disabled : false});
     this.setState({btnState : "save"});
   };
 
   studentInfoSave = (event)=>{
     console.log(this.state.location);
-    this.setState({disabled : !this.state.disabled});
+    this.setState({disabled : true});
     this.setState({btnState : "edit"});
     Axios.post("/setStudentInfo", {user : this.state}).then((resp) =>{
       if (resp.data.msg !== undefined){
@@ -117,7 +117,7 @@ export default class Profile extends React.Component{
               <label> Password : </label>
               <input type = "Password"
                      name = "password"
-                     Value={(this.state.password != null) ? this.state.password : ""}
+                     value={(this.state.password != null) ? this.state.password : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
                      onChange={(e) => this.handleChange(e)}
               />
@@ -129,7 +129,7 @@ export default class Profile extends React.Component{
               <label> Location : </label>
               <input type = "text"
                      name = "location"
-                     Value = {(this.state.location != null) ? this.state.location : ""}
+                     value = {(this.state.location != null) ? this.state.location : ""}
                      placeholder = {"Fill Your Profile"}
                      disabled = {(this.state.disabled)? "disabled" :""}
                      onChange={(e) => this.handleChange(e)}
@@ -139,7 +139,7 @@ export default class Profile extends React.Component{
               <label> High School : </label>
               <input type = "text"
                      name = "high_school_name"
-                     Value = {(this.state.high_school_name != null) ? this.state.high_school_name : ""}
+                     value = {(this.state.high_school_name != null) ? this.state.high_school_name : ""}
                      disabled = {(this.state.disabled)? "disabled" :""}
                      placeholder = {"Fill Your Profile"}
                      onChange={(e) => this.handleChange(e)}
@@ -169,7 +169,7 @@ export default class Profile extends React.Component{
               <label> Major 1 : </label>
               <input type = "text"
                      name = "major_1"
-                     Value={(this.state.major_1 != null) ? this.state.major_1 : ""}
+                     value={(this.state.major_1 != null) ? this.state.major_1 : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
                      placeholder = {"Fill Your Profile"}
                      onChange={(e) => this.handleChange(e)}
@@ -179,7 +179,7 @@ export default class Profile extends React.Component{
               <label> Major 2 : </label>
               <input type = "text"
                      name="major_2"
-                     tValue={(this.state.major_2 != null) ? this.state.major_2 : ""}
+                     value={(this.state.major_2 != null) ? this.state.major_2 : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
                      placeholder = {"Fill Your Profile"}
                      onChange={(e) => this.handleChange(e)}
@@ -189,7 +189,7 @@ export default class Profile extends React.Component{
               <label> College Classes : </label>
               <input type = "text"
                      name = "college_class"
-                     defaultValue={(this.state.college_class != null) ? this.state.college_class : ""}
+                     value={(this.state.college_class != null) ? this.state.college_class : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
                      placeholder = {"Fill Your Profile"}
                      onChange={(e) => this.handleChange(e)}
@@ -199,7 +199,7 @@ export default class Profile extends React.Component{
               <label> Number of AP Passed : </label>
               <input type = "text"
                      name = "num_AP_passed"
-                     defaultValue={(this.state.num_AP_passed != null) ? this.state.num_AP_passed : ""}
+                     value={(this.state.num_AP_passed != null) ? this.state.num_AP_passed : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
                      placeholder = {"Fill Your Profile"}
                      onChange={(e) => this.handleChange(e)}
@@ -221,14 +221,14 @@ export default class Profile extends React.Component{
                 <label> SAT_math : </label>
                 <input type = "text"
                        name = "SAT_math"
-                       defaultValue={(this.state.SAT_math != null) ? this.state.SAT_math : ""}
+                       value={(this.state.SAT_math != null) ? this.state.SAT_math : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleChange(e)}
                 />
                 <label> SAT_ebrw : </label>
                 <input type = "text"
                        name = "SAT_ebrw"
-                       defaultValue={(this.state.SAT_ebrw != null) ? this.state.SAT_ebrw : ""}
+                       value={(this.state.SAT_ebrw != null) ? this.state.SAT_ebrw : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleChange(e)}
                 />
@@ -237,14 +237,14 @@ export default class Profile extends React.Component{
                 <label> SAT_eco_bio : </label>
                 <input type = "text"
                        name = "SAT_eco_bio"
-                       defaultValue={(this.state.SAT_eco_bio != null) ? this.state.SAT_eco_bio : ""}
+                       value={(this.state.SAT_eco_bio != null) ? this.state.SAT_eco_bio : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleChange(e)}
                 />
                 <label> SAT_literature : </label>
                 <input type = "text"
                        name = "SAT_literature"
-                       defaultValue={(this.state.SAT_literature != null) ? this.state.SAT_literature : ""}
+                       value={(this.state.SAT_literature != null) ? this.state.SAT_literature : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleChange(e)}
                 />
@@ -253,14 +253,14 @@ export default class Profile extends React.Component{
                 <label> SAT_math_I : </label>
                 <input type = "text"
                        name = "SAT_math_I"
-                       defaultValue={(this.state.SAT_math_I != null) ? this.state.SAT_math_I : ""}
+                       value={(this.state.SAT_math_I != null) ? this.state.SAT_math_I : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleChange(e)}
                 />
                 <label> SAT_math_II : </label>
                 <input type = "text"
                        name = "SAT_math_II"
-                       defaultValue={(this.state.SAT_math_II != null) ? this.state.SAT_math_II : ""}
+                       value={(this.state.SAT_math_II != null) ? this.state.SAT_math_II : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleChange(e)}
                 />
@@ -269,14 +269,14 @@ export default class Profile extends React.Component{
                 <label> SAT_mol_bio : </label>
                 <input type = "text"
                        name = "SAT_mol_bio"
-                       defaultValue={(this.state.SAT_mol_bio != null) ? this.state.SAT_mol_bio : ""}
+                       value={(this.state.SAT_mol_bio != null) ? this.state.SAT_mol_bio : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleChange(e)}
                 />
                 <label> SAT_US_hist : </label>
                 <input type = "text"
                        name = "SAT_US_hist"
-                       defaultValue={(this.state.SAT_US_hist != null) ? this.state.SAT_US_hist : ""}
+                       value={(this.state.SAT_US_hist != null) ? this.state.SAT_US_hist : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleChange(e)}
                 />
@@ -286,14 +286,14 @@ export default class Profile extends React.Component{
                 <label> ACT_composite : </label>
                 <input type = "text"
                        name = "ACT_composite"
-                       defaultValue={(this.state.ACT_composite != null) ? this.state.ACT_composite : ""}
+                       value={(this.state.ACT_composite != null) ? this.state.ACT_composite : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleChange(e)}
                 />
                 <label> ACT_English : </label>
                 <input type = "text"
                        name = "ACT_English"
-                       defaultValue={(this.state.ACT_English != null) ? this.state.ACT_English : ""}
+                       value={(this.state.ACT_English != null) ? this.state.ACT_English : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleChange(e)}
                 />
@@ -303,14 +303,14 @@ export default class Profile extends React.Component{
                 <label> ACT_math : </label>
                 <input type = "text"
                        name = "ACT_math"
-                       defaultValue={(this.state.ACT_math != null) ? this.state.ACT_math : ""}
+                       value={(this.state.ACT_math != null) ? this.state.ACT_math : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleChange(e)}
                 />
                 <label> ACT_reading : </label>
                 <input type = "text"
                        name = "ACT_reading"
-                       defaultValue={(this.state.ACT_reading != null) ? this.state.ACT_reading : ""}
+                       value={(this.state.ACT_reading != null) ? this.state.ACT_reading : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleChange(e)}
                 />
