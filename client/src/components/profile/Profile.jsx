@@ -1,14 +1,10 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import Axios from 'axios';
-import {Alert, Button} from 'react-bootstrap';
+import { Button} from 'react-bootstrap';
 import { Modal } from "react-bootstrap";
 
 export default class Profile extends React.Component{
-  constructor(props) {
-    super(props);
-    //this.state.disabled = false;
-  }
 
   state = {
     gradeModel : false,
