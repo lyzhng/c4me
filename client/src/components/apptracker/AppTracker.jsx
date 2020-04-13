@@ -72,9 +72,12 @@ export default class AppTracker extends React.Component {
                     collegeName: collegeName,
                     statuses: appStatuses,
                 });
-                // TODO
-                const studentsCopy = this.state.students.filter((s) => s.userid !== student.userid).concat([resp.data.student]);
-                this.setState({ students: studentsCopy });
+                for (let i = 0; i < this.state.students.length; i++) {
+                    if (this.state.students[i].userid == resp.data.student.userid) {
+                        this.state.students[i] = resp.data.student;
+                    }
+                }
+                this.setState({ students: this.state.students });
                 return !resp.data.student.hidden;
             } catch (err) {
                 console.error(err);
