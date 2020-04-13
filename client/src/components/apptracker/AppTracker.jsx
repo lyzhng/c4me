@@ -1,8 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
-// import { Redirect } from 'react-router-dom';
 import AppTrackerItem from './AppTrackerItem';
-import Scatterplot from './Scatterplot.jsx';
+import Scatterplot from './Scatterplot';
 
 export default class AppTracker extends React.Component {
     constructor(props) {
@@ -14,11 +13,11 @@ export default class AppTracker extends React.Component {
             highSchools: new Set(),
             currentHighSchool: '',
             appStatuses: [],
-            scatterplot: false
+            scatterplot: false,
         };
     }
 
-    setDefaultState = (e) => {
+    setDefaultState = () => {
         this.setState({
             minCollegeClass: this.state.minCollegeClass === '' ? Number.MIN_SAFE_INTEGER : this.state.minCollegeClass,
             maxCollegeClass: this.state.maxCollegeClass === '' ? Number.MAX_SAFE_INTEGER : this.state.maxCollegeClass,
@@ -31,16 +30,15 @@ export default class AppTracker extends React.Component {
         }, this.setDefaultState);
     }
 
-    filter = async (e) => {
+    filter = (e) => {
         e.preventDefault();
         const students = this.state.students;
-        for (let i = 0; i < students.length; i++) {
-            const appFitsReq = await this.appFitsReq(students[i]);
-            const fitsCriteria = appFitsReq && this.highSchoolFitsReq(students[i]) && this.collegeClassFitsReq(students[i]);
-            console.log('appFitsReq', appFitsReq);
-            console.log('highSchoolFitsReq', this.highSchoolFitsReq(students[i]));
-            console.log('collegeClassFitsReq', this.collegeClassFitsReq(students[i]));
-            students[i].hidden = fitsCriteria ? false : true;
+        for (const s of students) {
+            const fitsCriteria = this.appFitsReq(s) && this.highSchoolFitsReq(s) && this.collegeClassFitsReq(s);
+            // console.log('App Status Fits?', this.appFitsReq(s));
+            // console.log('High School Fits?', this.highSchoolFitsReq(s));
+            // console.log('College Class Fits?', this.collegeClassFitsReq(s));
+            s.hidden = fitsCriteria ? false : true;
         }
         this.setState({ students: students, scatterplot: !this.state.scatterplot }, () => {
             this.setState({ scatterplot: !this.state.scatterplot });
@@ -50,9 +48,9 @@ export default class AppTracker extends React.Component {
     collegeClassFitsReq = (student) => {
         const collegeClass = student.college_class;
         const { minCollegeClass, maxCollegeClass } = this.state;
-        console.log('college class', collegeClass);
-        console.log('min college class', minCollegeClass);
-        console.log('max college class', maxCollegeClass);
+        // console.log('College Class of Student', collegeClass);
+        // console.log('Min College Class', minCollegeClass);
+        // console.log('Max College Class', maxCollegeClass);
         return minCollegeClass <= collegeClass && collegeClass <= maxCollegeClass;
     }
     
@@ -62,34 +60,28 @@ export default class AppTracker extends React.Component {
         return highSchools.size === 0 || highSchools.has(highSchool); // might have to make it less specific
     }
 
-    appFitsReq = async (student) => {
-        if (this.props.college) {
-            const collegeName = this.props.college.name;
-            const {
-                appStatuses
-            } = this.state;
-            try {
-                const resp = await Axios.post('/appstatusreq', {
-                    student: student,
-                    collegeName: collegeName,
-                    statuses: appStatuses,
-                });
-                for (let i = 0; i < this.state.students.length; i++) {
-                    if (this.state.students[i].userid == resp.data.student.userid) {
-                        this.state.students[i] = resp.data.student;
-                    }
-                }
-                this.setState({ students: this.state.students });
-                return !resp.data.student.hidden;
-            } catch (err) {
-                console.error(err);
+    appFitsReq = (student) => {
+        const { appStatuses } = this.state;
+        const { applications } = student;
+        const { name } = this.props.college;
+
+        if (appStatuses.length === 0) {
+            return true;
+        } 
+
+        for (const application of applications) {
+            const { college, status } = application;
+            const sameCollege = (application.college === name);
+            const desired = appStatuses.includes(status);
+            console.log(status, 'to', college);
+            if (sameCollege && desired) {
+                return true;
             }
         }
         return false;
     }
 
-    addHighSchool = (e) => {
-        console.log('Adding high school:', this.state.currentHighSchool);
+    addHighSchool = () => {
         this.setState({ highSchools: new Set([...this.state.highSchools, this.state.currentHighSchool]) });
     }
 
@@ -113,7 +105,6 @@ export default class AppTracker extends React.Component {
 
     async componentDidMount() {
         if (this.props.college) {
-            console.log('College prop was passed in.');
             const collegeName = this.props.college.name;
             const resp = await Axios.post('/retrievestudents', { query: collegeName });
             this.setState({ students: resp.data.students });
@@ -121,11 +112,10 @@ export default class AppTracker extends React.Component {
         }
     }
 
-    toggleScatterplot = (e) => {
+    toggleScatterplot = () => {
         this.setState({ scatterplot: !this.state.scatterplot });
     }
 
-    // need college's name thru path or UI
     render() {
         return (
             <div>
@@ -145,7 +135,7 @@ export default class AppTracker extends React.Component {
                         <label htmlFor="currentHighSchool">High Schools</label>
                         <input type="text" name="currentHighSchool" id="" value={this.state.currentHighSchool} onChange={this.handleChange} />
                         <button type="submit" onClick={this.addHighSchool}
-                            disabled={this.state.currentHighSchool.match(/(\s*[A-Za-z0-9\-\_\,\.]\s*)+/g) ? '' : 'disabled'}>Add High School</button>
+                            disabled={!this.state.currentHighSchool.match(/^([\w\-\,\.]+\s*)+$/g)}>Add High School</button>
                     </div>
                     <div className="high-school-list">
                         {
@@ -159,7 +149,6 @@ export default class AppTracker extends React.Component {
                             })
                         }
                     </div>
-                    {/* application statuses */}
                     <div className="row">
                         <label htmlFor="appStatuses">Application Statuses:</label>
                         <input type="checkbox" name="pending" id="" onChange={this.handleAppStatuses} />
@@ -176,7 +165,8 @@ export default class AppTracker extends React.Component {
                         <label htmlFor="withdrawn">Withdrawn</label>
                     </div>
                     <button onClick={this.filter}>Apply Filters</button>
-                    Scatterplot: <input type="checkbox" name="scatterplot" id="" onChange={this.toggleScatterplot} checked={this.state.scatterplot}/>
+                    <label htmlFor="scatterplot">Scatterplot: </label>
+                    <input type="checkbox" name="scatterplot" id="" onChange={this.toggleScatterplot} checked={this.state.scatterplot} />
                 </div>
                 {
                     this.state.scatterplot ?
