@@ -9,7 +9,7 @@ export default class AppTracker extends React.Component {
         super(props);
         this.state = {
             students: [],
-            minCollegeClass: Number.MIN_SAFE_INTEGER,
+            minCollegeClass: 0,
             maxCollegeClass: Number.MAX_SAFE_INTEGER,
             highSchools: new Set(),
             currentHighSchool: '',
@@ -89,11 +89,9 @@ export default class AppTracker extends React.Component {
     addHighSchool = (e) => {
         console.log('Adding high school:', this.state.currentHighSchool);
         this.setState({ highSchools: new Set([...this.state.highSchools, this.state.currentHighSchool]) });
-        this.setState({ currentHighSchool: '' });
     }
 
     removeHighSchool = (e) => {
-        // TODO
         e.preventDefault();
         const { highSchools } = this.state;
         const name = document.querySelector('.high-school-unit > .high-school-name').textContent;
@@ -144,7 +142,8 @@ export default class AppTracker extends React.Component {
                     <div className="row">
                         <label htmlFor="currentHighSchool">High Schools</label>
                         <input type="text" name="currentHighSchool" id="" onChange={this.handleChange} />
-                        <button type="submit" onClick={this.addHighSchool}>Add High School</button>
+                        <button type="submit" onClick={this.addHighSchool}
+                            disabled={this.state.currentHighSchool.match(/(\s*[A-Za-z0-9\-\_\,\.]\s*)+/g) ? '' : 'disabled'}>Add High School</button>
                     </div>
                     <div className="high-school-list">
                         {
