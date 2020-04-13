@@ -40,10 +40,10 @@ const editStudentInfo = async (user) =>{
   forEach(user, async function (value,prop,obj) {
     if (user[prop] !== null){
       if (prop !== "password"){
-        await collections.Student.updateOne( {userid : user.userid},{"$set":{[prop]:user[prop]}},{ "upsert": true, "new": true});
+        await collections.Student.update( {userid : user.userid},{"$set":{[prop]:user[prop]}},{ "upsert": true, "new": true});
       }
       else if( prop === "password" && user[prop]!== student[0].password){
-        await collections.Student.updateOne( {userid : user.userid},{"$set":{[prop]:user[prop]}},{ "upsert": true, "new": true});
+        await collections.Student.update( {userid : user.userid},{"$set":{[prop]:user[prop]}},{ "upsert": true, "new": true});
       }
       else {
         console.log("same password");
@@ -55,9 +55,8 @@ const editStudentInfo = async (user) =>{
 };
 const importStudentHS = async (user) =>{
   try{
-    if (user.high_school_name === null || user.high_school_city === null || user.high_school_state === null)
-      throw new Error("Missing High School Data");
-    await adminHandler.importHighschoolData(user.high_school_name,user.high_school_city,user.high_school_state)
+    if (user.high_school_name !== null && user.high_school_city !== null && user.high_school_state !== null)
+      await adminHandler.importHighschoolData(user.high_school_name,user.high_school_city,user.high_school_state)
   }
   catch (e) {
     throw new Error("Invalid High School information");

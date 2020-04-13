@@ -103,6 +103,26 @@ export default class Profile extends React.Component{
     this.setState({[e.target.name] : e.target.value});
   }
 
+  handleSATChange(e){
+    if (e.target.value >=  0  && e.target.value <= 800 )
+      this.setState({[e.target.name] : e.target.value});
+    else
+      alert("Invalid input for SAT Score ");
+  }
+
+  handleACTChange(e){
+    if (e.target.value >=  0  && e.target.value <= 36 )
+      this.setState({[e.target.name] : e.target.value});
+    else
+      alert("Invalid input for ACT Score ");
+  }
+  handleAPChange(e){
+    if (e.target.value >=  0  && e.target.value <= 9999 )
+      this.setState({[e.target.name] : e.target.value});
+    else
+      alert("Invalid input for number of AP pass");
+  }
+
   render(){
     if(this.props.userid){
     return(
@@ -193,12 +213,12 @@ export default class Profile extends React.Component{
             </div>
             <div>
               <label> Number of AP Passed : </label>
-              <input type = "text"
+              <input type = "number"
                      name = "num_AP_passed"
                      value={(this.state.num_AP_passed != null) ? this.state.num_AP_passed : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
                      placeholder = {"Fill Your Profile"}
-                     onChange={(e) => this.handleChange(e)}
+                     onChange={(e) => this.handleAPChange(e)}
               />
             </div>
 
@@ -219,14 +239,14 @@ export default class Profile extends React.Component{
                        name = "SAT_math"
                        value={(this.state.SAT_math != null) ? this.state.SAT_math : ""}
                        placeholder = {"Fill Your Profile"}
-                       onChange={(e) => this.handleChange(e)}
+                       onChange={(e) => this.handleSATChange(e)}
                 />
                 <label> SAT_ebrw : </label>
                 <input type = "text"
                        name = "SAT_ebrw"
                        value={(this.state.SAT_ebrw != null) ? this.state.SAT_ebrw : ""}
                        placeholder = {"Fill Your Profile"}
-                       onChange={(e) => this.handleChange(e)}
+                       onChange={(e) => this.handleSATChange(e)}
                 />
               </div>
               <div>
@@ -235,14 +255,14 @@ export default class Profile extends React.Component{
                        name = "SAT_eco_bio"
                        value={(this.state.SAT_eco_bio != null) ? this.state.SAT_eco_bio : ""}
                        placeholder = {"Fill Your Profile"}
-                       onChange={(e) => this.handleChange(e)}
+                       onChange={(e) => this.handleSATChange(e)}
                 />
                 <label> SAT_literature : </label>
                 <input type = "text"
                        name = "SAT_literature"
                        value={(this.state.SAT_literature != null) ? this.state.SAT_literature : ""}
                        placeholder = {"Fill Your Profile"}
-                       onChange={(e) => this.handleChange(e)}
+                       onChange={(e) => this.handleSATChange(e)}
                 />
               </div>
               <div>
@@ -251,14 +271,14 @@ export default class Profile extends React.Component{
                        name = "SAT_math_I"
                        value={(this.state.SAT_math_I != null) ? this.state.SAT_math_I : ""}
                        placeholder = {"Fill Your Profile"}
-                       onChange={(e) => this.handleChange(e)}
+                       onChange={(e) => this.handleSATChange(e)}
                 />
                 <label> SAT_math_II : </label>
                 <input type = "text"
                        name = "SAT_math_II"
                        value={(this.state.SAT_math_II != null) ? this.state.SAT_math_II : ""}
                        placeholder = {"Fill Your Profile"}
-                       onChange={(e) => this.handleChange(e)}
+                       onChange={(e) => this.handleSATChange(e)}
                 />
               </div>
               <div>
@@ -267,14 +287,14 @@ export default class Profile extends React.Component{
                        name = "SAT_mol_bio"
                        value={(this.state.SAT_mol_bio != null) ? this.state.SAT_mol_bio : ""}
                        placeholder = {"Fill Your Profile"}
-                       onChange={(e) => this.handleChange(e)}
+                       onChange={(e) => this.handleSATChange(e)}
                 />
                 <label> SAT_US_hist : </label>
                 <input type = "text"
                        name = "SAT_US_hist"
                        value={(this.state.SAT_US_hist != null) ? this.state.SAT_US_hist : ""}
                        placeholder = {"Fill Your Profile"}
-                       onChange={(e) => this.handleChange(e)}
+                       onChange={(e) => this.handleSATChange(e)}
                 />
               </div>
 
@@ -284,14 +304,14 @@ export default class Profile extends React.Component{
                        name = "ACT_composite"
                        value={(this.state.ACT_composite != null) ? this.state.ACT_composite : ""}
                        placeholder = {"Fill Your Profile"}
-                       onChange={(e) => this.handleChange(e)}
+                       onChange={(e) => this.handleACTChange(e)}
                 />
                 <label> ACT_English : </label>
                 <input type = "text"
                        name = "ACT_English"
                        value={(this.state.ACT_English != null) ? this.state.ACT_English : ""}
                        placeholder = {"Fill Your Profile"}
-                       onChange={(e) => this.handleChange(e)}
+                       onChange={(e) => this.handleACTChange(e)}
                 />
               </div>
 
@@ -301,14 +321,14 @@ export default class Profile extends React.Component{
                        name = "ACT_math"
                        value={(this.state.ACT_math != null) ? this.state.ACT_math : ""}
                        placeholder = {"Fill Your Profile"}
-                       onChange={(e) => this.handleChange(e)}
+                       onChange={(e) => this.handleACTChange(e)}
                 />
                 <label> ACT_reading : </label>
                 <input type = "text"
                        name = "ACT_reading"
                        value={(this.state.ACT_reading != null) ? this.state.ACT_reading : ""}
                        placeholder = {"Fill Your Profile"}
-                       onChange={(e) => this.handleChange(e)}
+                       onChange={(e) => this.handleACTChange(e)}
                 />
               </div>
 
