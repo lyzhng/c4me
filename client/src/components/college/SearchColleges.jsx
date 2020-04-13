@@ -115,7 +115,7 @@ export default class SearchColleges extends React.Component{
 		this.setState({
 			[e.target.name] : isInt(e.target.value) ? parseInt(e.target.value) : e.target.value,
 		}, this.setStateDefault);
-		console.log(this.state);
+		//console.log(this.state);
 	}
 
 	checkRange = (value, lowerBound, upperBound, lowerLimit, upperLimit) =>
@@ -310,7 +310,7 @@ export default class SearchColleges extends React.Component{
 	//sort by name, admission rate, cost of attendance, and ranking
 	sort = (event) => {
 		let colleges = this.state.colleges.map((college) => {return Object.assign({}, college)});
-		console.log(this.state.ascending);
+		//console.log(this.state.ascending);
 		if (this.state.sortCriteria === "name")
 		{
 			quicksort(colleges, 0, colleges.length - 1, (college1, college2) => {
@@ -348,7 +348,7 @@ export default class SearchColleges extends React.Component{
     render(){
 			if(this.props.userid)
 			{
-				console.log(this.state.student);
+				//console.log(this.state.student);
 				//console.log(this.state.colleges);
 				//console.log(typeof(this.handleChange));
         return(
