@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-
 const StudentSchema = new mongoose.Schema({
   userid: String,
   password: String,
@@ -21,12 +20,15 @@ const StudentSchema = new mongoose.Schema({
   location: {type: String, default: null},
   major_1: {type: String, default: null},
   major_2: {type: String, default: null},
+  GPA: {type: Number, default: null},
   college_class: {type: Number, default: null},
   num_AP_passed: {type: Number, default: null},
   high_school_city: {type: String, default: null},
   high_school_state: {type: String, default: null},
   high_school_name: {type: String, default: null},
-  applications: [{type: mongoose.Schema.ObjectId, ref: 'Application', default: []}],
+  applications: [
+    {type: mongoose.Schema.ObjectId, ref: 'Application', default: []},
+  ],
 });
 
 StudentSchema.pre('save', function(next) {
@@ -43,44 +45,17 @@ StudentSchema.pre('save', function(next) {
   }
 });
 
-StudentSchema.pre('updateOne', async function(next) {
+StudentSchema.pre('update', async function(next) {
   const modifiedField = this.getUpdate().$set.password;
   if (!modifiedField) {
     return next();
   }
   try {
-    const newFiedValue = await bcrypt.hash(modifiedField,5);
+    const newFiedValue = await bcrypt.hash(modifiedField, 5);
     this.getUpdate().$set.password = newFiedValue;
     next();
   } catch (error) {
     return next(error);
-  }
-
-  //   const document = this;
-  //   bcrypt.hash(this.password, 5, function(err, hashedPassword) {
-  //     if (err) {
-  //       next(err);
-  //     } else {
-  //       document.password = hashedPassword;
-  //       next();
-  //     }
-  //   });
-  // }
-});
-
-StudentSchema.pre('updateOne',async function(next) {
-  const docToUpdate = await this.model.findOne(this.getQuery());
-
-  if (docToUpdate.isModified('password')) {
-    console.log(123);
-    bcrypt.hash(docToUpdate.password, 5, function(err, hashedPassword) {
-      if (err) {
-        next(err);
-      } else {
-        this.model.updateOne({userid : docToUpdate.userid},{"$set": {password : hashedPassword}} );
-        next();
-      }
-    });
   }
 });
 
