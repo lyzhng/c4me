@@ -72,9 +72,10 @@ export default class AppTracker extends React.Component {
                     collegeName: collegeName,
                     statuses: appStatuses,
                 });
+                // TODO
                 const studentsCopy = this.state.students.filter((s) => s.userid !== student.userid).concat([resp.data.student]);
                 this.setState({ students: studentsCopy });
-                return true;
+                return !resp.data.student.hidden;
             } catch (err) {
                 console.error(err);
             }
@@ -83,18 +84,21 @@ export default class AppTracker extends React.Component {
     }
 
     addHighSchool = (e) => {
-        e.preventDefault();
         console.log('Adding high school:', this.state.currentHighSchool);
         this.setState({ highSchools: new Set([...this.state.highSchools, this.state.currentHighSchool]) });
+        this.setState({ currentHighSchool: '' });
     }
 
     removeHighSchool = (e) => {
         // TODO
         e.preventDefault();
+        const { highSchools } = this.state;
+        const name = document.querySelector('.high-school-unit > .high-school-name').textContent;
+        highSchools.delete(name);
+        this.setState({ highSchools });
     }
 
     handleAppStatuses = (e) => {
-        e.preventDefault();
         const choice = e.target.name;
         if (this.state.appStatuses.includes(choice)) {
             let filteredCopy = this.state.appStatuses.filter((status) => status !== choice);
@@ -138,6 +142,18 @@ export default class AppTracker extends React.Component {
                         <label htmlFor="currentHighSchool">High Schools</label>
                         <input type="text" name="currentHighSchool" id="" onChange={this.handleChange} />
                         <button type="submit" onClick={this.addHighSchool}>Add High School</button>
+                    </div>
+                    <div className="high-school-list">
+                        {
+                            [...this.state.highSchools].map((highSchool) => {
+                                return (
+                                    <div className="high-school-unit">
+                                        <h1 className="high-school-name">{highSchool}</h1>
+                                        <button onClick={this.removeHighSchool}>Remove High School</button>
+                                    </div>
+                                );
+                            })
+                        }
                     </div>
                     {/* application statuses */}
                     <div className="row">

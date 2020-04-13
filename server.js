@@ -107,13 +107,10 @@ app.post('/searchforcolleges', async (req, res) => {
 
 app.post('/retrievestudents', async (req, res) => {
   const collegeName = req.body.query;
-  console.log('College Name:', collegeName);
   const applications = await collections.Application.find({college: collegeName}).lean();
   console.log('Applications:', applications);
   const userIdList = applications.map((application) => application.userid);
-  console.log('User ID List:', userIdList);
   const students = await collections.Student.find({userid: {$in: userIdList}}).populate({path: 'applications'}).lean();
-  console.log('Students:', students);
   res.status(200).send({students: students});
 });
 
@@ -123,16 +120,42 @@ app.post('/appstatusreq', async (req, res) => {
     collegeName,
     statuses,
   } = req.body;
+
   const applications = student.applications;
-  if (applications) {
+
+  if (!applications) {
+    console.log('applications is undefined');
+    student.hidden = true;
+  }
+
+  if (statuses.length === 0) {
+    console.log('length is 0');
+    student.hidden = false;
+  } else {
     for (let i = 0; i < applications.length; i++) {
-      const application = await collections.Application.findOne({_id: applications[i].id}).lean();
-      if (application && application.college === collegeName) {
-        // if application.status is NOT in statuses, hide the student
-        student.hidden = !statuses.includes(application.status);
+      const application = await collections.Application.findOne({_id: applications[i]._id}).lean();
+      console.log('application id', applications[i]._id);
+      if (!application || application.college !== collegeName) {
+        console.log('application is undefined or not the college i want');
+        student.hidden = true;
+        continue;
+      }
+      // console.log('statuses', statuses);
+      // console.log('application status', application.status);
+      if (!application.status) {
+        // console.log('no application status');
+        student.hidden = true;
+      } else if (statuses.includes(application.status)) {
+        // console.log('app status is included in statuses');
+        student.hidden = false;
+      } else {
+        // console.log('else true');
+        student.hidden = true;
       }
     }
   }
+
+  console.log(student.userid, student.hidden);
   res.status(200).send({student: student});
 });
 
