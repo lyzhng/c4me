@@ -40,7 +40,9 @@ export default class AppTracker extends React.Component {
             // console.log('College Class Fits?', this.collegeClassFitsReq(s));
             s.hidden = fitsCriteria ? false : true;
         }
-        this.setState({ students: students });
+        this.setState({ students: students, scatterplot: !this.state.scatterplot }, () => {
+            this.setState({ scatterplot: !this.state.scatterplot });
+        });
     }
 
     collegeClassFitsReq = (student) => {
