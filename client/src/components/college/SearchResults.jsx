@@ -3,13 +3,12 @@ import AppTracker from '../apptracker/AppTracker';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-function AppTrackerModal()
+function AppTrackerModal(props)
 {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
   return (
       <div>
       <Button variant="primary" onClick={handleShow}>
@@ -18,7 +17,7 @@ function AppTrackerModal()
 
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Body>
-          <AppTracker/>
+          <AppTracker college = {props.college}/>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -53,7 +52,7 @@ export default class SearchResults extends React.Component {
             <div> ACT avg: {this.props.college.act.avg}</div>
             <div> cost of attendance: {this.props.college.cost.attendance.in_state}</div>
             <div> admission_rate: {this.props.college.admission_rate}</div>
-            <AppTrackerModal/>
+            <AppTrackerModal college = {this.props.college}/>
             {/* <div> majors: {this.props.college.majors.reduce((total, current)=>{return total + "|" + current;})}</div> */}
           </div>
         )
