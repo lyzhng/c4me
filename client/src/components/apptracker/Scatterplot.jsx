@@ -1,5 +1,6 @@
 import React from 'react';
 import Chart from 'chart.js';
+import "chartjs-plugin-annotation";
 
 export default class Scatterplot extends React.Component{
 	scatterplotRef = React.createRef();
@@ -65,6 +66,7 @@ export default class Scatterplot extends React.Component{
 	}
 
 	renderChart = () => {
+		console.log("Rendering chart");
 		let minX, maxX = 0;
 		let maxTickX = null;
 		if (this.state.testScores === "SAT") {
@@ -81,60 +83,99 @@ export default class Scatterplot extends React.Component{
 			maxX = 100;
 		}
 		let plots = this.props.students.filter((student) => {return student.SAT_EBRW && student.SAT_math}).map((student) => { if(!student.hidden) return { x: this.calculateX(student), y: student.GPA }});
-		let color = this.props.students.filter((student) => {return student.SAT_EBRW && student.SAT_math}).map((student) => { if (!student.hidden) return this.pointColor(student) });
-		console.log(plots);
+		let color = this.props.students.filter((student) => { return student.SAT_EBRW && student.SAT_math }).map((student) => { if (!student.hidden) return this.pointColor(student) });
+		let avgGPA = 0;
+		let avgTest = 0;
+		let plotNumber = 0;
 		for (let i = 0; i < plots.length; i++){
-			if (plots[i] && plots[i].pointBackgroundColor === "green") {
-				plots[i].label = "Accepted";
+ 			if (plots[i]) {
+				plotNumber++;
+				avgGPA += plots[i].y;
+				avgTest += plots[i].x;
 			}
-			else if (plots[i] && plots[i].pointBackgroundColor === "red") {
-             plots[i].label = "Denied";
-           } else if(plots[i]){
-             plots[i].label = "Other";
-           }
 		}
+		avgGPA = avgGPA / plotNumber;
+		avgTest = avgTest / plotNumber;
 		const scatterplotRef = this.scatterplotRef.current.getContext("2d");
 		new Chart(scatterplotRef, {
-			type: "scatter",
-			data: {
-				datasets: [
+      type: "scatter",
+      data: {
+        datasets: [
+          {
+            data: plots,
+            pointBackgroundColor: color,
+          },
+        ],
+      },
+      options: {
+        legend: {
+          display: false,
+        },
+        scales: {
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "GPA",
+              },
+              ticks: {
+                min: 0, // minimum will be 0, unless there is a lower value.
+                beginAtZero: true,
+                max: 4, // minimum value will be 0.
+              },
+            },
+          ],
+          xAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: this.state.testScores,
+              },
+              ticks: {
+                min: minX,
+                stepSize: maxTickX,
+                max: maxX,
+              },
+            },
+          ],
+        },
+        annotation: {
+          annotations: [
+            {
+              type: "line",
+              mode: "horizontal",
+              scaleID: "y-axis-0",
+              value: avgGPA,
+              borderColor: "blue",
+              borderWidth: 2,
+              borderDash: [10, 3],
+              label: {
+                enabled: false,
+                content: "Test label",
+              },
+            },
+            {
+              type: "line",
+              mode: "vertical",
+              scaleID: "y-axis-0",
+              value: avgTest,
+              borderColor: "blue",
+              borderWidth: 2,
+              borderDash: [10, 3],
+              label: {
+                enabled: false,
+                content: "Test label",
+              },
+            },
+          ],
+				},
+				plugins: [
 					{
-						data: plots,
-						pointBackgroundColor: color
+
 					}
 				]
-			},
-			options: {
-				legend: {
-					display: false
-				},
-				scales: {
-					yAxes: [{
-						scaleLabel: {
-							display: true,
-							labelString: 'GPA'
-						},
-						ticks: {
-							min: 0,    // minimum will be 0, unless there is a lower value.
-							beginAtZero: true,
-							max: 4   // minimum value will be 0.
-						}
-					}],
-					xAxes: [{
-						scaleLabel: {
-							display: true,
-							labelString: this.state.testScores
-						},
-						ticks: {
-							min: minX,
-							stepSize: maxTickX,
-							max: maxX
-						}
-					}]
-				}
-			}
-		}
-		);
+      },
+    });
 	}
 
 	componentDidMount() {
