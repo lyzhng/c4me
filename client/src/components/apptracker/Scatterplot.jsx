@@ -1,12 +1,15 @@
 import React from 'react';
 import Chart from 'chart.js';
-import "chartjs-plugin-annotation";
+import * as ChartAnnotation from "chartjs-plugin-annotation";
+import { Scatter } from 'react-chartjs-2';
 
 export default class Scatterplot extends React.Component{
 	scatterplotRef = React.createRef();
 
 	state = {
-		testScores: "SAT"
+		testScores: "SAT",
+		data: {},
+		options:{}
 	}
 
 	handleChange = (event) => {
@@ -96,86 +99,79 @@ export default class Scatterplot extends React.Component{
 		}
 		avgGPA = avgGPA / plotNumber;
 		avgTest = avgTest / plotNumber;
-		const scatterplotRef = this.scatterplotRef.current.getContext("2d");
-		new Chart(scatterplotRef, {
-      type: "scatter",
-      data: {
+    let data = {
         datasets: [
           {
             data: plots,
             pointBackgroundColor: color,
           },
         ],
-      },
-      options: {
-        legend: {
-          display: false,
-        },
-        scales: {
-          yAxes: [
-            {
-              scaleLabel: {
-                display: true,
-                labelString: "GPA",
-              },
-              ticks: {
-                min: 0, // minimum will be 0, unless there is a lower value.
-                beginAtZero: true,
-                max: 4, // minimum value will be 0.
-              },
-            },
-          ],
-          xAxes: [
-            {
-              scaleLabel: {
-                display: true,
-                labelString: this.state.testScores,
-              },
-              ticks: {
-                min: minX,
-                stepSize: maxTickX,
-                max: maxX,
-              },
-            },
-          ],
-        },
-        annotation: {
-          annotations: [
-            {
-              type: "line",
-              mode: "horizontal",
-              scaleID: "y-axis-0",
-              value: avgGPA,
-              borderColor: "blue",
-              borderWidth: 2,
-              borderDash: [10, 3],
-              label: {
-                enabled: false,
-                content: "Test label",
-              },
-            },
-            {
-              type: "line",
-              mode: "vertical",
-              scaleID: "y-axis-0",
-              value: avgTest,
-              borderColor: "blue",
-              borderWidth: 2,
-              borderDash: [10, 3],
-              label: {
-                enabled: false,
-                content: "Test label",
-              },
-            },
-          ],
-				},
-				plugins: [
+			}
+		
+		let options = {
+			legend: {
+				display: false,
+			},
+			scales: {
+				yAxes: [
 					{
-
-					}
-				]
-      },
-    });
+						scaleLabel: {
+							display: true,
+							labelString: "GPA",
+						},
+						ticks: {
+							min: 0, // minimum will be 0, unless there is a lower value.
+							beginAtZero: true,
+							max: 4, // minimum value will be 0.
+						},
+					},
+				],
+				xAxes: [
+					{
+						scaleLabel: {
+							display: true,
+							labelString: this.state.testScores,
+						},
+						ticks: {
+							min: minX,
+							stepSize: maxTickX,
+							max: maxX,
+						},
+					},
+				],
+			},
+			annotation: {
+				annotations: [
+					{
+						type: "line",
+						mode: "horizontal",
+						scaleID: "y-axis-1",
+						value: avgGPA,
+						borderColor: "grey",
+						borderWidth: 2,
+						borderDash: [2, 3],
+						label: {
+							enabled: false,
+							content: "Test label",
+						},
+					},
+					{
+						type: "line",
+						mode: "vertical",
+						scaleID: "x-axis-1",
+						value: avgTest,
+						borderColor: "grey",
+						borderWidth: 2,
+						borderDash: [2, 3],
+						label: {
+							enabled: false,
+							content: "Test label",
+						},
+					},
+				],
+			},
+		}
+	this.setState({ data: data, options: options });
 	}
 
 	componentDidMount() {
@@ -185,9 +181,11 @@ export default class Scatterplot extends React.Component{
 	render(){
 			return (
 					<div>
-						<canvas
-							id="studentScatterplot"
-							ref = {this.scatterplotRef}
+					<Scatter
+						id="studentScatterplot"
+						ref={this.scatterplotRef}
+						data={this.state.data}
+						options={this.state.options}
 					/>
 					<div>
 						<label>
