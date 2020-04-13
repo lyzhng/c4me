@@ -65,31 +65,33 @@ export default class Scatterplot extends React.Component{
 	}
 
 	renderChart = () => {
-		let minX, maxX = 0
+		let minX, maxX = 0;
+		let maxTickX = null;
 		if (this.state.testScores === "SAT") {
 			minX = 400;
 			maxX = 1600;
 		}
 		else if (this.state.testScores === "ACT") {
 			minX = 0;
+			maxTickX = 3;
 			maxX = 36
 		}
 		else {
 			minX = 0;
 			maxX = 100;
 		}
-		let plots = this.props.students.map((student) => { return { x: this.calculateX(student), y: student.GPA }});
-		let color = this.props.students.map((student) => { return this.pointColor(student) });
+		let plots = this.props.students.filter((student) => {return student.SAT_EBRW && student.SAT_math}).map((student) => { if(!student.hidden) return { x: this.calculateX(student), y: student.GPA }});
+		let color = this.props.students.filter((student) => {return student.SAT_EBRW && student.SAT_math}).map((student) => { if (!student.hidden) return this.pointColor(student) });
+		console.log(plots);
 		for (let i = 0; i < plots.length; i++){
-			if (plots[i].pointBackgroundColor === "green") {
+			if (plots[i] && plots[i].pointBackgroundColor === "green") {
 				plots[i].label = "Accepted";
 			}
-			else if (plots[i].pointBackgroundColor === "red") {
-				plots[i].label = "Denied";
-			}
-			else {
-				plots[i].label = "Other";
-			}
+			else if (plots[i] && plots[i].pointBackgroundColor === "red") {
+             plots[i].label = "Denied";
+           } else if(plots[i]){
+             plots[i].label = "Other";
+           }
 		}
 		const scatterplotRef = this.scatterplotRef.current.getContext("2d");
 		new Chart(scatterplotRef, {
@@ -125,6 +127,7 @@ export default class Scatterplot extends React.Component{
 						},
 						ticks: {
 							min: minX,
+							stepSize: maxTickX,
 							max: maxX
 						}
 					}]
