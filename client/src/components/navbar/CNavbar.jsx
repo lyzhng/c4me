@@ -34,7 +34,7 @@ export default class CNavbar extends React.Component{
 			</Nav>
 			<Nav>
 			{this.state.userid ? 
-			this.state.userid !== "admin" ? <React.Fragment><Nav.Link href={"/profile/"+this.state.userid}>{this.state.userid}</Nav.Link><Button variant = "link" onClick = {this.props.logout}>Logout</Button></React.Fragment> : 
+			this.state.userid !== "admin" ? <React.Fragment><Nav.Link href={"/profile"}>{this.state.userid}</Nav.Link><Button variant = "link" onClick = {this.props.logout}>Logout</Button></React.Fragment> : 
 			<Button onClick = {this.props.logout}>Logout</Button>
 			: <React.Fragment><Nav.Link href="/register"><Link to = "/register">Register</Link></Nav.Link><Nav.Link ><Link to = "/login">Login</Link></Nav.Link></React.Fragment> 
 			}

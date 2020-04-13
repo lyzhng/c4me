@@ -2,6 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 // import { Redirect } from 'react-router-dom';
 import AppTrackerItem from './AppTrackerItem';
+import Scatterplot from './Scatterplot.jsx';
 
 export default class AppTracker extends React.Component {
     constructor(props) {
@@ -13,6 +14,7 @@ export default class AppTracker extends React.Component {
             highSchools: new Set(),
             currentHighSchool: '',
             appStatuses: [],
+            scatterplot: false
         };
     }
 
@@ -103,14 +105,17 @@ export default class AppTracker extends React.Component {
     }
 
     async componentDidMount() {
-        console.log('AppTrackerList is mounted.');
         if (this.props.college) {
             console.log('College prop was passed in.');
             const collegeName = this.props.college.name;
-            const resp = await Axios.post('/testing', { query: collegeName });
+            const resp = await Axios.post('/retrievestudents', { query: collegeName });
             this.setState({ students: resp.data.students });
             console.log('Students:', this.state.students);
         }
+    }
+
+    toggleScatterplot = (e) => {
+        this.setState({ scatterplot: !this.state.scatterplot });
     }
 
     // need college's name thru path or UI
@@ -151,10 +156,15 @@ export default class AppTracker extends React.Component {
                         <label htmlFor="withdrawn">Withdrawn</label>
                     </div>
                     <button onClick={this.filter}>Apply Filters</button>
+                    Scatterplot: <input type="checkbox" name="scatterplot" id="" onChange={this.toggleScatterplot} checked={this.state.scatterplot}/>
                 </div>
-                <div className="student-list">
-                    {this.state.students.map((student) => <AppTrackerItem student={student} />)}
-                </div>
+                {
+                    this.state.scatterplot ?
+                        <Scatterplot students={this.state.students} college={this.props.college}/> :
+                    <div className="student-list">
+                        {this.state.students.map((student) => <AppTrackerItem key={student._id} student={student} />)}
+                    </div>
+                }
             </div>
         );
     }
