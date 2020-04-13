@@ -64,7 +64,7 @@ export default class Profile extends React.Component {
     };
 
     componentDidMount() {
-        Axios.post("/getuser", { userId: this.props.userid }).then((resp) => {
+        Axios.post("/getuser", { userId: this.props.match.params.userid }).then((resp) => {
             this.userDefaultState(resp.data.user);
         });
     }
