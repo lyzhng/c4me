@@ -157,7 +157,7 @@ app.post('/setStudentInfo', async (req, res) => {
     await backend.studentHandler.editStudentInfo(req.body.user);
     res.status(200).send({msg: 'Your profile have been update'});
   } catch (e) {
-    res.status(200).json({err: 'Data not saved because High School Doesn\'t exist check name city and state'});
+    res.status(200).json({err: 'High School Doesn\'t exist check School name, city and state'});
   }
 });
 

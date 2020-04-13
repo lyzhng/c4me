@@ -43,7 +43,7 @@ StudentSchema.pre('save', function(next) {
   }
 });
 
-StudentSchema.pre('updateOne', async function(next) {
+StudentSchema.pre('update', async function(next) {
   const modifiedField = this.getUpdate().$set.password;
   if (!modifiedField) {
     return next();
@@ -55,34 +55,8 @@ StudentSchema.pre('updateOne', async function(next) {
   } catch (error) {
     return next(error);
   }
-
-  //   const document = this;
-  //   bcrypt.hash(this.password, 5, function(err, hashedPassword) {
-  //     if (err) {
-  //       next(err);
-  //     } else {
-  //       document.password = hashedPassword;
-  //       next();
-  //     }
-  //   });
-  // }
 });
 
-StudentSchema.pre('updateOne',async function(next) {
-  const docToUpdate = await this.model.findOne(this.getQuery());
-
-  if (docToUpdate.isModified('password')) {
-    console.log(123);
-    bcrypt.hash(docToUpdate.password, 5, function(err, hashedPassword) {
-      if (err) {
-        next(err);
-      } else {
-        this.model.updateOne({userid : docToUpdate.userid},{"$set": {password : hashedPassword}} );
-        next();
-      }
-    });
-  }
-});
 
 StudentSchema.methods.isCorrectPassword = function(password, callback) {
   bcrypt.compare(password, this.password, function(err, same) {
