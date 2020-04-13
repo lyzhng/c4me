@@ -68,7 +68,7 @@ export default class SearchResults extends React.Component {
                     <div> admission_rate: {this.props.college.admission_rate}</div>
                     <div> graduation debt median: {this.props.college.grad_debt_mdn}</div>
                     <div> graduation rate: {this.props.college.completion_rate}</div>
-                    <div> majors: {this.props.college.majors.reduce((total, current)=>{return total + "|" + current;})}</div>
+                    <div> majors: {this.props.college.majors.length === 0 ? "NO MAJORS" : this.props.college.majors.reduce((total, current)=>{return total + "|" + current;})}</div>
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>
