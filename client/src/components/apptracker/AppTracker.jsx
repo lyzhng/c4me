@@ -130,7 +130,7 @@ export default class AppTracker extends React.Component {
         return (
             <div>
                 <div className="filters">
-                    <h1>App Tracker Component</h1>
+                    <h2>App Tracker for {this.props.college.name}</h2>
                     {/* college class */}
                     <div className="row">
                         <label htmlFor="minCollegeClass">Min. College Class</label>
@@ -150,8 +150,8 @@ export default class AppTracker extends React.Component {
                         {
                             [...this.state.highSchools].map((highSchool) => {
                                 return (
-                                    <div className="high-school-unit">
-                                        <h1 className="high-school-name">{highSchool}</h1>
+                                    <div key={highSchool} className="high-school-unit">
+                                        <h5 className="high-school-name">{highSchool}</h5>
                                         <button onClick={this.removeHighSchool}>Remove High School</button>
                                     </div>
                                 );
@@ -160,7 +160,7 @@ export default class AppTracker extends React.Component {
                     </div>
                     {/* application statuses */}
                     <div className="row">
-                        <label htmlFor="appStatuses">Application Statuses</label>
+                        <label htmlFor="appStatuses">Application Statuses:</label>
                         <input type="checkbox" name="pending" id="" onChange={this.handleAppStatuses} />
                         <label htmlFor="pending">Pending</label>
                         <input type="checkbox" name="accepted" id="" onChange={this.handleAppStatuses} />
