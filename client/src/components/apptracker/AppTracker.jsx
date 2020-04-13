@@ -141,7 +141,7 @@ export default class AppTracker extends React.Component {
                     {/* high schools */}
                     <div className="row">
                         <label htmlFor="currentHighSchool">High Schools</label>
-                        <input type="text" name="currentHighSchool" id="" onChange={this.handleChange} />
+                        <input type="text" name="currentHighSchool" id="" value={this.state.currentHighSchool} onChange={this.handleChange} />
                         <button type="submit" onClick={this.addHighSchool}
                             disabled={this.state.currentHighSchool.match(/(\s*[A-Za-z0-9\-\_\,\.]\s*)+/g) ? '' : 'disabled'}>Add High School</button>
                     </div>
