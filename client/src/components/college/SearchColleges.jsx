@@ -452,7 +452,7 @@ export default class SearchColleges extends React.Component{
 						<input type="text" name = "name" onChange ={this.handleChange} />
 						<button onClick= {this.search}>Search</button>
 						{
-							this.state.colleges.map((college) => {return <SearchResults key = {college._id} college = {college} display = {college.hidden}/>})
+							this.state.colleges.map((college) => {return <SearchResults key = {college._id} KEY = {college._id} college = {college} display = {college.hidden}/>})
 						}
        				</div>
        			</div>

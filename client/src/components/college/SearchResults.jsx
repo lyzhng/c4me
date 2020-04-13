@@ -38,7 +38,7 @@ export default class SearchResults extends React.Component {
     //<div> {this.props.college.description}</div>
     //<div> majors: {this.props.college.majors.reduce((total, current)=>{return total + "|" + current;})}</div>
     shouldComponentUpdate(nextProps) {
-      return (this.props.key !== nextProps.key) || (this.props.college.hidden !== nextProps.college.hidden);
+      return ((this.props.KEY !== nextProps.KEY) || (this.props.college.hidden !== nextProps.college.hidden));
     }
     render(){
       if(this.props.college){
