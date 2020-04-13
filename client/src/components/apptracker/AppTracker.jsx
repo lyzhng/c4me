@@ -132,11 +132,11 @@ export default class AppTracker extends React.Component {
                     {/* college class */}
                     <div className="row">
                         <label htmlFor="minCollegeClass">Min. College Class</label>
-                        <input type="number" name="minCollegeClass" id="" onChange={this.handleChange} />
+                        <input type="number" name="minCollegeClass" min="0" onChange={this.handleChange} />
                     </div>
                     <div className="row">
                         <label htmlFor="maxCollegeClass">Max. College Class</label>
-                        <input type="number" name="maxCollegeClass" id="" onChange={this.handleChange} />
+                        <input type="number" name="maxCollegeClass" id="" min="0" onChange={this.handleChange} />
                     </div>
                     {/* high schools */}
                     <div className="row">
