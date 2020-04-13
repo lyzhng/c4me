@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-
 const StudentSchema = new mongoose.Schema({
   userid: String,
   password: String,
@@ -21,12 +20,15 @@ const StudentSchema = new mongoose.Schema({
   location: {type: String, default: null},
   major_1: {type: String, default: null},
   major_2: {type: String, default: null},
+  GPA: {type: Number, default: null},
   college_class: {type: Number, default: null},
   num_AP_passed: {type: Number, default: null},
   high_school_city: {type: String, default: null},
   high_school_state: {type: String, default: null},
   high_school_name: {type: String, default: null},
-  applications: [{type: mongoose.Schema.ObjectId, ref: 'Application', default: []}],
+  applications: [
+    {type: mongoose.Schema.ObjectId, ref: 'Application', default: []},
+  ],
 });
 
 StudentSchema.pre('save', function(next) {
@@ -49,14 +51,13 @@ StudentSchema.pre('update', async function(next) {
     return next();
   }
   try {
-    const newFiedValue = await bcrypt.hash(modifiedField,5);
+    const newFiedValue = await bcrypt.hash(modifiedField, 5);
     this.getUpdate().$set.password = newFiedValue;
     next();
   } catch (error) {
     return next(error);
   }
 });
-
 
 StudentSchema.methods.isCorrectPassword = function(password, callback) {
   bcrypt.compare(password, this.password, function(err, same) {

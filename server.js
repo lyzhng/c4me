@@ -105,39 +105,35 @@ app.post('/searchforcolleges', async (req, res) => {
   res.status(200).send({colleges: colleges});
 });
 
-app.post('/testing', async (req, res) => {
+app.post('/retrievestudents', async (req, res) => {
   const collegeName = req.body.query;
   console.log('College Name:', collegeName);
-  const applications = await collections.Application.find({ college: collegeName }).lean();
+  const applications = await collections.Application.find({college: collegeName}).lean();
   console.log('Applications:', applications);
   const userIdList = applications.map((application) => application.userid);
   console.log('User ID List:', userIdList);
-  const students = [];
-  for (const userId of userIdList) { 
-    const student = await collections.Student.findOne({ userid: userId }).lean();
-    students.push(student);
-  }
+  const students = await collections.Student.find({userid: {$in: userIdList}}).populate({path: 'applications'}).lean();
   console.log('Students:', students);
-  res.status(200).send({ students: students });
-})
+  res.status(200).send({students: students});
+});
 
 app.post('/appstatusreq', async (req, res) => {
   const {
     student,
     collegeName,
-    statuses
+    statuses,
   } = req.body;
   const applications = student.applications;
   if (applications) {
     for (let i = 0; i < applications.length; i++) {
-      const application = await collections.Application.findOne({ _id: applications[i].id }).lean();
+      const application = await collections.Application.findOne({_id: applications[i].id}).lean();
       if (application && application.college === collegeName) {
         // if application.status is NOT in statuses, hide the student
         student.hidden = !statuses.includes(application.status);
       }
     }
   }
-  res.status(200).send({ student: student });
+  res.status(200).send({student: student});
 });
 
 app.post('/getuser', async (req, res) => {
