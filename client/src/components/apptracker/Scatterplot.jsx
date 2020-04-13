@@ -65,6 +65,19 @@ export default class Scatterplot extends React.Component{
 	}
 
 	renderChart = () => {
+		let minX, maxX = 0
+		if (this.state.testScores === "SAT") {
+			minX = 400;
+			maxX = 1600;
+		}
+		else if (this.state.testScores === "ACT") {
+			minX = 0;
+			maxX = 36
+		}
+		else {
+			minX = 0;
+			maxX = 100;
+		}
 		let plots = this.props.students.map((student) => { return { x: this.calculateX(student), y: student.GPA }});
 		let color = this.props.students.map((student) => { return this.pointColor(student) });
 		for (let i = 0; i < plots.length; i++){
@@ -82,16 +95,17 @@ export default class Scatterplot extends React.Component{
 		new Chart(scatterplotRef, {
 			type: "scatter",
 			data: {
-				labels: ['Accepted', 'Denied', 'Other'],
 				datasets: [
 					{
-						label: 'Students',
 						data: plots,
 						pointBackgroundColor: color
 					}
 				]
 			},
 			options: {
+				legend: {
+					display: false
+				},
 				scales: {
 					yAxes: [{
 						scaleLabel: {
@@ -108,6 +122,10 @@ export default class Scatterplot extends React.Component{
 						scaleLabel: {
 							display: true,
 							labelString: this.state.testScores
+						},
+						ticks: {
+							min: minX,
+							max: maxX
 						}
 					}]
 				}
