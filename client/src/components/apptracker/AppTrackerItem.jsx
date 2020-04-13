@@ -8,7 +8,6 @@ export default class AppTrackerItem extends React.Component {
     
     render() {
         if (this.props.student) {
-            console.log('AppTrackerItem has a student prop.');
             const {
                 userid: userId,
                 high_school_name: highSchool,
@@ -26,7 +25,6 @@ export default class AppTrackerItem extends React.Component {
                 </div>
             )
         } else {
-            console.log('AppTrackerItem does not have a student prop.');
             return null;
         }
     }

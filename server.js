@@ -114,51 +114,6 @@ app.post('/retrievestudents', async (req, res) => {
   res.status(200).send({students: students});
 });
 
-app.post('/appstatusreq', async (req, res) => {
-  const {
-    student,
-    collegeName,
-    statuses,
-  } = req.body;
-
-  const applications = student.applications;
-
-  if (!applications) {
-    console.log('applications is undefined');
-    student.hidden = true;
-  }
-
-  if (statuses.length === 0) {
-    console.log('length is 0');
-    student.hidden = false;
-  } else {
-    for (let i = 0; i < applications.length; i++) {
-      const application = await collections.Application.findOne({_id: applications[i]._id}).lean();
-      console.log('application id', applications[i]._id);
-      if (!application || application.college !== collegeName) {
-        console.log('application is undefined or not the college i want');
-        student.hidden = true;
-        continue;
-      }
-      // console.log('statuses', statuses);
-      // console.log('application status', application.status);
-      if (!application.status) {
-        // console.log('no application status');
-        student.hidden = true;
-      } else if (statuses.includes(application.status)) {
-        // console.log('app status is included in statuses');
-        student.hidden = false;
-      } else {
-        // console.log('else true');
-        student.hidden = true;
-      }
-    }
-  }
-
-  console.log(student.userid, student.hidden);
-  res.status(200).send({student: student});
-});
-
 app.post('/getuser', async (req, res) => {
   try {
     const user = await backend.studentHandler.getStudentProfile(req.body.userId);
