@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
+import {Redirect ,BrowserRouter} from 'react-router-dom';
 import Axios from 'axios';
 import { Button} from 'react-bootstrap';
 import { Modal } from "react-bootstrap";
@@ -13,7 +13,7 @@ export default class Profile extends React.Component{
     userid: "",
     password: "",
     SAT_math: "",
-    SAT_ebrw: "",
+    SAT_EBRW: "",
     SAT_literature: "",
     SAT_math_I: "",
     SAT_math_II: "",
@@ -25,7 +25,7 @@ export default class Profile extends React.Component{
     ACT_math: "",
     ACT_reading: "",
     ACT_composite: "",
-    location: "",
+    residence_state: "",
     major_1: "",
     major_2: "",
     college_class: "",
@@ -41,7 +41,7 @@ export default class Profile extends React.Component{
       userid : user.userid,
       password: user.password,
       SAT_math: user.SAT_math,
-      SAT_ebrw: user.SAT_ebrw,
+      SAT_EBRW: user.SAT_EBRW,
       SAT_literature: user.SAT_literature,
       SAT_math_I: user.SAT_math_I,
       SAT_math_II: user.SAT_math_II,
@@ -53,7 +53,7 @@ export default class Profile extends React.Component{
       ACT_math: user.ACT_math,
       ACT_reading: user.ACT_reading,
       ACT_composite: user.ACT_composite,
-      location: user.location,
+      residence_state: user.residence_state,
       major_1: user.major_1,
       major_2: user.major_2,
       college_class: user.college_class,
@@ -64,7 +64,7 @@ export default class Profile extends React.Component{
       applications: user.applications,
     });
   };
-  
+
   componentDidMount() {
     Axios.post("/getuser", { userId: this.props.userid }).then((resp) => {
       this.userDefaultState(resp.data.user);
@@ -77,7 +77,6 @@ export default class Profile extends React.Component{
   };
 
   studentInfoSave = (event)=>{
-    console.log(this.state.location);
     this.setState({disabled : true});
     this.setState({btnState : "edit"});
     Axios.post("/setStudentInfo", {user : this.state}).then((resp) =>{
@@ -138,14 +137,14 @@ export default class Profile extends React.Component{
                      onChange={(e) => this.handleChange(e)}
               />
               <span>
-                <Button variant="link" onClick = {(this.state.btnState === "edit")? this.edit : this.studentInfoSave } > {this.state.btnState}</Button>
+                <Button  variant="link" onClick = {(this.state.btnState === "edit")? this.edit : this.studentInfoSave } > {this.state.btnState}</Button>
               </span>
             </div>
             <div>
-              <label> Location : </label>
+              <label> residence_state : </label>
               <input type = "text"
-                     name = "location"
-                     value = {(this.state.location != null) ? this.state.location : ""}
+                     name = "residence_state"
+                     value = {(this.state.residence_state != null) ? this.state.residence_state : ""}
                      placeholder = {"Fill Your Profile"}
                      disabled = {(this.state.disabled)? "disabled" :""}
                      onChange={(e) => this.handleChange(e)}
@@ -203,12 +202,12 @@ export default class Profile extends React.Component{
             </div>
             <div>
               <label> College Classes : </label>
-              <input type = "text"
+              <input type = "number"
                      name = "college_class"
                      value={(this.state.college_class != null) ? this.state.college_class : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
                      placeholder = {"Fill Your Profile"}
-                     onChange={(e) => this.handleChange(e)}
+                     onChange={(e) => this.handleAPChange(e)}
               />
             </div>
             <div>
@@ -241,10 +240,10 @@ export default class Profile extends React.Component{
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleSATChange(e)}
                 />
-                <label> SAT_ebrw : </label>
+                <label> SAT_EBRW : </label>
                 <input type = "text"
-                       name = "SAT_ebrw"
-                       value={(this.state.SAT_ebrw != null) ? this.state.SAT_ebrw : ""}
+                       name = "SAT_EBRW"
+                       value={(this.state.SAT_EBRW != null) ? this.state.SAT_EBRW : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleSATChange(e)}
                 />
@@ -337,7 +336,7 @@ export default class Profile extends React.Component{
               <Button variant="secondary" onClick={(e)=> this.gradHandleClose(e)}>
                 Close
               </Button>
-              <Button variant="primary" onClick={(e)=> this.studentInfoSave(e)}>
+              <Button name='saveBtn' variant="primary" onClick={(e)=> this.studentInfoSave(e)}>
                 Save Changes
               </Button>
             </Modal.Footer>
