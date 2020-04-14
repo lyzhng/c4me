@@ -11,7 +11,7 @@ export default class Profile extends React.Component {
         disabled: true,
         userid: "",
         SAT_math: "",
-        SAT_ebrw: "",
+        SAT_EBRW: "",
         SAT_literature: "",
         SAT_math_I: "",
         SAT_math_II: "",
@@ -23,7 +23,7 @@ export default class Profile extends React.Component {
         ACT_math: "",
         ACT_reading: "",
         ACT_composite: "",
-        location: "",
+        residence_state: "",
         major_1: "",
         major_2: "",
         college_class: "",
@@ -39,7 +39,7 @@ export default class Profile extends React.Component {
             userid: user.userid,
             password: user.password,
             SAT_math: user.SAT_math,
-            SAT_ebrw: user.SAT_ebrw,
+            SAT_EBRW: user.SAT_EBRW,
             SAT_literature: user.SAT_literature,
             SAT_math_I: user.SAT_math_I,
             SAT_math_II: user.SAT_math_II,
@@ -51,7 +51,7 @@ export default class Profile extends React.Component {
             ACT_math: user.ACT_math,
             ACT_reading: user.ACT_reading,
             ACT_composite: user.ACT_composite,
-            location: user.location,
+            residence_state: user.residence_state,
             major_1: user.major_1,
             major_2: user.major_2,
             college_class: user.college_class,
@@ -86,7 +86,7 @@ export default class Profile extends React.Component {
             return (
                 <div>
                     <h1>{this.state.userid}</h1>
-                    <h4>Location: {(this.state.location != null) ? this.state.location : "N/A"}</h4>
+                    <h4>residence_state: {(this.state.residence_state != null) ? this.state.residence_state : "N/A"}</h4>
                     <h4>High School: {(this.state.high_school_name != null) ? this.state.high_school_name : "N/A"}</h4>
                     <h4>High School Location:
                         {(this.state.high_school_city != null) ? this.state.high_school_city : "N/A"},
@@ -104,7 +104,7 @@ export default class Profile extends React.Component {
                         <Modal.Body>
                             <div>
                                 <h4>SAT Math: {(this.state.SAT_math != null) ? this.state.SAT_math : "N/A"}</h4>
-                                <h4> SAT EBRW: {(this.state.SAT_ebrw != null) ? this.state.SAT_ebrw : "N/A"}</h4>
+                                <h4> SAT EBRW: {(this.state.SAT_EBRW != null) ? this.state.SAT_EBRW : "N/A"}</h4>
                             </div>
                             <div>
                                 <h4>SAT Eco Bio: {(this.state.SAT_eco_bio != null) ? this.state.SAT_eco_bio : "N/A"}</h4>
