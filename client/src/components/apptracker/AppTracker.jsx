@@ -31,7 +31,9 @@ export default class AppTracker extends React.Component {
     }
 
     filter = (e) => {
-        e.preventDefault();
+        if (e) {
+            e.preventDefault();
+        }
         const students = this.state.students;
         for (const s of students) {
             const fitsCriteria = this.appFitsReq(s) && this.highSchoolFitsReq(s) && this.collegeClassFitsReq(s);
@@ -57,7 +59,7 @@ export default class AppTracker extends React.Component {
     highSchoolFitsReq = (student) => {
         const highSchool = student.high_school_name;
         const { highSchools } = this.state;
-        return highSchools.size === 0 || highSchools.has(highSchool); // might have to make it less specific
+        return highSchool && (highSchools.size === 0 || highSchools.has(highSchool)); // might have to make it less specific
     }
 
     appFitsReq = (student) => {
