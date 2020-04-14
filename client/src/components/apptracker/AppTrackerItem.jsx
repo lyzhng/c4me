@@ -24,8 +24,7 @@ export default class AppTrackerItem extends React.Component {
                     {highSchoolCity && highSchoolState && <h5>High School Location: {highSchoolCity}, {highSchoolState}</h5>}
                 </div>
             )
-        } else {
-            return null;
-        }
+        } 
+        return null;
     }
 }

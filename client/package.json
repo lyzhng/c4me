@@ -4,19 +4,24 @@
   "private": true,
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.1.9",
+    "@shelf/jest-mongodb": "^1.1.5",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
+    "enzyme-to-json": "^3.4.4",
+    "chartjs-plugin-annotation": "^0.5.7",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.0-beta.17",
+    "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0"
   },
   "scripts": {
-    "test": "react-scripts test",
+    "test-jest": "./node_modules/.bin/jest --no-cache",
+    "test": "react-scripts test --env=node",
     "test-one": "mocha $1",
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -39,9 +44,12 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "jest-enzyme": "^7.1.2",
+    "mongoose": "^5.9.2",
     "react-test-renderer": "^16.13.1"
   }
 }

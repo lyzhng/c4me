@@ -40,7 +40,9 @@ export default class AppTracker extends React.Component {
             // console.log('College Class Fits?', this.collegeClassFitsReq(s));
             s.hidden = fitsCriteria ? false : true;
         }
-        this.setState({ students: students });
+        this.setState({ students: students, scatterplot: !this.state.scatterplot }, () => {
+            this.setState({ scatterplot: !this.state.scatterplot });
+        });
     }
 
     collegeClassFitsReq = (student) => {
@@ -131,9 +133,9 @@ export default class AppTracker extends React.Component {
                     {/* high schools */}
                     <div className="row">
                         <label htmlFor="currentHighSchool">High Schools</label>
-                        <input type="text" name="currentHighSchool" id="" value={this.state.currentHighSchool} onChange={this.handleChange} />
+                        <input type="text" name="currentHighSchool" id="" value={this.state.currentHighSchool} onChange={this.handleChange} className="current-hs"/>
                         <button type="submit" onClick={this.addHighSchool}
-                            disabled={!this.state.currentHighSchool.match(/^([\w\-\,\.]+\s*)+$/g)}>Add High School</button>
+                            disabled={!this.state.currentHighSchool.match(/^([\w\-\,\.]+\s*)+$/g)} className="btn-add-hs">Add High School</button>
                     </div>
                     <div className="high-school-list">
                         {
@@ -162,7 +164,7 @@ export default class AppTracker extends React.Component {
                         <input type="checkbox" name="withdrawn" id="" onChange={this.handleAppStatuses} />
                         <label htmlFor="withdrawn">Withdrawn</label>
                     </div>
-                    <button onClick={this.filter}>Apply Filters</button>
+                    <button onClick={this.filter} className="btn-filter">Apply Filters</button>
                     <label htmlFor="scatterplot">Scatterplot: </label>
                     <input type="checkbox" name="scatterplot" id="" onChange={this.toggleScatterplot} checked={this.state.scatterplot} />
                 </div>

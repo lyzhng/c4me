@@ -5,7 +5,7 @@ const StudentSchema = new mongoose.Schema({
   userid: String,
   password: String,
   SAT_math: {type: Number, default: null},
-  SAT_ebrw: {type: Number, default: null},
+  SAT_EBRW: {type: Number, default: null},
   SAT_literature: {type: Number, default: null},
   SAT_math_I: {type: Number, default: null},
   SAT_math_II: {type: Number, default: null},
