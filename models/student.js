@@ -17,7 +17,7 @@ const StudentSchema = new mongoose.Schema({
   ACT_math: {type: Number, default: null},
   ACT_reading: {type: Number, default: null},
   ACT_composite: {type: Number, default: null},
-  location: {type: String, default: null},
+  residence_state: {type: String, default: null},
   major_1: {type: String, default: null},
   major_2: {type: String, default: null},
   GPA: {type: Number, default: null},
