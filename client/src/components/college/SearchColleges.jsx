@@ -64,7 +64,7 @@ export default class SearchColleges extends React.Component{
 			colleges: [], 
 			//filters
 			strict: false,
-			ascending : true,
+			ascending : false,
 			location: "", //4 regions
 			sortCriteria: "", //sort by name, admission rate, cost of attendance, and ranking
 			costOfAttendance: Number.MAX_SAFE_INTEGER, //upperbound
@@ -163,7 +163,7 @@ export default class SearchColleges extends React.Component{
 
 	checkCost = (college) =>//must get user state, to determine if cost is instate or out of state
 	{
-		if (college.type === "Public")
+		if ((college.type === "Public") && (this.state.student != null))
 		{
 			let cost = this.state.student.location === college.location.state ? college.cost.attendance.in_state : college.cost.attendance.out_state;
 			if (cost !== -1) //cost depends on user location
@@ -177,7 +177,7 @@ export default class SearchColleges extends React.Component{
 		}
 		else
 		{
-			if (college.cost.attendance.in_state !== -1) //instate same as outofstate
+			if (college.cost.attendance.in_state !== -1) //instate same as outofstate or no student exists for some reason
 			{
 				return this.checkRange(college.cost.attendance.in_state, 0, this.state.costOfAttendance, 0);
 			}
@@ -314,25 +314,35 @@ export default class SearchColleges extends React.Component{
 		if (this.state.sortCriteria === "name")
 		{
 			quicksort(colleges, 0, colleges.length - 1, (college1, college2) => {
-				return this.state.ascending ? college1.name.toLowerCase() > college2.name.toLowerCase() : college1.name.toLowerCase() < college2.name.toLowerCase();
+				return this.state.ascending ? college1.name.toLowerCase() < college2.name.toLowerCase() : college1.name.toLowerCase() > college2.name.toLowerCase();
 			});
 		}
 		else if (this.state.sortCriteria === "admissionRate")
 		{
 			quicksort(colleges, 0, colleges.length - 1, (college1, college2) => {
-				return this.state.ascending ? college1.admission_rate > college2.admission_rate : college1.admission_rate < college2.admission_rate;
+				return this.state.ascending ? college1.admission_rate < college2.admission_rate : college1.admission_rate > college2.admission_rate;
 			});
 		}
 		else if (this.state.sortCriteria === "costOfAttendance")
 		{
 			quicksort(colleges, 0, colleges.length - 1, (college1, college2) => {
-				return this.state.ascending ? college1.cost.attendance.in_state > college2.cost.attendance.in_state : college1.cost.attendance.in_state < college2.cost.attendance.in_state;
+				if (this.state.student != null)
+				{
+					let cost1 = this.state.student.location === college1.location.state ? college1.cost.attendance.in_state : college1.cost.attendance.out_state;
+					let cost2 = this.state.student.location === college2.location.state ? college2.cost.attendance.in_state : college2.cost.attendance.out_state;
+					return this.state.ascending ? cost1 < cost2 : cost1 > cost2;
+
+				}
+				else //no student, default to instate
+				{
+					return this.state.ascending ? college1.cost.attendance.in_state < college2.cost.attendance.in_state : college1.cost.attendance.in_state > college2.cost.attendance.in_state;
+				}
 			});
 		}
 		else if (this.state.sortCriteria === "ranking")
 		{
 			quicksort(colleges, 0, colleges.length - 1, (college1, college2) => {
-				return this.state.ascending ? college1.ranking > college2.ranking : college1.ranking < college2.ranking;
+				return this.state.ascending ? college1.ranking < college2.ranking : college1.ranking > college2.ranking;
 			});
 		}
 		this.setState({colleges : colleges});
