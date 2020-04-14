@@ -30,7 +30,7 @@ describe('<Profile />', () => {
     expect(wrapper).toHaveLength(1);
     const {
       userid,
-      location,
+      residence_state,
       major_1,
       major_2,
       high_school_name,
@@ -38,15 +38,15 @@ describe('<Profile />', () => {
       num_AP_passed,
     } = wrapper.state();
     wrapper.setState({userid : wrapper.find({name:'userid'})});
-    wrapper.setState({location : wrapper.find({name:'location'})});
+    wrapper.setState({residence_state : wrapper.find({name:'residence_state'})});
     wrapper.setState({major_1 : wrapper.find({name:'major_1'})});
     wrapper.setState({major_2 : wrapper.find({name:'major_2'})});
     wrapper.setState({high_school_name : wrapper.find({name:'high_school_name'})});
     wrapper.setState({college_class : wrapper.find({name:'college_class'})});
     wrapper.setState({num_AP_passed : wrapper.find({name:'num_AP_passed'})});
     wrapper.find('button').last().simulate('click');
-    wrapper.simulate('change',{target: {location}});
-    expect(location <= wrapper.find({name:'major_1'})).toEqual(true);
+    wrapper.simulate('change',{target: {residence_state}});
+    expect(residence_state <= wrapper.find({name:'residence_state'})).toEqual(true);
     wrapper.simulate('change',{target: {major_1}});
     expect(major_1 <= wrapper.find({name:'major_1'})).toEqual(true);
     wrapper.simulate('change',{target: {major_2}});
@@ -64,19 +64,19 @@ describe('<Profile />', () => {
     expect(wrapper).toHaveLength(1);
     const {
       SAT_math,
-      SAT_ebrw,
+      SAT_EBRW,
       ACT_math,
       ACT_reading,
       ACT_composite,
     } = wrapper.state();
     wrapper.setState({SAT_math : wrapper.find({name:'SAT_math'})});
-    wrapper.setState({SAT_ebrw : wrapper.find({name:'SAT_ebrw'})});
+    wrapper.setState({SAT_EBRW : wrapper.find({name:'SAT_ebrw'})});
     wrapper.setState({ACT_math : wrapper.find({name:'ACT_math'})});
     wrapper.setState({ACT_reading : wrapper.find({name:'ACT_reading'})});
     wrapper.setState({ACT_composite : wrapper.find({name:'ACT_composite'})});
     wrapper.find('button').last().simulate('click');
     wrapper.simulate('change',{target: {SAT_math}});
-    expect(SAT_ebrw <= wrapper.find({name:'SAT_ebrw'})).toEqual(true);
+    expect(SAT_EBRW <= wrapper.find({name:'SAT_EBRW'})).toEqual(true);
     wrapper.simulate('change',{target: {ACT_math}});
     expect(ACT_math <= wrapper.find({name:'ACT_math'})).toEqual(true);
     wrapper.simulate('change',{target: {ACT_reading}});
