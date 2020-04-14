@@ -63,7 +63,7 @@ describe('<Profile />', () => {
     wrapper.setState({ACT_math : wrapper.find({name:'ACT_math'})});
     wrapper.setState({ACT_reading : wrapper.find({name:'ACT_reading'})});
     wrapper.setState({ACT_composite : wrapper.find({name:'ACT_composite'})});
-    wrapper.find('button').last().simulate('SAT_math');
+    wrapper.find('button').last().simulate('click');
     wrapper.simulate('change',{target: {SAT_math}});
     expect(SAT_ebrw <= wrapper.find({name:'SAT_ebrw'})).toEqual(true);
     wrapper.simulate('change',{target: {ACT_math}});
