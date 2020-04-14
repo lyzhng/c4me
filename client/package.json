@@ -21,7 +21,7 @@
   },
   "scripts": {
     "test-jest": "./node_modules/.bin/jest --no-cache",
-    "test": "react-scripts test --env=node",
+    "test": "react-scripts test",
     "test-one": "mocha $1",
     "start": "react-scripts start",
     "build": "react-scripts build",
