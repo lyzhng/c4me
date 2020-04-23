@@ -48,7 +48,7 @@ export default class SearchResults extends React.Component {
       if(this.props.college){
         return(
           <div style = {{display : this.props.college.hidden ?  "none" : ""}} className="mb-4">
-            <h3>{this.props.college.name} rank: {this.props.college.ranking}</h3>
+            <h3>{this.props.college.name} (Rank {this.props.college.ranking})</h3>
             <div>{this.props.college.location.city}, {this.props.college.location.state}</div>
             <AppTrackerModal college = {this.props.college}/>
 
@@ -61,16 +61,16 @@ export default class SearchResults extends React.Component {
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
                   <Card.Body>
-                    <div> size: {this.props.college.size}</div>
-                    <div> SAT Math avg: {this.props.college.sat.math_avg}</div>
-                    <div> SAT Eng avg: {this.props.college.sat.EBRW_avg}</div>
-                    <div> ACT avg: {this.props.college.act.avg}</div>
-                    <div> tuition (instate/outstate): {this.props.college.cost.tuition.in_state} / {this.props.college.cost.tuition.out_state}</div>
-                    <div> cost of attendance (instate/outstate): {this.props.college.cost.attendance.in_state} / {this.props.college.cost.attendance.out_state}</div>
-                    <div> admission_rate: {this.props.college.admission_rate}</div>
-                    <div> graduation debt median: {this.props.college.grad_debt_mdn}</div>
-                    <div> graduation rate: {this.props.college.completion_rate}</div>
-                    <div> majors: {this.props.college.majors.length === 0 ? "NO MAJORS" : this.props.college.majors.reduce((total, current)=>{return total + "|" + current;})}</div>
+                    <div><b>Size:</b> {this.props.college.size}</div>
+                    <div><b>SAT Math Average:</b> {this.props.college.sat.math_avg}</div>
+                    <div><b>SAT English Average:</b> {this.props.college.sat.EBRW_avg}</div>
+                    <div><b>ACT Average:</b> {this.props.college.act.avg}</div>
+                    <div><b>Tuition (in-state / out-of-state):</b> {this.props.college.cost.tuition.in_state} / {this.props.college.cost.tuition.out_state}</div>
+                    <div><b>Cost of Attendance (in-state / out-of-state):</b> {this.props.college.cost.attendance.in_state} / {this.props.college.cost.attendance.out_state}</div>
+                    <div><b>Admission Rate:</b> {this.props.college.admission_rate}</div>
+                    <div><b>Graduation Debt Median:</b> {this.props.college.grad_debt_mdn}</div>
+                    <div><b>Graduation Rate:</b> {this.props.college.completion_rate}</div>
+                    <div><b>Majors:</b> {this.props.college.majors.length === 0 ? "NO MAJORS" : this.props.college.majors.reduce((total, current)=>{return total + ", " + current;})}</div>
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>
