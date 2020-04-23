@@ -13,20 +13,22 @@ function AppTrackerModal(props)
   const handleShow = () => setShow(true);
   return (
       <div>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={handleShow} className="mt-2">
         Launch AppTracker
       </Button>
 
-      <Modal show={show} onHide={handleClose} animation={false} size = "lg">
-        <Modal.Body>
-          <AppTracker college = {props.college}/>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
+      <div className="mt-2">
+        <Modal show={show} onHide={handleClose} animation={false} size="lg">
+          <Modal.Body>
+            <AppTracker college={props.college} />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
           </Button>
-        </Modal.Footer>
-      </Modal>
+          </Modal.Footer>
+        </Modal>
+      </div>
     </div>
     )
 }
@@ -45,7 +47,7 @@ export default class SearchResults extends React.Component {
     render(){
       if(this.props.college){
         return(
-          <div style = {{display : this.props.college.hidden ?  "none" : ""}}>
+          <div style = {{display : this.props.college.hidden ?  "none" : ""}} className="mb-4">
             <h3>{this.props.college.name} rank: {this.props.college.ranking}</h3>
             <div>{this.props.college.location.city}, {this.props.college.location.state}</div>
             <AppTrackerModal college = {this.props.college}/>
