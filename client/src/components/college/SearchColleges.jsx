@@ -2,6 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 import {Redirect} from 'react-router-dom';
 import SearchResults from './SearchResults';
+import { Form, Col, Button } from 'react-bootstrap';
 
 const regionToStates  = 
 {
@@ -363,106 +364,170 @@ export default class SearchColleges extends React.Component{
 				//console.log(typeof(this.handleChange));
         return(
             <div className = "container">
-            	<h1 className = "text-center">Search for Colleges!</h1>
+            	<h1 className = "text-center my-3">Search for Colleges</h1>
        			<div className = "row">
-       				<div className = "col-4">
-       					<div>
-       						strict:
-       						<input type = "checkbox" onClick ={() => {this.state.strict = !this.state.strict}} />
-       					</div>
-       					<div>
-       						rankingLower
-       						<input type = "number" name = "rankingLower" onChange ={this.handleChange}/>
-       					</div>
-       					<div>
-       						rankingUpper
-       						<input type = "number" name = "rankingUpper" onChange ={this.handleChange}/>
-       					</div>
-       					<div>
-       						admissionRateLower
-       						<input type = "number" name = "admissionRateLower" onChange ={this.handleChange}/>
-       					</div>
-       					<div>
-       						admissionRateUpper
-       						<input type = "number" name = "admissionRateUpper" onChange ={this.handleChange}/>
-       					</div>
-       					<div>
-       						sizeLower
-       						<input type = "number" name = "sizeLower" onChange ={this.handleChange}/>
-       					</div>
-       					<div>
-       						sizeUpper
-       						<input type = "number" name = "sizeUpper" onChange ={this.handleChange}/>
-       					</div>
-       					<div>
-       						satMathLower
-       						<input type = "number" name = "satMathLower" onChange ={this.handleChange}/>
-       					</div>
-       					<div>
-       						satMathUpper
-       						<input type = "number" name = "satMathUpper" onChange ={this.handleChange}/>
-       					</div>
-       					<div>
-       						satEngLower
-       						<input type = "number" name = "satEngLower" onChange ={this.handleChange}/>
-       					</div>
-       					<div>
-       						satEngUpper
-       						<input type = "number" name = "satEngUpper" onChange ={this.handleChange}/>
-       					</div>
-       					<div>
-       						actLower
-       						<input type = "number" name = "actLower" onChange ={this.handleChange}/>
-       					</div>
-       					<div>
-       						actUpper
-       						<input type = "number" name = "actUpper" onChange ={this.handleChange}/>
-       					</div>
-       					<div>
-       						major1
-       						<input type = "text" name = "major1" onChange ={this.handleChange}/>
-       					</div>
-       					<div>
-       						major2
-       						<input type = "text" name = "major2" onChange ={this.handleChange}/>
-       					</div>
-       					<div>
-       						costOfAttendance
-       						<input type = "number" name = "costOfAttendance" onChange ={this.handleChange}/>
-       					</div>
-       					<div>
-       						location
-       						<select name = "location" onChange ={this.handleChange}>
-       						  <option value="">No preference</option>
-							  <option value="northeast">Northeast</option>
-							  <option value="midwest">Midwest</option>
-							  <option value="south">South</option>
-							  <option value="west">West</option>
-							</select>
-       					</div>
-       					<div>
-       						sort by
-       						<select name = "sortCriteria" onChange ={this.handleChange}>
-       						  <option value="">No option</option>
-							  <option value="name">by name</option>
-							  <option value="admissionRate">by admission rate</option>
-							  <option value="costOfAttendance">by cost</option>
-							  <option value="ranking">by ranking</option>
-							</select>
-       						ascending:
-       						<input type = "checkbox" onClick ={() => {this.state.ascending = !this.state.ascending}}/>
-       					</div>
-       					<div>
-							<button  onClick ={this.filter}>Apply Filters</button>
-							<button  onClick ={this.sort}>Apply Sort</button>
-       					</div>
+					<div className="col-4">
+						<Form>
+							<Form.Group>
+								<Form.Check
+									name="strict"
+									onClick={() => { this.state.strict = !this.state.strict }}
+									label="Strict"
+								/>
+							</Form.Group>
+							{
+								[
+									{	'name': 'rankingLower' ,
+										'label': 'Minimum Ranking',
+										'type': 'number'
+									},
+									{
+										'name': 'rankingUpper',
+										'label': 'Maximum Ranking',
+										'type': 'number'
+									},
+									{
+										'name': 'admissionRateLower',
+										'label': 'Minimum Admission Rate',
+										'type': 'number'
+									},
+									{
+										'name': 'admissionRateUpper',
+										'label': 'Maximum Admission Rate',
+										'type': 'number'
+									},
+									{
+										'name': 'sizeLower',
+										'label': 'Minimum Size',
+										'type': 'number'
+									},
+									{
+										'name': 'sizeUpper',
+										'label': 'Maximum Size',
+										'type': 'number'
+									},
+									{
+										'name': 'major1',
+										'label': 'Major 1',
+										'type': 'text'
+									},
+									{
+										'name': 'major2',
+										'label': 'Major 2',
+										'type': 'text'
+									},
+									{
+										'name': 'costOfAttendance',
+										'label': 'Cost of Attendance',
+										'type': 'number'
+									},
+									{
+										'name': 'satMathLower',
+										'label': 'Minimum SAT Math',
+										'type': 'number'
+									},
+									{
+										'name': 'satMathUpper',
+										'label': 'Maximum SAT Math',
+										'type': 'number'
+									},
+									{
+										'name': 'satEngLower',
+										'label': 'Minimum SAT English',
+										'type': 'number'
+									},
+									{
+										'name': 'satEngUpper',
+										'label': 'Maximum SAT English',
+										'type': 'number'
+									},
+									{
+										'name': 'actLower',
+										'label': 'Minimum ACT',
+										'type': 'number'
+									},
+									{
+										'name': 'actUpper',
+										'label': 'Maximum ACT',
+										'type': 'number'
+									},
+								].map((filter) => {
+									return (
+										<Form.Group key={filter.name}>
+											<Form.Row>
+												<Form.Label column>{filter.label}</Form.Label>
+												<Col>
+													<Form.Control
+														type={filter.type}
+														name={filter.name}
+														label={filter.label}
+														onChange={this.handleChange}
+													/>
+												</Col>
+											</Form.Row>
+										</Form.Group>
+										)
+								})
+							}
+							<Form.Group>
+								<Form.Row>
+									<Form.Label column>Location</Form.Label>
+									<Col>
+										<Form.Control as="select" onChange={this.handleChange} name="location">
+											<option value="">No preference</option>
+											<option value="northeast">Northeast</option>
+											<option value="midwest">Midwest</option>
+											<option value="south">South</option>
+											<option value="west">West</option>
+										</Form.Control>
+									</Col>
+								</Form.Row>
+							</Form.Group>
+							<Form.Group>
+								<Form.Row>
+									<Form.Label column>Sort results by</Form.Label>
+									<Col>
+										<Form.Control as="select" onChange={this.handleChange} name="sortCriteria">
+											<option value="">No option</option>
+											<option value="name">by name</option>
+											<option value="admissionRate">by admission rate</option>
+											<option value="costOfAttendance">by cost</option>
+											<option value="ranking">by ranking</option>
+										</Form.Control>
+									</Col>
+								</Form.Row>
+								<Form.Check
+									label="Ascending"
+									type="checkbox"
+									name="ascending"
+									onClick={() => { this.state.ascending = !this.state.ascending }}
+								/>
+							</Form.Group>
+							<Button variant="primary" onClick={this.filter}>Apply Filters</Button>
+							<Button variant="outline-dark" className="ml-2" onClick={this.sort}>Apply Sort</Button>
+						</Form>
        				</div>
-       				<div className = "col-8">
-       					<label htmlFor="name">Filter by Name:</label>
-						<input type="text" name = "name" onChange ={this.handleChange} />
-						<button onClick= {this.search}>Search</button>
+					<div className="col-8">
+						<Form>
+							<Form.Group>
+								<Form.Row>
+									<Form.Label column lg="2">Filter by Name</Form.Label>
+									<Col>
+										<Form.Control
+											inline
+											type="text"
+											name="name"
+											onChange={this.handleChange}
+										/>
+									</Col>
+									<Col>
+										<Button onClick={this.search} variant="primary" type="submit">Search</Button>
+									</Col>
+								</Form.Row>
+							</Form.Group>
+						</Form>
 						{
-							this.state.colleges.map((college) => {return <SearchResults key = {college._id} KEY = {college._id} college = {college} display = {college.hidden}/>})
+							this.state.colleges.map((college) => {return <SearchResults key = {college._id} KEY = {college._id} college = {college} display = {college.hidden} />})
 						}
        				</div>
        			</div>
