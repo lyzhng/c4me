@@ -52,7 +52,7 @@ export default class AppTracker extends React.Component {
     }
     
     highSchoolFitsReq = (student) => {
-        const highSchool = student.high_school_name;
+        const highSchool = student.high_school_name.toLowerCase().trim();
         const { highSchools } = this.state;
         return highSchool && (highSchools.size === 0 || highSchools.has(highSchool)); // might have to make it less specific
     }
@@ -89,7 +89,7 @@ export default class AppTracker extends React.Component {
     }
 
     addHighSchool = () => {
-        this.setState({ highSchools: new Set([...this.state.highSchools, this.state.currentHighSchool]) });
+        this.setState({ highSchools: new Set([...this.state.highSchools, this.state.currentHighSchool.toLowerCase().trim()]) });
         this.setState({ currentHighSchool: '' })
     }
 
