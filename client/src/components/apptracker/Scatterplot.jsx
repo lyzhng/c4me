@@ -2,6 +2,7 @@ import React from 'react';
 import Chart from 'chart.js';
 import * as ChartAnnotation from "chartjs-plugin-annotation";
 import { Scatter } from 'react-chartjs-2';
+import { Form } from 'react-bootstrap';
 
 export default class Scatterplot extends React.Component{
 	scatterplotRef = React.createRef();
@@ -179,44 +180,30 @@ export default class Scatterplot extends React.Component{
 	}
 
 	render(){
-			return (
-					<div>
-					<Scatter
-						id="studentScatterplot"
-						ref={this.scatterplotRef}
-						data={this.state.data}
-						options={this.state.options}
-					/>
-					<div>
-						<label>
-							<input
+		return (
+			<div>
+				<Scatter
+					id="studentScatterplot"
+					ref={this.scatterplotRef}
+					data={this.state.data}
+					options={this.state.options}
+				/>
+				{
+					['SAT', 'ACT', 'Test Avg'].map((score) => {
+						return (
+							<Form.Check
+								inline
+								key={score}
 								type="radio"
-								value="SAT"
-								checked={this.state.testScores === "SAT"}
+								value={score}
+								checked={this.state.testScores === score}
+								label={score}
 								onChange={this.handleChange}
 							/>
-            SAT
-          </label>
-						<label>
-							<input
-								type="radio"
-								value="ACT"
-								checked={this.state.testScores === "ACT"}
-								onChange={this.handleChange}
-							/>
-            ACT
-          </label>
-						<label>
-							<input
-								type="radio"
-								value="Test Avg"
-								checked={this.state.testScores === "Test Avg"}
-								onChange={this.handleChange}
-							/>
-            Test Avg
-          </label>
-					</div>	
-					</div>
+						)
+					})
+				}
+			</div>
 			);
 	}
 }
