@@ -127,7 +127,7 @@ export default class AppTracker extends React.Component {
         return (
             <div>
                 <div className="filters">
-                    <h2>App Tracker for {this.props.college.name}</h2>
+                    <h2 className="mb-4">App Tracker for {this.props.college.name}</h2>
                     <Form>
                         <Form.Group>
                             <Form.Row>
@@ -224,31 +224,33 @@ export default class AppTracker extends React.Component {
                                 }
                             </Col>
                         </Form.Group>
-                        <Button
-                            size="sm"
-                            variant="primary"
-                            type="submit"
-                            onClick={this.filter}
-                            className="btn-filter"
-                        >Apply Filters</Button>
-                        <Button
-                            size="sm"
-                            variant="outline-dark"
-                            name="scatterplot"
-                            type="button"
-                            onClick={this.toggleScatterplot}
-                            checked={this.state.scatterplot}
-                            className="ml-2"
-                        >{this.state.scatterplot ? 'View List' : 'View Scatterplot'}
-                        </Button>
+                        <div className="buttons">
+                            <Button
+                                size="sm"
+                                variant="primary"
+                                type="submit"
+                                onClick={this.filter}
+                                className="btn-filter"
+                            >Apply Filters</Button>
+                            <Button
+                                size="sm"
+                                variant="outline-dark"
+                                name="scatterplot"
+                                type="button"
+                                onClick={this.toggleScatterplot}
+                                checked={this.state.scatterplot}
+                                className="ml-2"
+                            >{this.state.scatterplot ? 'View List' : 'View Scatterplot'}
+                            </Button>
+                        </div>
                     </Form>
                 </div>
                 {
                     this.state.scatterplot ?
-                        <div className="mt-3">
+                        <div className="mt-4">
                             <Scatterplot students={this.state.students} college={this.props.college} />
                         </div> :
-                        <div className="student-list mt-3">
+                        <div className="student-list mt-4">
                             {this.state.students.map((student) => <AppTrackerItem key={student._id} student={student} />)}
                         </div>
                 }
