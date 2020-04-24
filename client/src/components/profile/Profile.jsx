@@ -128,21 +128,23 @@ export default class Profile extends React.Component{
         <div>
           <h1>User ID: {this.state.userid}</h1>
           <form>
-            <div>
-              <label> Password : </label>
+            <div class="form-group">
+              <label class="col-sm-2 text-center"> Password : </label>
               <input type = "Password"
+                     class = "col-sm-2"
                      name = "password"
                      value={(this.state.password != null) ? this.state.password : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
                      onChange={(e) => this.handleChange(e)}
               />
-              <span>
-                <Button  variant="link" onClick = {(this.state.btnState === "edit")? this.edit : this.studentInfoSave } > {this.state.btnState}</Button>
+                <span class="ml-4">
+                <Button   class="btn" onClick = {(this.state.btnState === "edit")? this.edit : this.studentInfoSave } > {this.state.btnState}</Button>
               </span>
             </div>
-            <div>
-              <label> residence_state : </label>
+            <div class="form-group">
+              <label class="col-sm-2 text-center"> residence_state : </label>
               <input type = "text"
+                     class = "col-sm-2"
                      name = "residence_state"
                      value = {(this.state.residence_state != null) ? this.state.residence_state : ""}
                      placeholder = {"Fill Your Profile"}
@@ -150,9 +152,10 @@ export default class Profile extends React.Component{
                      onChange={(e) => this.handleChange(e)}
               />
             </div>
-            <div>
-              <label> High School : </label>
+            <div class="form-group">
+              <label class="col-sm-2 text-center"> High School : </label>
               <input type = "text"
+                     class = "col-sm-2"
                      name = "high_school_name"
                      value = {(this.state.high_school_name != null) ? this.state.high_school_name : ""}
                      disabled = {(this.state.disabled)? "disabled" :""}
@@ -160,9 +163,10 @@ export default class Profile extends React.Component{
                      onChange={(e) => this.handleChange(e)}
               />
             </div>
-            <div>
-              <label> High School City: </label>
+            <div class="form-group">
+              <label class="col-sm-2 text-center"> High School City: </label>
               <input type="text"
+                     class = "col-sm-2"
                      name="high_school_city"
                      value={(this.state.high_school_city != null) ? this.state.high_school_city : ""}
                      disabled={(this.state.disabled) ? "disabled" : ""}
@@ -170,9 +174,10 @@ export default class Profile extends React.Component{
                      onChange={(e) => this.handleChange(e)}
               />
             </div>
-            <div>
-              <label> High School State: </label>
+            <div class="form-group">
+              <label class="col-sm-2 text-center"> High School State: </label>
               <input type="text"
+                     class = "col-sm-2"
                      name="high_school_state"
                      value={(this.state.high_school_state != null) ? this.state.high_school_state : ""}
                      disabled={(this.state.disabled) ? "disabled" : ""}
@@ -180,9 +185,10 @@ export default class Profile extends React.Component{
                      onChange={(e) => this.handleChange(e)}
               />
             </div>
-            <div>
-              <label> Major 1 : </label>
+            <div class="form-group">
+              <label class="col-sm-2 text-center"> Major 1 : </label>
               <input type = "text"
+                     class = "col-sm-2"
                      name = "major_1"
                      value={(this.state.major_1 != null) ? this.state.major_1 : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
@@ -190,9 +196,10 @@ export default class Profile extends React.Component{
                      onChange={(e) => this.handleChange(e)}
               />
             </div>
-            <div>
-              <label> Major 2 : </label>
+            <div class="form-group">
+              <label class="col-sm-2 text-center"> Major 2 : </label>
               <input type = "text"
+                     class = "col-sm-2"
                      name="major_2"
                      value={(this.state.major_2 != null) ? this.state.major_2 : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
@@ -200,9 +207,10 @@ export default class Profile extends React.Component{
                      onChange={(e) => this.handleChange(e)}
               />
             </div>
-            <div>
-              <label> College Classes : </label>
+            <div class="form-group">
+              <label class="col-sm-2 text-center"> College Classes : </label>
               <input type = "number"
+                     class = "col-sm-2"
                      name = "college_class"
                      value={(this.state.college_class != null) ? this.state.college_class : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
@@ -210,9 +218,10 @@ export default class Profile extends React.Component{
                      onChange={(e) => this.handleAPChange(e)}
               />
             </div>
-            <div>
-              <label> Number of AP Passed : </label>
+            <div class="form-group">
+              <label class="col-sm-2 text-center"> Number of AP Passed : </label>
               <input type = "number"
+                     class = "col-sm-2"
                      name = "num_AP_passed"
                      value={(this.state.num_AP_passed != null) ? this.state.num_AP_passed : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
@@ -227,20 +236,21 @@ export default class Profile extends React.Component{
             View Scores
           </Button>
 
-          <Modal size="lg" show={this.state.gradeModel} onHide={(e)=> this.gradeHandleShow(e)}>
+          <Modal size="xl" show={this.state.gradeModel} onHide={(e)=> this.gradeHandleShow(e)}>
             <Modal.Header closeButton onClick={(e)=> this.gradHandleClose(e)} >
               <Modal.Title>Test Scores</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <div>
-                <label> SAT_math : </label>
+              <form>
+              <div class="form-group">
+                <label class = "col-sm-3"> SAT_math : </label>
                 <input type = "text"
                        name = "SAT_math"
                        value={(this.state.SAT_math != null) ? this.state.SAT_math : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleSATChange(e)}
                 />
-                <label> SAT_EBRW : </label>
+                <label class = "col-sm-3 ml-5"> SAT_EBRW : </label>
                 <input type = "text"
                        name = "SAT_EBRW"
                        value={(this.state.SAT_EBRW != null) ? this.state.SAT_EBRW : ""}
@@ -248,31 +258,31 @@ export default class Profile extends React.Component{
                        onChange={(e) => this.handleSATChange(e)}
                 />
               </div>
-              <div>
-                <label> SAT_eco_bio : </label>
+              <div class="form-group">
+                <label class = "col-sm-3"> SAT_eco_bio : </label>
                 <input type = "text"
                        name = "SAT_eco_bio"
                        value={(this.state.SAT_eco_bio != null) ? this.state.SAT_eco_bio : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleSATChange(e)}
                 />
-                <label> SAT_literature : </label>
-                <input type = "text"
+                <label class = "col-sm-3 ml-5"> SAT_literature : </label>
+                <input type = " text"
                        name = "SAT_literature"
                        value={(this.state.SAT_literature != null) ? this.state.SAT_literature : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleSATChange(e)}
                 />
               </div>
-              <div>
-                <label> SAT_math_I : </label>
+              <div class="form-group">
+                <label class = "col-sm-3"> SAT_math_I : </label>
                 <input type = "text"
                        name = "SAT_math_I"
                        value={(this.state.SAT_math_I != null) ? this.state.SAT_math_I : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleSATChange(e)}
                 />
-                <label> SAT_math_II : </label>
+                <label class = "col-sm-3 ml-5"> SAT_math_II : </label>
                 <input type = "text"
                        name = "SAT_math_II"
                        value={(this.state.SAT_math_II != null) ? this.state.SAT_math_II : ""}
@@ -280,15 +290,15 @@ export default class Profile extends React.Component{
                        onChange={(e) => this.handleSATChange(e)}
                 />
               </div>
-              <div>
-                <label> SAT_mol_bio : </label>
+              <div class="form-group">
+                <label class = "col-sm-3"> SAT_mol_bio : </label>
                 <input type = "text"
                        name = "SAT_mol_bio"
                        value={(this.state.SAT_mol_bio != null) ? this.state.SAT_mol_bio : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleSATChange(e)}
                 />
-                <label> SAT_US_hist : </label>
+                <label class = "col-sm-3 ml-5"> SAT_US_hist : </label>
                 <input type = "text"
                        name = "SAT_US_hist"
                        value={(this.state.SAT_US_hist != null) ? this.state.SAT_US_hist : ""}
@@ -297,15 +307,15 @@ export default class Profile extends React.Component{
                 />
               </div>
 
-              <div>
-                <label> ACT_composite : </label>
+              <div class="form-group">
+                <label class = "col-sm-3"> ACT_composite : </label>
                 <input type = "text"
                        name = "ACT_composite"
                        value={(this.state.ACT_composite != null) ? this.state.ACT_composite : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleACTChange(e)}
                 />
-                <label> ACT_English : </label>
+                <label class = "col-sm-3 ml-5"> ACT_English : </label>
                 <input type = "text"
                        name = "ACT_English"
                        value={(this.state.ACT_English != null) ? this.state.ACT_English : ""}
@@ -314,15 +324,15 @@ export default class Profile extends React.Component{
                 />
               </div>
 
-              <div>
-                <label> ACT_math : </label>
+              <div class="form-group">
+                <label class = "col-sm-3"> ACT_math : </label>
                 <input type = "text"
                        name = "ACT_math"
                        value={(this.state.ACT_math != null) ? this.state.ACT_math : ""}
                        placeholder = {"Fill Your Profile"}
                        onChange={(e) => this.handleACTChange(e)}
                 />
-                <label> ACT_reading : </label>
+                <label class = "col-sm-3 ml-5"> ACT_reading : </label>
                 <input type = "text"
                        name = "ACT_reading"
                        value={(this.state.ACT_reading != null) ? this.state.ACT_reading : ""}
@@ -330,6 +340,7 @@ export default class Profile extends React.Component{
                        onChange={(e) => this.handleACTChange(e)}
                 />
               </div>
+              </form>
 
             </Modal.Body>
             <Modal.Footer>
