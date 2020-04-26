@@ -453,23 +453,22 @@ const importCollegeData = async function(filepath) {
                   }
                 } else if (dtTags[j] === 'Cost of Attendance') {
                   if (ddTags[j].includes('Out-of-state:')) {
-                    console.log("this is",collegeArr[i].name);
                     const costList = ddTags[j].split('Out-of-state:');
                     costAttendance.in_state = parseInt(costList[0].replace(/\$|,|(In-state:)|\b/g, ''));
                     costAttendance.out_state = parseInt(costList[1].replace(/\$|,/g, ''));
                   } else {
                     costAttendance.in_state = costAttendance.out_state = parseInt(ddTags[j].replace(/\$|,/g, ''));
                   }
-                }
-                else if (dtTags[j] === "Tuition and Fees"){
-                  if (dtTags[j].includes("Out-of-state:")){
-                    let cos_list = dtTags[j].split("Out-of-state:");
-                    costTuition.in_state = parseInt(cos_list[0].replace(/\$|,|(In-state:)|\b/g,''));
-                    costTuition.out_state = parseInt(cos_list[1].replace(/\$|,/g,''));
+                } else if (dtTags[j] === 'Tuition and Fees'){
+                  if (ddTags[j].includes('Out-of-state:')){
+                    let costList = ddTags[j].split('Out-of-state:');
+                    costTuition.in_state = parseInt(costList[0].replace(/\$|,|(In-state:)|\b/g,''));
+                    costTuition.out_state = parseInt(costList[1].replace(/\$|,/g,''));
                   }
                   else{
-                    costTuition.in_state = costTuition.out_state = parseInt(dd_tags[j].replace(/\$|,/g,''));
+                    costTuition.in_state = costTuition.out_state = parseInt(ddTags[j].replace(/\$|,/g,''));
                   }
+                  console.log(costTuition.in_state);
                 }
               }
               collegeArr[i].gpa = GPA;
