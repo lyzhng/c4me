@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const express = require('express');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
@@ -136,6 +137,18 @@ app.post('/setStudentInfo', async (req, res) => {
     res.status(200).send({msg: 'Your profile have been update'});
   } catch (e) {
     res.status(200).json({err: 'High School Doesn\'t exist check School name, city and state'});
+  }
+});
+
+app.post('/calculateSimilarHighschools', async (req, res) => {
+  try {
+    const results = await backend.computeScores.calculateSimilarHighschools(req.body.name, req.body.city, req.body.state);
+    console.log(req.body.name, req.body.city, req.body.state);
+    console.log(results);
+    res.status(200).json({highschools: results});
+  } catch (e) {
+    console.log(e);
+    res.status(400).send();
   }
 });
 

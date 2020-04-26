@@ -7,6 +7,7 @@ import Auth from './components/auth/Auth.jsx';
 import SearchColleges from './components/college/SearchColleges.jsx';
 import Navbar from './components/navbar/CNavbar';
 import Admin from './components/admin/Admin.jsx';
+import Highschools from './components/highschools/Highschools.jsx'
 import Profile from './components/profile/Profile.jsx';
 import StaticProfile from './components/profile/StaticProfile.jsx';
 
@@ -31,7 +32,7 @@ export default class App extends React.Component {
             <Route path="/profile/:userid" component={Auth(StaticProfile)} />
             <Route exact path="/profile" component={Auth(Profile)} />
             <Route path = "/colleges" component = {Auth(SearchColleges)} />
-            {/* <Route path = "/highschools" component = {Auth(Highschools)} /> */}
+            <Route path = "/highschools" component = {Auth(Highschools)} />
             <Route exact path = "/admin" component = {Auth(Admin)} />
             <Route path = "/:any" component = {HomeScreen} />
           </Switch>
