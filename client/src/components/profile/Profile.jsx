@@ -125,7 +125,7 @@ export default class Profile extends React.Component{
   render(){
     if(this.props.userid){
     return(
-        <div>
+        <div className={`container my-2`}>
           <h1>User ID: {this.state.userid}</h1>
           <form>
             <div>

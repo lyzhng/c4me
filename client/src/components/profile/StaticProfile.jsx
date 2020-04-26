@@ -84,7 +84,7 @@ export default class Profile extends React.Component {
     render() {
         if (this.props.userid) {
             return (
-                <div>
+                <div className={`container my-2`}>
                     <h1>{this.state.userid}</h1>
                     <h4>residence_state: {(this.state.residence_state != null) ? this.state.residence_state : "N/A"}</h4>
                     <h4>High School: {(this.state.high_school_name != null) ? this.state.high_school_name : "N/A"}</h4>
