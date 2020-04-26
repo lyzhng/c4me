@@ -292,12 +292,12 @@ const importScorecardData = async (filepath) => {
           url: college.INSTURL.toLowerCase(),
           admission_rate: convertToPercent(college.ADM_RATE),
           completion_rate: convertToPercent(college.C100_4),
-          cost: {
-            tuition: {
-              in_state: college.TUITIONFEE_IN,
-              out_state: college.TUITIONFEE_OUT,
-            },
-          },
+          // cost: {
+          //   tuition: {
+          //     in_state: college.TUITIONFEE_IN,
+          //     out_state: college.TUITIONFEE_OUT,
+          //   },
+          // },
           grad_debt_mdn: college.GRAD_DEBT_MDN,
           sat: {
             reading_25: college.SATVR25,
@@ -403,10 +403,10 @@ const importCollegeData = async function(filepath) {
                 in_state: -1,
                 out_state: -1,
               };
-              // const costTuition ={
-              //   in_state: null,
-              //   out_state: null,
-              // };
+              const costTuition ={
+                in_state: -1,
+                out_state: -1,
+              };
               for (let j=0; j < dtTags.length; j++) {
                 if (dtTags[j] === 'Average GPA') {
                   if (ddTags[j] === 'Not reported') {
@@ -453,6 +453,7 @@ const importCollegeData = async function(filepath) {
                   }
                 } else if (dtTags[j] === 'Cost of Attendance') {
                   if (ddTags[j].includes('Out-of-state:')) {
+                    console.log("this is",collegeArr[i].name);
                     const costList = ddTags[j].split('Out-of-state:');
                     costAttendance.in_state = parseInt(costList[0].replace(/\$|,|(In-state:)|\b/g, ''));
                     costAttendance.out_state = parseInt(costList[1].replace(/\$|,/g, ''));
@@ -460,16 +461,16 @@ const importCollegeData = async function(filepath) {
                     costAttendance.in_state = costAttendance.out_state = parseInt(ddTags[j].replace(/\$|,/g, ''));
                   }
                 }
-                // else if (dt_tags[j] === "Tuition and Fees"){
-                //   if (dd_tags[j].includes("Out-of-state:")){
-                //     let cos_list = dd_tags[j].split("Out-of-state:");
-                //     cos_fee.in_state = parseInt(cos_list[0].replace(/\$|,|(In-state:)|\b/g,''));
-                //     cos_fee.out_state = parseInt(cos_list[1].replace(/\$|,/g,''));
-                //   }
-                //   else{
-                //     cos_fee.in_state = cos_fee.out_state = parseInt(dd_tags[j].replace(/\$|,/g,''));
-                //   }
-                // }
+                else if (dtTags[j] === "Tuition and Fees"){
+                  if (dtTags[j].includes("Out-of-state:")){
+                    let cos_list = dtTags[j].split("Out-of-state:");
+                    costTuition.in_state = parseInt(cos_list[0].replace(/\$|,|(In-state:)|\b/g,''));
+                    costTuition.out_state = parseInt(cos_list[1].replace(/\$|,/g,''));
+                  }
+                  else{
+                    costTuition.in_state = costTuition.out_state = parseInt(dd_tags[j].replace(/\$|,/g,''));
+                  }
+                }
               }
               collegeArr[i].gpa = GPA;
               collegeArr[i].act.avg = AVG_ACT;
@@ -478,9 +479,9 @@ const importCollegeData = async function(filepath) {
               collegeArr[i].sat.EBRW_avg = isNaN(AVG_RW) ? -1: AVG_RW;
               collegeArr[i].cost.attendance.in_state = isNaN(costAttendance.in_state) ? -1: costAttendance.in_state;
               collegeArr[i].cost.attendance.out_state = isNaN(costAttendance.out_state) ? -1: costAttendance.out_state;
-              // collegeArr[i].cost.tuition.in_state = isNaN(cos_fee.in_state) ? -1: cos_fee.in_state;
-              // collegeArr[i].cost.tuition.out_state = isNaN(cos_fee.out_state) ? -1: cos_fee.out_state;
-              // collegeArr[i].save();
+              collegeArr[i].cost.tuition.in_state = isNaN(costTuition.in_state) ? -1: costTuition.in_state;
+              collegeArr[i].cost.tuition.out_state = isNaN(costTuition.out_state) ? -1: costTuition.out_state;
+              //collegeArr[i].save();
               await new Promise(function(resolve, reject) {
                 request({
                   method: 'GET',
