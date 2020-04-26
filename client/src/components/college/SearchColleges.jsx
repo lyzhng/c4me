@@ -100,11 +100,11 @@ export default class SearchColleges extends React.Component{
     		admissionRateUpper : this.state.admissionRateUpper === "" ? 100 : this.state.admissionRateUpper,
     		admissionRateLower : this.state.admissionRateLower === "" ? 0 : this.state.admissionRateLower,
     		rankingUpper : this.state.rankingUpper === "" ? Number.MAX_SAFE_INTEGER : this.state.rankingUpper,
-    		rankingLower : this.state.rankingLower === "" ? 0 : this.state.rankingLower,
+    		rankingLower : this.state.rankingLower === "" ? 1 : this.state.rankingLower,
     		sizeUpper : this.state.sizeUpper === "" ? Number.MAX_SAFE_INTEGER : this.state.sizeUpper,
     		sizeLower : this.state.sizeLower === "" ? 0 : this.state.sizeLower,
     		satMathUpper : this.state.satMathUpper === "" ? 800 : this.state.satMathUpper,
-    		satMathLower : this.state.satMathLower === "" ? 5000 : this.state.satMathLower,
+    		satMathLower : this.state.satMathLower === "" ? 200 : this.state.satMathLower,
     		satEngUpper : this.state.satEngUpper === "" ? 800 : this.state.satEngUpper,
     		satEngLower : this.state.satEngLower === "" ? 200 : this.state.satEngLower,
     		actUpper : this.state.actUpper === "" ? 36 : this.state.actUpper,
@@ -514,7 +514,6 @@ export default class SearchColleges extends React.Component{
 									<Form.Label column lg="2">Filter by Name</Form.Label>
 									<Col>
 										<Form.Control
-											inline
 											type="text"
 											name="name"
 											onChange={this.handleChange}

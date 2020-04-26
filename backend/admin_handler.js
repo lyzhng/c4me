@@ -9,11 +9,12 @@ const request = require('request');
 const puppeteer = require('puppeteer');
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
-const userAgents = require('./user_agents');
+// const userAgents = require('./user_agents');
 const getCollegeNames = require('../backend/get_college_names');
 const initCollege = require('./init_colleges.js');
 
 mongoose.connect('mongodb://localhost/c4me', {useUnifiedTopology: true, useNewUrlParser: true});
+
 
 // Addes a student to the database. Used in the map function below
 const insertStudent = async (student, resolve) =>{
@@ -23,7 +24,6 @@ const insertStudent = async (student, resolve) =>{
   if (resp.length === 0 && student.userid !== 'admin') {
     // holds the student that is created
     const created = await collections.Student.create(student);
-    console.log('created', created.userid);
     // finds the highschool in database that student has, if it doesnt exist, we scrape for it
     if (created.high_school_name && created.high_school_city && created.high_school_state) {
       const resp = await collections.HighSchool.find({
@@ -459,14 +459,14 @@ const importCollegeData = async function(filepath) {
                   } else {
                     costAttendance.in_state = costAttendance.out_state = parseInt(ddTags[j].replace(/\$|,/g, ''));
                   }
-                } else if (dtTags[j] === 'Tuition and Fees'){
-                  if (ddTags[j].includes('Out-of-state:')){
-                    let costList = ddTags[j].split('Out-of-state:');
-                    costTuition.in_state = parseInt(costList[0].replace(/\$|,|(In-state:)|\b/g,''));
-                    costTuition.out_state = parseInt(costList[1].replace(/\$|,/g,''));
+                } else if (dtTags[j] === 'Tuition and Fees') { 
+                  if (ddTags[j].includes('Out-of-state:')) { 
+                    const costList = ddTags[j].split('Out-of-state:');
+                    costTuition.in_state = parseInt(costList[0].replace(/\$|,|(In-state:)|\b/g, ''));
+                    costTuition.out_state = parseInt(costList[1].replace(/\$|,/g, ''));
                   }
-                  else{
-                    costTuition.in_state = costTuition.out_state = parseInt(ddTags[j].replace(/\$|,/g,''));
+                  else {
+                    costTuition.in_state = costTuition.out_state = parseInt(ddTags[j].replace(/\$|,/g, ''));
                   }
                 }
               }
@@ -479,7 +479,7 @@ const importCollegeData = async function(filepath) {
               collegeArr[i].cost.attendance.out_state = isNaN(costAttendance.out_state) ? -1: costAttendance.out_state;
               collegeArr[i].cost.tuition.in_state = isNaN(costTuition.in_state) ? -1: costTuition.in_state;
               collegeArr[i].cost.tuition.out_state = isNaN(costTuition.out_state) ? -1: costTuition.out_state;
-              //collegeArr[i].save();
+              // collegeArr[i].save();
               await new Promise(function(resolve, reject) {
                 request({
                   method: 'GET',
@@ -657,8 +657,10 @@ const importHighschoolData = async (name, city, state) => {
       highschool.academic_ranking = scrapeAcademicRanking(html);
       highschool.college_prep_ranking = scrapeCollegePrepRanking(html);
       highschool.similar_colleges_applied = scrapeSimilarAppliedColleges(html);
+      highschool.niche_id = name + '-' + city + '-' + state;
       const created = await collections.HighSchool.create(highschool);
       console.log('Created:', created);
+      clearHSDupes(name, city, state);
     }).catch((err) => {
       console.log(err);
       throw new Error('Fail to scrape for high school with name:', name, city, state);
@@ -667,6 +669,18 @@ const importHighschoolData = async (name, city, state) => {
   }
 };
 
+const clearHSDupes = async (name, city, state) => {
+  const hs = await collections.HighSchool.find({name, city, state}).lean();
+  if (hs.length > 1) {
+    for (let i = hs.length - 1; i > 0; i--) {
+      collections.HighSchool.findByIdAndRemove(hs[i]._id, (err, tasks) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+  }
+};
 
 module.exports = {
   importCollegeData: importCollegeData,

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const HighschoolSchema = new Schema({
+  niche_id: {type: String, unique: true},
   name: String,
   city: String,
   state: String,
