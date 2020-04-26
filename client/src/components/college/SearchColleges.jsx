@@ -514,7 +514,6 @@ export default class SearchColleges extends React.Component{
 									<Form.Label column lg="2">Filter by Name</Form.Label>
 									<Col>
 										<Form.Control
-											inline
 											type="text"
 											name="name"
 											onChange={this.handleChange}
