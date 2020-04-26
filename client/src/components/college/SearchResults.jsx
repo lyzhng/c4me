@@ -66,7 +66,7 @@ export default class SearchResults extends React.Component {
                     <div><b>SAT English Average:</b> {this.props.college.sat.EBRW_avg}</div>
                     <div><b>ACT Average:</b> {this.props.college.act.avg}</div>
                     <div><b>Tuition (in-state / out-of-state):</b> {this.props.college.cost.tuition.in_state} / {this.props.college.cost.tuition.out_state}</div>
-                    <div><b>Cost of Attendance (in-state / out-of-state):</b> {this.props.college.cost.attendance.in_state} / {this.props.college.cost.attendance.out_state}</div>
+                    {this.props.college.cost.attendance ?<div><b>Cost of Attendance (in-state / out-of-state):</b> {this.props.college.cost.attendance.in_state} / {this.props.college.cost.attendance.out_state}</div> : null}
                     <div><b>Admission Rate:</b> {this.props.college.admission_rate}</div>
                     <div><b>Graduation Debt Median:</b> {this.props.college.grad_debt_mdn}</div>
                     <div><b>Graduation Rate:</b> {this.props.college.completion_rate}</div>
