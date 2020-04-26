@@ -37,8 +37,13 @@ export default class AppTracker extends React.Component {
         }
         const students = this.state.students;
         for (const s of students) {
+            console.log('appfitsreq', this.appFitsReq(s));
+            console.log('highschoolfitsreq', this.highSchoolFitsReq(s));
+            console.log(this.state.minCollegeClass, s.college_class, this.state.maxCollegeClass);
+            console.log('collegeclassfitsreq', this.collegeClassFitsReq(s));
             const fitsCriteria = this.appFitsReq(s) && this.highSchoolFitsReq(s) && this.collegeClassFitsReq(s);
             s.hidden = fitsCriteria ? false : true;
+            console.log();
         }
         this.setState({ students: students, scatterplot: !this.state.scatterplot }, () => {
             this.setState({ scatterplot: !this.state.scatterplot });
@@ -47,6 +52,7 @@ export default class AppTracker extends React.Component {
 
     collegeClassFitsReq = (student) => {
         const collegeClass = student.college_class;
+        // console.log(student.college_class);
         const { minCollegeClass, maxCollegeClass } = this.state;
         return minCollegeClass <= collegeClass && collegeClass <= maxCollegeClass;
     }
@@ -151,8 +157,8 @@ export default class AppTracker extends React.Component {
                                 <Col>
                                     <Form.Control
                                         className="form-control"
-                                        title="Enter the Maximum college class for the lower bound filter."
-                                        name="minCollegeClass"
+                                        title="Enter the maximum college class for the upper bound filter."
+                                        name="maxCollegeClass"
                                         type="tel"
                                         min="0"
                                         pattern="[1-2][0-9][0-9][0-9]"
