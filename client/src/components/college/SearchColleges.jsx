@@ -485,10 +485,10 @@ export default class SearchColleges extends React.Component{
 							</Form.Group>
 							<Form.Group>
 								<Form.Row>
-									<Form.Label column>Sort results by</Form.Label>
+									<Form.Label column>Sort Results</Form.Label>
 									<Col>
 										<Form.Control as="select" onChange={this.handleChange} name="sortCriteria">
-											<option value="">No option</option>
+											<option value="">No preference</option>
 											<option value="name">by name</option>
 											<option value="admissionRate">by admission rate</option>
 											<option value="costOfAttendance">by cost</option>
