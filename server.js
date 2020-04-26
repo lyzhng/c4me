@@ -9,8 +9,8 @@ const backend = require('./backend');
 const PORT = process.env.PORT || 3001;
 const secret = process.env.JWT_SECRET_KEY || 'pokTGERW54389e#@$%mans12$@!$!#$^#%$';
 
-const studentDatasets = ['students-1.csv'];
-const applicationDatasets = ['applications-1.csv'];
+const studentDatasets = ['students-1.csv', 'dummies.csv']; // ADD ALL DATASETS HERE
+const applicationDatasets = ['applications-1.csv', 'dummyapps.csv'];// ADD ALL DATASETS HERE
 
 app = express();
 app.use(express.urlencoded({extended: true}));
@@ -69,29 +69,34 @@ app.post('/api/login', (req, res) => {
   }
 });
 
-app.get('/deletestudents', (req, res)=>{
-  backend.adminHandler.deleteAllStudents();
+app.get('/deletestudents', async (req, res)=>{
+  await backend.adminHandler.deleteAllStudents();
   res.status(200).send();
 });
 
-app.get('/importstudentdatasets', (req, res)=>{
-  backend.adminHandler.importStudentProfiles(studentDatasets[0], applicationDatasets[0]);
+app.get('/importstudentdatasets', async (req, res) => {
+  for (let i = 0; i < studentDatasets.length; i++) {
+    await backend.adminHandler.importStudentProfiles(studentDatasets[i]);
+  }
+  for (let i = 0; i < applicationDatasets.length; i++) {
+    await backend.adminHandler.importApplicationData(applicationDatasets[i]);
+  }
   res.status(200).send();
 });
 
-app.get('/scrapecollegerankings', (req, res)=>{
-  backend.adminHandler.importCollegeRankings('./datasets/colleges.txt');
+app.get('/scrapecollegerankings', async (req, res)=>{
+  await backend.adminHandler.importCollegeRankings('./datasets/colleges.txt');
   res.status(200).send();
 });
 
-app.get('/scrapecollegedata', (req, res)=>{
-  backend.adminHandler.importCollegeData('./datasets/colleges.txt');
-  backend.adminHandler.importCollegeDescriptions('./datasets/colleges.txt');
+app.get('/scrapecollegedata', async (req, res)=>{
+  await backend.adminHandler.importCollegeData('./datasets/colleges.txt');
+  await backend.adminHandler.importCollegeDescriptions('./datasets/colleges.txt');
   res.status(200).send();
 });
 
-app.get('/importcollegescorecard', (req, res)=>{
-  backend.adminHandler.importScorecardData('./datasets/colleges.txt');
+app.get('/importcollegescorecard', async (req, res)=>{
+  await backend.adminHandler.importScorecardData('./datasets/colleges.txt');
   res.status(200).send();
 });
 
@@ -117,7 +122,6 @@ app.post('/retrievestudents', async (req, res) => {
 app.post('/getuser', async (req, res) => {
   try {
     const user = await backend.studentHandler.getStudentProfile(req.body.userId);
-    console.log(user);
     res.status(200).json({user});
   } catch (error) {
     console.log(error);

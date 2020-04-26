@@ -43,7 +43,7 @@ const insertStudent = async (student, resolve) =>{
 };
 
 // import student profile csv and takes in name of csv file
-const importStudentProfiles = async (studentCsv, applicationCSV) => {
+const importStudentProfiles = async (studentCsv) => {
   let studentData;
   const file = fs.readFileSync('./datasets/'+studentCsv, 'utf-8');
   Papa.parse(file, {
@@ -65,10 +65,6 @@ const importStudentProfiles = async (studentCsv, applicationCSV) => {
   await Promise.all(importAllStudents);
   console.log('done with importing students');
   console.log('Done with importing highschools from students');
-  if (applicationCSV) {
-    await importApplicationData(applicationCSV);
-    console.log('Done with import students, highschools, and applications');
-  }
 };
 
 // Adds an application to the database. Used for the map function below.
@@ -644,6 +640,7 @@ module.exports = {
   deleteAllStudents: deleteAllStudents,
   importCollegeDescriptions: importCollegeDescriptions,
   importHighschoolData: importHighschoolData,
+  importApplicationData: importApplicationData,
 };
 
 // (async () => await importScorecardData())();
