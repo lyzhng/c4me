@@ -33,7 +33,7 @@ module.exports = function(filepath = '../datasets/colleges.txt') {
               gpa: -1,
               sat: {reading_25: -1, reading_50: -1, reading_75: -1, writing_25: -1, writing_50: -1, writing_75: -1, EBRW_avg: -1, math_25: -1, math_50: -1, math_75: -1, math_avg: -1, avg: -1},
               act: { english_25: -1, english_50: -1, english_75: -1, writing_25: -1, writing_50: -1, writing_75: -1, math_25: -1, math_50: -1, math_75: -1, composite_25: -1, composite_50: -1, composite_75: -1, avg: -1},
-              majors: [type : String],
+              majors: [{type : String}],
               ranking: -1
             }
             await new Promise(function(resolve, reject) {
