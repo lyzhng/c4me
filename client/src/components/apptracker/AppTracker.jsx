@@ -26,6 +26,7 @@ export default class AppTracker extends React.Component {
     }
 
     handleChange = (e) => {
+        console.log('handleChange', e.target.name, e.target.value);
         e.preventDefault();
         this.setState({
             [e.target.name]: (isInt(e.target.value) ? +e.target.value : e.target.value)
@@ -53,7 +54,7 @@ export default class AppTracker extends React.Component {
     highSchoolFitsReq = (student) => {
         const highSchool = student.high_school_name.toLowerCase().trim();
         const { highSchools } = this.state;
-        return highSchool && (highSchools.size === 0 || highSchools.has(highSchool)); // might have to make it less specific
+        return highSchool && (highSchools.size === 0 || highSchools.has(highSchool));
     }
 
     appFitsReq = (student) => {
@@ -123,17 +124,8 @@ export default class AppTracker extends React.Component {
     }
 
     isInvalidInput = () => {
-        // console.log('minCollegeClass', this.state.minCollegeClass);
-        // console.log('maxCollegeClass', this.state.maxCollegeClass);
-        if (this.state.minCollegeClass === '' && this.state.maxCollegeClass === '') {
-            return false;
-        }
-        if (this.state.minCollegeClass === '') {
-            return this.isInvalidCollegeClass(this.state.maxCollegeClass);
-        }   
-        if (this.state.maxCollegeClass === '') {
-            return this.isInvalidCollegeClass(this.state.minCollegeClass);
-        }
+        console.log('minCollegeClass', this.state.minCollegeClass);
+        console.log('maxCollegeClass', this.state.maxCollegeClass);
         if (this.isInvalidCollegeClass(this.state.minCollegeClass) || this.isInvalidCollegeClass(this.state.maxCollegeClass)) {
             return true;
         }
@@ -141,10 +133,7 @@ export default class AppTracker extends React.Component {
     }
 
     isInvalidCollegeClass = (collegeClass) => {
-        if (String(collegeClass).match(/^\d{4}$/g)) {
-            return collegeClass < 1000 || collegeClass > 2999;
-        }
-        return true;
+        return !String(collegeClass).match(/^[1-2][0-9]{3}$/g);
     }
 
     render() {
@@ -161,9 +150,9 @@ export default class AppTracker extends React.Component {
                                         className="form-control"
                                         title="Enter the minimum college class for the lower bound filter."
                                         name="minCollegeClass"
-                                        type="number"
-                                        min="1000"
-                                        max="3000"
+                                        type="tel"
+                                        maxlength="4"
+                                        pattern="^[1-2][0-9]{3}$"
                                         autoComplete="off"
                                         onChange={this.handleChange} />
                                 </Col>
@@ -177,9 +166,9 @@ export default class AppTracker extends React.Component {
                                         className="form-control"
                                         title="Enter the maximum college class for the upper bound filter."
                                         name="maxCollegeClass"
-                                        type="number"
-                                        min="1000"
-                                        max="3000"
+                                        type="tel"
+                                        maxlength="4"
+                                        pattern="^[1-2][0-9]{3}$"
                                         autoComplete="off"
                                         onChange={this.handleChange} />
                                 </Col>
