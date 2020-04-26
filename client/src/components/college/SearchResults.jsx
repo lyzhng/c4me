@@ -47,7 +47,8 @@ export default class SearchResults extends React.Component {
     render(){
       if(this.props.college){
         return(
-          <div style = {{display : this.props.college.hidden ?  "none" : ""}} className="mb-4">
+         <div style = {{display : this.props.college.hidden ?  "none" : ""}} className="mb-4">
+          {/* <div style={{ border: this.props.college.hidden ? "red solid 10px" : "" }} className="mb-4"> */}
             <h3>{this.props.college.name} (Rank {this.props.college.ranking})</h3>
             <div>{this.props.college.location.city}, {this.props.college.location.state}</div>
             <AppTrackerModal college = {this.props.college}/>
@@ -66,11 +67,14 @@ export default class SearchResults extends React.Component {
                     <div><b>SAT English Average:</b> {this.props.college.sat.EBRW_avg}</div>
                     <div><b>ACT Average:</b> {this.props.college.act.avg}</div>
                     <div><b>Tuition (in-state / out-of-state):</b> {this.props.college.cost.tuition.in_state} / {this.props.college.cost.tuition.out_state}</div>
-                    {this.props.college.cost.attendance ?<div><b>Cost of Attendance (in-state / out-of-state):</b> {this.props.college.cost.attendance.in_state} / {this.props.college.cost.attendance.out_state}</div> : null}
+                    <div><b>Cost of Attendance (in-state / out-of-state):</b> {this.props.college.cost.attendance.in_state} / {this.props.college.cost.attendance.out_state}</div>
                     <div><b>Admission Rate:</b> {this.props.college.admission_rate}</div>
                     <div><b>Graduation Debt Median:</b> {this.props.college.grad_debt_mdn}</div>
                     <div><b>Graduation Rate:</b> {this.props.college.completion_rate}</div>
-                    <div><b>Majors:</b> {this.props.college.majors.length === 0 ? "NO MAJORS" : this.props.college.majors.reduce((total, current)=>{return total + ", " + current;})}</div>
+                    <br/>
+                    <div><b>Description:</b> {this.props.college.description}</div>
+                    <br/>
+                    <div><b>Majors:</b> {this.props.college.majors.length === 0 ? "NO MAJORS" : this.props.college.majors.reduce((total, current)=>{return total + " | " + current;})}</div>
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>
