@@ -468,7 +468,6 @@ const importCollegeData = async function(filepath) {
                   else{
                     costTuition.in_state = costTuition.out_state = parseInt(ddTags[j].replace(/\$|,/g,''));
                   }
-                  console.log(costTuition.in_state);
                 }
               }
               collegeArr[i].gpa = GPA;
