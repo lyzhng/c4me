@@ -497,6 +497,43 @@ const importCollegeData = async function(filepath) {
                     for (let j = 0; j < liTags.length; j++) {
                       collegeArr[i].majors.push(liTags[j]);
                     }
+                    resolve();
+                  }
+                });
+              });
+
+
+              await new Promise(function(resolve, reject) {
+                request({
+                  method: 'GET',
+                  url: 'https://www.collegedata.com/college/' + collegeUrl +'?tab=profile-money-tab',
+                }, (err, res, body)=>{
+                  if (err || res.statusCode !== 200) {
+                    console.log('failed to request collegeData!');
+                    reject();
+                  } else {
+                    const $ = cheerio.load(body);
+                    const dtTags = $('dt').map(function() {
+                      return $(this).text();
+                    }).get();
+                    const ddTags = $('dd').map(function() {
+                      return $(this).text();
+                    }).get();
+                    let aid = -1;
+                    let rec_aid = -1;
+                    for (let j=0; j < dtTags.length; j++) {
+                      if (dtTags[j] ==='Received Financial Aid'){
+                        let newTxt = ddTags[j].split('(');
+                        for (let i = 1; i < newTxt.length; i++) {
+                          rec_aid =  parseFloat(newTxt[i].split(')')[0].replace(/$/g,''));
+                        }
+                      }
+                      else if (dtTags[j] ==='Average Award'){
+                        aid = parseInt(ddTags[j].replace(/\$|,/g, ''));
+                      }
+                    }
+                    collegeArr[i].aid = isNaN(aid) ? -1 : aid;
+                    collegeArr[i].rec_aid = isNaN(rec_aid) ? -1: rec_aid;
                     collegeArr[i].save();
                     resolve();
                   }

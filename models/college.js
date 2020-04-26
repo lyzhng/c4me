@@ -23,6 +23,8 @@ const CollegeSchema = new Schema({
       out_state: Number,
     },
   },
+  aid : {type : Number},
+  rec_aid : {type: Number},
   grad_debt_mdn: {type: Number},
   completion_rate: {type: Number},
   gpa: {type: Number},
