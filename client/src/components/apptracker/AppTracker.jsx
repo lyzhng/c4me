@@ -9,8 +9,8 @@ export default class AppTracker extends React.Component {
         super(props);
         this.state = {
             students: [],
-            minCollegeClass: 0,
-            maxCollegeClass: Number.MAX_SAFE_INTEGER,
+            minCollegeClass: 1000,
+            maxCollegeClass: 2999,
             highSchools: new Set(),
             currentHighSchool: '',
             appStatuses: [],
@@ -20,30 +20,24 @@ export default class AppTracker extends React.Component {
 
     setDefaultState = () => {
         this.setState({
-            minCollegeClass: this.state.minCollegeClass === '' ? 0 : this.state.minCollegeClass,
-            maxCollegeClass: this.state.maxCollegeClass === '' ? 3000 : this.state.maxCollegeClass,
+            minCollegeClass: this.state.minCollegeClass === '' ? 1000 : this.state.minCollegeClass,
+            maxCollegeClass: this.state.maxCollegeClass === '' ? 2999 : this.state.maxCollegeClass,
         });
     }
 
     handleChange = (e) => {
+        e.preventDefault();
         this.setState({
             [e.target.name]: (isInt(e.target.value) ? +e.target.value : e.target.value)
         }, this.setDefaultState);
     }
 
     filter = (e) => {
-        if (e) {
-            e.preventDefault();
-        }
+        e.preventDefault();
         const students = this.state.students;
         for (const s of students) {
-            console.log('appfitsreq', this.appFitsReq(s));
-            console.log('highschoolfitsreq', this.highSchoolFitsReq(s));
-            console.log(this.state.minCollegeClass, s.college_class, this.state.maxCollegeClass);
-            console.log('collegeclassfitsreq', this.collegeClassFitsReq(s));
             const fitsCriteria = this.appFitsReq(s) && this.highSchoolFitsReq(s) && this.collegeClassFitsReq(s);
             s.hidden = fitsCriteria ? false : true;
-            console.log();
         }
         this.setState({ students: students, scatterplot: !this.state.scatterplot }, () => {
             this.setState({ scatterplot: !this.state.scatterplot });
@@ -52,7 +46,6 @@ export default class AppTracker extends React.Component {
 
     collegeClassFitsReq = (student) => {
         const collegeClass = student.college_class;
-        // console.log(student.college_class);
         const { minCollegeClass, maxCollegeClass } = this.state;
         return minCollegeClass <= collegeClass && collegeClass <= maxCollegeClass;
     }
@@ -129,6 +122,31 @@ export default class AppTracker extends React.Component {
         this.setState({ scatterplot: !this.state.scatterplot });
     }
 
+    isInvalidInput = () => {
+        // console.log('minCollegeClass', this.state.minCollegeClass);
+        // console.log('maxCollegeClass', this.state.maxCollegeClass);
+        if (this.state.minCollegeClass === '' && this.state.maxCollegeClass === '') {
+            return false;
+        }
+        if (this.state.minCollegeClass === '') {
+            return this.isInvalidCollegeClass(this.state.maxCollegeClass);
+        }   
+        if (this.state.maxCollegeClass === '') {
+            return this.isInvalidCollegeClass(this.state.minCollegeClass);
+        }
+        if (this.isInvalidCollegeClass(this.state.minCollegeClass) || this.isInvalidCollegeClass(this.state.maxCollegeClass)) {
+            return true;
+        }
+        return this.state.minCollegeClass > this.state.maxCollegeClass;
+    }
+
+    isInvalidCollegeClass = (collegeClass) => {
+        if (String(collegeClass).match(/^\d{4}$/g)) {
+            return collegeClass < 1000 || collegeClass > 2999;
+        }
+        return true;
+    }
+
     render() {
         return (
             <div>
@@ -143,9 +161,9 @@ export default class AppTracker extends React.Component {
                                         className="form-control"
                                         title="Enter the minimum college class for the lower bound filter."
                                         name="minCollegeClass"
-                                        type="tel"
-                                        min="0"
-                                        pattern="[1-2][0-9][0-9][0-9]"
+                                        type="number"
+                                        min="1000"
+                                        max="3000"
                                         autoComplete="off"
                                         onChange={this.handleChange} />
                                 </Col>
@@ -159,9 +177,9 @@ export default class AppTracker extends React.Component {
                                         className="form-control"
                                         title="Enter the maximum college class for the upper bound filter."
                                         name="maxCollegeClass"
-                                        type="tel"
-                                        min="0"
-                                        pattern="[1-2][0-9][0-9][0-9]"
+                                        type="number"
+                                        min="1000"
+                                        max="3000"
                                         autoComplete="off"
                                         onChange={this.handleChange} />
                                 </Col>
@@ -237,6 +255,7 @@ export default class AppTracker extends React.Component {
                                 type="submit"
                                 onClick={this.filter}
                                 className="btn-filter"
+                                disabled={this.isInvalidInput()}
                             >Apply Filters</Button>
                             <Button
                                 size="sm"
