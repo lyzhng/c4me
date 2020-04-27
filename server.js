@@ -143,8 +143,6 @@ app.post('/setStudentInfo', async (req, res) => {
 app.post('/calculateSimilarHighschools', async (req, res) => {
   try {
     const results = await backend.computeScores.calculateSimilarHighschools(req.body.name, req.body.city, req.body.state);
-    console.log(req.body.name, req.body.city, req.body.state);
-    console.log(results);
     res.status(200).json({highschools: results});
   } catch (e) {
     console.log(e);
