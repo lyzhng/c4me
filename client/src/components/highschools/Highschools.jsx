@@ -4,7 +4,10 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col'
+import Col from 'react-bootstrap/Col';
+import Toast from 'react-bootstrap/Toast';
+import ToastHeader from 'react-bootstrap/ToastHeader';
+import ToastBody from 'react-bootstrap/ToastBody';
 import { Redirect } from 'react-router-dom';
 
 function isInt(n) {  //copied from https://stackoverflow.com/questions/5630123/javascript-string-integer-comparisons
@@ -13,14 +16,20 @@ function isInt(n) {  //copied from https://stackoverflow.com/questions/5630123/j
 
 const states = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'];
 
-export default class Highschools extends React.Component {
 
+
+export default class Highschools extends React.Component {
     state = {
         name: "",
         city: "",
         state: "al",
-        highschools: []
+        highschools: [],
+        show: false,
     };
+
+    setShow = () => {
+        this.setState({ show: false });
+    }
 
     handleChange = (e) => {
         this.setState({
@@ -36,7 +45,12 @@ export default class Highschools extends React.Component {
         }
         try {
             const resp = await Axios.post("/calculateSimilarHighschools", query);
-            this.setState({highschools: resp.data.highschools});
+            if (resp.data.highschools.length == 0) {
+                this.setState({ highschools: resp.data.highschools, show: true });
+            }
+            else {
+                this.setState({ highschools: resp.data.highschools, show: false });
+            }
         } catch (e) {
             console.log("Something went wrong in the backend");
         }
@@ -45,6 +59,13 @@ export default class Highschools extends React.Component {
     render() {
         if (this.props.userid) {
             return (
+                <>
+                <Toast onClose={this.setShow} show={this.state.show} delay={3000} autohide>
+                    <Toast.Header>
+                        <strong className="mr-auto">Error</strong>
+                    </Toast.Header>
+                    <Toast.Body>Could not find the highschool you entered in our database. Please try again</Toast.Body>
+                </Toast>
                 <div className="container">
                     <h1>Find Similar Highschools</h1>
                     <br/>
@@ -60,7 +81,7 @@ export default class Highschools extends React.Component {
                             </Col>
                             <Col>
                                 <Form.Label>Highschool State:</Form.Label>
-                                <Form.Control as='select' onChange={this.handleChange} name="state" custom>
+                                <Form.Control as='select' onChange={this.handleChange} name="state">
                                     {states.map(state => {
                                         return <option key={state} value={state.toLowerCase()}>{state}</option>
                                     })}
@@ -85,9 +106,9 @@ export default class Highschools extends React.Component {
                                 </tbody>
                             </Table>
                         }
-                        
                     </div>
-                </div>
+                    </div>
+            </>
             );
         }
         return <Redirect to="/login" />;
