@@ -10,7 +10,11 @@ const calculateHSScore = (highschool, highschool2) => {
 
 const calculateSimilarHighschools = async (name, city, state) => {
   // holds our queried highschool
-  const highschool = await collections.HighSchool.find({name, city, state});
+  const highschool = await collections.HighSchool.find({ name, city, state });
+  //highschool doesn't exist
+  if (highschool.length < 1) {
+    return []
+  }
   // holds all highschools
   const highschools = await collections.HighSchool.find({});
   let scoredHighschools = [];
