@@ -40,26 +40,31 @@ export default class Login extends React.Component{
     render(){
 			if(!this.props.userid){
 				return(
-						<div>
-						<div>
+					<div className="wrapper fadeInDown">
+						<div id="formContent">
 							<h3>Login Here</h3>
-							<label htmlFor = " userid"> userid: </label>
-							<input name = "userid" onChange = {this.handleInputChange}/>
-							<br/>
-							<br/>
-							<label htmlFor = "password">Password: </label>
-							<input type = "password" name = "password" onChange = {this.handleInputChange}/>
-							<br/>
-							<br/>
-							<button onClick = {this.login} >Login</button>
-							<br/>
-							<br/>
+							<form>
+								<input type="text" id="login" className="fadeIn second loginStyle"
+									   name = "userid" onChange = {this.handleInputChange}
+									   placeholder="username"/>
+								<input type="password" id="password" className="fadeIn third loginStyle"
+									   name = "password" onChange = {this.handleInputChange}
+									   placeholder="password"/>
+								<input type="submit"
+									   className="fadeIn fourth" value="Log In"
+									   onClick = {this.login}/>
+							</form>
+
 							<span style = {{color:"red"}}>{this.state.err}
-							<br/>
+								<br/>
 							<br/></span>
+
+							<div id="formFooter">
+								<Link to = "/register">Register Now</Link>
+							</div>
+
 						</div>
-						<Link to = "/register">Register Now</Link>
-						</div>
+					</div>
 				)
 			}
 			else{

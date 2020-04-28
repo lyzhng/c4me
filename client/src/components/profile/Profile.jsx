@@ -241,7 +241,6 @@ export default class Profile extends React.Component{
               <Modal.Title>Test Scores</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <form>
               <div class="form-group">
                 <label class = "col-sm-3"> SAT_math : </label>
                 <input type = "text"
@@ -340,7 +339,6 @@ export default class Profile extends React.Component{
                        onChange={(e) => this.handleACTChange(e)}
                 />
               </div>
-              </form>
 
             </Modal.Body>
             <Modal.Footer>
