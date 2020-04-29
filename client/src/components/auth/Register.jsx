@@ -8,7 +8,7 @@ export default class Register extends React.Component{
         err: "",
         userid: "",
         password:"",
-        
+
     }
 
     handleInputChange = (e) => {
@@ -29,7 +29,7 @@ export default class Register extends React.Component{
             this.setState({err: "Userid is already taken!"})
         });
     }
-    
+
     componentDidMount(){
         this.setState({err:"", email:"",  userid:"", password:""});
     }
@@ -37,26 +37,26 @@ export default class Register extends React.Component{
     render(){
         if(!this.props.userid){
             return(
-                <div>
-                <div>
-                    <h3>Sign Up Page</h3>
-                    <label htmlFor="userid"> userid:</label>
-                    <input type="text" name = "userid" onChange={this.handleInputChange}/>
-                    <br/>
-                    <br/>
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" name="password" onChange={this.handleInputChange}/>
-                    <br/>
-                    <br/>
-                    <button onClick = {this.register} >Register</button>
-                    <br/>
-                    <br/>
-                    <span style={{color:"red"}}>{this.state.err}
-                    <br/>
-                    <br/></span>
-                </div>
-                <Link to = "/login">Login Here</Link>
-                </div>
+              <div className="wrapper">
+                  <div id="formContent">
+                      <h3>Sign Up Page</h3>
+                      <form>
+                          <input type="text" id="login" className="second loginStyle"
+                                 name = "userid" onChange = {this.handleInputChange}
+                                 placeholder="username"/>
+                          <input type="password" id="password" className="third loginStyle"
+                                 name = "password" onChange = {this.handleInputChange}
+                                 placeholder="password"/>
+                          <input type="submit"
+                                 className="fourth" value="Register"
+                                 onClick = {this.register}/>
+                      </form>
+
+                      <span style = {{color:"red"}}>{this.state.err}
+                          <br/><br/>
+                      </span>
+                  </div>
+              </div>
             )
         }
         else{

@@ -10,13 +10,6 @@ body {
     height: 100vh;
 }
 
-a {
-    color: #92badd;
-    display:inline-block;
-    text-decoration: none;
-    font-weight: 400;
-}
-
 h2 {
     text-align: center;
     font-size: 16px;
@@ -26,10 +19,22 @@ h2 {
     margin: 40px 8px 10px 8px;
     color: #cccccc;
 }
+h3 {
+    color: black;
+    position: relative;
+    text-align: center;
+    font-size: 26px;
+}
 
 
 
 /* STRUCTURE */
+.divHS{
+    width: 1000px;
+    alignment: center;
+    margin: auto;
+    padding: 20px;
+}
 
 .wrapper {
     display: flex;
@@ -39,6 +44,20 @@ h2 {
     width: 100%;
     min-height: 100%;
     padding: 20px;
+}
+.wrapperHS{
+    border-radius: 15px;
+    background: snow;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    width: 280px;
+    height: 130px;
+    min-height: 100%;
+    padding: 20px;
+    margin: auto;
 }
 
 #formContent {
@@ -63,9 +82,15 @@ h2 {
     -webkit-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
 }
+.text-front{position: absolute}
 
-
-
+.tool-btn .icon-inline{display:inline-block;vertical-align:middle;width:2em;height:auto;margin-top:-.1em;margin-right:.25em;margin-bottom:.1em}
+.tool-btn{background-color:#fff}
+.tool-btn{display:block;color:#494949;font-family:Arial;font-size:.6000rem;font-weight:700;text-transform:uppercase;background-color:#f4f4f4;padding:5px;border:solid 1px rgba(0,0,0,.12);border-radius:2px;margin:0 auto .5rem}
+.icon-inline{width:2em;margin-top:-.2em;margin-bottom:.2em}
+.icon-inline{display:inline-block;vertical-align:middle;width:2em;height:auto;margin-top:-.1em;margin-right:.25em;margin-bottom:.1em}
+.slide__content{display:block;text-decoration:none;text-align:center;padding:10px}.slide__content:hover{text-decoration: none;}.slide__content:focus,.slide__content:active{background-color:#f4f4f4}.slide__content:hover .tool-btn,.slide__content:focus .tool-btn,.slide__content:active .tool-btn{background-color:#fff}
+.dark-text {color:darkblue}
 /* TABS */
 
 h2.inactive {
@@ -113,6 +138,10 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
     -o-transform: scale(0.95);
     -ms-transform: scale(0.95);
     transform: scale(0.95);
+}
+
+.carousel{
+    height: 700px;
 }
 
 .loginStyle {

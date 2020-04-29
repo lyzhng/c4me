@@ -55,7 +55,8 @@ export default class Login extends React.Component{
 									   onClick = {this.login}/>
 							</form>
 
-							<span style = {{color:"red"}}>{this.state.err}
+							<span style = {{color:"red"}}>
+								{this.state.err}
 								<br/>
 							<br/></span>
 
