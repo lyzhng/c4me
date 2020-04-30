@@ -1,10 +1,6 @@
 
 /* BASIC */
 
-html {
-    background-color: #56baed;
-}
-
 body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
@@ -35,6 +31,187 @@ h3 {
     margin: auto;
     padding: 20px;
 }
+.carousel-caption {
+    top: 250px;
+    bottom: auto;
+}
+.headerFront{
+    color: white;
+    font-size: 130px;
+}
+
+.section{
+    padding: 100px;
+    background: whitesmoke;
+}
+.section-1{
+    padding: 150px;
+}
+
+.section-header{
+    font-size: 46px;
+    margin-top: -220px;
+    text-align: center;
+    font-weight: bold;
+}
+.section-contest{
+    font-size: 26px;
+    text-align: center;
+    margin-top: 70px;
+}
+.Graduate {
+    background-image:
+            linear-gradient(
+                    rgba(0, 0, 0, 0.1),
+                    rgba(0, 0, 0, 0.1)
+            ),
+            url(../image/Graduate.jpeg);
+    background-size: cover;
+}
+.College{
+    background-image:
+            linear-gradient(
+                    rgba(0, 0, 0, 0.2),
+                    rgba(0, 0, 0, 0.2)
+            ),
+            url(../image/Colleges.jpeg);
+    background-size: cover;
+}
+.Students{
+    background-image:
+            linear-gradient(
+                    rgba(0, 0, 0, 0.5),
+                    rgba(0, 0, 0, 0.5)
+            ),
+            url(../image/college_student.jpg);
+    background-size: cover;
+}
+
+.post {
+    padding: 40px;
+    color: #000;
+    background-repeat: no-repeat;
+    width: 100%;
+    align-content: center;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.post img {
+    height: 450px;
+    width: calc(60% + 20px);
+    position: sticky;
+    left: 400px;
+    top: -40px;
+    margin: 0 -80px -40px 0;
+    margin-right: -80px;
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.home-screen{
+    background:lightblue;
+    text-align:center;
+    box-sizing:border-box;
+    font-family:"Lato",Sans-serif;
+    /*   position:relative; */
+}
+
+.box{
+    position:relative;
+    top:50%;
+    left:50%;
+    transform : translate(-50% ,-50%);
+}
+
+.btn:link,
+.btn:visited{
+    text-decoration: none;
+    text-transform:uppercase;
+    position:relative;
+    top:120px;
+    left:0;
+    padding:20px 40px;
+    border-radius:100px;
+    display:inline-block;
+    transition: all .5s;
+}
+.btn-blue{
+    background: lightblue;
+    color: black;
+}
+
+.btn-white{
+    background:#fff;
+    color:#000;
+}
+.btn-blue:hover{
+    box-shadow:0px 10px 10px rgba(137, 196, 244, 1);
+    transform : translateY(-3px);
+}
+
+.btn-white:hover{
+    box-shadow:0px 10px 10px rgba(0,0,0,0.2);
+    transform : translateY(-3px);
+}
+.btn-blue:active{
+    box-shadow:0px 5px 10px rgba(137, 196, 244, 1);
+    transform:translateY(-1px);
+}
+
+.btn-white:active{
+    box-shadow:0px 5px 10px rgba(0,0,0,0.2);
+    transform:translateY(-1px);
+}
+
+.btn-bottom-animation-1{
+    animation:comeFromBottom 1s ease-out .8s;
+}
+
+.btn::after{
+    content:"";
+    text-decoration: none;
+    text-transform:uppercase;
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    border-radius:100px;
+    display:inline-block;
+    z-index:-1;
+    transition: all .5s;
+}
+
+.btn-white::after {
+    background: #fff;
+}
+
+.btn-animation-1:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+@keyframes comeFromBottom{
+    0%{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    100%{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+    width: 150px;
+    border-radius: 50%;
+}
 
 .wrapper {
     display: flex;
@@ -59,7 +236,18 @@ h3 {
     padding: 20px;
     margin: auto;
 }
-
+.team-header{
+    position: relative;
+    font-size: 32px;
+    text-align: center;
+    font-weight: bold;
+;
+}
+.team-member{
+    position: relative;
+    font-size: 26px;
+    text-align: center;
+}
 #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
@@ -82,8 +270,9 @@ h3 {
     -webkit-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
 }
+.wrap--image{position:relative;background-color:#494949;background-repeat:no-repeat;background-position:top center;background-size:cover}.wrap--image:before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(43,43,43,.65)}
 .text-front{position: absolute}
-
+.split-box{display:flex;flex-direction:row-reverse;flex-wrap:wrap;align-items:center;justify-content:space-between;width:100%}.split-box>*{flex:1 1 100%}.split-box a:not(.btn):not(.arrow-link):not(.dropdown-item){font-weight:700}@media only screen and (min-width:768px){.split-box>*{flex-basis:50%;flex-direction:row;flex-wrap:nowrap}}@media only screen and (max-width:600px){.split-box{display:inline-block}}.split-box__image{text-align:center;margin:auto auto 20px}.split-box__image img{margin:0 auto 1.25rem}@media only screen and (min-width:768px){.split-box__image{max-width:none;padding-left:10px;margin-bottom:auto}.split-box__image img{width:700px}}@media only screen and (min-width:576px){.split-box__content p{font-size:1.1875rem}}@media only screen and (min-width:768px){.split-box__content{padding-right:15px}}
 .tool-btn .icon-inline{display:inline-block;vertical-align:middle;width:2em;height:auto;margin-top:-.1em;margin-right:.25em;margin-bottom:.1em}
 .tool-btn{background-color:#fff}
 .tool-btn{display:block;color:#494949;font-family:Arial;font-size:.6000rem;font-weight:700;text-transform:uppercase;background-color:#f4f4f4;padding:5px;border:solid 1px rgba(0,0,0,.12);border-radius:2px;margin:0 auto .5rem}
