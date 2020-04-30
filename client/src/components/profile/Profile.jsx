@@ -82,7 +82,7 @@ export default class Profile extends React.Component{
 
   studentInfoSave = (event)=>{
     this.setState({disabled : true});
-    this.setState({ btnState: "Edit" });
+    this.setState({ btnState: "Edit"});
     Axios.post("/setStudentInfo", {user : this.state}).then((resp) =>{
       if (resp.data.msg !== undefined){
         alert(resp.data.msg);
@@ -222,14 +222,13 @@ export default class Profile extends React.Component{
             </div>
             <div class="form-group">
               <label class="col-sm-2 text-center"> High School State: </label>
-              <input type="text"
-                     class = "col-sm-2"
-                     name="high_school_state"
-                     value={(this.state.high_school_state != null) ? this.state.high_school_state : ""}
-                     disabled={(this.state.disabled) ? "disabled" : ""}
-                     placeholder={"Fill Your Profile"}
-                     onChange={(e) => this.handleChange(e)}
-              />
+              <select className="col-sm-2" name="high_school_state" disabled={(this.state.disabled) ? "disabled" : ""}
+                onChange={(e) => this.handleChange(e)}
+              >
+                {states.map(state => {
+                  return state === this.state.high_school_state ? <option key={state} value={state.toLowerCase()} selected>{state}</option> : <option key={state} value={state.toLowerCase()}>{state}</option>
+                })}
+              </select>
             </div>
             <div class="form-group">
               <label class="col-sm-2 text-center"> Major 1 : </label>

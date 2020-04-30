@@ -130,7 +130,10 @@ app.post('/getuser', async (req, res) => {
 });
 
 app.post('/setStudentInfo', async (req, res) => {
-  try {
+  try { 
+    req.body.user.high_school_name = req.body.user.high_school_name.toLowerCase();
+    req.body.user.high_school_city = req.body.user.high_school_city.toLowerCase();
+    console.log(req.body);
     await backend.studentHandler.importStudentHS(req.body.user);
     await backend.studentHandler.editStudentInfo(req.body.user);
     res.status(200).send({msg: 'Your profile have been update'});
