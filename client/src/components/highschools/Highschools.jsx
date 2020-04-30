@@ -102,7 +102,7 @@ export default class Highschools extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.state.highschools.map((hs ,i) => { return <tr key={hs.highschool._id}><td>{i + 1}</td><td>{hs.highschool.name.toUpperCase()+ ", " + hs.highschool.city.toUpperCase() + ", " + hs.highschool.state.toUpperCase()}</td><td>{hs.score}</td></tr> })}
+                                    {this.state.highschools.map((hs ,i) => { return <tr key={hs.highschool._id}><td>{i + 1}</td><td>{hs.highschool.name.toUpperCase()+ ", " + hs.highschool.city.toUpperCase() + ", " + hs.highschool.state.toUpperCase()}</td><td>{hs.score.toFixed(3)}</td></tr> })}
                                 </tbody>
                             </Table>
                         }
