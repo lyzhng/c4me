@@ -151,6 +151,7 @@ const importCollegeRankings = async function(filepath) {
           console.log('updated ranking for ' + collegeArr[i].name + ': ' + allRankings[collegeArr[i].name]);
         }
       }
+      console.log("Finished importing college rankings.")
       resolve();
     });
   });
@@ -166,7 +167,6 @@ const importCollegeDescriptions = async function(filepath) {
     const url = 'https://www.timeshighereducation.com/world-university-rankings/';// harvard-university";
 
     college.find(async function(err, collegeArr) {
-      console.log(collegeArr.length);
       for (let i = 0; i < collegeArr.length; i ++) {
         await new Promise(function(resolve, reject) {
           request(url + collegeArr[i].name.split(' ').join('-'), function(error, response, body) {
@@ -189,6 +189,7 @@ const importCollegeDescriptions = async function(filepath) {
           });
         });
       }
+      console.log("Finished importing college descriptions.")
       resolve();
     });
   });
@@ -280,54 +281,47 @@ const importScorecardData = async (filepath) => {
       const dashIndex = college.ZIP.indexOf('-');
       zipCode = +college.ZIP.substring(0, dashIndex);
     }
-    await collections.College.updateOne(
-        {name: college.INSTNM},
-        {
-          location: {
+    await new Promise(function (resolve, reject)
+    {
+      collections.College.findOne({name: college.INSTNM}, function(err, foundCollege)
+      {
+        foundCollege.location = {
             city: college.CITY,
             state: college.STABBR,
             zip: zipCode,
-          },
-          type: college.CONTROL,
-          url: college.INSTURL.toLowerCase(),
-          admission_rate: convertToPercent(college.ADM_RATE),
-          completion_rate: convertToPercent(college.C100_4),
-          // cost: {
-          //   tuition: {
-          //     in_state: college.TUITIONFEE_IN,
-          //     out_state: college.TUITIONFEE_OUT,
-          //   },
-          // },
-          grad_debt_mdn: college.GRAD_DEBT_MDN,
-          sat: {
-            reading_25: college.SATVR25,
-            reading_50: college.SATVRMID,
-            reading_75: college.SATVR75,
-            writing_25: college.SATWR25,
-            writing_50: college.SATWRMID,
-            writing_75: college.SATVR75,
-            math_25: college.SATMT25,
-            math_50: college.SATMTMID,
-            math_75: college.SATMT75,
-          },
-          act: {
-            english_25: college.ACTEN25,
-            english_50: college.ACTENMID,
-            english_75: college.ACTEN75,
-            writing_25: college.ACTWR25,
-            writing_50: college.ACTWRMID,
-            writing_75: college.ACTWR75,
-            math_25: college.ACTMT25,
-            math_50: college.ACTMTMID,
-            math_75: college.ACTMT75,
-            composite_25: college.ACTCM25,
-            composite_50: college.ACTCMMID,
-            composite_75: college.ACTCM75,
-          },
-        },
-    );
+          };
+        foundCollege.type = college.CONTROL;
+        foundCollege.url = college.INSTURL.toLowerCase();
+        foundCollege.admission_rate = convertToPercent(college.ADM_RATE);
+        foundCollege.completion_rate = convertToPercent(college.C100_4);
+        foundCollege.grad_debt_mdn = college.GRAD_DEBT_MDN;
+        foundCollege.sat.reading_25 = college.SATVR25;
+        foundCollege.sat.reading_50 = college.SATVRMID;
+        foundCollege.sat.reading_75 = college.SATVR75;
+        foundCollege.sat.writing_25 = college.SATWR25;
+        foundCollege.sat.writing_50 = college.SATWRMID;
+        foundCollege.sat.writing_75 = college.SATWR75;
+        foundCollege.sat.math_25 = college.SATMT25;
+        foundCollege.sat.math_50 = college.SATMTMID;
+        foundCollege.sat.math_75 = college.SATMT75;
+        foundCollege.act.english_25 = college.ACTEN25;
+        foundCollege.act.english_50 = college.ACTENMID;
+        foundCollege.act.english_75 = college.ACTEN75;
+        foundCollege.act.writing_25 = college.ACTWR25;
+        foundCollege.act.writing_50 = college.ACTWRMID;
+        foundCollege.act.writing_75 = college.ACTWR75;
+        foundCollege.act.math_25 = college.ACTMT25;
+        foundCollege.act.math_50 = college.ACTMT50;
+        foundCollege.act.math_75 = college.ACTMT75;
+        foundCollege.composite_25 = college.ACTCM25;
+        foundCollege.composite_50 = college.ACTCMMID;
+        foundCollege.composite_75 = college.ACTCM75;
+        foundCollege.save();
+        resolve();
+      });
+    });
   }
-  console.log('I am done!');
+  console.log('Finished importing College Scorecard.');
 };
 
 function sanitizeString(parsedValue) {
@@ -544,7 +538,7 @@ const importCollegeData = async function(filepath) {
           });
         });
       }
-      console.log('Finished importing College Data.');
+      console.log('Finished importing college data.');
       resolve();
     });
   });
