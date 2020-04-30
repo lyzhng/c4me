@@ -17,10 +17,10 @@ mongoose.connect('mongodb://localhost/c4me', {useUnifiedTopology: true, useNewUr
 
 
 // Addes a student to the database. Used in the map function below
-const insertStudent = async (student, resolve) => {
+const insertStudent = async (student) => {
   if (student.userid) {
     student.userid = student.userid.toLowerCase();
-    const resp = await collections.Student.find({ userid: student.userid });
+    const resp = await collections.Student.find({ userid: student.userid }).lean();
     // if the student userid hasn't been used and it doesnt equal to admin we will create a new student
     if (resp.length === 0 && student.userid !== 'admin') {
       // holds the student that is created
@@ -41,7 +41,7 @@ const insertStudent = async (student, resolve) => {
       }
     }
   }
-  resolve();
+  //resolve();
 };
 
 // import student profile csv and takes in name of csv file
@@ -58,13 +58,13 @@ const importStudentProfiles = async (studentCsv) => {
       studentData = JSON.parse(JSON.stringify(studentData).replace(/\s(?=\w+":)/g, ''));
     },
   });
-  const importAllStudents = studentData.map((student) => {
-    return new Promise((resolve) => {
-      insertStudent(student, resolve);
-    });
-  });
-
-  await Promise.all(importAllStudents);
+  // const importAllStudents = studentData.map(async (student) => {
+  //     await insertStudent(student, resolve);
+  // });
+  for (let i = 0; i < studentData.length; i++){
+    await insertStudent(studentData[i]);
+  }
+  //await Promise.all(importAllStudents);
   console.log('done with importing students');
   console.log('Done with importing highschools from students');
 };
@@ -623,7 +623,7 @@ const scrapeSimilarAppliedColleges = ($) => {
 };
 
 const importHighschoolData = async (name, city, state) => {
-  const college = await collections.HighSchool.find({name, city, state});
+  const college = await collections.HighSchool.find({name, city, state}).lean();
   if (college.length === 0) {
     // let url = 'https://www.niche.com/k12/' + name + '-' + city + '-' + state;
     let url = 'http://allv22.all.cs.stonybrook.edu/~stoller/cse416/niche/'+ name + '-' + city + '-' + state;
@@ -661,6 +661,7 @@ const importHighschoolData = async (name, city, state) => {
       clearHSDupes(name, city, state);
     }).catch((err) => {
       console.log(err);
+      throw new error("Highschool not found");
       // console.log('Scrape for high school:', name, city, state, 'Gave the following error:', err.response.status, err.response.statusText);
     });
   }

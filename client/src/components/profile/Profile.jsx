@@ -3,6 +3,7 @@ import {Redirect ,BrowserRouter} from 'react-router-dom';
 import Axios from 'axios';
 import { Modal, Button, Form, Col } from "react-bootstrap";
 
+const states = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'];
 export default class Profile extends React.Component{
 
   state = {
@@ -76,17 +77,16 @@ export default class Profile extends React.Component{
 
   edit = (event) =>{
     this.setState({disabled : false});
-    this.setState({btnState : "save"});
+    this.setState({btnState : "Save"});
   };
 
   studentInfoSave = (event)=>{
     this.setState({disabled : true});
-    this.setState({btnState : "edit"});
+    this.setState({ btnState: "Edit" });
     Axios.post("/setStudentInfo", {user : this.state}).then((resp) =>{
       if (resp.data.msg !== undefined){
         alert(resp.data.msg);
       }
-      console.log(resp.data.err);
       if (resp.data.err !== undefined){
         alert(resp.data.err);
       }
@@ -101,7 +101,9 @@ export default class Profile extends React.Component{
     this.setState({gradeModel:false});
   };
 
-  handleChange(e){
+  handleChange(e) {
+    console.log(e.target.value);
+    console.log(e.target.name);
     this.setState({[e.target.name] : e.target.value});
   }
 
@@ -183,19 +185,18 @@ export default class Profile extends React.Component{
                      onChange={(e) => this.handleChange(e)}
               />
                 <span className="ml-4">
-                <Button className="btn" onClick = {(this.state.btnState === "edit")? this.edit : this.studentInfoSave } > {this.state.btnState}</Button>
+                <Button className="btn" onClick = {(this.state.btnState === "Edit")? this.edit : this.studentInfoSave } > {this.state.btnState}</Button>
               </span>
             </div>
             <div className="form-group">
               <label className="col-sm-2 text-center"> residence_state : </label>
-              <input type = "text"
-                     className = "col-sm-2"
-                     name = "residence_state"
-                     value = {(this.state.residence_state != null) ? this.state.residence_state : ""}
-                     placeholder = {"Fill Your Profile"}
-                     disabled = {(this.state.disabled)? "disabled" :""}
-                     onChange={(e) => this.handleChange(e)}
-              />
+              <select className="col-sm-2" name="residence_state" disabled={(this.state.disabled) ? "disabled" : ""}
+                onChange={(e) => this.handleChange(e)}
+              >
+                {states.map(state => {
+                  return state === this.state.residence_state ? <option key={state} value={state.toLowerCase()} selected>{state}</option> : <option key={state} value={state.toLowerCase()}>{state}</option>
+                })}
+              </select>
             </div>
             <div class="form-group">
               <label className="col-sm-2 text-center"> High School : </label>
