@@ -157,18 +157,19 @@ app.post('/getapplications', async (req, res) => {
   res.status(200).send({applications: applications});
 });
 
-app.post('/updateapplication', async (req, res) => {
-  console.log('Inside update application');
-  const _id = req.body.applicationId;
-  console.log(_id);
-  const status = req.body.status;
-  await collections.Application.updateOne({_id}, {
-    status,
-  });
-  const updatedApplication = await collections.Application.find({_id});
-  console.log('Updated Application');
-  console.log(updatedApplication);
-  res.status(200).send({application: updatedApplication});
+app.post('/updateapplications', async (req, res) => {
+  const tracker = req.body.tracker;
+  console.log('Inside Update Applications');
+  console.log('Tracker: ', tracker);
+  const ids = Object.keys(tracker);
+  for (const _id of ids) {
+    await collections.Application.updateOne({_id}, {
+      status: tracker[_id],
+    });
+  }
+  const apps = await collections.Application.find({_id: {$in: ids}}).lean();
+  console.log(apps);
+  res.status(200).send();
 });
 
 app.listen(PORT, ()=>{
