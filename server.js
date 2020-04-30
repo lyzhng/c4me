@@ -10,8 +10,8 @@ const backend = require('./backend');
 const PORT = process.env.PORT || 3001;
 const secret = process.env.JWT_SECRET_KEY || 'pokTGERW54389e#@$%mans12$@!$!#$^#%$';
 
-const studentDatasets = ['students-1.csv', 'dummies.csv']; // ADD ALL DATASETS HERE
-const applicationDatasets = ['applications-1.csv', 'dummyapps.csv'];// ADD ALL DATASETS HERE
+const studentDatasets = ['students-2.csv']; // ADD ALL DATASETS HERE
+const applicationDatasets = ['applications-2.csv'];// ADD ALL DATASETS HERE
 
 app = express();
 app.use(express.urlencoded({extended: true}));
@@ -76,9 +76,8 @@ app.get('/deletestudents', async (req, res)=>{
 });
 
 app.get('/importstudentdatasets', async (req, res) => {
-  for (let i = 0; i < studentDatasets.length; i++) {
-    await backend.adminHandler.importStudentProfiles(studentDatasets[i]);
-  }
+  const importAllStudents = studentDatasets.map(async (student) => {await backend.adminHandler.importStudentProfiles(student)});
+  await Promise.all(importAllStudents);
   for (let i = 0; i < applicationDatasets.length; i++) {
     await backend.adminHandler.importApplicationData(applicationDatasets[i]);
   }
