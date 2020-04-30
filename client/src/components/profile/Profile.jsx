@@ -194,7 +194,7 @@ export default class Profile extends React.Component{
                 onChange={(e) => this.handleChange(e)}
               >
                 {states.map(state => {
-                  return state === this.state.residence_state ? <option key={state} value={state.toLowerCase()} selected>{state}</option> : <option key={state} value={state.toLowerCase()}>{state}</option>
+                  return state.toLowerCase() === this.state.residence_state ? <option key={state} value={state.toLowerCase()} selected>{state}</option> : <option key={state} value={state.toLowerCase()}>{state}</option>
                 })}
               </select>
             </div>
@@ -226,7 +226,7 @@ export default class Profile extends React.Component{
                 onChange={(e) => this.handleChange(e)}
               >
                 {states.map(state => {
-                  return state === this.state.high_school_state ? <option key={state} value={state.toLowerCase()} selected>{state}</option> : <option key={state} value={state.toLowerCase()}>{state}</option>
+                  return state.toLowerCase() === this.state.high_school_state ? <option key={state} value={state.toLowerCase()} selected>{state}</option> : <option key={state} value={state.toLowerCase()}>{state}</option>
                 })}
               </select>
             </div>
@@ -281,7 +281,7 @@ export default class Profile extends React.Component{
           View Scores
           </Button>
         <Button variant="primary" onClick={() => this.setState({ showApplications: true })}>
-          View Applications  
+          View Applications
         </Button>
 
           <Modal size="xl" show={this.state.gradeModel} onHide={(e)=> this.gradeHandleShow(e)}>
