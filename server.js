@@ -149,6 +149,27 @@ app.post('/calculateSimilarHighschools', async (req, res) => {
   }
 });
 
+app.post('/getapplications', async (req, res) => {
+  const userid = req.body.query;
+  const applications = await collections.Application.find({userid}).lean();
+  console.log('Applications:', applications);
+  res.status(200).send({applications: applications});
+});
+
+app.post('/updateapplication', async (req, res) => {
+  console.log('Inside update application');
+  const _id = req.body.applicationId;
+  console.log(_id);
+  const status = req.body.status;
+  await collections.Application.updateOne({_id}, {
+    status,
+  });
+  const updatedApplication = await collections.Application.find({_id});
+  console.log('Updated Application');
+  console.log(updatedApplication);
+  res.status(200).send({application: updatedApplication});
+});
+
 app.listen(PORT, ()=>{
   console.log('Backend listening on port:', PORT);
 });

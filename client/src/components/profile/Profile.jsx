@@ -7,8 +7,10 @@ import { Modal } from "react-bootstrap";
 export default class Profile extends React.Component{
 
   state = {
+    isReadOnlyApplication: true,
+    showApplications: false,
     gradeModel : false,
-    btnState : "edit",
+    btnState : "Edit",
     disabled : true,
     userid: "",
     password: "",
@@ -65,10 +67,11 @@ export default class Profile extends React.Component{
     });
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     Axios.post("/getuser", { userId: this.props.userid }).then((resp) => {
       this.userDefaultState(resp.data.user);
     });
+    await this.getApplications();
   }
 
   edit = (event) =>{
@@ -115,6 +118,7 @@ export default class Profile extends React.Component{
     else
       alert("Invalid input for ACT Score ");
   }
+
   handleAPChange(e){
     if (e.target.value >=  0  && e.target.value <= 9999 )
       this.setState({[e.target.name] : e.target.value});
@@ -122,29 +126,72 @@ export default class Profile extends React.Component{
       alert("Invalid input for number of AP pass");
   }
 
+  getApplications = async () => {
+    const resp = await Axios.post('/getapplications', { query: this.props.userid });
+    this.setState({ applications: resp.data.applications });
+    console.log('Get Applications');
+    console.log(this.state.applications)
+  }
+
+  handleApplicationChange = async (e, applicationId) => {
+    const applications = this.state.applications.map((application) => { return Object.assign({}, application) });
+    const status = document.querySelector(`#status-${applicationId}`).value;
+    const resp = await Axios.post('/updateapplication', { applicationId, status });
+    const updatedApplication = resp.data.application;
+    for (let i = 0; i < applications.length; i++) {
+      console.log(applications[i]);
+      if (applications[i]._id === applicationId) {
+        console.log('target hit!');
+        applications[i] = updatedApplication;
+      }
+    }
+    this.setState({ applications: [...applications] });
+    console.log('Handle Application Change');
+    console.log(this.state.applications);
+  }
+
+  handleEditOrSaveButton = (e, applicationId) => {
+    if (!applicationId) {
+      this.addNewApplication();
+      this.setState({ isReadOnlyApplication: !this.state.isReadOnlyApplication });
+      return;
+    }
+    if (!this.state.isReadOnlyApplication) {
+      this.handleApplicationChange(e, applicationId);
+    }
+    this.setState({ isReadOnlyApplication: !this.state.isReadOnlyApplication });
+  }
+
+  addNewApplication = async () => {
+    await Axios.post('/addapplication', { userid: this.props.userid })
+  }
+
+  appendPrompt = () => {
+  }
+
   render(){
     if(this.props.userid){
-    return(
+      return (
         <div className={`container my-2`}>
           <h1>User ID: {this.state.userid}</h1>
           <form>
             <div class="form-group">
-              <label class="col-sm-2 text-center"> Password : </label>
+              <label className="col-sm-2 text-center">Password: </label>
               <input type = "Password"
-                     class = "col-sm-2"
+                     className= "col-sm-2"
                      name = "password"
                      value={(this.state.password != null) ? this.state.password : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
                      onChange={(e) => this.handleChange(e)}
               />
-                <span class="ml-4">
-                <Button   class="btn" onClick = {(this.state.btnState === "edit")? this.edit : this.studentInfoSave } > {this.state.btnState}</Button>
+                <span className="ml-4">
+                <Button className="btn" onClick = {(this.state.btnState === "edit")? this.edit : this.studentInfoSave } > {this.state.btnState}</Button>
               </span>
             </div>
-            <div class="form-group">
-              <label class="col-sm-2 text-center"> residence_state : </label>
+            <div className="form-group">
+              <label className="col-sm-2 text-center"> residence_state : </label>
               <input type = "text"
-                     class = "col-sm-2"
+                     className = "col-sm-2"
                      name = "residence_state"
                      value = {(this.state.residence_state != null) ? this.state.residence_state : ""}
                      placeholder = {"Fill Your Profile"}
@@ -153,7 +200,7 @@ export default class Profile extends React.Component{
               />
             </div>
             <div class="form-group">
-              <label class="col-sm-2 text-center"> High School : </label>
+              <label className="col-sm-2 text-center"> High School : </label>
               <input type = "text"
                      class = "col-sm-2"
                      name = "high_school_name"
@@ -163,10 +210,10 @@ export default class Profile extends React.Component{
                      onChange={(e) => this.handleChange(e)}
               />
             </div>
-            <div class="form-group">
-              <label class="col-sm-2 text-center"> High School City: </label>
+            <div className="form-group">
+              <label className="col-sm-2 text-center"> High School City: </label>
               <input type="text"
-                     class = "col-sm-2"
+                     className = "col-sm-2"
                      name="high_school_city"
                      value={(this.state.high_school_city != null) ? this.state.high_school_city : ""}
                      disabled={(this.state.disabled) ? "disabled" : ""}
@@ -233,8 +280,11 @@ export default class Profile extends React.Component{
           </form>
 
           <Button variant="primary" onClick={(e)=> this.gradeHandleShow(e)}>
-            View Scores
+          View Scores
           </Button>
+        <Button variant="primary" onClick={() => this.setState({ showApplications: true })}>
+          View Applications  
+        </Button>
 
           <Modal size="xl" show={this.state.gradeModel} onHide={(e)=> this.gradeHandleShow(e)}>
             <Modal.Header closeButton onClick={(e)=> this.gradHandleClose(e)} >
@@ -349,7 +399,52 @@ export default class Profile extends React.Component{
                 Save Changes
               </Button>
             </Modal.Footer>
-          </Modal>
+        </Modal>
+        <Modal size="xl" show={this.state.showApplications} onHide={() => this.setState({ showApplications: false })}>
+          <Modal.Header closeButton onClick={() => this.setState({ showApplications: false })} >
+            <Modal.Title>Applications</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+          {
+              this.state.applications.map((application) => {
+                return (
+                  <div key={application}>
+                    <h2 style={{ color: "#222222" }}>{application.college}</h2><span> </span>
+                    <select 
+                      id={`status-${application._id}`}
+                      disabled={this.state.isReadOnlyApplication}
+                      defaultValue={application.status}>
+                      <option value="pending" >Pending</option>
+                      <option value="accepted">Accepted</option>
+                      <option value="denied">Denied</option>
+                      <option value="deferred">Deferred</option>
+                      <option value="wait-listed">Wait-listed</option>
+                      <option value="withdrawn">Withdrawn</option>
+                    </select>
+                    <span> </span>
+                    <Button
+                      variant="outline-primary"
+                      onClick={(e) => this.handleEditOrSaveButton(e, application._id)}
+                      value={this.state.isReadOnlyApplication ? 'Edit Application' : 'Save Changes'}>
+                      {this.state.isReadOnlyApplication ? 'Edit Application' : 'Save Changes'}
+                    </Button>
+                  </div>
+                )
+              })
+            }
+            <div className="new-applications">
+              
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button name='saveBtn' variant="primary" onClick={this.appendPrompt}>
+              Add New Application
+            </Button>
+            <Button variant="secondary" onClick={() => this.setState({ showApplications: false })}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
         </div>
     )
     }
