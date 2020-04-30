@@ -33,7 +33,7 @@ const insertStudent = async (student, resolve) => {
         });
         if (resp.length === 0) {
           try {
-            //await importHighschoolData(created.high_school_name, created.high_school_city, created.high_school_state);
+            await importHighschoolData(created.high_school_name, created.high_school_city, created.high_school_state);
           } catch (err) {
             console.log(err);
           }
@@ -71,11 +71,13 @@ const importStudentProfiles = async (studentCsv) => {
 
 // Adds an application to the database. Used for the map function below.
 const importApplication = async (newApp, resolve) => {
-  const resp = await collections.Application.findOne({userid: newApp.userid, college: newApp.college});
-  if (!resp) {
-    const createdApp = await collections.Application.create(newApp);
-    await collections.Student.updateOne({userid: newApp.userid}, {$push: {applications: createdApp._id}});
-    console.log('Added application for '+ newApp.userid+' with college: '+newApp.college+' and status: '+newApp.status);
+  if (newApp.userid) {
+    const resp = await collections.Application.findOne({ userid: newApp.userid, college: newApp.college });
+    if (!resp) {
+      const createdApp = await collections.Application.create(newApp);
+      await collections.Student.updateOne({ userid: newApp.userid }, { $push: { applications: createdApp._id } });
+      console.log('Added application for ' + newApp.userid + ' with college: ' + newApp.college + ' and status: ' + newApp.status);
+    }
   }
   resolve();
 };
