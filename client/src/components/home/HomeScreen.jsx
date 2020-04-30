@@ -61,7 +61,7 @@ export default class HomeScreen extends React.Component{
         }};
 
         return(
-          <div>
+          <div className="home-screen">
             <div id="myCarousel" className="carousel slide" data-ride="carousel">
               <ol className="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" className="active"/>
@@ -70,26 +70,29 @@ export default class HomeScreen extends React.Component{
               </ol>
               <div className="carousel-inner">
                 <div className="carousel-item active">
-                  <div className="carousel-caption dark-text">
+                  <div className="carousel-caption">
                     <h1 className="headerFront">c4Me</h1>
                     <p>...</p>
                   </div>
-                  <img className="d-block w-100"
+                  <img className="d-block w-100 Graduate"
                        height={1000}
-                       src={require("../image/Graduate.jpeg")}
-                       alt="First slide"/>
+                       // src={require("../image/Graduate.jpeg")}
+                       // alt="First slide"
+                  />
                 </div>
                 <div className="carousel-item">
-                  <img className="d-block w-100"
+                  <img className="d-block w-100 College"
                        height={1000}
-                       src={require("../image/Colleges.jpeg")}
-                       alt="Second slide"/>
+                       // src={require("../image/Colleges.jpeg")}
+                       // alt="Second slide"
+                  />
                 </div>
                 <div className="carousel-item">
-                  <img className="d-block w-100"
+                  <img className="d-block w-100 Students"
                        height={1000}
-                       src={require("../image/college_student.jpg")}
-                       alt="Third slide"/>
+                       // src={require("../image/college_student.jpg")}
+                       // alt="Third slide"
+                      />
                 </div>
               </div>
               <a className="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -167,39 +170,82 @@ export default class HomeScreen extends React.Component{
             <div class="section">
               <div className="split-box">
                 <div className="split-box__content">
-                  wwwwww
+                  <div className="section-header">
+                    College Search
+                  </div>
+                  <div className="section-contest">
+                    Search over colleges and filter to find the schools that match your preferences,
+                    and get all the detail on admission, academics, cost and application status.
+                  </div>
+                  <div className="box">
+                    <a href={this.loginRedirect() ? "/colleges" : "/login"} className="btn btn-blue btn-animation-1">Test
+                      Yourself</a>
+                  </div>
+                </div>
+                <div className="split-box__image">
+                  <img src={require("../image/college_search.jpg")} alt={"college Search"}/>
                 </div>
 
               </div>
             </div>
+            <div className="section-1">
+              <div className="split-box">
+                <div className="split-box__image">
+                  <img src={require("../image/Application.png")} alt={"Application Tracker"}/>
+                </div>
+                <div className="split-box__content">
+                  <div className="section-header">
+                    Application Tracker
+                  </div>
+                  <div className="section-contest">
+                    Search over colleges and filter to find the schools that match your preferences,
+                    and get all the detail on admission, academics, cost and application status.
+                  </div>
+                  <div class="box">
+                    <a href={this.loginRedirect()? "/colleges":"/login"} class="btn btn-white btn-animation-1">Test Yourself</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
             <div className="section">
               <div className="split-box">
+
                 <div className="split-box__content">
-                  this for Application Tracker
+                  <div className="section-header">
+                    Find Recommend Colleges
+                  </div>
+                </div>
+
+                <div className="split-box__image">
+                  <img src={require("../image/Application.png")} alt={"Application Tracker"}/>
                 </div>
 
               </div>
             </div>
-            <div className="section">
-              this for Find Recommend Colleges
-            </div>
-            <div className="section">
+            <div className="section-1">
               <div className="split-box">
+                <div className="split-box__image">
+                  <img src={require("../image/Application.png")} alt={"Application Tracker"}/>
+                </div>
                 <div className="split-box__content">
-                  this for Find Similar High School
+                  <div className="section-header">
+                    Find Similar High School
+                  </div>
                 </div>
 
               </div>
             </div>
-            <div className="section">
-              <div className="split-box">
-                <div className="split-box__content">
-                  team description
-                </div>
-
+            <div className="post">
+              <div className="team-header">
+                Made by Team: Alternative Flow
               </div>
+              <div className="team-member">
+                Lily Zhong, Harrison Ngan, Samuel Chen, Peilin Zhu
+              </div>
+              <img src={require("../image/Alternative.png")} alt={"Alternative Flow"}/>
             </div>
-
 
           </div>
 
