@@ -17,24 +17,26 @@ mongoose.connect('mongodb://localhost/c4me', {useUnifiedTopology: true, useNewUr
 
 
 // Addes a student to the database. Used in the map function below
-const insertStudent = async (student, resolve) =>{
-  student.userid = student.userid.toLowerCase();
-  const resp = await collections.Student.find({userid: student.userid});
-  // if the student userid hasn't been used and it doesnt equal to admin we will create a new student
-  if (resp.length === 0 && student.userid !== 'admin') {
-    // holds the student that is created
-    const created = await collections.Student.create(student);
-    // finds the highschool in database that student has, if it doesnt exist, we scrape for it
-    if (created.high_school_name && created.high_school_city && created.high_school_state) {
-      const resp = await collections.HighSchool.find({
-        name: created.high_school_name,
-        location: created.high_school_city + ', ' + created.high_school_state,
-      });
-      if (resp.length === 0) {
-        try {
-          await importHighschoolData(created.high_school_name, created.high_school_city, created.high_school_state);
-        } catch (err) {
-          console.log(err);
+const insertStudent = async (student, resolve) => {
+  if (student.userid) {
+    student.userid = student.userid.toLowerCase();
+    const resp = await collections.Student.find({ userid: student.userid });
+    // if the student userid hasn't been used and it doesnt equal to admin we will create a new student
+    if (resp.length === 0 && student.userid !== 'admin') {
+      // holds the student that is created
+      const created = await collections.Student.create(student);
+      // finds the highschool in database that student has, if it doesnt exist, we scrape for it
+      if (created.high_school_name && created.high_school_city && created.high_school_state) {
+        const resp = await collections.HighSchool.find({
+          name: created.high_school_name,
+          location: created.high_school_city + ', ' + created.high_school_state,
+        });
+        if (resp.length === 0) {
+          try {
+            await importHighschoolData(created.high_school_name, created.high_school_city, created.high_school_state);
+          } catch (err) {
+            console.log(err);
+          }
         }
       }
     }
@@ -69,11 +71,13 @@ const importStudentProfiles = async (studentCsv) => {
 
 // Adds an application to the database. Used for the map function below.
 const importApplication = async (newApp, resolve) => {
-  const resp = await collections.Application.findOne({userid: newApp.userid, college: newApp.college});
-  if (!resp) {
-    const createdApp = await collections.Application.create(newApp);
-    await collections.Student.updateOne({userid: newApp.userid}, {$push: {applications: createdApp._id}});
-    console.log('Added application for '+ newApp.userid+' with college: '+newApp.college+' and status: '+newApp.status);
+  if (newApp.userid) {
+    const resp = await collections.Application.findOne({ userid: newApp.userid, college: newApp.college });
+    if (!resp) {
+      const createdApp = await collections.Application.create(newApp);
+      await collections.Student.updateOne({ userid: newApp.userid }, { $push: { applications: createdApp._id } });
+      console.log('Added application for ' + newApp.userid + ' with college: ' + newApp.college + ' and status: ' + newApp.status);
+    }
   }
   resolve();
 };
@@ -657,7 +661,6 @@ const importHighschoolData = async (name, city, state) => {
       clearHSDupes(name, city, state);
     }).catch((err) => {
       console.log(err);
-      throw new Error('Fail to scrape for high school with name:', name, city, state);
       // console.log('Scrape for high school:', name, city, state, 'Gave the following error:', err.response.status, err.response.statusText);
     });
   }
