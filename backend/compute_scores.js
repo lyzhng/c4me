@@ -10,7 +10,9 @@ Academics 50%, Ranking similarities 25%, College Interests 25%
 */
 
 const calculateHSScore = (highschool, highschool2) => {
-  let academics = 50 * 0;
+  let sat = 20 * (1 - Math.abs(highschool.avg_SAT / 1600 - highschool2.avg_SAT / 1600));
+  let act = 20 * (1 - Math.abs(highschool.avg_ACT / 36 - highschool2.avg_ACT / 36));
+  let aps = 10 * (1 - Math.abs(highschool.AP_enrollment / 100 - highschool2.AP_enrollment / 100));
   let ranking =
     12.5 *
       (1 -
@@ -28,7 +30,7 @@ const calculateHSScore = (highschool, highschool2) => {
           8);
   const simColleges = highschool.similar_colleges_applied.filter((college) => highschool2.similar_colleges_applied.includes(college));
   let colleges = 25 * simColleges.length * 0.1;
-  return academics + colleges + ranking;
+  return sat + act + aps + colleges + ranking;
 };
 
 const calculateSimilarHighschools = async (name, city, state) => {
