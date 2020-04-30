@@ -1,8 +1,7 @@
 import React from 'react';
 import {Redirect ,BrowserRouter} from 'react-router-dom';
 import Axios from 'axios';
-import { Button} from 'react-bootstrap';
-import { Modal } from "react-bootstrap";
+import { Modal, Button, Form, Col } from "react-bootstrap";
 
 export default class Profile extends React.Component{
 
@@ -36,6 +35,7 @@ export default class Profile extends React.Component{
     high_school_state: "",
     high_school_name: "",
     applications: [],
+    statusTracker: {}
   };
 
   userDefaultState =(user)=> {
@@ -129,44 +129,42 @@ export default class Profile extends React.Component{
   getApplications = async () => {
     const resp = await Axios.post('/getapplications', { query: this.props.userid });
     this.setState({ applications: resp.data.applications });
+    const statusTracker = {};
+    for (const a of this.state.applications) {
+      statusTracker[a._id] = a.status;
+    }
     console.log('Get Applications');
     console.log(this.state.applications)
+    this.setState({ statusTracker });
+    console.log('Status Tracker');
+    console.log(this.state.statusTracker);
   }
 
-  handleApplicationChange = async (e, applicationId) => {
-    const applications = this.state.applications.map((application) => { return Object.assign({}, application) });
-    const status = document.querySelector(`#status-${applicationId}`).value;
-    const resp = await Axios.post('/updateapplication', { applicationId, status });
-    const updatedApplication = resp.data.application;
-    for (let i = 0; i < applications.length; i++) {
-      console.log(applications[i]);
-      if (applications[i]._id === applicationId) {
-        console.log('target hit!');
-        applications[i] = updatedApplication;
-      }
-    }
-    this.setState({ applications: [...applications] });
-    console.log('Handle Application Change');
-    console.log(this.state.applications);
+  updateApplications = async () => {
+    console.log('Update Applications');
+    await Axios.post('/updateapplications', { tracker: this.state.statusTracker });
   }
 
-  handleEditOrSaveButton = (e, applicationId) => {
-    if (!applicationId) {
-      this.addNewApplication();
-      this.setState({ isReadOnlyApplication: !this.state.isReadOnlyApplication });
-      return;
-    }
-    if (!this.state.isReadOnlyApplication) {
-      this.handleApplicationChange(e, applicationId);
+  handleEditOrSaveButton = async (e) => {
+    if (e.target.value === 'Save Changes') {
+      await this.updateApplications();
     }
     this.setState({ isReadOnlyApplication: !this.state.isReadOnlyApplication });
   }
 
-  addNewApplication = async () => {
-    await Axios.post('/addapplication', { userid: this.props.userid })
+  handleAppUpdate = (_id, status) => {
+    const ids = Object.keys(this.state.statusTracker);
+    for (const k of ids) {
+      if (k === _id) {
+        this.state.statusTracker[k] = status;
+      }
+    }
+    this.setState({ statusTracker: this.state.statusTracker });
+    console.log(this.state.statusTracker);
   }
 
-  appendPrompt = () => {
+  addNewApplication = async () => {
+    await Axios.post('/addapplication', { userid: this.props.userid })
   }
 
   render(){
@@ -404,44 +402,170 @@ export default class Profile extends React.Component{
           <Modal.Header closeButton onClick={() => this.setState({ showApplications: false })} >
             <Modal.Title>Applications</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-          {
-              this.state.applications.map((application) => {
-                return (
-                  <div key={application}>
-                    <h2 style={{ color: "#222222" }}>{application.college}</h2><span> </span>
-                    <select 
-                      id={`status-${application._id}`}
-                      disabled={this.state.isReadOnlyApplication}
-                      defaultValue={application.status}>
-                      <option value="pending" >Pending</option>
-                      <option value="accepted">Accepted</option>
-                      <option value="denied">Denied</option>
-                      <option value="deferred">Deferred</option>
-                      <option value="wait-listed">Wait-listed</option>
-                      <option value="withdrawn">Withdrawn</option>
-                    </select>
-                    <span> </span>
-                    <Button
-                      variant="outline-primary"
-                      onClick={(e) => this.handleEditOrSaveButton(e, application._id)}
-                      value={this.state.isReadOnlyApplication ? 'Edit Application' : 'Save Changes'}>
-                      {this.state.isReadOnlyApplication ? 'Edit Application' : 'Save Changes'}
-                    </Button>
-                  </div>
-                )
-              })
-            }
-            <div className="new-applications">
-              
-            </div>
+            <Modal.Body>
+              <Form>
+                {
+                  this.state.applications.map((application) => {
+                    return (
+                      <Form.Group>
+                        <Form.Row>
+                          <Form.Label column className="text-justify">{application.college}</Form.Label>
+                          <Col>
+                            <Form.Control
+                              as="select"
+                              onChange={(e) => this.handleAppUpdate(application._id, e.target.value)}
+                              name="application"
+                              defaultValue={application.status}
+                              disabled={this.state.isReadOnlyApplication}>
+                              <option value="pending" >Pending</option>
+                              <option value="accepted">Accepted</option>
+                              <option value="denied">Denied</option>
+                              <option value="deferred">Deferred</option>
+                              <option value="wait-listed">Wait-listed</option>
+                              <option value="withdrawn">Withdrawn</option>
+                            </Form.Control>
+                          </Col>
+                        </Form.Row>
+                      </Form.Group>
+                    )
+                  })
+                }
+                <Form.Group>
+                  <Form.Row>
+                    <Col>
+                      <Form.Control
+                        as="select"
+                        defaultValue="no-option">
+                        <option value="no-option">Choose a college for your application.</option>
+                        <option value="American University">American University</option>
+                        <option value="Barnard College">Barnard College</option>
+                        <option value="Berry College">Berry College</option>
+                        <option value="California State University, East Bay">California State University, East Bay</option>
+                        <option value="California State University, Fresno">California State University, Fresno</option>
+                        <option value="California State University, Monterey Bay">California State University, Monterey Bay</option>
+                        <option value="Campbell University">Campbell University</option>
+                        <option value="Carnegie Mellon University">Carnegie Mellon University</option>
+                        <option value="Central Connecticut State University">Central Connecticut State University</option>
+                        <option value="Centre College">Centre College</option>
+                        <option value="Clarkson University">Clarkson University</option>
+                        <option value="Colgate University">Colgate University</option>
+                        <option value="Colorado College">Colorado College</option>
+                        <option value="DePaul University">DePaul University</option>
+                        <option value="DePauw University">DePauw University</option>
+                        <option value="Drake University">Drake University</option>
+                        <option value="Drexel University">Drexel University</option>
+                        <option value="Eastern Illinois University">Eastern Illinois University</option>
+                        <option value="Eastern Washington University">Eastern Washington University</option>
+                        <option value="Florida Gulf Coast University">Florida Gulf Coast University</option>
+                        <option value="Fordham University">Fordham University</option>
+                        <option value="Franklin & Marshall College">Franklin & Marshall College</option>
+                        <option value="Gannon University">Gannon University</option>
+                        <option value="Gettysburg College">Gettysburg College</option>
+                        <option value="Gordon College">Gordon College</option>
+                        <option value="Hendrix College">Hendrix College</option>
+                        <option value="Hope College">Hope College</option>
+                        <option value="Idaho State University">Idaho State University</option>
+                        <option value="Illinois College">Illinois College</option>
+                        <option value="Indiana University Bloomington">Indiana University Bloomington</option>
+                        <option value="Iona College">Iona College</option>
+                        <option value="John Carroll University">John Carroll University</option>
+                        <option value="Kalamazoo College">Kalamazoo College</option>
+                        <option value="Kennesaw State University">Kennesaw State University</option>
+                        <option value="Lawrence Technological University">Lawrence Technological University</option>
+                        <option value="Manhattan College">Manhattan College</option>
+                        <option value="Massachusetts Institute of Technology">Massachusetts Institute of Technology</option>
+                        <option value="Mercer University">Mercer University</option>
+                        <option value="Merrimack College">Merrimack College</option>
+                        <option value="Mississippi State University">Mississippi State University</option>
+                        <option value="Missouri University of Science and Technology">Missouri University of Science and Technology</option>
+                        <option value="Moravian College">Moravian College</option>
+                        <option value="Mount Holyoke College">Mount Holyoke College</option>
+                        <option value="New Jersey Institute of Technology">New Jersey Institute of Technology</option>
+                        <option value="New York University">New York University</option>
+                        <option value="North Park University">North Park University</option>
+                        <option value="Northwestern University">Northwestern University</option>
+                        <option value="Nova Southeastern University">Nova Southeastern University</option>
+                        <option value="Princeton University">Princeton University</option>
+                        <option value="Providence College">Providence College</option>
+                        <option value="Reed College">Reed College</option>
+                        <option value="Rice University">Rice University</option>
+                        <option value="Rider University">Rider University</option>
+                        <option value="Rochester Institute of Technology">Rochester Institute of Technology</option>
+                        <option value="Roger Williams University">Roger Williams University</option>
+                        <option value="SUNY College of Environmental Science and Forestry">SUNY College of Environmental Science and Forestry</option>
+                        <option value="Saint Louis University">Saint Louis University</option>
+                        <option value="Salve Regina University">Salve Regina University</option>
+                        <option value="Samford University">Samford University</option>
+                        <option value="San Diego State University">San Diego State University</option>
+                        <option value="School of the Art Institute of Chicago">School of the Art Institute of Chicago</option>
+                        <option value="Siena College">Siena College</option>
+                        <option value="Smith College">Smith College</option>
+                        <option value="St Bonaventure University">St Bonaventure University</option>
+                        <option value="Stevenson University">Stevenson University</option>
+                        <option value="Stony Brook University">Stony Brook University</option>
+                        <option value="Suffolk University">Suffolk University</option>
+                        <option value="Temple University">Temple University</option>
+                        <option value="Texas Christian University">Texas Christian University</option>
+                        <option value="Texas Tech University">Texas Tech University</option>
+                        <option value="The College of St Scholastica">The College of St Scholastica</option>
+                        <option value="The College of Wooster">The College of Wooster</option>
+                        <option value="Transylvania University">Transylvania University</option>
+                        <option value="University of Alabama">University of Alabama</option>
+                        <option value="University of Alabama at Birmingham">University of Alabama at Birmingham</option>
+                        <option value="University of Arizona">University of Arizona</option>
+                        <option value="University of Arkansas">University of Arkansas</option>
+                        <option value="University of California, Davis">University of California, Davis</option>
+                        <option value="University of California, Santa Barbara">University of California, Santa Barbara</option>
+                        <option value="University of California, Santa Cruz">University of California, Santa Cruz</option>
+                        <option value="University of Central Florida">University of Central Florida</option>
+                        <option value="University of Delaware">University of Delaware</option>
+                        <option value="University of Hartford">University of Hartford</option>
+                        <option value="University of Houston">University of Houston</option>
+                        <option value="University of Illinois at Chicago">University of Illinois at Chicago</option>
+                        <option value="University of Kentucky">University of Kentucky</option>
+                        <option value="University of Maine">University of Maine</option>
+                        <option value="University of Massachusetts Amherst">University of Massachusetts Amherst</option>
+                        <option value="University of Montana">University of Montana</option>
+                        <option value="University of Nevada, Las Vegas">University of Nevada, Las Vegas</option>
+                        <option value="University of Nevada, Reno">University of Nevada, Reno</option>
+                        <option value="University of Richmond">University of Richmond</option>
+                        <option value="University of San Diego">University of San Diego</option>
+                        <option value="University of Utah">University of Utah</option>
+                        <option value="Utah State University">Utah State University</option>
+                        <option value="Vassar College">Vassar College</option>
+                        <option value="Wagner College">Wagner College</option>
+                        <option value="Washington & Jefferson College">Washington & Jefferson College</option>
+                        <option value="Westmont College">Westmont College</option>
+                        <option value="William Jewell College">William Jewell College</option>
+                        <option value="Williams College">Williams College</option>
+                      </Form.Control>
+                    </Col>
+                    <Col>
+                      <Form.Control
+                        as="select"
+                        defaultValue="no-option">
+                        <option value="no-option">Choose a status for your application.</option>
+                        <option value="pending" >Pending</option>
+                        <option value="accepted">Accepted</option>
+                        <option value="denied">Denied</option>
+                        <option value="deferred">Deferred</option>
+                        <option value="wait-listed">Wait-listed</option>
+                        <option value="withdrawn">Withdrawn</option>
+                      </Form.Control>
+                    </Col>
+                  </Form.Row>
+                </Form.Group>
+              </Form>
           </Modal.Body>
-          <Modal.Footer>
+            <Modal.Footer>
+              <Button
+                variant="outline-primary"
+                onClick={(e) => this.handleEditOrSaveButton(e)}
+                value={this.state.isReadOnlyApplication ? 'Edit Application' : 'Save Changes'}>
+                {this.state.isReadOnlyApplication ? 'Edit Application' : 'Save Changes'}
+              </Button>
             <Button name='saveBtn' variant="primary" onClick={this.appendPrompt}>
-              Add New Application
-            </Button>
-            <Button variant="secondary" onClick={() => this.setState({ showApplications: false })}>
-              Close
+                Add New Application
             </Button>
           </Modal.Footer>
         </Modal>
