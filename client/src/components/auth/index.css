@@ -31,6 +31,9 @@ h3 {
     margin: auto;
     padding: 20px;
 }
+.word-white{
+    color: white;
+}
 .carousel-caption {
     top: 250px;
     bottom: auto;
@@ -74,14 +77,14 @@ h3 {
                     rgba(0, 0, 0, 0.2),
                     rgba(0, 0, 0, 0.2)
             ),
-            url(../image/Colleges.jpeg);
+            url(../image/Stonybrook.jpg);
     background-size: cover;
 }
 .Students{
     background-image:
             linear-gradient(
-                    rgba(0, 0, 0, 0.5),
-                    rgba(0, 0, 0, 0.5)
+                    rgba(0, 0, 0, 0.2),
+                    rgba(0, 0, 0, 0.2)
             ),
             url(../image/college_student.jpg);
     background-size: cover;
@@ -128,8 +131,8 @@ h3 {
     transform : translate(-50% ,-50%);
 }
 
-.btn:link,
-.btn:visited{
+.btn-1:link,
+.btn-1:visited{
     text-decoration: none;
     text-transform:uppercase;
     position:relative;
@@ -172,7 +175,7 @@ h3 {
     animation:comeFromBottom 1s ease-out .8s;
 }
 
-.btn::after{
+.btn-1::after{
     content:"";
     text-decoration: none;
     text-transform:uppercase;
@@ -241,7 +244,6 @@ h3 {
     font-size: 32px;
     text-align: center;
     font-weight: bold;
-;
 }
 .team-member{
     position: relative;
@@ -295,7 +297,7 @@ h2.active {
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=submit], input[type=reset]  {
+input[type=button], input[type=reset]  {
     background-color: #56baed;
     border: none;
     color: white;
@@ -317,11 +319,11 @@ input[type=button], input[type=submit], input[type=reset]  {
     transition: all 0.3s ease-in-out;
 }
 
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+input[type=button]:hover, input[type=reset]:hover  {
     background-color: #39ace7;
 }
 
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+input[type=button]:active, input[type=reset]:active  {
     -moz-transform: scale(0.95);
     -webkit-transform: scale(0.95);
     -o-transform: scale(0.95);

@@ -107,7 +107,7 @@ export default class HomeScreen extends React.Component{
 
 
             <div class = "divHS">
-              <h3>Get Start With Our Tools</h3>
+              <h3 className="word-white">Get Start With Our Tools</h3>
               <br/>
               <Carousel
                 arrows={false}
@@ -178,7 +178,7 @@ export default class HomeScreen extends React.Component{
                     and get all the detail on admission, academics, cost and application status.
                   </div>
                   <div className="box">
-                    <a href={this.loginRedirect() ? "/colleges" : "/login"} className="btn btn-blue btn-animation-1">Test
+                    <a href={this.loginRedirect() ? "/colleges" : "/login"} className="btn-1 btn-blue btn-animation-1">Test
                       Yourself</a>
                   </div>
                 </div>
@@ -202,7 +202,7 @@ export default class HomeScreen extends React.Component{
                     and get all the detail on admission, academics, cost and application status.
                   </div>
                   <div class="box">
-                    <a href={this.loginRedirect()? "/colleges":"/login"} class="btn btn-white btn-animation-1">Test Yourself</a>
+                    <a href={this.loginRedirect()? "/colleges":"/login"} class="btn-1 btn-white btn-animation-1">Test Yourself</a>
                   </div>
                 </div>
 
@@ -227,7 +227,7 @@ export default class HomeScreen extends React.Component{
             <div className="section-1">
               <div className="split-box">
                 <div className="split-box__image">
-                  <img src={require("../image/Application.png")} alt={"Application Tracker"}/>
+                  <img src={require("../image/Find_Similar_HS.png")} alt={"Application Tracker"}/>
                 </div>
                 <div className="split-box__content">
                   <div className="section-header">
