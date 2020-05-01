@@ -3,8 +3,11 @@ import {Redirect ,BrowserRouter} from 'react-router-dom';
 import Axios from 'axios';
 import { Modal, Button, Form, Col } from "react-bootstrap";
 import { MdRemoveCircle } from 'react-icons/md';
+import Autocomplete  from 'react-autocomplete'
 
 const states = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'];
+const hs_name = [];
+
 export default class Profile extends React.Component{
 
   state = {
@@ -77,8 +80,27 @@ export default class Profile extends React.Component{
     Axios.post("/getuser", { userId: this.props.userid }).then((resp) => {
       this.userDefaultState(resp.data.user);
     });
+    Axios.post("/getallhighschools").then((resp)=> {
+      console.log(resp.data.highschools.length);
+      for (let i = 0 ; resp.data.highschools.length > i; i++){
+        hs_name.push(
+          {id : i ,
+            label : resp.data.highschools[i].name,
+            city : resp.data.highschools[i].city,
+            state : resp.data.highschools[i].state
+          }
+        )
+      }
+    });
+    console.log(hs_name);
     await this.getApplications();
   }
+  autocompleteHS= (e)=>{
+      console.log(e);
+      const result = hs_name.find(hs_name =>hs_name.label === e);
+      console.log(result);
+      this.setState( {high_school_name: result.label , high_school_state: result.state, high_school_city : result.city })
+  };
 
   edit = (event) =>{
     this.setState({disabled : false});
@@ -172,6 +194,8 @@ export default class Profile extends React.Component{
     this.setState({ isReadOnlyApplication: !this.state.isReadOnlyApplication });
   }
 
+
+
   handleAppUpdate = (_id, collegeName, status) => {
     const ids = Object.keys(this.state.statusTracker);
     for (const k of ids) {
@@ -198,6 +222,7 @@ export default class Profile extends React.Component{
     //   this.clearPrompts();
     //   return;
     // }
+
 
     const resp = await Axios.post('/addapplication', {
       userid: this.props.userid,
@@ -269,13 +294,24 @@ export default class Profile extends React.Component{
             </div>
             <div class="form-group">
               <label className="col-sm-2 text-left"> High School : </label>
-              <input type = "text"
-                     class = "col-sm-2"
-                     name = "high_school_name"
-                     value = {(this.state.high_school_name != null) ? this.state.high_school_name : ""}
-                     disabled = {(this.state.disabled)? "disabled" :""}
-                     placeholder = {"Fill Your Profile"}
-                     onChange={(e) => this.handleChange(e)}
+              <Autocomplete
+                items= {hs_name}
+                shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                getItemValue={item => item.label}
+                //getOptionLabel={(item) => item.title}
+                renderItem={(item, highlighted) =>
+                  <div
+                    key={item.id}
+                    style={{ backgroundColor: highlighted ? '#eee' : 'transparent'}}
+                  >
+                    {item.label}
+                  </div>
+                }
+                inputProps={{disabled : (this.state.disabled)? "disabled" :""}}
+                value={this.state.high_school_name}
+                onChange={e => this.setState({ high_school_name : e.target.value })}
+                onSelect={value => this.autocompleteHS(value)}
+                wrapperStyle={{position:"relative", zIndex:1, display: "inline"}}
               />
             </div>
             <div className="form-group">
