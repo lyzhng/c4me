@@ -2,7 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 import {Redirect} from 'react-router-dom';
 import SearchResults from './SearchResults';
-import { Form, Col, Button } from 'react-bootstrap';
+import { Form, Col, Button, Accordion, Card } from 'react-bootstrap';
 
 const regionToStates  = 
 {
@@ -11,6 +11,14 @@ const regionToStates  =
 	midwest: ["ND", "SD", "NE", "KS", "MN", "IA", "MO", "WI", "IL", "IN", "MI", "OH"],
 	west: ["MT", "WY", "CO", "NM", "ID", "UT", "AZ", "WA", "OR", "NV", "CA"]
 }
+
+const allStates = [
+	"ME", "NH", "VT", "MA", "CT", "RI", "NJ", "NY", "PA",
+	"DE", "MD", "VA", "WV", "NC", "SC", "GA", "FL", "KY", "TN", "AL", "MS", "AR", "LA", "OK", "TX",
+	"ND", "SD", "NE", "KS", "MN", "IA", "MO", "WI", "IL", "IN", "MI", "OH",
+	"MT", "WY", "CO", "NM", "ID", "UT", "AZ", "WA", "OR", "NV", "CA",
+	"AK", "HI"
+]
 
 function isInt(n) {  //copied from https://stackoverflow.com/questions/5630123/javascript-string-integer-comparisons
 	  return /^[+-]?\d+$/.test(n);
@@ -66,7 +74,9 @@ export default class SearchColleges extends React.Component{
 			//filters
 			strict: false,
 			ascending : false,
-			location: "", //4 regions
+			location: "", //refers to 4 regions
+			locations: [], //refers to user entered states (abbrev. form)
+			newlocation : "",
 			sortCriteria: "", //sort by name, admission rate, cost of attendance, and ranking
 			costOfAttendance: Number.MAX_SAFE_INTEGER, //upperbound
 			major1: "",
@@ -143,18 +153,8 @@ export default class SearchColleges extends React.Component{
 	{
 		if (college.location && college.location.state)
 		{
-			if (this.state.location === "")
-			{
-				return true;
-			}
-			else if (!regionToStates[this.state.location]) //if somehow user enters wrong location (through post or something)
-			{
-				return false;
-			}
-			else
-			{
-				return regionToStates[this.state.location].includes(college.location.state);
-			}
+			return (this.state.location === "" ? true : regionToStates[this.state.location].includes(college.location.state.toUpperCase()))
+			&& ((this.state.locations.length === 0) ? true : (this.state.locations.includes(college.location.state.toUpperCase())));
 		}
 		else
 		{
@@ -280,6 +280,26 @@ export default class SearchColleges extends React.Component{
 		{
 			return this.state.strict ? false : true;
 		}
+	}
+
+	addLocation = () =>
+	{
+		if ((this.state.locations.length < 50) && (allStates.includes(this.state.newlocation.toUpperCase())) )
+		{
+			if (!this.state.locations.includes(this.state.newlocation))
+			{
+				let newLocations = this.state.locations.map((location) => {return location + "";});
+				newLocations.push(this.state.newlocation.toUpperCase());
+				this.setState({locations: newLocations, newlocation : ""});
+			}
+		}
+
+	}
+
+	removeLocation = (index) =>
+	{
+		let newLocations = this.state.locations.map((location) => {return location + "";});
+		this.setState({locations : newLocations.filter((location, i) => {return i != index})});
 	}
 
 	filter = (event) => {
@@ -471,20 +491,6 @@ export default class SearchColleges extends React.Component{
 							}
 							<Form.Group>
 								<Form.Row>
-									<Form.Label column>Location</Form.Label>
-									<Col>
-										<Form.Control as="select" onChange={this.handleChange} name="location">
-											<option value="">No preference</option>
-											<option value="northeast">Northeast</option>
-											<option value="midwest">Midwest</option>
-											<option value="south">South</option>
-											<option value="west">West</option>
-										</Form.Control>
-									</Col>
-								</Form.Row>
-							</Form.Group>
-							<Form.Group>
-								<Form.Row>
 									<Form.Label column>Sort Results</Form.Label>
 									<Col>
 										<Form.Control as="select" onChange={this.handleChange} name="sortCriteria">
@@ -503,6 +509,60 @@ export default class SearchColleges extends React.Component{
 									onClick={() => { this.state.ascending = !this.state.ascending }}
 								/>
 							</Form.Group>
+							<Form.Group>
+								<Form.Row>
+									<Form.Label column>Location</Form.Label>
+									<Col>
+										<Form.Control as="select" onChange={this.handleChange} name="location">
+											<option value="">No preference</option>
+											<option value="northeast">Northeast</option>
+											<option value="midwest">Midwest</option>
+											<option value="south">South</option>
+											<option value="west">West</option>
+										</Form.Control>
+									</Col>
+								</Form.Row>
+							</Form.Group>
+							<Form.Group>
+								<Form.Row>
+									<Form.Label column>Locations</Form.Label>
+									<Form.Control
+										type={"text"}
+										name={"newlocation"}
+										label={"New Location"}
+										onChange={this.handleChange}
+										value={this.state.newlocation}
+									/>
+									<Col>
+										<Button variant="primary" onClick={this.addLocation}>add Location</Button>
+									</Col>
+
+								</Form.Row>
+							</Form.Group>
+							<Accordion>
+				              <Card>
+				                <Card.Header>
+				                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
+				                    Locations Being Filtered
+				                  </Accordion.Toggle>
+				                </Card.Header>
+				                <Accordion.Collapse eventKey="0">
+				                  <Card.Body>
+				                   	{
+										this.state.locations.map((location, index) => {
+											console.log(location);
+											return (
+												<div key = {location}>
+													<h6>{location}</h6>
+													<Button variant="primary" onClick={this.removeLocation.bind(this, index)}>remove location</Button>
+												</div>
+												)
+										})
+									}
+				                  </Card.Body>
+				                </Accordion.Collapse>
+				              </Card>
+				            </Accordion>
 							<Button variant="primary" onClick={this.filter}>Apply Filters</Button>
 							<Button variant="outline-dark" className="ml-2" onClick={this.sort}>Apply Sort</Button>
 						</Form>
