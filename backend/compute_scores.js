@@ -68,20 +68,18 @@ const calculateCollegeScore = async (student) => {
 };
 
 async function isQuestionableApplication(name, student, _id) {
-  const college = await collections.College.findOne({name}).lean();
+  const college = await collections.College.findOne({ name }).lean();
   console.log('The college that is being tested is', college.name);
   const application = await collections.Application.findOne({_id}).lean();
   let questionableSAT = null;
   let questionableACT = null;
   try {
     questionableSAT = isQuestionableSAT(college, student, application);
-    console.log('Questionable ACT?', questionableACT);
   } catch (err) {
     console.error(err.message);
   }
   try {
     questionableACT = isQuestionableACT(college, student, application);
-    console.log('Questionable SAT?', questionableSAT);
   } catch (err) {
     console.error(err.message);
   }
@@ -102,7 +100,6 @@ function isQuestionableACT(college, student, application) {
   const upper = upperBound(college.act.composite_25, college.act.composite_75);
   const isAcceptedButLowScores = (lower > studentACT) && application.status === 'accepted';
   const isDeniedButHighScores = (studentACT > upper) && application.status === 'denied';
-  console.log('Student ACT', studentACT);
   console.log('Accepted But Low Scores?', isAcceptedButLowScores);
   console.log('Rejected But High Scores?', isDeniedButHighScores);
   return isAcceptedButLowScores || isDeniedButHighScores;

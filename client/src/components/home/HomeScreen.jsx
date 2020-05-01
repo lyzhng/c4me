@@ -72,9 +72,9 @@ export default class HomeScreen extends React.Component{
                 <div className="carousel-item active">
                   <div className="carousel-caption">
                     <h1 className="headerFront">c4Me</h1>
-                    <p className="paragraph">c4Me is made for student who about to graduate from high school and let them
-                      find the most fit colleges also see how other student do if they have similar high school or
-                      applied for same college.
+                    <p className="paragraph">c4Me is made for graduating high school students to help them
+                      find the most fit colleges and see how other students do in similar high schools or
+                      applied for same colleges.
                     </p>
                   </div>
                   <img className="d-block w-100 Graduate"
@@ -86,8 +86,8 @@ export default class HomeScreen extends React.Component{
                 <div className="carousel-item">
                   <div className="carousel-caption">
                     <p className="paragraph paragraph-center">
-                      c4Me have different feature such as, college search, college recommeder, Application Tracker,
-                      and find similar high school to help student target the college for their future.
+                      c4Me have different features such as college search, college recommeder, Application Tracker,
+                      and similar high school finder to help student target the best college for their future.
                     </p>
                   </div>
                   <img className="d-block w-100 College"
@@ -147,16 +147,16 @@ export default class HomeScreen extends React.Component{
                       <img src={require("../image/Search-btn.png")} alt={"Search Button"} className="icon-inline"/>
                       College Search
                     </span>
-                    Find the College You Enter
+                    Search from a variety of colleges from our database
                   </a>
                 </div>
                 <div class = "wrapperHS">
                   <a class="slide__content dark-text" href={this.loginRedirect()? "/highschools" : "/login"  }>
                     <span class ="tool-btn">
                       <img src={require("../image/HS.png")} alt={"HS Button"} className="icon-inline"/>
-                      Similar High School
+                      Similar High Schools
                     </span>
-                    Find find High school that similar to you, and check their status
+                    Find High school that are similar to yours
                   </a>
                 </div>
                 <div class = "wrapperHS">
@@ -165,7 +165,7 @@ export default class HomeScreen extends React.Component{
                       <img src={require("../image/thumbs up.png")} alt={"Recommend Button"} className="icon-inline"/>
                       College Recommender
                     </span>
-                    Find colleges that must fit your status
+                    Find colleges that best fits you
                   </a>
                 </div>
                 <div class = "wrapperHS">
@@ -174,7 +174,7 @@ export default class HomeScreen extends React.Component{
                       <img src={require("../image/apptracker.png")} alt={"AppTracker Button"} className="icon-inline"/>
                       Application Tracker
                     </span>
-                    Track your application status
+                    Track your application status and compares to other students
                   </a>
                 </div>
               </Carousel>
@@ -191,11 +191,10 @@ export default class HomeScreen extends React.Component{
                   </div>
                   <div className="section-contest">
                     Search over colleges and filter to find the schools that match your preferences,
-                    and get all the detail on admission, academics, cost and application status.
+                    and get all the details on admission, academics, cost and application status.
                   </div>
                   <div className="box">
-                    <a href={this.loginRedirect() ? "/colleges" : "/login"} className="btn-1 btn-blue btn-animation-1">Test
-                      Yourself</a>
+                    <a href={this.loginRedirect() ? "/colleges" : "/login"} className="btn-1 btn-blue btn-animation-1">Begin Search</a>
                   </div>
                 </div>
                 <div className="split-box__image">
@@ -215,11 +214,11 @@ export default class HomeScreen extends React.Component{
                   </div>
                   <div className="section-contest">
                     Search over colleges and filter to find the schools that match your preferences,
-                    and go to a specific college and click Application Tracker, that will show the statics of the college.
-                    You can see the who's apply to the college and see the application status by the list and scatter plot.
+                    and go to a specific college and click Application Tracker, that will show the statistics of the college.
+                    You can see the who's applying to the college and see the application statuses by list and scatterplot.
                   </div>
                   <div class="box">
-                    <a href={this.loginRedirect()? "/colleges":"/login"} class="btn-1 btn-white btn-animation-1">Test Yourself</a>
+                    <a href={this.loginRedirect()? "/colleges":"/login"} class="btn-1 btn-white btn-animation-1">Try Application Tracker</a>
                   </div>
                 </div>
 
@@ -234,8 +233,8 @@ export default class HomeScreen extends React.Component{
                     College Recommender
                   </div>
                   <div className="section-contest">
-                    College recommender will help the student find the college that fit them by given match score of each college. Those score
-                    is according to student's academics, admission and cost/aid.
+                    College recommender will help the student find the colleges that are best fit for them by giving a recommended score of each college. These scores
+                    is calculated with the student's academics, admission and cost/aid, etc.
                   </div>
                   <div className="box">
                     <a href={this.loginRedirect() ? "/colleges" : "/login"} className="btn-1 btn-blue btn-animation-1">Test
@@ -259,8 +258,8 @@ export default class HomeScreen extends React.Component{
                     Find Similar High School
                   </div>
                   <div className="section-contest">
-                    Search over all high school that you specified, and get all the high school that's similar to
-                    your specified by given score of similarity.
+                    Search for highschools in our database, and get all the highschools that's similar to
+                    your specified ranked by our high school similarity score.
                   </div>
                   <div className="box">
                     <a href={this.loginRedirect() ? "/highschools" : "/login"} className="btn-1 btn-white btn-animation-1">Test
