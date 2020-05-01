@@ -1,11 +1,14 @@
 import React from 'react';
 import Axios from 'axios';
 import {Redirect} from 'react-router-dom';
-
+import { Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export default class Admin extends React.Component{
 	state = {
-		status: ""
+		status: '',
+		questionableApps: [],
+		selectedApps: [],
 	}
 
 	scrapeCollegeRankings = (event) => {
@@ -57,30 +60,95 @@ export default class Admin extends React.Component{
 		this.setState({status:""});
 	}
 
+	retrieveQuestionableApps = async () => {
+		const resp = await Axios.post('/retrievequestionableapps');
+		console.log('Retrieving Questionable Apps');
+		console.log(resp.data);
+		this.setState({ questionableApps: resp.data.questionableApps });
+	}
+
+	handleQuestionableApps = (_id) => {
+		console.log(this.state.selectedApps);
+		if (this.state.selectedApps.includes(_id)) {
+			console.log('Included already!');
+			const updated = this.state.selectedApps.filter((appId) => appId !== _id);
+			console.log('Updated:', updated);
+			this.setState({ selectedApps: updated });
+			console.log('Selected Apps (Included):', this.state.selectedApps);
+		} else {
+			console.log('New App Id')
+			this.state.selectedApps.push(_id);
+			this.setState({ selectedApps: this.state.selectedApps });
+			console.log('Selected Apps (New):', this.state.selectedApps);
+		}
+	}
+
+	markNotQuestionable = async () => {
+		const resp = await Axios.post('/marknotquestionable', {
+			selectedApps: this.state.selectedApps,
+			questionableApps: this.state.questionableApps
+		});
+		this.clearSelectedApps();
+		console.log('resp.data.questionableApps', resp.data.questionableApps);
+		this.setState({ questionableApps: resp.data.questionableApps });
+		console.log('questionable apps after setting', this.state.questionableApps);
+	}
+
+	clearSelectedApps = () => {
+		this.setState({ selectedApps: [] });
+	}
+
 	render(){
-		if(this.props.userid && this.props.userid === "admin")
-			return(
+		if (this.props.userid && this.props.userid === "admin") {
+			return (
+				<div className={`container my-4`}>
+					<h3>Status: {this.state.status}</h3>
+					<Button onClick={this.scrapeCollegeRankings} className={`my-1`}>Scrape Times Higher Education Rankings</Button>
+					<br />
+					<Button onClick={this.importCollegeScorecard} className={`my-1`}>Import College Scorecard data file</Button>
+					<br />
+					<Button onClick={this.importCollegeData} className={`my-1`}>Import CollegeData</Button>
+					<br />
+					<Button onClick={this.importStudentProfiles} className={`my-1`}>Import Student Data Profiles</Button>
+					<br />
+					<Button onClick={this.deleteAllStudents} className={`my-1`}>Delete All Student Profiles</Button>
+					<br />
+					<Button onClick={this.retrieveQuestionableApps} className={`my-1`}>Review Questionable Acceptance Decisions</Button>
+					<Form
+						style={{ display: this.state.questionableApps.length === 0 ? 'none' : 'block' }}
+						className={`my-4`}>
+						<Form.Label className={`h4`}>Questionable Applications</Form.Label>
+						{
+							this.state.questionableApps.map((app) => {
+								return (
+									<Form.Group>
+										<Form.Row>
+										<Form.Check
+											inline
+											key={app._id}
+											type="checkbox"
+											name={app._id}
+											onChange={(e) => this.handleQuestionableApps(e.target.name)}
+											/>
+											<Form.Label className={`mt-2`}>
+												{`${app.status.charAt(0).toUpperCase() + app.status.slice(1)} to ${app.college} by `}
+												<Link to={`/profile/${app.userid}`}>{app.userid}</Link>
+											</Form.Label>
+										</Form.Row>
+									</Form.Group>
+								)
+							})
+						}
+						<Button onClick={this.markNotQuestionable}>Mark Application as Not Questionable</Button>
+					</Form>
+				</div>
+			);	
+		} else {
+			return (
 				<div>
-					<button onClick = {this.scrapeCollegeRankings}>Scrape Times Higher Education Rankings</button>
-					<br/>
-					<button onClick = {this.importCollegeScorecard}>Import College Scorecard data file</button>
-					<br/>
-					<button onClick = {this.importCollegeData}>Import CollegeData</button>
-					<br/>
-					<button onClick = {this.importStudentProfiles}>Import Student Data Profiles</button>
-					<br/>
-					<button onClick = {this.deleteAllStudents}>Delete All Student Profiles</button>
-					<br/>
-					<button>Review Questionable Acceptance Decisions</button>
-					<br/>
-					<h3>Status:</h3><div>{this.state.status}
-					</div>
-				</div>		
-			);
-		return (
-			<div>
-				<h1>MUST BE AN ADMIN TO ACCESS!!!</h1>
-			</div>
-		)
+					<h1>Log in as Admin to access this page.</h1>
+				</div>
+			)	
+		}
 	}
 }
