@@ -20,7 +20,7 @@ mongoose.connect('mongodb://localhost/c4me', {useUnifiedTopology: true, useNewUr
 const insertStudent = async (student) => {
   if (student.userid) {
     student.userid = student.userid.toLowerCase();
-    const resp = await collections.Student.find({ userid: student.userid }).lean();
+    const resp = await collections.Student.find({userid: student.userid}).lean();
     // if the student userid hasn't been used and it doesnt equal to admin we will create a new student
     if (resp.length === 0 && student.userid !== 'admin') {
       // holds the student that is created
@@ -41,7 +41,7 @@ const insertStudent = async (student) => {
       }
     }
   }
-  //resolve();
+  // resolve();
 };
 
 // import student profile csv and takes in name of csv file
@@ -61,10 +61,10 @@ const importStudentProfiles = async (studentCsv) => {
   // const importAllStudents = studentData.map(async (student) => {
   //     await insertStudent(student, resolve);
   // });
-  for (let i = 0; i < studentData.length; i++){
+  for (let i = 0; i < studentData.length; i++) {
     await insertStudent(studentData[i]);
   }
-  //await Promise.all(importAllStudents);
+  // await Promise.all(importAllStudents);
   console.log('done with importing students');
   console.log('Done with importing highschools from students');
 };
@@ -72,10 +72,10 @@ const importStudentProfiles = async (studentCsv) => {
 // Adds an application to the database. Used for the map function below.
 const importApplication = async (newApp, resolve) => {
   if (newApp.userid) {
-    const resp = await collections.Application.findOne({ userid: newApp.userid, college: newApp.college });
+    const resp = await collections.Application.findOne({userid: newApp.userid, college: newApp.college});
     if (!resp) {
       const createdApp = await collections.Application.create(newApp);
-      await collections.Student.updateOne({ userid: newApp.userid }, { $push: { applications: createdApp._id } });
+      await collections.Student.updateOne({userid: newApp.userid}, {$push: {applications: createdApp._id}});
       console.log('Added application for ' + newApp.userid + ' with college: ' + newApp.college + ' and status: ' + newApp.status);
     }
   }
@@ -155,7 +155,7 @@ const importCollegeRankings = async function(filepath) {
           console.log('updated ranking for ' + collegeArr[i].name + ': ' + allRankings[collegeArr[i].name]);
         }
       }
-      console.log("Finished importing college rankings.")
+      console.log('Finished importing college rankings.');
       resolve();
     });
   });
@@ -193,7 +193,7 @@ const importCollegeDescriptions = async function(filepath) {
           });
         });
       }
-      console.log("Finished importing college descriptions.")
+      console.log('Finished importing college descriptions.');
       resolve();
     });
   });
@@ -285,15 +285,13 @@ const importScorecardData = async (filepath) => {
       const dashIndex = college.ZIP.indexOf('-');
       zipCode = +college.ZIP.substring(0, dashIndex);
     }
-    await new Promise(function (resolve, reject)
-    {
-      collections.College.findOne({name: college.INSTNM}, function(err, foundCollege)
-      {
+    await new Promise(function(resolve, reject) {
+      collections.College.findOne({name: college.INSTNM}, function(err, foundCollege) {
         foundCollege.location = {
-            city: college.CITY,
-            state: college.STABBR,
-            zip: zipCode,
-          };
+          city: college.CITY,
+          state: college.STABBR,
+          zip: zipCode,
+        };
         foundCollege.type = college.CONTROL;
         foundCollege.url = college.INSTURL.toLowerCase();
         foundCollege.admission_rate = convertToPercent(college.ADM_RATE);
@@ -457,13 +455,12 @@ const importCollegeData = async function(filepath) {
                   } else {
                     costAttendance.in_state = costAttendance.out_state = parseInt(ddTags[j].replace(/\$|,/g, ''));
                   }
-                } else if (dtTags[j] === 'Tuition and Fees') { 
-                  if (ddTags[j].includes('Out-of-state:')) { 
+                } else if (dtTags[j] === 'Tuition and Fees') {
+                  if (ddTags[j].includes('Out-of-state:')) {
                     const costList = ddTags[j].split('Out-of-state:');
                     costTuition.in_state = parseInt(costList[0].replace(/\$|,|(In-state:)|\b/g, ''));
                     costTuition.out_state = parseInt(costList[1].replace(/\$|,/g, ''));
-                  }
-                  else {
+                  } else {
                     costTuition.in_state = costTuition.out_state = parseInt(ddTags[j].replace(/\$|,/g, ''));
                   }
                 }
@@ -520,13 +517,12 @@ const importCollegeData = async function(filepath) {
                     let aid = -1;
                     let rec_aid = -1;
                     for (let j=0; j < dtTags.length; j++) {
-                      if (dtTags[j] ==='Received Financial Aid'){
-                        let newTxt = ddTags[j].split('(');
+                      if (dtTags[j] ==='Received Financial Aid') {
+                        const newTxt = ddTags[j].split('(');
                         for (let i = 1; i < newTxt.length; i++) {
-                          rec_aid =  parseFloat(newTxt[i].split(')')[0].replace(/$/g,''));
+                          rec_aid = parseFloat(newTxt[i].split(')')[0].replace(/$/g, ''));
                         }
-                      }
-                      else if (dtTags[j] ==='Average Award'){
+                      } else if (dtTags[j] ==='Average Award') {
                         aid = parseInt(ddTags[j].replace(/\$|,/g, ''));
                       }
                     }
@@ -661,7 +657,7 @@ const importHighschoolData = async (name, city, state) => {
       clearHSDupes(name, city, state);
     }).catch((err) => {
       console.log(err);
-      throw new error("Highschool not found");
+      throw new error('Highschool not found');
       // console.log('Scrape for high school:', name, city, state, 'Gave the following error:', err.response.status, err.response.statusText);
     });
   }
