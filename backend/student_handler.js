@@ -36,7 +36,6 @@ const forEach = function (collection, callback, scope) {
 
 const editStudentInfo = async (user) =>{
   const student = await collections.Student.find({userid : user.userid}).lean();
-  console.log(student[0].password);
   forEach(user, async function (value,prop,obj) {
     if (user[prop] !== null){
       if (prop !== "password"){
