@@ -232,12 +232,13 @@ export default class Profile extends React.Component{
     if(this.props.userid){
       return (
         <div className={`container my-2`}>
+          <div className="edit-profile">
           <h1>User ID: {this.state.userid}</h1>
           <form>
-            <div class="form-group">
-              <label className="col-sm-2 text-center">Password: </label>
+            <div class="form-group ">
+              <label className="ml-5 col-sm-2 ">Password: </label>
               <input type = "Password"
-                     className= "col-sm-2"
+                     className= "ml-4 col-sm-2"
                      name = "password"
                      value={(this.state.password != null) ? this.state.password : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
@@ -248,7 +249,7 @@ export default class Profile extends React.Component{
               </span>
             </div>
             <div className="form-group">
-              <label className="col-sm-2 text-center"> Residence State : </label>
+              <label className="col-sm-2 text-left"> Residence State : </label>
               <select className="col-sm-2" name="residence_state" disabled={(this.state.disabled) ? "disabled" : ""}
                 onChange={(e) => this.handleChange(e)}
               >
@@ -258,7 +259,7 @@ export default class Profile extends React.Component{
               </select>
             </div>
             <div class="form-group">
-              <label className="col-sm-2 text-center"> High School : </label>
+              <label className="col-sm-2 text-left"> High School : </label>
               <input type = "text"
                      class = "col-sm-2"
                      name = "high_school_name"
@@ -269,7 +270,7 @@ export default class Profile extends React.Component{
               />
             </div>
             <div className="form-group">
-              <label className="col-sm-2 text-center"> High School City: </label>
+              <label className="col-sm-2 text-left"> High School City: </label>
               <input type="text"
                      className = "col-sm-2"
                      name="high_school_city"
@@ -280,7 +281,7 @@ export default class Profile extends React.Component{
               />
             </div>
             <div class="form-group">
-              <label class="col-sm-2 text-center"> High School State: </label>
+              <label class="col-sm-2 text-left"> High School State: </label>
               <select className="col-sm-2" name="high_school_state" disabled={(this.state.disabled) ? "disabled" : ""}
                 onChange={(e) => this.handleChange(e)}
               >
@@ -290,7 +291,7 @@ export default class Profile extends React.Component{
               </select>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 text-center"> Major 1 : </label>
+              <label class="col-sm-2 "> Major 1 : </label>
               <input type = "text"
                      class = "col-sm-2"
                      name = "major_1"
@@ -301,7 +302,7 @@ export default class Profile extends React.Component{
               />
             </div>
             <div class="form-group">
-              <label class="col-sm-2 text-center"> Major 2 : </label>
+              <label class="col-sm-2 "> Major 2 : </label>
               <input type = "text"
                      class = "col-sm-2"
                      name="major_2"
@@ -312,7 +313,7 @@ export default class Profile extends React.Component{
               />
             </div>
             <div class="form-group">
-              <label class="col-sm-2 text-center"> College Classes : </label>
+              <label class="col-sm-2 text-left"> College Classes : </label>
               <input type = "number"
                      class = "col-sm-2"
                      name = "college_class"
@@ -323,7 +324,7 @@ export default class Profile extends React.Component{
               />
             </div>
             <div class="form-group">
-              <label class="col-sm-2 text-center"> Number of AP Passed : </label>
+              <label class="col-sm-2 "> Number of AP Passed : </label>
               <input type = "number"
                      class = "col-sm-2"
                      name = "num_AP_passed"
@@ -345,6 +346,7 @@ export default class Profile extends React.Component{
             className={`mx-2`}>
           View Applications
         </Button>
+          </div>
 
           <Modal size="xl" show={this.state.gradeModel} onHide={(e)=> this.gradeHandleShow(e)}>
             <Modal.Header closeButton onClick={(e)=> this.gradHandleClose(e)} >

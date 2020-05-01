@@ -42,6 +42,21 @@ h3 {
     color: white;
     font-size: 130px;
 }
+.paragraph{
+    font-size: 34px;
+}
+.paragraph-center{
+    margin-top: 80px;
+}
+
+.edit-profile{
+    margin-left: auto;
+    padding: 30px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    background: lightblue;
+}
 
 .section{
     padding: 100px;
@@ -74,8 +89,8 @@ h3 {
 .College{
     background-image:
             linear-gradient(
-                    rgba(0, 0, 0, 0.2),
-                    rgba(0, 0, 0, 0.2)
+                    rgba(0, 0, 0, 0.3),
+                    rgba(0, 0, 0, 0.3)
             ),
             url(../image/Stonybrook.jpg);
     background-size: cover;
@@ -83,8 +98,8 @@ h3 {
 .Students{
     background-image:
             linear-gradient(
-                    rgba(0, 0, 0, 0.2),
-                    rgba(0, 0, 0, 0.2)
+                    rgba(0, 0, 0, 0.4),
+                    rgba(0, 0, 0, 0.4)
             ),
             url(../image/college_student.jpg);
     background-size: cover;

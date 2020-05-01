@@ -72,7 +72,10 @@ export default class HomeScreen extends React.Component{
                 <div className="carousel-item active">
                   <div className="carousel-caption">
                     <h1 className="headerFront">c4Me</h1>
-                    <p>...</p>
+                    <p className="paragraph">c4Me is made for student who about to graduate from high school and let them
+                      find the most fit colleges also see how other student do if they have similar high school or
+                      applied for same college.
+                    </p>
                   </div>
                   <img className="d-block w-100 Graduate"
                        height={1000}
@@ -81,6 +84,12 @@ export default class HomeScreen extends React.Component{
                   />
                 </div>
                 <div className="carousel-item">
+                  <div className="carousel-caption">
+                    <p className="paragraph paragraph-center">
+                      c4Me have different feature such as, college search, college recommeder, Application Tracker,
+                      and find similar high school to help student target the college for their future.
+                    </p>
+                  </div>
                   <img className="d-block w-100 College"
                        height={1000}
                        // src={require("../image/Colleges.jpeg")}
@@ -88,6 +97,13 @@ export default class HomeScreen extends React.Component{
                   />
                 </div>
                 <div className="carousel-item">
+                  <div className="carousel-caption">
+                    <p className="paragraph paragraph-center">
+                      c4Me's purpose this help those student who about to graduate When they are confused about the choice of future universities,
+                      c4Me can provide some help and direction, and at the same time,
+                      student can understand what kind of university they can enter and best college that meet their preference.
+                    </p>
+                  </div>
                   <img className="d-block w-100 Students"
                        height={1000}
                        // src={require("../image/college_student.jpg")}
@@ -199,7 +215,8 @@ export default class HomeScreen extends React.Component{
                   </div>
                   <div className="section-contest">
                     Search over colleges and filter to find the schools that match your preferences,
-                    and get all the detail on admission, academics, cost and application status.
+                    and go to a specific college and click Application Tracker, that will show the statics of the college.
+                    You can see the who's apply to the college and see the application status by the list and scatter plot.
                   </div>
                   <div class="box">
                     <a href={this.loginRedirect()? "/colleges":"/login"} class="btn-1 btn-white btn-animation-1">Test Yourself</a>
@@ -216,6 +233,10 @@ export default class HomeScreen extends React.Component{
                   <div className="section-header">
                     Find Recommend Colleges
                   </div>
+                  <div className="section-contest">
+                  Search over colleges and filter to find the schools that match your preferences,
+                  go a specific college and click Application Tracker,
+                </div>
                 </div>
 
                 <div className="split-box__image">
@@ -232,6 +253,14 @@ export default class HomeScreen extends React.Component{
                 <div className="split-box__content">
                   <div className="section-header">
                     Find Similar High School
+                  </div>
+                  <div className="section-contest">
+                    Search over all high school that you specified, and get all the high school that's similar to
+                    your specified by given score of similarity.
+                  </div>
+                  <div className="box">
+                    <a href={this.loginRedirect() ? "/highschools" : "/login"} className="btn-1 btn-white btn-animation-1">Test
+                      Yourself</a>
                   </div>
                 </div>
 
