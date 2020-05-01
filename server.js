@@ -132,7 +132,7 @@ app.post('/getuser', async (req, res) => {
 });
 
 app.post('/setStudentInfo', async (req, res) => {
-  try { 
+  try {
     req.body.user.high_school_name = req.body.user.high_school_name.toLowerCase();
     req.body.user.high_school_city = req.body.user.high_school_city.toLowerCase();
     console.log(req.body);
@@ -208,6 +208,34 @@ app.post('/addapplication', async (req, res) => {
 
   res.status(200).send({
     applications: student.applications,
+    statusTracker,
+  });
+});
+
+app.post('/deleteapplication', async (req, res) => {
+  console.log('Deleting An Application');
+  const {
+    userid,
+    _id,
+    applications,
+    statusTracker,
+  } = req.body;
+
+  const deleted = await collections.Application.deleteOne({_id});
+  console.log('Deleted:', deleted);
+  await collections.Student.updateOne({userid}, {$pull: {applications: _id}});
+  const student = await collections.Student.findOne({userid}).lean();
+  console.log('Student Now:', student);
+
+  delete statusTracker[_id];
+  const updatedApplications = applications.filter((app) => app._id !== _id);
+  console.log('Status Tracker');
+  console.log(statusTracker);
+  console.log('Updated Applications');
+  console.log(updatedApplications);
+
+  res.status(200).send({
+    applications: updatedApplications,
     statusTracker,
   });
 });

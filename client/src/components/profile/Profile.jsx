@@ -2,6 +2,7 @@ import React from 'react';
 import {Redirect ,BrowserRouter} from 'react-router-dom';
 import Axios from 'axios';
 import { Modal, Button, Form, Col } from "react-bootstrap";
+import { MdRemoveCircle } from 'react-icons/md';
 
 const states = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'];
 export default class Profile extends React.Component{
@@ -130,6 +131,11 @@ export default class Profile extends React.Component{
       alert("Invalid input for number of AP pass");
   }
 
+  hideApplicationModal = () => {
+    this.setState({ showApplications: false });
+    this.clearPrompts();
+  }
+
   getApplications = async () => {
     const resp = await Axios.post('/getapplications', { query: this.props.userid });
     this.setState({ applications: resp.data.applications });
@@ -175,10 +181,12 @@ export default class Profile extends React.Component{
       applications: this.state.applications,
       statusTracker: this.state.statusTracker
     });
+
     this.setState({
       applications: resp.data.applications,
       statusTracker: resp.data.statusTracker,
     });
+
     console.log('Clearing prompt...')
     this.clearPrompts();
   }
@@ -187,6 +195,22 @@ export default class Profile extends React.Component{
     this.setState({
       promptedCollege: 'no-option',
       promptedStatus: 'no-option'
+    });
+  }
+
+  deleteApplication = async (_id) => {
+    console.log('I have been clicked!');
+    console.log('Deleting application...?');
+    console.log('The id is', _id);
+    const resp = await Axios.post('/deleteapplication', {
+      userid: this.props.userid,
+      applications: this.state.applications,
+      statusTracker: this.state.statusTracker,
+      _id,
+    });
+    this.setState({
+      applications: resp.data.applications,
+      statusTracker: resp.data.statusTracker,
     });
   }
 
@@ -301,7 +325,10 @@ export default class Profile extends React.Component{
           <Button variant="primary" onClick={(e)=> this.gradeHandleShow(e)}>
           View Scores
           </Button>
-        <Button variant="primary" onClick={() => this.setState({ showApplications: true })}>
+          <Button
+            variant="primary"
+            onClick={() => this.setState({ showApplications: true })}
+            className={`mx-2`}>
           View Applications
         </Button>
 
@@ -419,7 +446,7 @@ export default class Profile extends React.Component{
               </Button>
             </Modal.Footer>
         </Modal>
-        <Modal size="xl" show={this.state.showApplications} onHide={() => this.setState({ showApplications: false })}>
+        <Modal size="xl" show={this.state.showApplications} onHide={this.hideApplicationModal}>
           <Modal.Header closeButton onClick={() => this.setState({ showApplications: false })} >
             <Modal.Title>Applications</Modal.Title>
           </Modal.Header>
@@ -430,7 +457,13 @@ export default class Profile extends React.Component{
                     return (
                       <Form.Group>
                         <Form.Row>
-                          <Form.Label column className="text-justify">{application.college}</Form.Label>
+                          <Form.Label column className="text-justify">
+                            <MdRemoveCircle
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => this.deleteApplication(application._id)}
+                              className={`mx-2`}/>
+                            {application.college}
+                          </Form.Label>
                           <Col>
                             <Form.Control
                               as="select"
@@ -589,7 +622,11 @@ export default class Profile extends React.Component{
                 value={this.state.isReadOnlyApplication ? 'Edit Application' : 'Save Changes'}>
                 {this.state.isReadOnlyApplication ? 'Edit Application' : 'Save Changes'}
               </Button>
-            <Button name='saveBtn' variant="primary" onClick={this.addApplication}>
+              <Button
+                name='saveBtn'
+                variant="primary"
+                onClick={this.addApplication}
+                disabled={this.state.promptedCollege === 'no-option' || this.state.promptedStatus === 'no-option'}>
                 Add New Application
             </Button>
           </Modal.Footer>
