@@ -247,22 +247,46 @@ app.post('/deleteapplication', async (req, res) => {
   } = req.body;
 
   const deleted = await collections.Application.deleteOne({_id});
-  // console.log('Deleted:', deleted);
+  console.log('Deleted:', deleted);
   await collections.Student.updateOne({userid}, {$pull: {applications: _id}});
   const student = await collections.Student.findOne({userid}).lean();
-  // console.log('Student Now:', student);
+  console.log('Student Now:', student);
 
   delete statusTracker[_id];
   const updatedApplications = applications.filter((app) => app._id !== _id);
-  // console.log('Status Tracker');
-  // console.log(statusTracker);
-  // console.log('Updated Applications');
-  // console.log(updatedApplications);
+  console.log('Status Tracker');
+  console.log(statusTracker);
+  console.log('Updated Applications');
+  console.log(updatedApplications);
 
   res.status(200).send({
     applications: updatedApplications,
     statusTracker,
   });
+});
+
+app.post('/retrievequestionableapps', async (req, res) => {
+  const questionableApps = await collections.Application.find({questionable: true});
+  res.status(200).send({
+    questionableApps,
+  });
+});
+
+app.post('/marknotquestionable', async (req, res) => {
+  const selectedApps = req.body.selectedApps;
+  const questionableApps = req.body.questionableApps;
+  console.log('selectedApps (server)', selectedApps);
+  console.log('questionableApps (server)', questionableApps);
+  for (const appId of selectedApps) {
+    await collections.Application.updateOne({_id: appId}, {
+      questionable: false,
+    });
+    const debugging = await collections.Application.findOne({_id: appId}).lean();
+    console.log(debugging);
+  }
+  const updatedQuestionableApps = questionableApps.filter((app) => !selectedApps.includes(app._id));
+  console.log('updatedQuestionableApps (server)', updatedQuestionableApps);
+  res.status(200).send({questionableApps: updatedQuestionableApps});
 });
 
 app.listen(PORT, ()=>{
