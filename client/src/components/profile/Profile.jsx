@@ -86,6 +86,7 @@ export default class Profile extends React.Component{
   studentInfoSave = (event)=>{
     this.setState({disabled : true});
     this.setState({ btnState: "Edit"});
+    console.log(this.state.major_2);
     Axios.post("/setStudentInfo", {user : this.state}).then((resp) =>{
       if (resp.data.msg !== undefined){
         alert(resp.data.msg);
@@ -457,7 +458,7 @@ export default class Profile extends React.Component{
               <Button variant="secondary" onClick={(e)=> this.gradHandleClose(e)}>
                 Close
               </Button>
-              <Button name='saveBtn' variant="primary" onClick={(e)=> this.studentInfoSave(e)}>
+              <Button name='btn' variant="primary" onClick={(e)=> this.studentInfoSave(e)}>
                 Save Changes
               </Button>
             </Modal.Footer>

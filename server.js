@@ -133,9 +133,10 @@ app.post('/getuser', async (req, res) => {
 
 app.post('/setStudentInfo', async (req, res) => {
   try {
-    req.body.user.high_school_name = req.body.user.high_school_name.toLowerCase();
-    req.body.user.high_school_city = req.body.user.high_school_city.toLowerCase();
-    console.log(req.body);
+    if ( (req.body.user.high_school_name && req.body.user.high_school_city )!== null  ){
+      req.body.user.high_school_name = req.body.user.high_school_name.toLowerCase();
+      req.body.user.high_school_city = req.body.user.high_school_city.toLowerCase();
+    }
     await backend.studentHandler.editStudentInfo(req.body.user);
     await backend.studentHandler.importStudentHS(req.body.user);
     res.status(200).send({msg: 'Your profile have been update'});
