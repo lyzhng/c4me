@@ -155,6 +155,11 @@ app.post('/calculateSimilarHighschools', async (req, res) => {
   }
 });
 
+app.post('/calculateCollegeScore', async (req, res) => {
+  const results = await backend.computeScores.calculateCollegeScore(req.body.student);
+  res.status(200).json({collegeScores : results});
+});
+
 app.post('/getapplications', async (req, res) => {
   const userid = req.body.query;
   const applications = await collections.Application.find({userid}).lean();

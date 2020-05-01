@@ -1,8 +1,53 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import Axios from 'axios';
 import {Redirect} from 'react-router-dom';
 import SearchResults from './SearchResults';
-import { Form, Col, Button, Accordion, Card } from 'react-bootstrap';
+import { Form, Col, Button, Accordion, Card, Modal } from 'react-bootstrap';
+
+function CollegeScoreModal(props)
+{
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const state = Object.assign({}, props.student);
+  state.income = -1;
+
+  const handleChange = (event) => {
+  		//console.log(state);
+		state[event.target.name] = parseInt(event.target.value);
+	}
+  const computeScore = (event) => {
+  		console.log("HELLO");
+  		Axios.post("/calculateCollegeScore", {student : state}).then((resp) => {props.setScores(resp.data.collegeScores);});
+  }
+  return (
+      <div className = "d-inline">
+      <Button variant="secondary" onClick={handleShow}>
+        Compute Score
+      </Button>
+
+      <div className="mt-2">
+        <Modal show={show} onHide={handleClose} animation={false} size="lg">
+          <Modal.Body>
+            <input type = "number" name = "GPA" placeholder = "GPA" onChange = {handleChange}/>
+            <input type = "number" name = "ACT_composite" placeholder = "act composite" onChange = {handleChange}/>
+            <input type = "number" name = "SAT_math" placeholder = "sat math" onChange = {handleChange}/>
+            <input type = "number" name = "SAT_EBRW" placeholder = "sat eng" onChange = {handleChange}/>
+            <input type = "number" name = "income" placeholder = "income" onChange = {handleChange}/>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+          </Button>
+          <Button variant="primary" onClick={computeScore}>
+              Compute!
+          </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+    </div>
+    )
+}
 
 const regionToStates  = 
 {
@@ -102,7 +147,8 @@ export default class SearchColleges extends React.Component{
 			actUpper: 36,
 			actLower: 1,
 
-			student: null
+			student: null,
+			collegeScores: null
     	}
     	if (this.props.userid)
     	{
@@ -374,6 +420,14 @@ export default class SearchColleges extends React.Component{
 				return this.state.ascending ? college1.ranking < college2.ranking : college1.ranking > college2.ranking;
 			});
 		}
+		else if (this.state.sortCriteria === "collegeScore")
+		{
+			quicksort(colleges, 0, colleges.length - 1, (college1, college2) => {
+				return this.state.ascending ? 
+				this.state.collegeScores[college1.name] < this.state.collegeScores[college2.name] 
+				: this.state.collegeScores[college1.name] > this.state.collegeScores[college2.name];
+			});
+		}
 		this.setState({colleges : colleges});
 	}
 
@@ -392,12 +446,18 @@ export default class SearchColleges extends React.Component{
     	}
     }
 
+    setScores = (scores) => {
+    	console.log(scores);
+    	this.setState({collegeScores : scores});
+    }
+
     render(){
 			if(this.props.userid)
 			{
 				//console.log(this.state.student);
 				//console.log(this.state.colleges);
 				//console.log(typeof(this.handleChange));
+				console.log(this.state.collegeScores);
         return(
             <div className = "container-fluid">
             	<h1 className = "text-center my-3">Search for Colleges</h1>
@@ -419,7 +479,8 @@ export default class SearchColleges extends React.Component{
 									[
 										{	'name': 'rankingLower' ,
 											'label': 'Minimum Ranking',
-											'type': 'number'
+											'type': 'number',
+											'placeholder' : 1
 										},
 										{
 											'name': 'rankingUpper',
@@ -429,17 +490,20 @@ export default class SearchColleges extends React.Component{
 										{
 											'name': 'admissionRateLower',
 											'label': 'Minimum Admission Rate',
-											'type': 'number'
+											'type': 'number',
+											'placeholder' : "0"
 										},
 										{
 											'name': 'admissionRateUpper',
 											'label': 'Maximum Admission Rate',
-											'type': 'number'
+											'type': 'number',
+											'placeholder' : 100
 										},
 										{
 											'name': 'sizeLower',
 											'label': 'Minimum Size',
-											'type': 'number'
+											'type': 'number',
+											'placeholder' : "0"
 										},
 										{
 											'name': 'sizeUpper',
@@ -464,32 +528,38 @@ export default class SearchColleges extends React.Component{
 										{
 											'name': 'satMathLower',
 											'label': 'Minimum SAT Math',
-											'type': 'number'
+											'type': 'number',
+											'placeholder' : 200
 										},
 										{
 											'name': 'satMathUpper',
 											'label': 'Maximum SAT Math',
-											'type': 'number'
+											'type': 'number',
+											'placeholder' : 800
 										},
 										{
 											'name': 'satEngLower',
 											'label': 'Minimum SAT English',
-											'type': 'number'
+											'type': 'number',
+											'placeholder' : 200
 										},
 										{
 											'name': 'satEngUpper',
 											'label': 'Maximum SAT English',
-											'type': 'number'
+											'type': 'number',
+											'placeholder' : 800
 										},
 										{
 											'name': 'actLower',
 											'label': 'Minimum ACT',
-											'type': 'number'
+											'type': 'number',
+											'placeholder' : 1
 										},
 										{
 											'name': 'actUpper',
 											'label': 'Maximum ACT',
-											'type': 'number'
+											'type': 'number',
+											'placeholder' : 36
 										},
 									].map((filter) => {
 										return (
@@ -503,6 +573,7 @@ export default class SearchColleges extends React.Component{
 															label={filter.label}
 															onChange={this.handleChange}
 															size = "sm"
+															placeholder={filter.placeholder ? filter.placeholder : ""}
 														/>
 													</Col>
 												</Form.Row>
@@ -563,6 +634,11 @@ export default class SearchColleges extends React.Component{
 												<option value="admissionRate">by admission rate</option>
 												<option value="costOfAttendance">by cost</option>
 												<option value="ranking">by ranking</option>
+												<option value="collegeScore" 
+												disabled = {this.state.collegeScores === null ? true : false}
+												style = {{backgroundColor : this.state.collegeScores === null ? "lightGray" : ""}}
+												>by college score
+												</option>
 											</Form.Control>
 										</Col>
 									</Form.Row>
@@ -580,36 +656,38 @@ export default class SearchColleges extends React.Component{
 							? <button className = "btn btn-primary" style = {{position : "absolute", right : "20px", top : "50px", zIndex: 1}} onClick = {this.reverse}>↑↓</button> 
 							: ""
 						}
-						<div class = "container-fluid">
-							<div class = "row justify-content-center">
-								<div class = "col-10">
-									<Form>
-										<Form.Group>
-											<Form.Row>
-												<div class = "container-fluid">
-													<div class = "row">
-														<div class = "col-8 pr-1">
-															<Form.Control
-																type="text"
-																name="name"
-																onChange={this.handleChange}
-																placeholder="Enter a college!"
-															/>
-														</div>
-														<div class = "col-4 pl-0">
-															<Button onClick={this.search} variant="primary" type="submit">Search</Button>
-														</div>
-													</div>
-												</div>
-												
-											</Form.Row>
-										</Form.Group>
-									</Form>
-								</div>
-							</div>
-						</div>
+						<Form>
+							<Form.Group>
+								<Form.Row>
+									<div class = "container-fluid">
+										<div class = "row">
+											<div class = "col-7 pr-1">
+												<Form.Control
+													type="text"
+													name="name"
+													onChange={this.handleChange}
+													placeholder="Enter a college!"
+												/>
+											</div>
+											<div class = "col-5 pl-0">
+												<Button onClick={this.search} variant="primary" type="submit">Search</Button>
+												<CollegeScoreModal setScores = {this.setScores} student = {this.state.student}/>
+											</div>
+										</div>
+									</div>
+								</Form.Row>
+							</Form.Group>
+						</Form>
 						{
-							this.state.colleges.map((college) => {return <SearchResults key = {college._id} KEY = {college._id} college = {college} display = {college.hidden} />})
+							this.state.colleges.map((college) => {
+								return <SearchResults 
+								key = {college._id} 
+								KEY = {college._id} 
+								college = {college} 
+								display = {college.hidden} 
+								collegeScore = {this.state.collegeScores === null ? null : this.state.collegeScores[college.name]}
+								/>
+							})
 						}	
        				</div>
        			</div>
@@ -619,4 +697,3 @@ export default class SearchColleges extends React.Component{
 				return <Redirect to = "/login" />;
 		}
 }
-

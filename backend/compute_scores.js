@@ -56,18 +56,47 @@ const calculateSimilarHighschools = async (name, city, state) => {
   return scoredHighschools;
 };
 
+const calculateCollegeScore = async (student) => {
+
+  let scoreMap = {};
+  let allColleges = await collections.College.find();
+  for (let i = 0; i < allColleges.length; i ++)
+  {
+    scoreMap[allColleges[i].name] = Math.floor(Math.random() * allColleges.length);
+  }
+  return scoreMap;
+};
+
 async function isQuestionableApplication(name, student, _id) {
   const college = await collections.College.findOne({name}).lean();
   console.log('The college that is being tested is', college.name);
   const application = await collections.Application.findOne({_id}).lean();
-  const questionableACT = isQuestionableACT(college, student, application);
-  const questionableSAT = isQuestionableSAT(college, student, application);
-  console.log('Questionable ACT?', questionableACT);
-  console.log('Questionable SAT?', questionableSAT);
-  return questionableACT || questionableSAT;
+  let questionableSAT = null;
+  let questionableACT = null;
+  try {
+    questionableSAT = isQuestionableSAT(college, student, application);
+    console.log('Questionable ACT?', questionableACT);
+  } catch (err) {
+    console.error(err.message);
+  }
+  try {
+    questionableACT = isQuestionableACT(college, student, application);
+    console.log('Questionable SAT?', questionableSAT);
+  } catch (err) {
+    console.error(err.message);
+  }
+  return questionableSAT || questionableACT;
 };
 
 function isQuestionableACT(college, student, application) {
+  // doesn't concern the algorithm
+  if (application.status !== 'accepted' && application.status !== 'denied') {
+    console.log('Application status is neither accepted nor denied.');
+    return false;
+  }
+  if (actScoresDontExist(college, student)) {
+    throw new Error(`Required ACT scores do not exist for ${college.name}.`);
+  }
   const studentACT = student.ACT_composite;
   const lower = lowerBound(college.act.composite_25, college.act.composite_75);
   const upper = upperBound(college.act.composite_25, college.act.composite_75);
@@ -80,7 +109,14 @@ function isQuestionableACT(college, student, application) {
 };
 
 function isQuestionableSAT(college, student, application) {
-  console.log('Is Questionable SAT?');
+  // doesn't concern the algorithm
+  if (application.status !== 'accepted' && application.status !== 'denied') {
+    console.log('Application status is neither accepted nor denied.');
+    return false;
+  }
+  if (satScoresDontExist(college, student)) {
+    throw new Error(`Required SAT scores do not exist for ${college.name}.`);
+  }
   try {
     const ebrwQ1 = convertEBRW(college.sat.reading_25, college.sat.writing_25);
     const ebrwQ3 = convertEBRW(college.sat.reading_75, college.sat.writing_75);
@@ -102,17 +138,28 @@ function isQuestionableSAT(college, student, application) {
     console.log('EBRW is above:', isAboveUpperBound(ebrwQ1, ebrwQ3, student.SAT_EBRW));
     console.log('EBRW is lower:', isBelowLowerBound(ebrwQ1, ebrwQ3, student.SAT_EBRW));
 
-    // doesn't concern the algorithm
-    if (application.status !== 'accepted' && application.status !== 'denied') {
-      console.log('Application status is neither accepted nor denied.');
-      return false;
+    // not questionable at all
+    if (!questionableMath && !questionableEBRW) {
+      if (application.status === 'accepted') {
+        console.log('Neither SAT scores are questionable and student was accepted.');
+        return false;
+      }
+      if (application.status === 'denied') {
+        console.log('Neither SAT scores are questionable and student was denied.');
+        return true;
+      }
     }
 
-    // not questionable at all
-    if (!questionableMath && !questionableEBRW && application.status === 'accepted') {
-      console.log('Neither SAT scores are questionable and student was accepted.');
-      return false;
-    }
+    // if (questionableMath && questionableEBRW) {
+    //   if (application.status === 'accepted') {
+    //     console.log('Both SAT and EBRW are questionable but was accepted.');
+    //     return true;
+    //   }
+    //   if (application.status === 'denied') {
+    //     console.log('Both SAT and EBRW are questionable but was denied.');
+    //     return
+    //   }
+    // }
 
     // do normal range in one and do bad/good in the other
     if (!questionableMath && isAboveUpperBound(ebrwQ1, ebrwQ3, student.SAT_EBRW)) {
@@ -239,8 +286,32 @@ const isAboveUpperBound = (Q1, Q3, score) => score > upperBound(Q1, Q3);
 const isBelowLowerBound = (Q1, Q3, score) => lowerBound(Q1, Q3) > score;
 const lowerBound = (Q1, Q3) => Q1 - (1.5 * (Q3 - Q1));
 const upperBound = (Q1, Q3) => Q3 + (1.5 * (Q3 - Q1));
+const satScoresDontExist = (college, student) => {
+  return (
+    college.sat.reading_25 === -1 ||
+    college.sat.writing_25 === -1 ||
+    college.sat.reading_75 === -1 ||
+    college.sat.writing_75 === -1 ||
+    college.sat.math_25 === -1 ||
+    college.sat.math_75 === -1 ||
+    student.SAT_math === -1 ||
+    student.SAT_EBRW === -1 ||
+    student.SAT_math === null ||
+    student.SAT_EBRW === null
+  );
+};
+
+const actScoresDontExist = (college, student) => {
+  return (
+    college.act.composite_25 === -1 ||
+    college.act.composite_75 === -1 ||
+    student.ACT_composite === -1 ||
+    student.ACT_composite === null
+  );
+};
 
 module.exports = {
   calculateSimilarHighschools: calculateSimilarHighschools,
+  calculateCollegeScore: calculateCollegeScore,
   isQuestionableApplication,
 };

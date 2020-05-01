@@ -42,15 +42,23 @@ export default class SearchResults extends React.Component {
     //<div> {this.props.college.description}</div>
     //<div> majors: {this.props.college.majors.reduce((total, current)=>{return total + "|" + current;})}</div>
     shouldComponentUpdate(nextProps) {
-      return ((this.props.KEY !== nextProps.KEY) || (this.props.college.hidden !== nextProps.college.hidden));
+      return (
+        (this.props.KEY !== nextProps.KEY) 
+        || (this.props.college.hidden !== nextProps.college.hidden)
+        || (this.props.collegeScore !== nextProps.collegeScore)
+        );
     }
     render(){
+      console.log(this.props);
       if(this.props.college){
         return(
          <div style = {{display : this.props.college.hidden ?  "none" : ""}} className="mb-4">
           {/* <div style={{ border: this.props.college.hidden ? "red solid 10px" : "" }} className="mb-4"> */}
             <h3>{this.props.college.name} (Rank {this.props.college.ranking})</h3>
             <div>{this.props.college.location.city}, {this.props.college.location.state}</div>
+            {
+              this.props.collegeScore === null ? "" : <div> collegeScore: {this.props.collegeScore} </div>
+            }
             <AppTrackerModal college = {this.props.college}/>
 
             <Accordion>
