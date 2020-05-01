@@ -290,6 +290,11 @@ app.post('/marknotquestionable', async (req, res) => {
   res.status(200).send({questionableApps: updatedQuestionableApps});
 });
 
+app.post('/getallhighschools', async (req, res) => {
+  let hs = await collections.HighSchool.find({}).lean();
+  res.status(200).send({ highschools: hs });
+});
+
 app.listen(PORT, ()=>{
   console.log('Backend listening on port:', PORT);
 });
