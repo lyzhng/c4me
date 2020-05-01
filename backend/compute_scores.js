@@ -1,48 +1,48 @@
 const mongoose = require('mongoose');
 const collections = require('../models');
-
+const {ebrwTable, mathTable} = require('./converter');
 mongoose.connect('mongodb://localhost/c4me', {useUnifiedTopology: true, useNewUrlParser: true});
 
-const grades = { "A+": 8, "A": 7, "A-": 6, "B+": 5, "B": 4, "B-": 3, "C+": 2, "C": 1, "C-": 0};
+const grades = {'A+': 8, 'A': 7, 'A-': 6, 'B+': 5, 'B': 4, 'B-': 3, 'C+': 2, 'C': 1, 'C-': 0};
 
 /* using highschool, we are trying to score highschool2
 Academics 50%, Ranking similarities 25%, College Interests 25%
 */
 
 const calculateHSScore = (highschool, highschool2) => {
-  let sat = 20 * (1 - Math.abs(highschool.avg_SAT / 1600 - highschool2.avg_SAT / 1600));
-  let act = 20 * (1 - Math.abs(highschool.avg_ACT / 36 - highschool2.avg_ACT / 36));
-  let aps = 10 * (1 - Math.abs(highschool.AP_enrollment / 100 - highschool2.AP_enrollment / 100));
-  let ranking =
+  const sat = 20 * (1 - Math.abs(highschool.avg_SAT / 1600 - highschool2.avg_SAT / 1600));
+  const act = 20 * (1 - Math.abs(highschool.avg_ACT / 36 - highschool2.avg_ACT / 36));
+  const aps = 10 * (1 - Math.abs(highschool.AP_enrollment / 100 - highschool2.AP_enrollment / 100));
+  const ranking =
     12.5 *
       (1 -
         Math.abs(
-          grades[highschool.academic_ranking] -
-            grades[highschool2.academic_ranking]
+            grades[highschool.academic_ranking] -
+            grades[highschool2.academic_ranking],
         ) /
           8) +
     12.5 *
       (1 -
         Math.abs(
-          grades[highschool.college_prep_ranking] -
-            grades[highschool2.college_prep_ranking]
+            grades[highschool.college_prep_ranking] -
+            grades[highschool2.college_prep_ranking],
         ) /
           8);
   const simColleges = highschool.similar_colleges_applied.filter((college) => highschool2.similar_colleges_applied.includes(college));
-  let colleges = 25 * simColleges.length * 0.1;
+  const colleges = 25 * simColleges.length * 0.1;
   return sat + act + aps + colleges + ranking;
 };
 
 const calculateSimilarHighschools = async (name, city, state) => {
   // holds our queried highschool
-  const highschool = await collections.HighSchool.find({ name, city, state });
-  //highschool doesn't exist
+  const highschool = await collections.HighSchool.find({name, city, state});
+  // highschool doesn't exist
   if (highschool.length < 1) {
-    return []
+    return [];
   }
   // holds all highschools
   const highschools = await collections.HighSchool.find({});
-  let scoredHighschools = [];
+  const scoredHighschools = [];
   for (let i = 0; i < highschools.length; i++) {
     const current = highschools[i];
     if (name == current.name && current.city == city && state == current.state) {
@@ -56,6 +56,151 @@ const calculateSimilarHighschools = async (name, city, state) => {
   return scoredHighschools;
 };
 
+async function isQuestionableApplication(name, student, _id) {
+  const college = await collections.College.findOne({name}).lean();
+  console.log('The college that is being tested is', college.name);
+  const application = await collections.Application.findOne({_id}).lean();
+  console.log('isQuestionableApplication app status:', application.status);
+  const questionableACT = isQuestionableACT(college, student, application);
+  const questionableSAT = isQuestionableSAT(college, student, application);
+  console.log('Questionable ACT?', questionableACT);
+  console.log('Questionable SAT?', questionableSAT);
+  return questionableACT || questionableSAT;
+};
+
+function isQuestionableACT(college, student, application) {
+  const studentACT = student.ACT_composite;
+  const lower = lowerBound(college.act.composite_25, college.act.composite_75);
+  const upper = upperBound(college.act.composite_25, college.act.composite_75);
+  const isAcceptedButLowScores = (lower > studentACT) && application.status === 'accepted';
+  const isDeniedButHighScores = (studentACT > upper) && application.status === 'denied';
+  console.log('Student ACT', studentACT);
+  console.log('Accepted But Low Scores?', isAcceptedButLowScores);
+  console.log('Rejected But High Scores?', isDeniedButHighScores);
+  return isAcceptedButLowScores || isDeniedButHighScores;
+};
+
+function isQuestionableSAT(college, student, application) {
+  console.log('Is Questionable SAT?');
+  try {
+    const ebrwQ1 = convertEBRW(college.sat.reading_25, college.sat.writing_25);
+    const ebrwQ3 = convertEBRW(college.sat.reading_75, college.sat.writing_75);
+    const mathQ1 = convertMath(college.sat.math_25);
+    const mathQ3 = convertMath(college.sat.math_75);
+    const questionableMath = isMathOutlier(mathQ1, mathQ3, student.SAT_math);
+    const questionableEBRW = isEBRWOutlier(ebrwQ1, ebrwQ3, student.SAT_EBRW);
+    console.log('Student EBRW', student.SAT_EBRW);
+    console.log('EBRW Q1', ebrwQ1);
+    console.log('EBRW Q3', ebrwQ3);
+    console.log('Student Math', student.SAT_math);
+    console.log('MATH Q1', mathQ1);
+    console.log('MATH Q3', mathQ3);
+    console.log('Is Questionable Math?', questionableMath);
+    console.log('Is Questionable EBRW?', questionableEBRW);
+
+    console.log('Math is above:', isAboveUpperBound(mathQ1, mathQ3, student.SAT_math));
+    console.log('Math is below:', isBelowLowerBound(mathQ1, mathQ3, student.SAT_math));
+    console.log('EBRW is above:', isAboveUpperBound(ebrwQ1, ebrwQ3, student.SAT_EBRW));
+    console.log('EBRW is lower:', isBelowLowerBound(ebrwQ1, ebrwQ3, student.SAT_EBRW));
+
+    if (application.status !== 'accepted' && application.status !== 'denied') {
+      console.log('Application status is neither accepted nor denied.');
+      return false;
+    }
+    if (!questionableMath && !questionableEBRW && application.status === 'accepted') {
+      console.log('Neither SAT scores are questionable and student was accepted.');
+      return false;
+    }
+    // ++-
+    if (isAboveUpperBound(mathQ1, mathQ3, student.SAT_math) &&
+      isAboveUpperBound(ebrwQ1, ebrwQ3, student.SAT_EBRW) &&
+      application.status === 'denied') {
+      console.log('Above and beyond in both SAT sections and denied.');
+      return true;
+    }
+    // +++
+    if (isAboveUpperBound(mathQ1, mathQ3, student.SAT_math) &&
+      isAboveUpperBound(ebrwQ1, ebrwQ3, student.SAT_EBRW) &&
+      application.status === 'accepted') {
+      console.log('Above and beyond in both SAT sections and accepted.');
+      return false;
+    }
+    // +-+
+    if (isAboveUpperBound(mathQ1, mathQ3, student.SAT_math) &&
+      isBelowLowerBound(ebrwQ1, ebrwQ3, student.SAT_EBRW) &&
+      application.status === 'accepted') {
+      console.log('The student did really well in SAT Math but did below lower bound in EBRW.');
+      return false;
+    }
+    // +--
+    if (isAboveUpperBound(mathQ1, mathQ3, student.SAT_math) &&
+      isBelowLowerBound(ebrwQ1, ebrwQ3, student.SAT_EBRW) &&
+      application.status === 'denied') {
+      console.log('The student did really well in SAT Math but did below lower bound in EBRW but got denied.');
+      return true;
+    }
+    // -++
+    if (isBelowLowerBound(mathQ1, mathQ3, student.SAT_math) &&
+      isAboveUpperBound(ebrwQ1, ebrwQ3, student.SAT_EBRW) &&
+      application.status === 'accepted') {
+      console.log('The student did really well in EBRW but did below lower bound in Math.');
+      return false;
+    }
+    // +--
+    if (isBelowLowerBound(mathQ1, mathQ3, student.SAT_math) &&
+      isAboveUpperBound(ebrwQ1, ebrwQ3, student.SAT_EBRW) &&
+      application.status === 'denied') {
+      console.log('The student did really well in EBRW but did below lower bound in Math.');
+      return false;
+    }
+    // --+
+    if (isBelowLowerBound(ebrwQ1, ebrwQ3, student.SAT_EBRW) &&
+      isBelowLowerBound(mathQ1, mathQ3, student.SAT_math) &&
+      application.status === 'accepted') {
+      console.log('Below and below, accepted.');
+      return true;
+    }
+    // ---
+    if (isBelowLowerBound(ebrwQ1, ebrwQ3, student.SAT_EBRW) &&
+      isBelowLowerBound(mathQ1, mathQ3, student.SAT_math) &&
+      application.status === 'denied') {
+      console.log('Below and below, denied.');
+      return false;
+    }
+    console.log('Apparently did not fit any of those above.');
+    return true;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function isMathOutlier(Q1, Q3, score) {
+  return isAboveUpperBound(Q1, Q3, score) || isBelowLowerBound(Q1, Q3, score);
+};
+
+function isEBRWOutlier(Q1, Q3, score) {
+  return isAboveUpperBound(Q1, Q3, score) || isBelowLowerBound(Q1, Q3, score);
+};
+
+const convertEBRW = (readingScore, writingScore) => {
+  console.log('Reading Score', readingScore);
+  console.log('Writing Score', writingScore);
+  return String(readingScore + writingScore) in ebrwTable ?
+    ebrwTable[readingScore + writingScore] :
+    new Error('No such score in EBRW table.');
+};
+const convertMath = (oldMathScore) => {
+  console.log('Math Score', oldMathScore);
+  return String(oldMathScore) in mathTable ?
+    mathTable[oldMathScore] :
+    new Error('No such score in Math table');
+};
+const isAboveUpperBound = (Q1, Q3, score) => score > upperBound(Q1, Q3);
+const isBelowLowerBound = (Q1, Q3, score) => lowerBound(Q1, Q3) > score;
+const lowerBound = (Q1, Q3) => Q1 - (1.5 * (Q3 - Q1));
+const upperBound = (Q1, Q3) => Q3 + (1.5 * (Q3 - Q1));
+
 module.exports = {
   calculateSimilarHighschools: calculateSimilarHighschools,
+  isQuestionableApplication,
 };
