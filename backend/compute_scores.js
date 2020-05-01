@@ -56,6 +56,17 @@ const calculateSimilarHighschools = async (name, city, state) => {
   return scoredHighschools;
 };
 
+const calculateCollegeScore = async (student) => {
+
+  let scoreMap = {};
+  let allColleges = await collections.College.find();
+  for (let i = 0; i < allColleges.length; i ++)
+  {
+    scoreMap[allColleges[i].name] = Math.floor(Math.random() * allColleges.length);
+  }
+  return scoreMap;
+};
+
 async function isQuestionableApplication(name, student, _id) {
   const college = await collections.College.findOne({name}).lean();
   console.log('The college that is being tested is', college.name);
@@ -301,5 +312,6 @@ const actScoresDontExist = (college, student) => {
 
 module.exports = {
   calculateSimilarHighschools: calculateSimilarHighschools,
+  calculateCollegeScore: calculateCollegeScore,
   isQuestionableApplication,
 };
