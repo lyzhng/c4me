@@ -10,8 +10,8 @@ const backend = require('./backend');
 const PORT = process.env.PORT || 3001;
 const secret = process.env.JWT_SECRET_KEY || 'pokTGERW54389e#@$%mans12$@!$!#$^#%$';
 
-const studentDatasets = ['students-1.csv','dummies.csv','students-2.csv']; // ADD ALL DATASETS HERE
-const applicationDatasets = ['applications-1.csv','dummyapps.csv','applications-2.csv'];// ADD ALL DATASETS HERE
+const studentDatasets = ['students-1.csv', 'dummies.csv', 'students-2.csv']; // ADD ALL DATASETS HERE
+const applicationDatasets = ['applications-1.csv', 'dummyapps.csv', 'applications-2.csv'];// ADD ALL DATASETS HERE
 
 app = express();
 app.use(express.urlencoded({extended: true}));
@@ -76,7 +76,9 @@ app.get('/deletestudents', async (req, res)=>{
 });
 
 app.get('/importstudentdatasets', async (req, res) => {
-  const importAllStudents = studentDatasets.map(async (student) => {await backend.adminHandler.importStudentProfiles(student)});
+  const importAllStudents = studentDatasets.map(async (student) => {
+    await backend.adminHandler.importStudentProfiles(student);
+  });
   await Promise.all(importAllStudents);
   for (let i = 0; i < applicationDatasets.length; i++) {
     await backend.adminHandler.importApplicationData(applicationDatasets[i]);
@@ -157,18 +159,54 @@ app.post('/getapplications', async (req, res) => {
 });
 
 app.post('/updateapplications', async (req, res) => {
-  const tracker = req.body.tracker;
+  const statusTracker = req.body.statusTracker;
   console.log('Inside Update Applications');
-  console.log('Tracker: ', tracker);
-  const ids = Object.keys(tracker);
+  console.log('Status Tracker: ', statusTracker);
+  const ids = Object.keys(statusTracker);
   for (const _id of ids) {
     await collections.Application.updateOne({_id}, {
-      status: tracker[_id],
+      status: statusTracker[_id],
     });
   }
   const apps = await collections.Application.find({_id: {$in: ids}}).lean();
   console.log(apps);
   res.status(200).send();
+});
+
+app.post('/addapplication', async (req, res) => {
+  const {
+    userid,
+    college,
+    status,
+    statusTracker,
+  } = req.body;
+
+  const newApplication = {
+    userid,
+    college,
+    status,
+    questionable: false,
+  };
+  const doc = await collections.Application.create(newApplication);
+  console.log('New document inserted!');
+  console.log(doc);
+  let student = await collections.Student.updateOne({userid}, {$push: {applications: doc._id}});
+  statusTracker[doc._id] = status;
+  const updatedStudent = await collections.Student.findOne({userid}).lean();
+  console.log('Updated Student Information');
+  console.log(updatedStudent);
+
+  console.log('Updated Status Tracker');
+  console.log(statusTracker);
+
+  student = await collections.Student.findOne({userid}).populate({path: 'applications'}).lean();
+  console.log('Student After Populating Again');
+  console.log(student);
+
+  res.status(200).send({
+    applications: student.applications,
+    statusTracker,
+  });
 });
 
 app.listen(PORT, ()=>{

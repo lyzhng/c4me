@@ -6,6 +6,8 @@ import { Modal, Button, Form, Col } from "react-bootstrap";
 export default class Profile extends React.Component{
 
   state = {
+    promptedStatus: 'no-option',
+    promptedCollege: 'no-option',
     isReadOnlyApplication: true,
     showApplications: false,
     gradeModel : false,
@@ -142,7 +144,7 @@ export default class Profile extends React.Component{
 
   updateApplications = async () => {
     console.log('Update Applications');
-    await Axios.post('/updateapplications', { tracker: this.state.statusTracker });
+    await Axios.post('/updateapplications', { statusTracker: this.state.statusTracker });
   }
 
   handleEditOrSaveButton = async (e) => {
@@ -163,8 +165,27 @@ export default class Profile extends React.Component{
     console.log(this.state.statusTracker);
   }
 
-  addNewApplication = async () => {
-    await Axios.post('/addapplication', { userid: this.props.userid })
+  addApplication = async () => {
+    const resp = await Axios.post('/addapplication', {
+      userid: this.props.userid,
+      college: this.state.promptedCollege,
+      status: this.state.promptedStatus,
+      applications: this.state.applications,
+      statusTracker: this.state.statusTracker
+    });
+    this.setState({
+      applications: resp.data.applications,
+      statusTracker: resp.data.statusTracker,
+    });
+    console.log('Clearing prompt...')
+    this.clearPrompts();
+  }
+
+  clearPrompts = () => {
+    this.setState({
+      promptedCollege: 'no-option',
+      promptedStatus: 'no-option'
+    });
   }
 
   render(){
@@ -435,7 +456,9 @@ export default class Profile extends React.Component{
                     <Col>
                       <Form.Control
                         as="select"
-                        defaultValue="no-option">
+                        name="promptedCollege"
+                        value={this.state.promptedCollege}
+                        onChange={(e) => this.handleChange(e)}>
                         <option value="no-option">Choose a college for your application.</option>
                         <option value="American University">American University</option>
                         <option value="Barnard College">Barnard College</option>
@@ -543,7 +566,9 @@ export default class Profile extends React.Component{
                     <Col>
                       <Form.Control
                         as="select"
-                        defaultValue="no-option">
+                        name="promptedStatus"
+                        onChange={(e) => this.handleChange(e)}
+                        value={this.state.promptedStatus}>
                         <option value="no-option">Choose a status for your application.</option>
                         <option value="pending" >Pending</option>
                         <option value="accepted">Accepted</option>
@@ -564,7 +589,7 @@ export default class Profile extends React.Component{
                 value={this.state.isReadOnlyApplication ? 'Edit Application' : 'Save Changes'}>
                 {this.state.isReadOnlyApplication ? 'Edit Application' : 'Save Changes'}
               </Button>
-            <Button name='saveBtn' variant="primary" onClick={this.appendPrompt}>
+            <Button name='saveBtn' variant="primary" onClick={this.addApplication}>
                 Add New Application
             </Button>
           </Modal.Footer>
