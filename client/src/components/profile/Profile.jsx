@@ -189,7 +189,7 @@ export default class Profile extends React.Component{
               </span>
             </div>
             <div className="form-group">
-              <label className="col-sm-2 text-center"> residence_state : </label>
+              <label className="col-sm-2 text-center"> Residence State : </label>
               <select className="col-sm-2" name="residence_state" disabled={(this.state.disabled) ? "disabled" : ""}
                 onChange={(e) => this.handleChange(e)}
               >
