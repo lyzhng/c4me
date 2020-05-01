@@ -17,6 +17,7 @@ export default class Profile extends React.Component{
     disabled : true,
     userid: "",
     password: "",
+    GPA:"",
     SAT_math: "",
     SAT_EBRW: "",
     SAT_literature: "",
@@ -46,6 +47,7 @@ export default class Profile extends React.Component{
     this.setState({
       userid : user.userid,
       password: user.password,
+      GPA: user.GPA,
       SAT_math: user.SAT_math,
       SAT_EBRW: user.SAT_EBRW,
       SAT_literature: user.SAT_literature,
@@ -123,11 +125,17 @@ export default class Profile extends React.Component{
       alert("Invalid input for ACT Score ");
   }
 
+  handleGPAChange(e){
+    if (e.target.value >=  0  && e.target.value <= 4 )
+      this.setState({[e.target.name] : e.target.value});
+    else
+      alert("Invalid input for number of GPA");
+  }
   handleAPChange(e){
     if (e.target.value >=  0  && e.target.value <= 9999 )
       this.setState({[e.target.name] : e.target.value});
     else
-      alert("Invalid input for number of AP pass");
+      alert("Invalid input for number");
   }
 
   hideApplicationModal = () => {
@@ -311,6 +319,17 @@ export default class Profile extends React.Component{
                      disabled={(this.state.disabled)? "disabled" :""}
                      placeholder = {"Fill Your Profile"}
                      onChange={(e) => this.handleChange(e)}
+              />
+            </div>
+            <div className="form-group">
+              <label className="col-sm-2 text-center"> GPA : </label>
+              <input type="number"
+                     className="col-sm-2"
+                     name="GPA"
+                     value={(this.state.GPA != null) ? this.state.GPA : ""}
+                     disabled={(this.state.disabled) ? "disabled" : ""}
+                     placeholder={"Fill Your Profile"}
+                     onChange={(e) => this.handleGPAChange(e)}
               />
             </div>
             <div class="form-group">

@@ -107,7 +107,6 @@ function isQuestionableACT(college, student, application) {
   const upper = upperBound(college.act.composite_25, college.act.composite_75);
   const isAcceptedButLowScores = (lower > studentACT) && application.status === 'accepted';
   const isDeniedButHighScores = (studentACT > upper) && application.status === 'denied';
-  console.log('Student ACT', studentACT);
   console.log('Accepted But Low Scores?', isAcceptedButLowScores);
   console.log('Rejected But High Scores?', isDeniedButHighScores);
   return isAcceptedButLowScores || isDeniedButHighScores;
