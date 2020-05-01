@@ -10,7 +10,7 @@ const regionToStates  =
 	south: ["DE", "MD", "VA", "WV", "NC", "SC", "GA", "FL", "KY", "TN", "AL", "MS", "AR", "LA", "OK", "TX"],
 	midwest: ["ND", "SD", "NE", "KS", "MN", "IA", "MO", "WI", "IL", "IN", "MI", "OH"],
 	west: ["MT", "WY", "CO", "NM", "ID", "UT", "AZ", "WA", "OR", "NV", "CA"]
-}
+};
 
 const allStates = [
 	"ME", "NH", "VT", "MA", "CT", "RI", "NJ", "NY", "PA",
@@ -18,6 +18,14 @@ const allStates = [
 	"ND", "SD", "NE", "KS", "MN", "IA", "MO", "WI", "IL", "IN", "MI", "OH",
 	"MT", "WY", "CO", "NM", "ID", "UT", "AZ", "WA", "OR", "NV", "CA",
 	"AK", "HI"
+];
+
+const allStatesFull = [
+	"MAINE", "NEW HAMPSHIRE", "VERMONT", "MASSACHUSETTS", "CONNECTICUT", "RHODE ISLAND", "NEW JERSEY", "NEW YORK", "PENNSYLVANIA",
+	"DELAWARE", "MARYLAND", "VIRGINIA", "WEST VIRGINIA", "NORTH CAROLINA", "SOUTH CAROLINA", "GEORGIA", "FLORIDA", "KENTUCKY", "TENNESSEE", "ALABAMA", "MISSISSIPPI", "ARKANSAS", "LOUISIANA", "OKLAHOMA", "TEXAS",
+	"NORTH DAKOTA", "SOUTH DAKOTA", "NEBRASKA", "KANSAS", "MINNESOTA", "IOWA", "MISSOURI", "WISCONSIN", "ILLINOIS", "INDIANA", "MICHIGAN", "OHIO",
+	"MONTANA", "WYOMING", "COLORADO", "NEW MEXICO", "IDAHO", "UTAH", "ARIZONA", "WASHINGTON", "OREGON", "NEVADA", "CALIFORNIA",
+	"ALASKA", "HAWAII"
 ]
 
 function isInt(n) {  //copied from https://stackoverflow.com/questions/5630123/javascript-string-integer-comparisons
@@ -286,7 +294,7 @@ export default class SearchColleges extends React.Component{
 	{
 		if ((this.state.locations.length < 50) && (allStates.includes(this.state.newlocation.toUpperCase())) )
 		{
-			if (!this.state.locations.includes(this.state.newlocation))
+			if (!this.state.locations.includes(this.state.newlocation.toUpperCase()))
 			{
 				let newLocations = this.state.locations.map((location) => {return location + "";});
 				newLocations.push(this.state.newlocation.toUpperCase());
@@ -376,6 +384,14 @@ export default class SearchColleges extends React.Component{
 			});
     }
 
+    reverse = (event) => {
+    	console.log("hello");
+    	if (this.state.colleges.length !== 0)
+    	{
+    		this.setState({colleges : this.state.colleges.reverse()});
+    	}
+    }
+
     render(){
 			if(this.props.userid)
 			{
@@ -383,211 +399,218 @@ export default class SearchColleges extends React.Component{
 				//console.log(this.state.colleges);
 				//console.log(typeof(this.handleChange));
         return(
-            <div className = "container">
+            <div className = "container-fluid">
             	<h1 className = "text-center my-3">Search for Colleges</h1>
        			<div className = "row">
-					<div className="col-4">
-						<Form>
-							<Form.Group>
-								<Form.Check
-									name="strict"
-									onClick={() => { this.state.strict = !this.state.strict }}
-									label="Strict"
-								/>
-							</Form.Group>
-							{
-								[
-									{	'name': 'rankingLower' ,
-										'label': 'Minimum Ranking',
-										'type': 'number'
-									},
-									{
-										'name': 'rankingUpper',
-										'label': 'Maximum Ranking',
-										'type': 'number'
-									},
-									{
-										'name': 'admissionRateLower',
-										'label': 'Minimum Admission Rate',
-										'type': 'number'
-									},
-									{
-										'name': 'admissionRateUpper',
-										'label': 'Maximum Admission Rate',
-										'type': 'number'
-									},
-									{
-										'name': 'sizeLower',
-										'label': 'Minimum Size',
-										'type': 'number'
-									},
-									{
-										'name': 'sizeUpper',
-										'label': 'Maximum Size',
-										'type': 'number'
-									},
-									{
-										'name': 'major1',
-										'label': 'Major 1',
-										'type': 'text'
-									},
-									{
-										'name': 'major2',
-										'label': 'Major 2',
-										'type': 'text'
-									},
-									{
-										'name': 'costOfAttendance',
-										'label': 'Cost of Attendance',
-										'type': 'number'
-									},
-									{
-										'name': 'satMathLower',
-										'label': 'Minimum SAT Math',
-										'type': 'number'
-									},
-									{
-										'name': 'satMathUpper',
-										'label': 'Maximum SAT Math',
-										'type': 'number'
-									},
-									{
-										'name': 'satEngLower',
-										'label': 'Minimum SAT English',
-										'type': 'number'
-									},
-									{
-										'name': 'satEngUpper',
-										'label': 'Maximum SAT English',
-										'type': 'number'
-									},
-									{
-										'name': 'actLower',
-										'label': 'Minimum ACT',
-										'type': 'number'
-									},
-									{
-										'name': 'actUpper',
-										'label': 'Maximum ACT',
-										'type': 'number'
-									},
-								].map((filter) => {
-									return (
-										<Form.Group key={filter.name}>
+					<div className = "col-4">
+						<div className = "position-fixed border p-4" style = {{height : "500px", overflow : "auto"}}>
+							<h4>
+								Filters / Sort
+							</h4>
+							<Form>
+								<Form.Group>
+									<Form.Check
+										name="strict"
+										onClick={() => { this.state.strict = !this.state.strict }}
+										label="Strict"
+									/>
+								</Form.Group>
+								{
+									[
+										{	'name': 'rankingLower' ,
+											'label': 'Minimum Ranking',
+											'type': 'number'
+										},
+										{
+											'name': 'rankingUpper',
+											'label': 'Maximum Ranking',
+											'type': 'number'
+										},
+										{
+											'name': 'admissionRateLower',
+											'label': 'Minimum Admission Rate',
+											'type': 'number'
+										},
+										{
+											'name': 'admissionRateUpper',
+											'label': 'Maximum Admission Rate',
+											'type': 'number'
+										},
+										{
+											'name': 'sizeLower',
+											'label': 'Minimum Size',
+											'type': 'number'
+										},
+										{
+											'name': 'sizeUpper',
+											'label': 'Maximum Size',
+											'type': 'number'
+										},
+										{
+											'name': 'major1',
+											'label': 'Major 1',
+											'type': 'text'
+										},
+										{
+											'name': 'major2',
+											'label': 'Major 2',
+											'type': 'text'
+										},
+										{
+											'name': 'costOfAttendance',
+											'label': 'Cost of Attendance',
+											'type': 'number'
+										},
+										{
+											'name': 'satMathLower',
+											'label': 'Minimum SAT Math',
+											'type': 'number'
+										},
+										{
+											'name': 'satMathUpper',
+											'label': 'Maximum SAT Math',
+											'type': 'number'
+										},
+										{
+											'name': 'satEngLower',
+											'label': 'Minimum SAT English',
+											'type': 'number'
+										},
+										{
+											'name': 'satEngUpper',
+											'label': 'Maximum SAT English',
+											'type': 'number'
+										},
+										{
+											'name': 'actLower',
+											'label': 'Minimum ACT',
+											'type': 'number'
+										},
+										{
+											'name': 'actUpper',
+											'label': 'Maximum ACT',
+											'type': 'number'
+										},
+									].map((filter) => {
+										return (
+											<Form.Group key={filter.name}>
+												<Form.Row>
+													<Form.Label size = "sm" column>{filter.label}</Form.Label>
+													<Col>
+														<Form.Control
+															type={filter.type}
+															name={filter.name}
+															label={filter.label}
+															onChange={this.handleChange}
+															size = "sm"
+														/>
+													</Col>
+												</Form.Row>
+											</Form.Group>
+											)
+									})
+								}
+								<Form.Group>
+									<Form.Row>
+										<Form.Label column>Location</Form.Label>
+										<Col>
+											<Form.Control as="select" onChange={this.handleChange} name="location">
+												<option value="">No preference</option>
+												<option value="northeast">Northeast</option>
+												<option value="midwest">Midwest</option>
+												<option value="south">South</option>
+												<option value="west">West</option>
+											</Form.Control>
+										</Col>
+									</Form.Row>
+								</Form.Group>
+								<Form.Group>
+									<Form.Row>
+										<Form.Label column>States</Form.Label>
+										<Col>
+											<Form.Control
+												type={"text"}
+												name={"newlocation"}
+												label={"New State"}
+												onChange={this.handleChange}
+												value={this.state.newlocation}
+											/>
+										</Col>
+										<Col>
+											<Button variant="primary" onClick={this.addLocation}>Add New State</Button>
+										</Col>
+									</Form.Row>
+								</Form.Group>
+								<div class = "container-fluid">
+											<div class = "row">
+												{
+		                                        this.state.locations.map((location,index) => {
+												return <div class = "col-2 px-0"> 
+													   		<Button variant="primary" onClick={this.removeLocation.bind(this, index)}>
+													   		{location} <span style = {{color : "red"}}>X</span>
+													   		</Button>
+													   </div>})
+		                                    	}
+											</div>
+										</div>
+								<Form.Group>
+									<Form.Row>
+										<Form.Label column>Sort Results</Form.Label>
+										<Col>
+											<Form.Control as="select" onChange={this.handleChange} name="sortCriteria">
+												<option value="">No preference</option>
+												<option value="name">by name</option>
+												<option value="admissionRate">by admission rate</option>
+												<option value="costOfAttendance">by cost</option>
+												<option value="ranking">by ranking</option>
+											</Form.Control>
+										</Col>
+									</Form.Row>
+								</Form.Group>
+							</Form>
+	       				</div>
+	       				<div className = "position-fixed" style = {{top:"650px", left : "125px"}}>
+	       					<Button variant="primary" onClick={this.filter}>Apply Filters</Button>
+							<Button variant="outline-dark" className="ml-2" onClick={this.sort}>Apply Sort</Button>
+	       				</div>
+	       			</div>
+					<div className="col-8">
+						{
+							this.state.colleges.length !== 0 
+							? <button className = "btn btn-primary" style = {{position : "absolute", right : "20px", top : "50px", zIndex: 1}} onClick = {this.reverse}>↑↓</button> 
+							: ""
+						}
+						<div class = "container-fluid">
+							<div class = "row justify-content-center">
+								<div class = "col-10">
+									<Form>
+										<Form.Group>
 											<Form.Row>
-												<Form.Label column>{filter.label}</Form.Label>
-												<Col>
-													<Form.Control
-														type={filter.type}
-														name={filter.name}
-														label={filter.label}
-														onChange={this.handleChange}
-													/>
-												</Col>
+												<div class = "container-fluid">
+													<div class = "row">
+														<div class = "col-8 pr-1">
+															<Form.Control
+																type="text"
+																name="name"
+																onChange={this.handleChange}
+																placeholder="Enter a college!"
+															/>
+														</div>
+														<div class = "col-4 pl-0">
+															<Button onClick={this.search} variant="primary" type="submit">Search</Button>
+														</div>
+													</div>
+												</div>
+												
 											</Form.Row>
 										</Form.Group>
-										)
-								})
-							}
-							<Form.Group>
-								<Form.Row>
-									<Form.Label column>Sort Results</Form.Label>
-									<Col>
-										<Form.Control as="select" onChange={this.handleChange} name="sortCriteria">
-											<option value="">No preference</option>
-											<option value="name">by name</option>
-											<option value="admissionRate">by admission rate</option>
-											<option value="costOfAttendance">by cost</option>
-											<option value="ranking">by ranking</option>
-										</Form.Control>
-									</Col>
-								</Form.Row>
-								<Form.Check
-									label="Ascending"
-									type="checkbox"
-									name="ascending"
-									onClick={() => { this.state.ascending = !this.state.ascending }}
-								/>
-							</Form.Group>
-							<Form.Group>
-								<Form.Row>
-									<Form.Label column>Location</Form.Label>
-									<Col>
-										<Form.Control as="select" onChange={this.handleChange} name="location">
-											<option value="">No preference</option>
-											<option value="northeast">Northeast</option>
-											<option value="midwest">Midwest</option>
-											<option value="south">South</option>
-											<option value="west">West</option>
-										</Form.Control>
-									</Col>
-								</Form.Row>
-							</Form.Group>
-							<Form.Group>
-								<Form.Row>
-									<Form.Label column>Locations</Form.Label>
-									<Form.Control
-										type={"text"}
-										name={"newlocation"}
-										label={"New Location"}
-										onChange={this.handleChange}
-										value={this.state.newlocation}
-									/>
-									<Col>
-										<Button variant="primary" onClick={this.addLocation}>add Location</Button>
-									</Col>
-
-								</Form.Row>
-							</Form.Group>
-							<Accordion>
-				              <Card>
-				                <Card.Header>
-				                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
-				                    Locations Being Filtered
-				                  </Accordion.Toggle>
-				                </Card.Header>
-				                <Accordion.Collapse eventKey="0">
-				                  <Card.Body>
-				                   	{
-										this.state.locations.map((location, index) => {
-											console.log(location);
-											return (
-												<div key = {location}>
-													<h6>{location}</h6>
-													<Button variant="primary" onClick={this.removeLocation.bind(this, index)}>remove location</Button>
-												</div>
-												)
-										})
-									}
-				                  </Card.Body>
-				                </Accordion.Collapse>
-				              </Card>
-				            </Accordion>
-							<Button variant="primary" onClick={this.filter}>Apply Filters</Button>
-							<Button variant="outline-dark" className="ml-2" onClick={this.sort}>Apply Sort</Button>
-						</Form>
-       				</div>
-					<div className="col-8">
-						<Form>
-							<Form.Group>
-								<Form.Row>
-									<Form.Label column lg="2">Filter by Name</Form.Label>
-									<Col>
-										<Form.Control
-											type="text"
-											name="name"
-											onChange={this.handleChange}
-										/>
-									</Col>
-									<Col>
-										<Button onClick={this.search} variant="primary" type="submit">Search</Button>
-									</Col>
-								</Form.Row>
-							</Form.Group>
-						</Form>
+									</Form>
+								</div>
+							</div>
+						</div>
 						{
 							this.state.colleges.map((college) => {return <SearchResults key = {college._id} KEY = {college._id} college = {college} display = {college.hidden} />})
-						}
+						}	
        				</div>
        			</div>
             </div>
