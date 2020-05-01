@@ -10,8 +10,8 @@ const backend = require('./backend');
 const PORT = process.env.PORT || 3001;
 const secret = process.env.JWT_SECRET_KEY || 'pokTGERW54389e#@$%mans12$@!$!#$^#%$';
 
-const studentDatasets = ['students-1.csv', 'dummies.csv', 'students-2.csv']; // ADD ALL DATASETS HERE
-const applicationDatasets = ['applications-1.csv', 'dummyapps.csv', 'applications-2.csv'];// ADD ALL DATASETS HERE
+const studentDatasets = ['students-1.csv', 'students-2.csv']; // ADD ALL DATASETS HERE
+const applicationDatasets = ['applications-1.csv', 'applications-2.csv'];// ADD ALL DATASETS HERE
 
 app = express();
 app.use(express.urlencoded({extended: true}));
@@ -298,6 +298,16 @@ app.post('/marknotquestionable', async (req, res) => {
 app.post('/getallhighschools', async (req, res) => {
   let hs = await collections.HighSchool.find({}).lean();
   res.status(200).send({ highschools: hs });
+});
+
+app.post('/importahs', async (req, res) => {
+  try {
+    await backend.adminHandler.importHighschoolData(req.body.name, req.body.city, req.body.state);
+    res.status(200).send();
+  } catch (e) {
+    console.log(e);
+    res.status(404).send();
+  }
 });
 
 app.listen(PORT, ()=>{

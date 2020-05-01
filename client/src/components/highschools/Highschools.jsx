@@ -44,18 +44,37 @@ export default class Highschools extends React.Component {
             state: this.state.state
         }
         try {
-            const resp = await Axios.post("/calculateSimilarHighschools", query);
+            let resp = await Axios.post("/calculateSimilarHighschools", query);
             if (resp.data.highschools.length == 0) {
-                this.setState({ highschools: resp.data.highschools, show: true });
+                try {
+                    const resp2 = await Axios.post("/importahs", query);
+                    resp = await Axios.post("/calculateSimilarHighschools", query);
+                    if (resp.data.highschools.length == 0) {
+                        console.log("NOT WORKING :(");
+                        this.setState({ highschools: resp.data.highschools, show: true });
+                    }
+                    else {
+                        this.setState({ highschools: resp.data.highschools, show: false });
+                    }
+                } catch (e) {
+                    console.log(e);
+                    this.setState({ highschools: resp.data.highschools, show: true });
+                }
             }
             else {
                 this.setState({ highschools: resp.data.highschools, show: false });
             }
         } catch (e) {
-            console.log("Something went wrong in the backend");
+            console.log(e);
         }
         
     }
+
+    async componentDidMount() {
+        let hsData = await Axios.post('/getallhighschools', {});
+        console.log(hsData);
+    }
+
     render() {
         if (this.props.userid) {
             return (
