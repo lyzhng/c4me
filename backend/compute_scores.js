@@ -57,11 +57,9 @@ const calculateSimilarHighschools = async (name, city, state) => {
 };
 
 const calculateCollegeScore = async (student) => {
-
-  let scoreMap = {};
-  let allColleges = await collections.College.find();
-  for (let i = 0; i < allColleges.length; i ++)
-  {
+  const scoreMap = {};
+  const allColleges = await collections.College.find();
+  for (let i = 0; i < allColleges.length; i ++) {
     scoreMap[allColleges[i].name] = Math.floor(Math.random() * allColleges.length);
   }
   return scoreMap;
@@ -69,23 +67,30 @@ const calculateCollegeScore = async (student) => {
 
 async function isQuestionableApplication(name, student, _id) {
   const college = await collections.College.findOne({name}).lean();
+  if (college === null) {
+    throw new Error(`${name} cannot be found in the database.`);
+  }
   console.log('The college that is being tested is', college.name);
   const application = await collections.Application.findOne({_id}).lean();
   let questionableSAT = null;
   let questionableACT = null;
   try {
     questionableSAT = isQuestionableSAT(college, student, application);
-    console.log('Questionable ACT?', questionableACT);
+    console.log('Questionable SAT?', questionableSAT);
   } catch (err) {
     console.error(err.message);
   }
   try {
     questionableACT = isQuestionableACT(college, student, application);
-    console.log('Questionable SAT?', questionableSAT);
+    console.log('Questionable ACT?', questionableACT);
   } catch (err) {
     console.error(err.message);
   }
-  return questionableSAT || questionableACT;
+  await collections.Application.updateOne({_id}, {
+    questionable: (questionableSAT === null && questionableACT === null) ? false : (questionableSAT || questionableACT),
+  });
+  const debugging = await collections.Application.findOne({_id});
+  console.log(`${debugging.college}: ${debugging.questionable}`);
 };
 
 function isQuestionableACT(college, student, application) {
@@ -133,11 +138,6 @@ function isQuestionableSAT(college, student, application) {
     console.log('Is Questionable Math?', questionableMath);
     console.log('Is Questionable EBRW?', questionableEBRW);
 
-    console.log('Math is above:', isAboveUpperBound(mathQ1, mathQ3, student.SAT_math));
-    console.log('Math is below:', isBelowLowerBound(mathQ1, mathQ3, student.SAT_math));
-    console.log('EBRW is above:', isAboveUpperBound(ebrwQ1, ebrwQ3, student.SAT_EBRW));
-    console.log('EBRW is lower:', isBelowLowerBound(ebrwQ1, ebrwQ3, student.SAT_EBRW));
-
     // not questionable at all
     if (!questionableMath && !questionableEBRW) {
       if (application.status === 'accepted') {
@@ -146,7 +146,7 @@ function isQuestionableSAT(college, student, application) {
       }
       if (application.status === 'denied') {
         console.log('Neither SAT scores are questionable and student was denied.');
-        return true;
+        return false;
       }
     }
 
@@ -181,7 +181,7 @@ function isQuestionableSAT(college, student, application) {
       }
       if (application.status === 'denied') {
         console.log('Did normally on math but did below in EBRW. Gets denied.');
-        return true;
+        return false;
         // debug
       }
     }
@@ -199,13 +199,13 @@ function isQuestionableSAT(college, student, application) {
 
     if (!questionableEBRW && isBelowLowerBound(mathQ1, mathQ3, student.SAT_math)) {
       if (application.status === 'accepted') {
-        console.log('Did normally on math but did below in EBRW. Get accepted.');
+        console.log('Did normally on EBRW but did below in math. Get accepted.');
         return true;
         // debug
       }
       if (application.status === 'denied') {
-        console.log('Did normally on math but did below in EBRW. Get denied.');
-        return true;
+        console.log('Did normally on EBRW but did below in math. Get denied.');
+        return false;
         // debug
       }
     }
