@@ -231,12 +231,16 @@ export default class HomeScreen extends React.Component{
 
                 <div className="split-box__content">
                   <div className="section-header">
-                    Find Recommend Colleges
+                    College Recommender
                   </div>
                   <div className="section-contest">
-                  Search over colleges and filter to find the schools that match your preferences,
-                  go a specific college and click Application Tracker,
-                </div>
+                    College recommender will help the student find the college that fit them by given match score of each college. Those score
+                    is according to student's academics, admission and cost/aid.
+                  </div>
+                  <div className="box">
+                    <a href={this.loginRedirect() ? "/colleges" : "/login"} className="btn-1 btn-blue btn-animation-1">Test
+                      Yourself</a>
+                  </div>
                 </div>
 
                 <div className="split-box__image">
