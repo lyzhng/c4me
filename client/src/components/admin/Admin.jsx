@@ -68,18 +68,16 @@ export default class Admin extends React.Component{
 	}
 
 	handleQuestionableApps = (_id) => {
-		console.log(this.state.selectedApps);
+		console.log('_id (handlequestionableapps):', _id);
+		console.log('this.state.selectedApps (handlequestionableapps)', this.state.selectedApps);
 		if (this.state.selectedApps.includes(_id)) {
 			console.log('Included already!');
 			const updated = this.state.selectedApps.filter((appId) => appId !== _id);
 			console.log('Updated:', updated);
-			this.setState({ selectedApps: updated });
-			console.log('Selected Apps (Included):', this.state.selectedApps);
+			this.setState({ selectedApps: updated }, () => console.log('Updated selectedApps:', this.state.selectedApps));
 		} else {
-			console.log('New App Id')
 			this.state.selectedApps.push(_id);
-			this.setState({ selectedApps: this.state.selectedApps });
-			console.log('Selected Apps (New):', this.state.selectedApps);
+			this.setState({ selectedApps: this.state.selectedApps }, () => console.log('Updated selectedApps:', this.state.selectedApps));
 		}
 	}
 
@@ -121,11 +119,10 @@ export default class Admin extends React.Component{
 						{
 							this.state.questionableApps.map((app) => {
 								return (
-									<Form.Group>
+									<Form.Group key={app._id}>
 										<Form.Row>
 										<Form.Check
 											inline
-											key={app._id}
 											type="checkbox"
 											name={app._id}
 											onChange={(e) => this.handleQuestionableApps(e.target.name)}
