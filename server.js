@@ -10,8 +10,8 @@ const backend = require('./backend');
 const PORT = process.env.PORT || 3001;
 const secret = process.env.JWT_SECRET_KEY || 'pokTGERW54389e#@$%mans12$@!$!#$^#%$';
 
-const studentDatasets = ['students-1.csv']; // ADD ALL DATASETS HERE
-const applicationDatasets = ['applications-1.csv'];// ADD ALL DATASETS HERE
+const studentDatasets = ['students-1.csv', 'students-2.csv']; // ADD ALL DATASETS HERE
+const applicationDatasets = ['applications-1.csv', 'applications-2.csv'];// ADD ALL DATASETS HERE
 
 app = express();
 app.use(express.urlencoded({extended: true}));

@@ -78,8 +78,11 @@ const importApplication = async (newApp, resolve) => {
       const createdApp = await collections.Application.create(newApp);
       const student = await collections.Student.findOne({ userid: newApp.userid });
       await collections.Student.updateOne({ userid: newApp.userid }, { $push: { applications: createdApp._id } });
-      const questionable = await computeScores.isQuestionableApplication(newApp.college, student, createdApp._id);
-      //await collections.Application.updateOne({ _id: createdApp._id }, { questionable });
+      try {
+        const questionable = await computeScores.isQuestionableApplication(newApp.college, student, createdApp._id);
+      } catch (e) {
+        console.log(e);
+      }
       console.log('Added application for ' + newApp.userid + ' with college: ' + newApp.college + ' and status: ' + newApp.status);
     }
   }
