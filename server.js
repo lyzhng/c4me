@@ -114,7 +114,7 @@ app.post('/searchforcolleges', async (req, res) => {
 
 app.post('/retrievestudents', async (req, res) => {
   const collegeName = req.body.query;
-  const applications = await collections.Application.find({college: collegeName}).lean();
+  const applications = await collections.Application.find({college: collegeName, questionable: false}).lean();
   console.log('Applications:', applications);
   const userIdList = applications.map((application) => application.userid);
   const students = await collections.Student.find({userid: {$in: userIdList}}).populate({path: 'applications'}).lean();
