@@ -3,10 +3,14 @@ import { Redirect } from 'react-router-dom';
 import Axios from 'axios';
 import { Button } from 'react-bootstrap';
 import { Modal } from "react-bootstrap";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col'
 
+const statColors = { 'accepted': 'green', 'pending': '#ffdb58', 'rejected': 'red', 'wait-listed': '#ffdb58', 'withdrawn': '#ffdb58', 'deferred': '#ffdb58'}
 export default class Profile extends React.Component {
 
     state = {
+        showApplications: false,
         gradeModel: false,
         disabled: true,
         userid: "",
@@ -51,21 +55,24 @@ export default class Profile extends React.Component {
             ACT_math: user.ACT_math,
             ACT_reading: user.ACT_reading,
             ACT_composite: user.ACT_composite,
-            residence_state: user.residence_state,
+            residence_state: user.residence_state.toUpperCase(),
             major_1: user.major_1,
             major_2: user.major_2,
             college_class: user.college_class,
             num_AP_passed: user.num_AP_passed,
             high_school_city: user.high_school_city,
-            high_school_state: user.high_school_state,
+            high_school_state: user.high_school_state.toUpperCase(),
             high_school_name: user.high_school_name,
-            applications: user.applications,
         });
     };
 
     componentDidMount() {
-        Axios.post("/getuser", { userId: this.props.match.params.userid }).then((resp) => {
+        Axios.post("/getuser", { userId: this.props.match.params.userid }).then(async (resp) => {
+            let appResp = await Axios.post("/getapplications", { query: this.props.match.params.userid });
             this.userDefaultState(resp.data.user);
+            console.log(appResp.data);
+            this.setState({ applications: appResp.data.applications });
+            
         });
     }
 
@@ -86,7 +93,7 @@ export default class Profile extends React.Component {
             return (
                 <div className={`container my-2`}>
                     <h1>{this.state.userid}</h1>
-                    <h4>residence_state: {(this.state.residence_state != null) ? this.state.residence_state : "N/A"}</h4>
+                    <h4>Residence State: {(this.state.residence_state != null) ? this.state.residence_state : "N/A"}</h4>
                     <h4>High School: {(this.state.high_school_name != null) ? this.state.high_school_name : "N/A"}</h4>
                     <h4>High School Location:
                         {(this.state.high_school_city != null) ? this.state.high_school_city : "N/A"},
@@ -97,6 +104,9 @@ export default class Profile extends React.Component {
                     <h4>College Classes: {(this.state.college_class != null) ? this.state.college_class : "N/A"}</h4>
                     <h4>Number of APs passed: {(this.state.num_AP_passed != null) ? this.state.num_AP_passed : "N/A"}</h4>
                     <Button variant="primary" onClick={(e) => this.gradeHandleShow(e)}>View Scores</Button>
+                    <Button variant="primary" onClick={() => this.setState({ showApplications: true })}>
+                        View Applications
+                    </Button>
                     <Modal size="lg" show={this.state.gradeModel} onHide={(e) => this.gradeHandleShow(e)}>
                         <Modal.Header closeButton onClick={(e) => this.gradHandleClose(e)} >
                             <Modal.Title>Test Scores</Modal.Title>
@@ -129,6 +139,26 @@ export default class Profile extends React.Component {
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={(e) => this.gradHandleClose(e)}>Close</Button>
+                        </Modal.Footer>
+                    </Modal>
+                    <Modal size="lg" show={this.state.showApplications} onHide={() => this.setState({ showApplications: false })}>
+                        <Modal.Header closeButton onClick={(e) => this.gradHandleClose(e)} >
+                            <Modal.Title>Applications</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            {
+                                this.state.applications.map((app) => <Row key={app._id}>
+                                    <Col>
+                                        <b>{app.college}</b>
+                                    </Col>
+                                    <Col style={{color: statColors[app.status]}}>
+                                        <b>{app.status}</b>
+                                    </Col>
+                                </Row>)
+                            }
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={(e) => this.setState({showApplications: false})}>Close</Button>
                         </Modal.Footer>
                     </Modal>
                 </div>
