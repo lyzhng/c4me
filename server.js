@@ -162,18 +162,33 @@ app.post('/getapplications', async (req, res) => {
 });
 
 app.post('/updateapplications', async (req, res) => {
-  const statusTracker = req.body.statusTracker;
-  console.log('Inside Update Applications');
-  console.log('Status Tracker: ', statusTracker);
+  const {
+    statusTracker,
+    userid,
+  } = req.body;
+  // console.log('Inside Update Applications');
+  // console.log('Status Tracker: ', statusTracker);
   const ids = Object.keys(statusTracker);
+  const student = await collections.Student.findOne({userid}).lean();
   for (const _id of ids) {
+    // console.log('The status from statusTracker says', statusTracker[_id].status);
     await collections.Application.updateOne({_id}, {
-      status: statusTracker[_id],
+      status: statusTracker[_id].status,
+    });
+    const questionable = await backend.computeScores.isQuestionableApplication(statusTracker[_id].collegeName, student, _id);
+    console.log(`The application to ${statusTracker[_id].collegeName} is ${questionable}.`);
+    await collections.Application.updateOne({_id}, {
+      questionable,
     });
   }
-  const apps = await collections.Application.find({_id: {$in: ids}}).lean();
-  console.log(apps);
-  res.status(200).send();
+
+  const updatedApplications = await collections.Application.find({_id: {$in: ids}}).lean();
+  console.log('what i want');
+  console.log(updatedApplications);
+
+  res.status(200).send({
+    applications: updatedApplications,
+  });
 });
 
 app.post('/addapplication', async (req, res) => {
@@ -190,21 +205,31 @@ app.post('/addapplication', async (req, res) => {
     status,
     questionable: false,
   };
-  const doc = await collections.Application.create(newApplication);
-  console.log('New document inserted!');
-  console.log(doc);
-  let student = await collections.Student.updateOne({userid}, {$push: {applications: doc._id}});
-  statusTracker[doc._id] = status;
-  const updatedStudent = await collections.Student.findOne({userid}).lean();
-  console.log('Updated Student Information');
-  console.log(updatedStudent);
 
-  console.log('Updated Status Tracker');
-  console.log(statusTracker);
+  const doc = await collections.Application.create(newApplication);
+  let student = await collections.Student.findOne({userid}).lean();
+
+  const questionable = await backend.computeScores.isQuestionableApplication(college, student, doc._id);
+  await collections.Application.updateOne({_id: doc._id}, {
+    questionable,
+  });
+  // console.log('New document inserted!');
+  // console.log(doc);
+  student = await collections.Student.updateOne({userid}, {$push: {applications: doc._id}});
+  statusTracker[doc._id] = {
+    status,
+    collegeName: college,
+  };
+  // const updatedStudent = await collections.Student.findOne({userid}).lean();
+  // console.log('Updated Student Information');
+  // console.log(updatedStudent);
+
+  // console.log('Updated Status Tracker');
+  // console.log(statusTracker);
 
   student = await collections.Student.findOne({userid}).populate({path: 'applications'}).lean();
-  console.log('Student After Populating Again');
-  console.log(student);
+  // console.log('Student After Populating Again');
+  // console.log(student);
 
   res.status(200).send({
     applications: student.applications,
@@ -222,17 +247,17 @@ app.post('/deleteapplication', async (req, res) => {
   } = req.body;
 
   const deleted = await collections.Application.deleteOne({_id});
-  console.log('Deleted:', deleted);
+  // console.log('Deleted:', deleted);
   await collections.Student.updateOne({userid}, {$pull: {applications: _id}});
   const student = await collections.Student.findOne({userid}).lean();
-  console.log('Student Now:', student);
+  // console.log('Student Now:', student);
 
   delete statusTracker[_id];
   const updatedApplications = applications.filter((app) => app._id !== _id);
-  console.log('Status Tracker');
-  console.log(statusTracker);
-  console.log('Updated Applications');
-  console.log(updatedApplications);
+  // console.log('Status Tracker');
+  // console.log(statusTracker);
+  // console.log('Updated Applications');
+  // console.log(updatedApplications);
 
   res.status(200).send({
     applications: updatedApplications,

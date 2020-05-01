@@ -3,6 +3,7 @@ import {Redirect ,BrowserRouter} from 'react-router-dom';
 import Axios from 'axios';
 import { Modal, Button, Form, Col } from "react-bootstrap";
 import { MdRemoveCircle } from 'react-icons/md';
+import { BsQuestionSquareFill } from 'react-icons/bs';
 
 const states = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'];
 export default class Profile extends React.Component{
@@ -105,8 +106,6 @@ export default class Profile extends React.Component{
   };
 
   handleChange(e) {
-    console.log(e.target.value);
-    console.log(e.target.name);
     this.setState({[e.target.name] : e.target.value});
   }
 
@@ -141,18 +140,21 @@ export default class Profile extends React.Component{
     this.setState({ applications: resp.data.applications });
     const statusTracker = {};
     for (const a of this.state.applications) {
-      statusTracker[a._id] = a.status;
+      statusTracker[a._id] = {
+        status: a.status,
+        collegeName: a.college,
+      }
     }
-    console.log('Get Applications');
-    console.log(this.state.applications)
     this.setState({ statusTracker });
-    console.log('Status Tracker');
-    console.log(this.state.statusTracker);
   }
 
   updateApplications = async () => {
     console.log('Update Applications');
-    await Axios.post('/updateapplications', { statusTracker: this.state.statusTracker });
+    const resp =await Axios.post('/updateapplications', {
+      statusTracker: this.state.statusTracker,
+      userid: this.props.userid,
+    });
+    this.setState({ applications: resp.data.applications });
   }
 
   handleEditOrSaveButton = async (e) => {
@@ -162,24 +164,32 @@ export default class Profile extends React.Component{
     this.setState({ isReadOnlyApplication: !this.state.isReadOnlyApplication });
   }
 
-  handleAppUpdate = (_id, status) => {
+  handleAppUpdate = (_id, collegeName, status) => {
     const ids = Object.keys(this.state.statusTracker);
     for (const k of ids) {
+      console.log('k', k);
       if (k === _id) {
-        this.state.statusTracker[k] = status;
+        this.state.statusTracker[k] = {
+          status: status,
+          collegeName: collegeName,
+        };
       }
     }
     this.setState({ statusTracker: this.state.statusTracker });
     console.log(this.state.statusTracker);
   }
 
+  isDuplicateApp = () => {
+    return this.state.applications.some((app) => app.college === this.state.promptedCollege);
+  }
+
   addApplication = async () => {
-    if (this.state.applications.some((app) => app.college === this.state.promptedCollege)) {
-      // show a toast!
-      console.log('The application to that college already exists.');
-      this.clearPrompts();
-      return;
-    }
+    // if (this.state.applications.some((app) => app.college === this.state.promptedCollege)) {
+    //   // show a toast!
+    //   console.log('The application to that college already exists.');
+    //   this.clearPrompts();
+    //   return;
+    // }
 
     const resp = await Axios.post('/addapplication', {
       userid: this.props.userid,
@@ -206,9 +216,6 @@ export default class Profile extends React.Component{
   }
 
   deleteApplication = async (_id) => {
-    console.log('I have been clicked!');
-    console.log('Deleting application...?');
-    console.log('The id is', _id);
     const resp = await Axios.post('/deleteapplication', {
       userid: this.props.userid,
       applications: this.state.applications,
@@ -469,12 +476,14 @@ export default class Profile extends React.Component{
                               style={{ cursor: 'pointer' }}
                               onClick={() => this.deleteApplication(application._id)}
                               className={`mx-2`}/>
-                            {application.college}
+                            <span
+                              style={{ fontWeight: application.questionable ? 'bold' : 'normal' }}
+                              className={application.questionable ? 'text-danger': ''}>{application.college}</span>
                           </Form.Label>
                           <Col>
                             <Form.Control
                               as="select"
-                              onChange={(e) => this.handleAppUpdate(application._id, e.target.value)}
+                              onChange={(e) => this.handleAppUpdate(application._id, application.college, e.target.value)}
                               name="application"
                               defaultValue={application.status}
                               disabled={this.state.isReadOnlyApplication}>
@@ -498,7 +507,8 @@ export default class Profile extends React.Component{
                         as="select"
                         name="promptedCollege"
                         value={this.state.promptedCollege}
-                        onChange={(e) => this.handleChange(e)}>
+                        onChange={(e) => this.handleChange(e)}
+                        className={!this.isDuplicateApp() ? '' : 'is-invalid'}>
                         <option value="no-option">Choose a college for your application.</option>
                         <option value="American University">American University</option>
                         <option value="Barnard College">Barnard College</option>
@@ -633,7 +643,7 @@ export default class Profile extends React.Component{
                 name='saveBtn'
                 variant="primary"
                 onClick={this.addApplication}
-                disabled={this.state.promptedCollege === 'no-option' || this.state.promptedStatus === 'no-option'}>
+                disabled={this.state.promptedCollege === 'no-option' || this.state.promptedStatus === 'no-option' || this.isDuplicateApp()}>
                 Add New Application
             </Button>
           </Modal.Footer>
