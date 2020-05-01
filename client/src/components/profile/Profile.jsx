@@ -174,6 +174,13 @@ export default class Profile extends React.Component{
   }
 
   addApplication = async () => {
+    if (this.state.applications.some((app) => app.college === this.state.promptedCollege)) {
+      // show a toast!
+      console.log('The application to that college already exists.');
+      this.clearPrompts();
+      return;
+    }
+
     const resp = await Axios.post('/addapplication', {
       userid: this.props.userid,
       college: this.state.promptedCollege,
