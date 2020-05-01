@@ -86,8 +86,18 @@ async function isQuestionableApplication(name, student, _id) {
   } catch (err) {
     console.error(err.message);
   }
-  await collections.Application.updateOne({_id}, {
-    questionable: (questionableSAT === null && questionableACT === null) ? false : (questionableSAT || questionableACT),
+  let isQuestionable = false;
+  if (questionableSAT === null && questionableACT === null) {
+    isQuestionable = false;
+  } else if (questionableSAT !== null && questionableACT === null) {
+    isQuestionable = questionableSAT;
+  } else if (questionableSAT === null && questionableACT !== null) {
+    isQuestionable = questionableACT;
+  } else if (questionableSAT !== null && questionableACT !== null) {
+    isQuestionable = questionableACT || questionableSAT;
+  }
+  await collections.Application.updateOne({ _id }, {
+    questionable: isQuestionable
   });
   const debugging = await collections.Application.findOne({_id});
   console.log(`${debugging.college}: ${debugging.questionable}`);
