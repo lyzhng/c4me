@@ -37,18 +37,18 @@ export default class Register extends React.Component{
     render(){
         if(!this.props.userid){
             return(
-              <div className="wrapper">
+              <div className="wrapper fadeInDown">
                   <div id="formContent">
                       <h3>Sign Up Page</h3>
                       <form>
-                          <input type="text" id="login" className="second loginStyle"
+                          <input type="text" id="login" className="fadeIn second loginStyle"
                                  name = "userid" onChange = {this.handleInputChange}
                                  placeholder="username"/>
-                          <input type="password" id="password" className="third loginStyle"
+                          <input type="password" id="password" className="fadeIn third loginStyle"
                                  name = "password" onChange = {this.handleInputChange}
                                  placeholder="password"/>
                           <input type="submit"
-                                 className="fourth" value="Register"
+                                 className="fadeIn fourth" value="Register"
                                  onClick = {this.register}/>
                       </form>
 
