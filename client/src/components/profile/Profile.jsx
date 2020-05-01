@@ -3,7 +3,6 @@ import {Redirect ,BrowserRouter} from 'react-router-dom';
 import Axios from 'axios';
 import { Modal, Button, Form, Col } from "react-bootstrap";
 import { MdRemoveCircle } from 'react-icons/md';
-import { BsQuestionSquareFill } from 'react-icons/bs';
 
 const states = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'];
 export default class Profile extends React.Component{
@@ -222,6 +221,7 @@ export default class Profile extends React.Component{
       statusTracker: this.state.statusTracker,
       _id,
     });
+    console.log('Updated Applications:', resp.data.applications);
     this.setState({
       applications: resp.data.applications,
       statusTracker: resp.data.statusTracker,
@@ -462,7 +462,12 @@ export default class Profile extends React.Component{
         </Modal>
         <Modal size="xl" show={this.state.showApplications} onHide={this.hideApplicationModal}>
           <Modal.Header closeButton onClick={() => this.setState({ showApplications: false })} >
-            <Modal.Title>Applications</Modal.Title>
+              <Modal.Title>
+                <h1>Applications</h1>
+                <h6 className={`text-muted`}>
+                  Red and bolded indicates that the application is questionable and is held for review.
+                </h6>
+              </Modal.Title>
           </Modal.Header>
             <Modal.Body>
               <Form>
