@@ -422,7 +422,7 @@ export default class SearchColleges extends React.Component{
 			{
 				let newLocations = this.state.locations.map((location) => {return location + "";});
 				newLocations.push(this.state.newlocation.toUpperCase());
-				this.setState({locations: newLocations, newlocation : ""});
+				this.setState({locations: newLocations, newlocation : "Select"});
 			}
 		}
 
@@ -679,12 +679,23 @@ export default class SearchColleges extends React.Component{
 										<Form.Label column>States</Form.Label>
 										<Col>
 											<Form.Control
-												type={"text"}
-												name={"newlocation"}
-												label={"New State"}
-												onChange={this.handleChange}
-												value={this.state.newlocation}
-											/>
+					                          as="select"
+					                          name="newlocation"
+					                          onChange={this.handleChange}
+					                          value={this.state.newlocation}
+					                        >
+					                        <option>
+					                           Select
+					                        </option>
+					                        {allStates.map((state) => {
+					                          return (
+					                            <option key={state} value={state}>
+					                              {state}
+					                            </option>
+					                          );
+					                        })}
+					                        </Form.Control>
+
 										</Col>
 										<Col>
 											<Button variant="primary" onClick={this.addLocation}>Add New State</Button>
@@ -695,7 +706,7 @@ export default class SearchColleges extends React.Component{
 											<div className = "row">
 												{
 		                                        this.state.locations.map((location,index) => {
-												return <div class = "col-2 px-0"> 
+												return <div key = {location} className = "col-2 px-0"> 
 													   		<Button variant="primary" onClick={this.removeLocation.bind(this, index)}>
 													   		{location} <span style = {{color : "red"}}>X</span>
 													   		</Button>
