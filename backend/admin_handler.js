@@ -13,6 +13,7 @@ const {JSDOM} = jsdom;
 const getCollegeNames = require('../backend/get_college_names');
 const initCollege = require('./init_colleges.js');
 const computeScores = require('./compute_scores');
+const { links } = require('../links');
 
 mongoose.connect('mongodb://localhost/c4me', {useUnifiedTopology: true, useNewUrlParser: true});
 
@@ -126,7 +127,7 @@ const importCollegeRankings = async function(filepath) {
     const college = collections.College;
     await initCollege(filepath); // if no colleges in database, this will populate the database
 
-    const allRankingsUrl = 'https://www.timeshighereducation.com/rankings/united-states/2020#!/page/0/length/-1/sort_by/rank/sort_order/asc/cols/stats';
+    const allRankingsUrl = links.THERankingLink;
 
     college.find(async function(err, collegeArr) {
       let allRankings;
@@ -175,7 +176,7 @@ const importCollegeDescriptions = async function(filepath) {
 
     await initCollege(filepath); // if no colleges in database, this will populate the database
 
-    const url = 'https://www.timeshighereducation.com/world-university-rankings/';// harvard-university";
+    const url = links.THERankingDescriptionLink;// harvard-university";
 
     college.find(async function(err, collegeArr) {
       for (let i = 0; i < collegeArr.length; i ++) {
@@ -381,9 +382,11 @@ const importCollegeData = async function(filepath) {
         await new Promise(function(resolve, reject) {
           request({
             method: 'GET',
-            url: 'https://www.collegedata.com/college/' + collegeUrl,
+            url: links.collegeDataLink + collegeUrl,
           }, async (err, res, body)=>{
-            if (err || res.statusCode !== 200) {
+              if (err || res.statusCode !== 200) {
+                console.log(err);
+              console.log(links.collegeDataLink + collegeUrl);
               console.log('failed to request collegeData!');
               reject();
             } else {
@@ -485,7 +488,7 @@ const importCollegeData = async function(filepath) {
               await new Promise(function(resolve, reject) {
                 request({
                   method: 'GET',
-                  url: 'https://www.collegedata.com/college/' + collegeUrl +'?tab=profile-academics-tab',
+                  url: links.collegeDataLink + collegeUrl +'?tab=profile-academics-tab',
                 }, (err, res, body)=>{
                   if (err || res.statusCode !== 200) {
                     console.log('failed to request collegeData!');
@@ -508,7 +511,7 @@ const importCollegeData = async function(filepath) {
               await new Promise(function(resolve, reject) {
                 request({
                   method: 'GET',
-                  url: 'https://www.collegedata.com/college/' + collegeUrl +'?tab=profile-money-tab',
+                  url: links.collegeDataLink + collegeUrl +'?tab=profile-money-tab',
                 }, (err, res, body)=>{
                   if (err || res.statusCode !== 200) {
                     console.log('failed to request collegeData!');
@@ -629,7 +632,7 @@ const importHighschoolData = async (name, city, state) => {
   const college = await collections.HighSchool.find({name, city, state}).lean();
   if (college.length === 0) {
     // let url = 'https://www.niche.com/k12/' + name + '-' + city + '-' + state;
-    let url = 'http://allv22.all.cs.stonybrook.edu/~stoller/cse416/niche/'+ name + '-' + city + '-' + state;
+    let url = links.nichelink + name + '-' + city + '-' + state;
     url = url.split(' ').join('-');
     console.log(url);
     await axios.get(url,
