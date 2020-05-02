@@ -13,11 +13,27 @@ function CollegeScoreModal(props)
   state.income = -1;
 
   const handleChange = (event) => {
-  		//console.log(state);
-		state[event.target.name] = parseInt(event.target.value);
+  		console.log(state);
+  		//console.log(event.target.value);
+		state[event.target.name] = (event.target.value === "") ? -1 : parseInt(event.target.value);
 	}
   const computeScore = (event) => {
-  		Axios.post("/calculateCollegeScore", {student : state}).then((resp) => {props.setScores(resp.data.collegeScores);});
+
+  		if (
+  			((state.GPA < 1) || (state.GPA > 4) || (state.GPA === null) )
+  			|| ((state.ACT_composite < 1) || (state.ACT_composite > 36) || (state.ACT_composite === null))
+  			|| ((state.SAT_math < 200) || (state.SAT_math > 800) || (state.SAT_math === null))
+  			|| ((state.SAT_EBRW < 200) || (state.SAT_EBRW > 800) || (state.SAT_EBRW) === null)
+  			|| (state.income < 0)
+  			)
+  		{
+  			alert("You must enter valid values!");
+  		}
+  		else
+  		{
+  			handleClose();
+  			Axios.post("/calculateCollegeScore", {student : state}).then((resp) => {props.setScores(resp.data.collegeScores);});
+  		}
   }
   return (
       <div className = "d-inline">
@@ -28,11 +44,74 @@ function CollegeScoreModal(props)
       <div className="mt-2">
         <Modal show={show} onHide={handleClose} animation={false} size="lg">
           <Modal.Body>
-            <input type = "number" name = "GPA" placeholder = "GPA" onChange = {handleChange}/>
-            <input type = "number" name = "ACT_composite" placeholder = "act composite" onChange = {handleChange}/>
-            <input type = "number" name = "SAT_math" placeholder = "sat math" onChange = {handleChange}/>
-            <input type = "number" name = "SAT_EBRW" placeholder = "sat eng" onChange = {handleChange}/>
-            <input type = "number" name = "income" placeholder = "income" onChange = {handleChange}/>
+          <Form.Group>
+				<Form.Row>
+					<Form.Label size = "sm" column>GPA</Form.Label>
+					<Col>
+						<Form.Control
+							type="number"
+							name="GPA"
+							onChange={handleChange}
+							disabled={state.GPA === null ? false : true}
+							placeholder={state.GPA === null ? "" : state.GPA}
+						/>
+					</Col>
+				</Form.Row>
+		   </Form.Group>
+		   <Form.Group>
+				<Form.Row>
+					<Form.Label size = "sm" column>ACT Composite</Form.Label>
+					<Col>
+						<Form.Control
+							type="number"
+							name="ACT_composite"
+							onChange={handleChange}
+							disabled={state.ACT_composite === null ? false : true}
+							placeholder={state.ACT_composite === null ? "" : state.ACT_composite}
+						/>
+					</Col>
+				</Form.Row>
+		   </Form.Group>
+		   <Form.Group>
+				<Form.Row>
+					<Form.Label size = "sm" column>SAT Math</Form.Label>
+					<Col>
+						<Form.Control
+							type="number"
+							name="SAT_math"
+							onChange={handleChange}
+							disabled={state.SAT_math === null ? false : true}
+							placeholder={state.SAT_math === null ? "" : state.SAT_math}
+						/>
+					</Col>
+				</Form.Row>
+		   </Form.Group>
+		   <Form.Group>
+				<Form.Row>
+					<Form.Label size = "sm" column>SAT English</Form.Label>
+					<Col>
+						<Form.Control
+							type="number"
+							name="SAT_EBRW"
+							onChange={handleChange}
+							disabled={state.SAT_EBRW === null ? false : true}
+							placeholder={state.SAT_EBRW === null ? "" : state.SAT_EBRW}
+						/>
+					</Col>
+				</Form.Row>
+		   </Form.Group>
+		   <Form.Group>
+				<Form.Row>
+					<Form.Label size = "sm" column>Yearly Income</Form.Label>
+					<Col>
+						<Form.Control
+							type="number"
+							name="income"
+							onChange={handleChange}
+						/>
+					</Col>
+				</Form.Row>
+		   </Form.Group>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
@@ -337,7 +416,7 @@ export default class SearchColleges extends React.Component{
 
 	addLocation = () =>
 	{
-		if ((this.state.locations.length < 50) && (allStates.includes(this.state.newlocation.toUpperCase())) )
+		if ((this.state.locations.length < 5) && (allStates.includes(this.state.newlocation.toUpperCase())) )
 		{
 			if (!this.state.locations.includes(this.state.newlocation.toUpperCase()))
 			{
@@ -457,7 +536,7 @@ export default class SearchColleges extends React.Component{
 				//console.log(this.state.student);
 				//console.log(this.state.colleges);
 				//console.log(typeof(this.handleChange));
-				console.log(this.state.collegeScores);
+				//console.log(this.state.collegeScores);
         return(
             <div className = "container-fluid">
             	<h1 className = "text-center my-3">Search for Colleges</h1>
@@ -659,9 +738,9 @@ export default class SearchColleges extends React.Component{
 						<Form>
 							<Form.Group>
 								<Form.Row>
-									<div class = "container-fluid">
-										<div class = "row">
-											<div class = "col-7 pr-1">
+									<div className = "container-fluid">
+										<div className = "row">
+											<div className = "col-7 pr-1">
 												<Form.Control
 													type="text"
 													name="name"
@@ -669,7 +748,7 @@ export default class SearchColleges extends React.Component{
 													placeholder="Enter a college!"
 												/>
 											</div>
-											<div class = "col-5 pl-0">
+											<div className = "col-5 pl-0">
 												<Button onClick={this.search} variant="primary" type="submit">Search</Button>
 												<CollegeScoreModal setScores = {this.setScores} student = {this.state.student}/>
 											</div>
