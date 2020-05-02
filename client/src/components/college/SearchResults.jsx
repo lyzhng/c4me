@@ -57,7 +57,14 @@ export default class SearchResults extends React.Component {
             <h3>{this.props.college.name} (Rank {this.props.college.ranking})</h3>
             <div>{this.props.college.location.city}, {this.props.college.location.state}</div>
             {
-              this.props.collegeScore === null ? "" : <div> collegeScore: {this.props.collegeScore} </div>
+              this.props.collegeScore !== null 
+              ? <h4> collegeScore: {this.props.collegeScore.score} </h4>
+              : ""
+            }
+            {
+              this.props.similarStudents.map((student) => {
+                return <h4> {student.userid} </h4>
+              })
             }
             <AppTrackerModal college = {this.props.college}/>
 

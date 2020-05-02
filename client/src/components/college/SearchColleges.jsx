@@ -352,7 +352,7 @@ export default class SearchColleges extends React.Component{
 	removeLocation = (index) =>
 	{
 		let newLocations = this.state.locations.map((location) => {return location + "";});
-		this.setState({locations : newLocations.filter((location, i) => {return i != index})});
+		this.setState({locations : newLocations.filter((location, i) => {return i !== index})});
 	}
 
 	filter = (event) => {
@@ -423,8 +423,8 @@ export default class SearchColleges extends React.Component{
 		{
 			quicksort(colleges, 0, colleges.length - 1, (college1, college2) => {
 				return this.state.ascending ? 
-				this.state.collegeScores[college1.name] < this.state.collegeScores[college2.name] 
-				: this.state.collegeScores[college1.name] > this.state.collegeScores[college2.name];
+				this.state.collegeScores[college1.name].score < this.state.collegeScores[college2.name].score 
+				: this.state.collegeScores[college1.name].score > this.state.collegeScores[college2.name].score;
 			});
 		}
 		this.setState({colleges : colleges});
@@ -447,6 +447,7 @@ export default class SearchColleges extends React.Component{
 
     setScores = (scores) => {
     	console.log(scores);
+
     	this.setState({collegeScores : scores});
     }
 
@@ -685,6 +686,7 @@ export default class SearchColleges extends React.Component{
 								college = {college} 
 								display = {college.hidden} 
 								collegeScore = {this.state.collegeScores === null ? null : this.state.collegeScores[college.name]}
+								similarStudents = {this.state.collegeScores === null ? [] : this.state.collegeScores[college.name].similarStudents}
 								/>
 							})
 						}	
