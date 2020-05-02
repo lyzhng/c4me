@@ -277,7 +277,7 @@ async function isQuestionableApplication(name, student, _id) {
   }
 
   const questGPA = isQuestionableGPA(college.gpa, student.gpa);
-
+  console.log("BOOLEAN GPA VALUE", questGPA);
   await collections.Application.updateOne({_id}, {
     questionable: isQuestionable || questGPA,
   });
