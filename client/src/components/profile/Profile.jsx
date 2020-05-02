@@ -359,7 +359,8 @@ export default class Profile extends React.Component{
               <label class="col-sm-2"> High School State: </label>
               <select className="col-sm-2" name="high_school_state" disabled={(this.state.disabled) ? "disabled" : ""}
                 onChange={(e) => this.handleChange(e)}
-              >
+                >
+                  <option value="">N/A</option>
                 {states.map(state => {
                   return state.toLowerCase() === this.state.high_school_state ? <option key={state} value={state.toLowerCase()} selected>{state}</option> : <option key={state} value={state.toLowerCase()}>{state}</option>
                 })}
