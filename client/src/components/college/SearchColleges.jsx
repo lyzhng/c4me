@@ -20,7 +20,7 @@ function CollegeScoreModal(props)
   const computeScore = (event) => {
 
   		if (
-  			((state.GPA < 1) || (state.GPA > 4) || (state.GPA === null) )
+  			((state.GPA < 0) || (state.GPA > 4) || (state.GPA === null) )
   			|| ((state.ACT_composite < 1) || (state.ACT_composite > 36) || (state.ACT_composite === null))
   			|| ((state.SAT_math < 200) || (state.SAT_math > 800) || (state.SAT_math === null))
   			|| ((state.SAT_EBRW < 200) || (state.SAT_EBRW > 800) || (state.SAT_EBRW) === null)
