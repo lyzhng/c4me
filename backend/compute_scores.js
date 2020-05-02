@@ -274,6 +274,8 @@ async function isQuestionableApplication(name, student, _id) {
 }
 
 function isQuestionableGPA(collegeGPA, studentGPA, applicationStatus) {
+  if ((studentGPA === -1) || (collegeGPA === -1))
+    return false;
   return (((0.85 * collegeGPA) > studentGPA) && (applicationStatus === 'accepted'))
   || ((studentGPA > (1.15 * collegeGPA)) && (applicationStatus === 'denied'));
 }
