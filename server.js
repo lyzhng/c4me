@@ -290,6 +290,12 @@ app.post('/getallhighschools', async (req, res) => {
   res.status(200).send({highschools: hs});
 });
 
+app.post('/getcollegenames', async (req, res) => {
+  const colleges = await collections.College.find({}).lean();
+  const collegeNames = colleges.map((c) => c.name);
+  res.status(200).send({collegeNames});
+});
+
 app.post('/importahs', async (req, res) => {
   try {
     await backend.adminHandler.importHighschoolData(req.body.name, req.body.city, req.body.state);
