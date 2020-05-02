@@ -122,7 +122,7 @@ export default class HomeScreen extends React.Component{
             </div>
 
 
-            <div class = "divHS">
+            <div className = "divHS">
               <h3 className="word-white">Get Start With Our Tools</h3>
               <br/>
               <Carousel
