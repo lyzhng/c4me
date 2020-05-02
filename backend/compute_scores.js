@@ -124,7 +124,7 @@ const calculateCollegeScore = async (student) => {
     {
       similarStudents[i].populate({path: 'applications'}, function(err, populatedStudent)
       {
-        resolve()
+        resolve();
       });
     });
   }
@@ -173,13 +173,15 @@ const calculateCollegeScore = async (student) => {
       actDiff[college.name] = null;
     }
 
-    if ((college.aid !== -1) && (college.rec_aid !== -1) && (college.cost.attendance.in_state !== -1) && (college.cost.attendance.out_state !== -1))
+    if ( ((college.aid !== -1) || (college.rec_aid !== -1)) && (college.cost.attendance.in_state !== -1) && (college.cost.attendance.out_state !== -1))
     {
       let cost = student.residence_state 
       ? ( (student.residence_state.toUpperCase() === college.location.state.toUpperCase()) ? college.cost.attendance.in_state : college.cost.attendance.out_state) 
       : college.cost.attendance.out_state;
 
-      costDiff[college.name] = cost - ((college.aid * college.rec_aid) + student.income);
+      cost -= student.income;
+      cost -= Math.max(college.aid, (college.rec_aid / 100) * cost);
+
       costDiff[college.name] = cost < 0 ? 0 : cost;
     }
     else //missing cost / aid statistics
@@ -202,24 +204,35 @@ const calculateCollegeScore = async (student) => {
 
     scores[college.name] = {};
     scores[college.name].score = 0;
-    scores[college.name].score += (college.ranking / maxRank) * .35; //ranking score
-    scores[college.name].score += (gpaDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxGpaDiff) *.21875; //gpa score
-    scores[college.name].score += (satmathDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxSatmathDiff) *.21875; //sat math score
-    scores[college.name].score += (satengDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxSatengDiff) *.21875; //sat eng score
-    scores[college.name].score += (actDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxActDiff) *.21875; //act score
-    scores[college.name].score += (costDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxCostDiff) * 2.1; //cost score
-    scores[college.name].score += similarStudents.length === 0 ? 1 : (students.length / similarStudents.length) * 1.05; //similar students score
+    scores[college.name].score += (college.ranking / maxRank); //ranking score
+    scores[college.name].score += (gpaDiff[college.name] === null) ? 1 * 2.5 : (gpaDiff[college.name] / maxGpaDiff) * 2.5; //gpa score
+    scores[college.name].score += (satmathDiff[college.name] === null) ? 1 * 2.5 : (satmathDiff[college.name] / maxSatmathDiff) * 2.5; //sat math score
+    scores[college.name].score += (satengDiff[college.name] === null) ? 1 * 2.5 : (satengDiff[college.name] / maxSatengDiff) * 2.5; //sat eng score
+    scores[college.name].score += (actDiff[college.name] === null) ? 1 * 2.5 : (actDiff[college.name] / maxActDiff) * 2.5; //act score
+    scores[college.name].score += (costDiff[college.name] === null) ? 1 * 6 : (costDiff[college.name] / maxCostDiff) * 6; //cost score
+    scores[college.name].score += similarStudents.length === 0 ? 1 * 3 : (1 - (students.length / similarStudents.length)) * 3; //similar students score
     
-    scores[college.name].similarStudents = students;
-    // console.log(college.name);
+     scores[college.name].similarStudents = students;
+
+    // scores[college.name].rankingScore = (college.ranking / maxRank);
+    // scores[college.name].gpaScore = (gpaDiff[college.name] === null) ? 1 * 2.5 : (gpaDiff[college.name] / maxGpaDiff) * 2.5;
+    // scores[college.name].satmathScore = (satmathDiff[college.name] === null) ? 1 * 2.5 : (satmathDiff[college.name] / maxSatmathDiff) * 2.5
+    // scores[college.name].satengScore = (satengDiff[college.name] === null) ? 1 * 2.5 : (satengDiff[college.name] / maxSatengDiff) * 2.5;
+    // scores[college.name].actScore = (actDiff[college.name] === null) ? 1 * 2.5 : (actDiff[college.name] / maxActDiff) * 2.5;
+    // scores[college.name].costScore = (costDiff[college.name] === null) ? 1 * 6 : (costDiff[college.name] / maxCostDiff) * 6;
+    // scores[college.name].similarScore = similarStudents.length === 0 ? 1 * 3 : (1 - (students.length / similarStudents.length)) * 3;
+
+
+
+    //console.log(college.name);
     // console.log(college.ranking / maxRank);
     // console.log((gpaDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxGpaDiff));
     // console.log((satmathDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxSatmathDiff));
     // console.log((satengDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxSatengDiff));
     // console.log((actDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxActDiff));
-    // console.log((costDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxCostDiff));
-    // console.log(similarStudents.length === 0 ? 1 : students.length / similarStudents.length);
-    // console.log("_______________________________");
+    //console.log((costDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxCostDiff) * 2.1);
+    //console.log(similarStudents.length === 0 ? 1 : students.length / similarStudents.length);
+    //console.log("_______________________________");
 
 
   }

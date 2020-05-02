@@ -13,7 +13,7 @@ function CollegeScoreModal(props)
   state.income = -1;
 
   const handleChange = (event) => {
-  		console.log(state);
+  		//console.log(state);
   		//console.log(event.target.value);
 		state[event.target.name] = (event.target.value === "") ? -1 : parseInt(event.target.value);
 	}
@@ -525,7 +525,7 @@ export default class SearchColleges extends React.Component{
     }
 
     setScores = (scores) => {
-    	console.log(scores);
+    	//console.log(scores);
 
     	this.setState({collegeScores : scores});
     }
