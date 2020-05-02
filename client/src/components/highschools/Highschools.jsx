@@ -6,8 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Toast from 'react-bootstrap/Toast';
-import ToastHeader from 'react-bootstrap/ToastHeader';
-import ToastBody from 'react-bootstrap/ToastBody';
+import Autocomplete from "react-autocomplete";
 import { Redirect } from 'react-router-dom';
 
 function isInt(n) {  //copied from https://stackoverflow.com/questions/5630123/javascript-string-integer-comparisons
