@@ -266,7 +266,7 @@ export default class Profile extends React.Component{
     if(this.props.userid){
       return (
         <div className={`container my-2`}>
-          <div className="edit-profile">
+          <div className="edit-profile" style={{borderRadius:"10px"}}>
           <h1>User ID: {this.state.userid}</h1>
           <form>
             <div class="form-group ">

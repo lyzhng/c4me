@@ -91,7 +91,7 @@ export default class Profile extends React.Component {
     render() {
         if (this.props.userid) {
             return (
-                <div className={`container my-2`}>
+                <div className={`container my-2`} style={{backgroundColor:"lightblue", padding:"40px", borderRadius:"10px"}}>
                     <h1>{this.state.userid}</h1>
                     <h4>Residence State: {(this.state.residence_state != null) ? this.state.residence_state : "N/A"}</h4>
                     <h4>High School: {(this.state.high_school_name != null) ? this.state.high_school_name : "N/A"}</h4>
@@ -103,8 +103,9 @@ export default class Profile extends React.Component {
                     <h4>Major 2: {(this.state.major_2 != null) ? this.state.major_2 : "N/A"}</h4>
                     <h4>College Classes: {(this.state.college_class != null) ? this.state.college_class : "N/A"}</h4>
                     <h4>Number of APs passed: {(this.state.num_AP_passed != null) ? this.state.num_AP_passed : "N/A"}</h4>
+                    <br/>
                     <Button variant="primary" onClick={(e) => this.gradeHandleShow(e)}>View Scores</Button>
-                    <Button variant="primary" onClick={() => this.setState({ showApplications: true })}>
+                    <Button variant="primary" onClick={() => this.setState({ showApplications: true })} style={{marginLeft:"2%", position:"relative"}}>
                         View Applications
                     </Button>
                     <Modal size="lg" show={this.state.gradeModel} onHide={(e) => this.gradeHandleShow(e)}>
