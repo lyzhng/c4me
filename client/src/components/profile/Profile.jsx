@@ -655,7 +655,12 @@ export default class Profile extends React.Component{
                 name='saveBtn'
                 variant="primary"
                 onClick={this.addApplication}
-                disabled={this.state.promptedCollege === '' || this.state.promptedStatus === 'no-option' || this.isDuplicateApp()}>
+                disabled={
+                  this.state.promptedCollege === '' 
+                  || this.state.promptedStatus === 'no-option' 
+                  || this.isDuplicateApp()
+                  || !collegeNames.includes(this.state.promptedCollege)
+                }>
                 Add New Application
             </Button>
           </Modal.Footer>
