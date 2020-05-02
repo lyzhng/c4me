@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 
 function AppTrackerModal(props)
 {
@@ -62,7 +63,7 @@ export default class SearchResults extends React.Component {
             }
             {
               this.props.similarStudents.map((student) => {
-                return <h4> {student.userid} </h4>
+                return <Link to={`/profile/${student.userid}`}><h3>{student.userid}</h3></Link>
               })
             }
             <AppTrackerModal college = {this.props.college}/>
