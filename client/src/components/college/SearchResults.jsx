@@ -49,7 +49,6 @@ export default class SearchResults extends React.Component {
         );
     }
     render(){
-      console.log(this.props);
       if(this.props.college){
         return(
          <div style = {{display : this.props.college.hidden ?  "none" : ""}} className="mb-4">

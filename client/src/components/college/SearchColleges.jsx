@@ -613,7 +613,7 @@ export default class SearchColleges extends React.Component{
 									</Form.Row>
 								</Form.Group>
 								<div className = "container-fluid">
-											<div class = "row">
+											<div className = "row">
 												{
 		                                        this.state.locations.map((location,index) => {
 												return <div class = "col-2 px-0"> 

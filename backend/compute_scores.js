@@ -202,13 +202,13 @@ const calculateCollegeScore = async (student) => {
 
     scores[college.name] = {};
     scores[college.name].score = 0;
-    scores[college.name].score += (college.ranking / maxRank); //ranking score
-    scores[college.name].score += (gpaDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxGpaDiff) ; //gpa score
-    scores[college.name].score += (satmathDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxSatmathDiff); //sat math score
-    scores[college.name].score += (satengDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxSatengDiff); //sat eng score
-    scores[college.name].score += (actDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxActDiff); //act score
-    scores[college.name].score += (costDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxCostDiff); //cost score
-    scores[college.name].score += similarStudents.length === 0 ? 1 : students.length / similarStudents.length; //similar students score
+    scores[college.name].score += (college.ranking / maxRank) * .35; //ranking score
+    scores[college.name].score += (gpaDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxGpaDiff) *.21875; //gpa score
+    scores[college.name].score += (satmathDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxSatmathDiff) *.21875; //sat math score
+    scores[college.name].score += (satengDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxSatengDiff) *.21875; //sat eng score
+    scores[college.name].score += (actDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxActDiff) *.21875; //act score
+    scores[college.name].score += (costDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxCostDiff) * 2.1; //cost score
+    scores[college.name].score += similarStudents.length === 0 ? 1 : (students.length / similarStudents.length) * 1.05; //similar students score
     
     scores[college.name].similarStudents = students;
     // console.log(college.name);
