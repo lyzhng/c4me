@@ -66,7 +66,7 @@ export default class Highschools extends React.Component {
         } catch (e) {
             console.log(e);
         }
-        
+
     }
 
   autocompleteHS= (e)=>{
@@ -75,7 +75,7 @@ export default class Highschools extends React.Component {
       console.log(result);
       this.setState( {name: result.label , state: result.state, city : result.city })
     };
-    
+
     async componentDidMount() {
         Axios.post("/getallhighschools").then((resp) => {
           console.log(resp.data.highschools.length);
@@ -144,11 +144,11 @@ export default class Highschools extends React.Component {
                               width: "100%",
                               fontSize: "1rem",
                               lineHeight: "1.5",
-															border: "1px solid #ced4da",
-															padding: ".375rem .75rem",
-															fontWeight: "400",
-															height: "calc(1.5em + .75rem + 2px)",
-															backgroundClip: "padding-box",
+                              border: "1px solid #ced4da",
+                              padding: ".375rem .75rem",
+                              fontWeight: "400",
+                              height: "calc(1.5em + .75rem + 2px)",
+                              backgroundClip: "padding-box",
                               borderRadius: ".25rem"
                             },
                           }}
