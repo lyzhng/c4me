@@ -83,8 +83,6 @@ export default class Profile extends React.Component{
     Axios.post("/getallhighschools").then((resp)=> {
       for (let i = 0 ; resp.data.highschools.length > i; i++){
         if (resp.data.highschools[i].name !== null ){
-          console.log("no name");
-        }else {
           hs_name.push(
             {id : i ,
               label : resp.data.highschools[i].name,
