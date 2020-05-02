@@ -168,15 +168,16 @@ export default class Profile extends React.Component{
 
   getApplications = async () => {
     const resp = await Axios.post('/getapplications', { query: this.props.userid });
-    this.setState({ applications: resp.data.applications });
-    const statusTracker = {};
-    for (const a of this.state.applications) {
-      statusTracker[a._id] = {
-        status: a.status,
-        collegeName: a.college,
+    this.setState({ applications: resp.data.applications }, () => {
+      const statusTracker = {};
+      for (const a of this.state.applications) {
+        statusTracker[a._id] = {
+          status: a.status,
+          collegeName: a.college,
+        };
       }
-    }
-    this.setState({ statusTracker });
+      this.setState({ statusTracker });
+    });
   }
 
   updateApplications = async () => {
@@ -533,7 +534,7 @@ export default class Profile extends React.Component{
                 {
                   this.state.applications.map((application) => {
                     return (
-                      <Form.Group>
+                      <Form.Group key={application._id}>
                         <Form.Row>
                           <Form.Label column className="text-justify">
                             <MdRemoveCircle
