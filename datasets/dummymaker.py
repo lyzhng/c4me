@@ -22,7 +22,7 @@ import random
 
 nf = open("dummies.csv", "w+")
 nf.write("userid, password,residence_state, high_school_name, high_school_city, high_school_state,GPA, college_class,major_1,major_2, SAT_math, SAT_EBRW, ACT_English, ACT_math, ACT_reading, ACT_science, ACT_composite, SAT_literature, SAT_US_hist, SAT_world_hist, SAT_math_I, SAT_math_II, SAT_eco_bio, SAT_mol_bio, SAT_chemistry, SAT_physics,num_AP_passed\n")
-for i in range(50):# change range for number of students
+for i in range(1000):# change range for number of students
     userid = "dummystudent"+str(i)
     password = "password"
     highschool = sortedHighschools[random.randint(0, len(sortedHighschools) - 1)]
@@ -64,13 +64,13 @@ nf.close()
 nf = open('dummyapps.csv', 'w+')
 nf.write("userid,college,status\n")
 statuses = ["accepted","wait-listed", "pending", "deferred", "withdrawn", "denied"]
-for i in range(50):
+for i in range(1000):#change range for number of students
     userid = "dummystudent"+str(i)
-    college1 = "Stony Brook University"
-    #college2 = colleges[random.randint(0, len(colleges) - 1)]
+    college1 = colleges[random.randint(0, len(colleges) - 1)]
+    college2 = colleges[random.randint(0, len(colleges) - 1)]
     status1 = statuses[random.randint(0, 5)]
-    #status2 = statuses[random.randint(0, 5)]
+    status2 = statuses[random.randint(0, 5)]
     nf.write(userid+","+college1+","+status1+"\n")
-    #nf.write(userid+","+college2+","+status2+"\n")
+    nf.write(userid+","+college2+","+status2+"\n")
     
     

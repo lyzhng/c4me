@@ -1,51 +1,1001 @@
 userid, password,residence_state, high_school_name, high_school_city, high_school_state,GPA, college_class,major_1,major_2, SAT_math, SAT_EBRW, ACT_English, ACT_math, ACT_reading, ACT_science, ACT_composite, SAT_literature, SAT_US_hist, SAT_world_hist, SAT_math_I, SAT_math_II, SAT_eco_bio, SAT_mol_bio, SAT_chemistry, SAT_physics,num_AP_passed
-dummystudent0,password,ny,south side high school,rockville centre,ny,3.9,2024,Math,Art,296,728,23,14,17,22,19,391,695,338,673,690,257,497,492,777,0
-dummystudent1,password,nc,east chapel hill high school,chapel hill,nc,1.7,2019,Math,Art,650,360,18,23,28,26,24,250,772,706,702,335,506,596,618,792,8
-dummystudent2,password,tx,fairfield high school,fairfield,tx,0.9,2021,Math,Art,772,588,5,7,18,15,11,225,740,315,627,324,453,228,564,722,4
-dummystudent3,password,ma,lexington high school,lexington,ma,3.8,2019,Math,Art,641,222,13,36,4,16,17,633,526,318,439,688,335,369,215,513,4
-dummystudent4,password,mi,lake city high school,lake city,mi,3.9,2019,Math,Art,310,522,16,31,33,36,29,600,611,689,447,701,729,714,467,709,1
-dummystudent5,password,va,stone bridge high school,ashburn,va,3.8,2019,Math,Art,631,436,2,22,26,20,18,716,663,400,458,640,395,693,362,794,3
-dummystudent6,password,nh,hanover high school,hanover,nh,1.8,2022,Math,Art,404,260,4,12,23,28,17,378,726,775,648,588,507,554,702,593,1
-dummystudent7,password,tx,memorial high school,houston,tx,2.7,2023,Math,Art,661,640,2,22,18,31,18,407,776,388,766,760,688,204,402,712,2
-dummystudent8,password,tx,fairfield high school,fairfield,tx,1.8,2020,Math,Art,647,594,32,28,22,33,29,473,338,313,462,616,385,464,248,531,10
-dummystudent9,password,ny,bard high school early college,new york,ny,1.7,2024,Math,Art,374,277,1,12,23,35,18,319,206,451,338,619,213,392,660,697,0
-dummystudent10,password,ga,columbus high school,columbus,ga,3.7,2025,Math,Art,734,438,15,3,19,10,12,251,687,682,224,737,642,606,539,462,5
-dummystudent11,password,nh,goffstown high school,goffstown,nh,2.9,2025,Math,Art,569,217,7,19,34,30,22,618,552,392,783,380,479,761,552,552,0
-dummystudent12,password,sc,south pointe high school,rock hill,sc,3.7,2020,Math,Art,376,641,5,26,4,7,10,266,296,564,339,728,402,675,277,692,3
-dummystudent13,password,ct,parish hill high school,chaplin,ct,0.9,2024,Math,Art,493,472,33,32,18,4,22,414,464,458,431,434,418,374,733,656,5
-dummystudent14,password,ny,brooklyn technical high school,brooklyn,ny,1.7,2023,Math,Art,515,473,14,23,10,18,16,729,615,437,445,341,380,615,622,288,2
-dummystudent15,password,nc,carrboro high school,carrboro,nc,0.9,2024,Math,Art,209,493,24,28,27,10,22,799,589,537,686,693,332,610,212,634,4
-dummystudent16,password,mn,eagan senior high school,eagan,mn,1.8,2023,Math,Art,387,232,28,17,7,1,13,350,409,343,786,245,290,477,587,578,4
-dummystudent17,password,mi,huron high school,ann arbor,mi,2.9,2023,Math,Art,574,717,22,23,25,20,22,584,647,272,436,686,316,627,613,501,5
-dummystudent18,password,az,basis tucson,north tucson,az,0.7,2021,Math,Art,680,595,36,11,24,9,20,710,337,343,768,376,632,753,396,255,5
-dummystudent19,password,il,waubonsie valley,high school aurora,il,1.9,2023,Math,Art,703,693,13,27,17,9,16,348,357,317,705,518,486,436,596,745,5
-dummystudent20,password,tx,health careers high school,san antonio,tx,3.7,2024,Math,Art,601,444,16,23,7,10,14,362,674,288,326,315,774,324,471,493,7
-dummystudent21,password,ny,south side high school,rockville centre,ny,0.7,2022,Math,Art,418,435,29,35,34,26,31,500,219,295,221,243,249,603,515,440,4
-dummystudent22,password,ny,brighton high school,rochester,ny,3.7,2022,Math,Art,244,710,29,30,20,13,23,242,518,591,624,563,490,769,383,362,4
-dummystudent23,password,ca,westlake high school,westlake village,ca,2.9,2024,Math,Art,531,566,36,29,23,16,26,545,709,205,473,594,305,526,517,409,2
-dummystudent24,password,tx,clements high school,sugar land,tx,0.9,2025,Math,Art,357,468,2,7,21,14,11,206,496,483,677,698,248,550,511,311,3
-dummystudent25,password,ny,south side high school,rockville centre,ny,0.8,2021,Math,Art,677,733,21,2,27,5,14,736,561,597,495,346,578,602,526,631,2
-dummystudent26,password,ga,alpharetta high school,alpharetta,ga,0.8,2025,Math,Art,552,661,35,9,33,15,23,436,222,279,786,584,449,370,771,292,10
-dummystudent27,password,ky,the gatton academy,bowling green,ky,2.7,2024,Math,Art,766,514,19,9,34,17,20,223,763,724,443,724,628,523,630,236,5
-dummystudent28,password,nm,volcano vista high school,albuquerque,nm,0.7,2025,Math,Art,279,248,18,24,23,14,20,587,202,219,405,642,799,314,719,653,4
-dummystudent29,password,al,mt brook high school,mountain brook,al,3.9,2025,Math,Art,249,740,29,29,29,22,27,786,548,226,724,287,312,653,437,528,5
-dummystudent30,password,ca,piedmont high school,piedmont,ca,2.8,2025,Math,Art,579,581,19,34,1,5,15,424,483,655,656,786,372,734,766,339,0
-dummystudent31,password,sc,south pointe high school,rock hill,sc,0.8,2024,Math,Art,663,289,35,20,12,15,20,339,395,365,514,501,374,660,548,418,1
-dummystudent32,password,tx,westwood high school,austin,tx,0.7,2020,Math,Art,627,448,4,16,13,20,13,200,704,576,476,663,679,631,568,329,6
-dummystudent33,password,ks,blue valley north high school,overland park,ks,0.7,2022,Math,Art,503,416,3,3,29,36,18,547,719,395,538,681,314,706,379,469,10
-dummystudent34,password,tx,elsik high school,houston,tx,3.9,2025,Math,Art,391,396,21,29,2,29,20,442,303,684,225,479,765,405,438,565,3
-dummystudent35,password,md,richard montgomery high school,rockville,md,1.7,2025,Math,Art,240,224,3,8,31,12,14,721,787,485,599,297,699,704,258,303,9
-dummystudent36,password,wa,columbia river high school,vancouver,wa,0.7,2021,Math,Art,545,532,30,16,31,27,26,522,325,249,548,492,236,664,794,631,9
-dummystudent37,password,tx,health careers high school,san antonio,tx,3.9,2020,Math,Art,572,648,35,4,34,17,22,212,439,535,279,483,307,701,202,372,6
-dummystudent38,password,ga,alpharetta high school,alpharetta,ga,2.7,2019,Math,Art,497,394,20,11,22,4,14,334,592,645,782,488,485,412,790,474,0
-dummystudent39,password,ca,blair high school,pasadena,ca,1.7,2023,Math,Art,402,475,18,31,11,3,16,757,639,538,547,643,584,648,499,428,1
-dummystudent40,password,ca,canyon crest academy,san diego,ca,3.8,2020,Math,Art,389,784,12,8,23,19,16,333,595,738,584,300,671,479,466,200,2
-dummystudent41,password,tx,clements high school,sugar land,tx,2.7,2019,Math,Art,513,653,13,29,5,14,15,513,693,456,733,776,523,529,538,730,10
-dummystudent42,password,tx,fairfield high school,fairfield,tx,1.9,2025,Math,Art,792,645,8,22,22,25,19,712,354,560,772,570,340,255,748,253,2
-dummystudent43,password,tx,lovejoy high school,lucas,tx,2.9,2020,Math,Art,675,380,24,1,11,10,12,688,743,363,488,583,247,211,612,273,9
-dummystudent44,password,nj,sterling high school,somerdale,nj,0.7,2023,Math,Art,353,641,21,35,29,1,22,377,403,636,406,489,487,407,559,650,5
-dummystudent45,password,ny,staten island technical high school,staten island,ny,1.7,2021,Math,Art,246,602,31,14,31,16,23,768,765,642,610,691,403,351,553,711,0
-dummystudent46,password,pa,harriton senior high school,rosemont,pa,0.7,2022,Math,Art,509,308,9,3,35,32,20,324,615,442,418,678,659,336,627,730,9
-dummystudent47,password,nj,academy for information technology,scotch plains,nj,0.9,2019,Math,Art,359,629,20,19,3,18,15,511,353,220,269,634,418,440,606,484,0
-dummystudent48,password,ca,campolindo high school,moraga,ca,1.7,2021,Math,Art,386,534,17,5,33,15,18,239,269,521,276,238,642,385,475,424,7
-dummystudent49,password,ca,granada hills charter high school,granada hills,ca,0.7,2024,Math,Art,772,356,2,11,28,4,11,436,790,604,443,402,480,388,489,451,4
+dummystudent0,password,ga,alpharetta high school,alpharetta,ga,1.8,2023,Math,Art,248,550,14,28,23,4,17,432,468,445,497,448,217,677,543,700,8
+dummystudent1,password,ny,brighton high school,rochester,ny,1.8,2020,Math,Art,594,670,28,25,7,32,23,582,596,700,751,360,296,285,422,380,2
+dummystudent2,password,il,waubonsie valley,high school aurora,il,1.8,2024,Math,Art,252,327,36,13,22,13,21,379,542,589,552,287,797,783,617,783,4
+dummystudent3,password,wi,whitefish bay high school,whitefish bay,wi,3.7,2022,Math,Art,483,231,31,17,35,33,29,574,454,722,301,792,474,210,428,359,8
+dummystudent4,password,mi,international academy,bloomfield hills,mi,2.9,2020,Math,Art,323,407,26,16,19,11,18,603,743,727,636,753,473,662,745,789,6
+dummystudent5,password,ca,redwood high school,larkspur,ca,2.8,2024,Math,Art,534,442,5,2,27,28,16,653,622,221,689,408,533,255,440,747,5
+dummystudent6,password,ga,alpharetta high school,alpharetta,ga,2.8,2024,Math,Art,657,342,29,2,29,27,22,234,324,556,281,692,518,686,687,320,3
+dummystudent7,password,nj,ridgewood high school,ridgewood,nj,2.7,2019,Math,Art,356,381,29,8,34,30,25,500,683,569,727,300,333,353,782,312,10
+dummystudent8,password,nj,jp stevens high school,edison,nj,0.8,2024,Math,Art,461,593,16,36,8,31,23,279,618,691,294,719,495,635,329,375,0
+dummystudent9,password,nj,sterling high school,somerdale,nj,3.9,2019,Math,Art,682,786,6,15,32,12,16,629,685,477,733,686,329,372,524,432,3
+dummystudent10,password,nc,north carolina school of science and mathematics,durham,nc,1.8,2021,Math,Art,625,763,27,16,19,7,17,480,292,438,715,376,532,493,633,477,2
+dummystudent11,password,ca,dougherty valley high school,san ramon,ca,3.7,2021,Math,Art,411,723,21,15,22,30,22,548,480,343,440,587,275,754,631,259,4
+dummystudent12,password,ga,alpharetta high school,alpharetta,ga,1.7,2020,Math,Art,647,460,26,23,7,22,20,291,739,202,318,426,703,314,553,712,10
+dummystudent13,password,wa,columbia river high school,vancouver,wa,2.8,2022,Math,Art,273,405,1,28,36,5,18,405,352,468,540,658,337,735,634,329,6
+dummystudent14,password,oh,madeira high school,cincinnati,oh,2.8,2019,Math,Art,260,665,33,24,17,14,22,475,510,409,564,749,365,645,438,529,10
+dummystudent15,password,ga,alpharetta high school,alpharetta,ga,3.8,2024,Math,Art,494,447,7,19,4,18,12,432,359,380,507,423,293,612,797,691,5
+dummystudent16,password,ma,lexington high school,lexington,ma,2.9,2019,Math,Art,242,519,36,36,4,15,23,670,687,295,438,546,580,437,684,637,4
+dummystudent17,password,pa,radnor senior high school,radnor,pa,2.7,2019,Math,Art,792,559,5,14,31,14,16,294,511,402,245,544,406,497,755,316,0
+dummystudent18,password,tx,coppell high school,coppell,tx,2.7,2019,Math,Art,606,799,35,36,1,21,23,708,526,725,299,522,396,787,703,235,4
+dummystudent19,password,nc,panther creek high school,cary,nc,0.8,2024,Math,Art,722,595,6,14,17,33,18,314,662,557,751,435,397,717,446,223,4
+dummystudent20,password,tx,memorial high school,houston,tx,0.7,2020,Math,Art,391,474,24,19,26,33,26,758,696,337,593,371,309,253,333,645,3
+dummystudent21,password,nj,academy for information technology,scotch plains,nj,1.9,2022,Math,Art,507,413,18,32,12,10,18,562,383,758,631,545,549,417,625,207,8
+dummystudent22,password,mo,parkway central high school,chesterfield,mo,1.8,2020,Math,Art,790,586,18,4,35,33,22,631,714,430,771,709,355,704,481,269,9
+dummystudent23,password,tx,clements high school,sugar land,tx,2.7,2024,Math,Art,243,796,25,19,16,1,15,666,475,717,781,544,770,656,608,646,2
+dummystudent24,password,il,neuqua valley high school,naperville,il,0.8,2021,Math,Art,668,481,11,18,24,1,14,204,228,665,638,755,749,774,541,225,9
+dummystudent25,password,ny,staten island technical high school,staten island,ny,0.8,2021,Math,Art,249,313,10,18,4,24,14,361,567,662,260,413,373,709,356,208,9
+dummystudent26,password,ny,mamaroneck high school,mamaroneck,ny,3.9,2025,Math,Art,319,245,16,5,22,33,19,750,633,530,612,471,253,528,538,499,6
+dummystudent27,password,ca,granada hills charter high school,granada hills,ca,3.7,2025,Math,Art,660,790,20,10,20,15,16,357,481,321,576,233,709,366,276,618,4
+dummystudent28,password,nm,volcano vista high school,albuquerque,nm,1.9,2025,Math,Art,663,719,11,7,26,3,12,374,510,799,736,587,280,343,466,738,9
+dummystudent29,password,nc,east chapel hill high school,chapel hill,nc,2.7,2025,Math,Art,609,696,21,36,29,8,24,649,233,308,206,358,596,413,360,560,2
+dummystudent30,password,ma,sutton high school,sutton,ma,2.7,2023,Math,Art,266,770,23,2,13,29,17,448,772,407,339,282,378,551,556,766,6
+dummystudent31,password,va,james madison high school,vienna,va,1.8,2020,Math,Art,697,557,36,3,11,27,19,351,719,684,787,595,248,386,352,262,9
+dummystudent32,password,nj,sterling high school,somerdale,nj,1.9,2025,Math,Art,617,608,23,33,23,33,28,210,677,624,608,699,454,704,331,499,5
+dummystudent33,password,ks,blue valley north high school,overland park,ks,0.7,2023,Math,Art,699,593,17,24,18,12,18,235,698,315,362,463,790,757,680,599,0
+dummystudent34,password,ma,sutton high school,sutton,ma,2.7,2019,Math,Art,438,421,27,17,3,31,20,742,647,703,651,744,465,607,260,683,9
+dummystudent35,password,tx,memorial high school,houston,tx,1.8,2020,Math,Art,319,478,23,34,21,25,26,373,482,711,539,665,605,451,520,480,0
+dummystudent36,password,ks,blue valley north high school,overland park,ks,0.9,2025,Math,Art,310,751,18,11,9,11,12,447,793,247,384,333,767,688,699,702,7
+dummystudent37,password,va,oakton high school,vienna,va,1.9,2022,Math,Art,691,758,34,27,26,26,28,306,610,485,456,641,511,420,221,571,9
+dummystudent38,password,sc,south pointe high school,rock hill,sc,1.8,2020,Math,Art,692,782,27,5,10,4,12,494,602,212,737,271,539,708,737,394,10
+dummystudent39,password,tx,carroll senior high school,southlake,tx,0.7,2024,Math,Art,245,766,3,34,31,1,17,341,491,364,510,438,624,781,660,584,1
+dummystudent40,password,nj,academy for information technology,scotch plains,nj,3.8,2019,Math,Art,260,451,34,4,23,21,20,657,796,244,750,328,681,717,230,401,3
+dummystudent41,password,mi,huron high school,ann arbor,mi,0.8,2024,Math,Art,226,771,21,19,7,10,14,668,783,453,480,700,730,361,215,374,1
+dummystudent42,password,tx,clements high school,sugar land,tx,1.8,2020,Math,Art,587,596,34,30,29,19,28,713,420,742,521,541,555,411,628,319,7
+dummystudent43,password,va,mclean high school,mclean,va,2.9,2021,Math,Art,234,674,5,17,6,14,10,780,424,486,614,231,230,419,236,342,7
+dummystudent44,password,il,niles north high school,skokie,il,2.8,2020,Math,Art,756,255,6,11,28,30,19,286,255,689,450,384,673,369,216,250,4
+dummystudent45,password,sc,academic magnet high school,north charleston,sc,0.7,2023,Math,Art,550,729,2,22,1,12,9,536,424,276,648,746,797,403,368,420,3
+dummystudent46,password,al,mt brook high school,mountain brook,al,2.9,2023,Math,Art,423,362,2,25,2,8,9,472,347,780,223,396,583,337,367,707,6
+dummystudent47,password,nh,hanover high school,hanover,nh,0.8,2021,Math,Art,730,342,10,23,18,10,15,275,385,759,316,538,503,522,696,763,0
+dummystudent48,password,nj,sterling high school,somerdale,nj,2.8,2025,Math,Art,791,321,29,30,19,19,24,735,448,620,541,501,658,566,357,696,9
+dummystudent49,password,tx,elsik high school,houston,tx,3.7,2020,Math,Art,659,781,17,7,8,22,14,268,207,773,315,671,611,232,228,228,7
+dummystudent50,password,wa,bellevue high school,bellevue,wa,2.9,2021,Math,Art,635,237,35,31,28,28,30,656,497,470,419,593,753,543,433,646,5
+dummystudent51,password,nj,ridgewood high school,ridgewood,nj,0.9,2025,Math,Art,754,550,1,21,2,26,12,205,398,343,480,495,256,751,289,281,8
+dummystudent52,password,ks,blue valley north high school,overland park,ks,1.9,2020,Math,Art,267,718,22,15,4,19,15,709,674,395,592,634,675,318,503,230,5
+dummystudent53,password,il,naperville central high school,naperville,il,0.9,2019,Math,Art,251,485,2,7,4,8,5,598,228,780,367,280,498,703,360,498,5
+dummystudent54,password,il,neuqua valley high school,naperville,il,2.8,2020,Math,Art,473,436,32,35,36,34,34,627,535,498,766,731,438,398,307,318,3
+dummystudent55,password,nj,mountain lakes high school,mountain lakes,nj,1.8,2022,Math,Art,671,587,3,16,26,31,19,553,233,338,389,711,313,203,459,323,6
+dummystudent56,password,il,libertyville high school,libertyville,il,3.9,2019,Math,Art,362,588,34,10,3,33,20,413,716,294,503,396,783,602,547,480,4
+dummystudent57,password,ca,santa monica high school,santa monica,ca,3.7,2020,Math,Art,763,611,29,31,11,23,24,612,257,304,631,245,588,248,785,471,3
+dummystudent58,password,mn,eagan senior high school,eagan,mn,0.8,2022,Math,Art,756,509,7,19,15,14,14,342,538,697,397,228,473,686,235,415,1
+dummystudent59,password,il,university high school,normal,il,0.9,2025,Math,Art,709,465,1,12,19,17,12,341,240,412,641,286,633,496,774,562,3
+dummystudent60,password,tx,coppell high school,coppell,tx,2.8,2022,Math,Art,239,800,27,9,4,1,10,420,320,286,519,264,238,526,497,590,0
+dummystudent61,password,pa,fox chapel area high school,pittsburgh,pa,0.8,2025,Math,Art,627,413,28,16,11,20,19,372,293,359,603,321,525,353,474,774,2
+dummystudent62,password,mo,parkway central high school,chesterfield,mo,2.7,2021,Math,Art,716,542,23,7,21,25,19,274,446,690,426,586,363,779,346,449,9
+dummystudent63,password,ca,dougherty valley high school,san ramon,ca,2.9,2020,Math,Art,665,602,6,35,5,7,13,353,800,505,402,492,389,626,628,269,9
+dummystudent64,password,az,glendale high school,glendale,az,1.7,2025,Math,Art,715,211,10,16,22,15,16,710,453,604,542,611,772,284,451,417,7
+dummystudent65,password,ma,hopkinton high school,hopkinton,ma,2.9,2025,Math,Art,457,328,5,30,35,30,25,337,573,295,505,606,515,304,531,595,9
+dummystudent66,password,il,illinois mathematics and science academy,aurora,il,3.8,2024,Math,Art,421,604,14,22,9,35,20,355,352,706,742,204,348,609,484,764,10
+dummystudent67,password,ca,riverside stem academy,riverside,ca,1.9,2021,Math,Art,265,391,11,24,1,29,16,497,475,384,283,569,297,491,445,528,4
+dummystudent68,password,va,james madison high school,vienna,va,3.9,2025,Math,Art,364,530,15,34,32,28,27,406,777,497,237,717,278,617,650,721,0
+dummystudent69,password,ar,haas hall academy,fayetteville,ar,1.8,2019,Math,Art,553,568,10,27,30,23,22,707,457,218,557,365,346,222,583,515,5
+dummystudent70,password,ny,bronx high school of science,bronx,ny,2.8,2022,Math,Art,651,791,1,19,35,26,20,638,659,475,498,283,743,556,363,414,7
+dummystudent71,password,ga,columbus high school,columbus,ga,2.7,2022,Math,Art,658,461,36,23,32,23,28,478,270,246,589,507,428,598,478,595,2
+dummystudent72,password,ar,haas hall academy,fayetteville,ar,0.9,2023,Math,Art,692,495,25,11,31,6,18,733,572,312,525,677,296,773,426,428,1
+dummystudent73,password,ca,santa monica high school,santa monica,ca,3.7,2020,Math,Art,657,715,9,5,10,30,14,792,422,389,729,594,800,501,304,471,7
+dummystudent74,password,il,hinsdale central high school,hinsdale,il,2.9,2024,Math,Art,758,787,27,23,11,1,16,566,643,754,700,231,661,624,798,444,6
+dummystudent75,password,ks,lawrence free state high school,lawrence,ks,3.9,2024,Math,Art,374,406,29,24,22,3,20,444,604,249,774,506,708,517,753,549,5
+dummystudent76,password,nj,academy for information technology,scotch plains,nj,0.8,2023,Math,Art,391,745,6,20,35,9,18,373,601,471,647,554,329,787,382,335,10
+dummystudent77,password,mi,international academy,bloomfield hills,mi,2.9,2023,Math,Art,603,296,10,33,4,5,13,590,757,402,560,206,465,218,472,318,10
+dummystudent78,password,tx,richland high school,north richland hills,tx,0.9,2025,Math,Art,645,649,23,34,13,21,23,798,201,743,557,558,717,450,499,323,4
+dummystudent79,password,nc,carrboro high school,carrboro,nc,3.9,2021,Math,Art,523,382,14,19,9,23,16,451,800,429,299,738,495,359,460,791,5
+dummystudent80,password,fl,cedar key high school,cedar key,fl,2.7,2025,Math,Art,633,581,27,35,24,36,30,646,489,766,759,750,679,622,451,241,3
+dummystudent81,password,wi,whitefish bay high school,whitefish bay,wi,0.9,2023,Math,Art,473,723,2,7,6,25,10,768,631,418,358,432,563,296,661,619,10
+dummystudent82,password,ma,lexington high school,lexington,ma,3.8,2023,Math,Art,393,571,25,3,17,10,14,451,779,714,547,396,677,248,687,565,5
+dummystudent83,password,mi,lake city high school,lake city,mi,1.8,2020,Math,Art,245,204,21,27,32,11,23,246,620,302,669,479,412,644,575,535,0
+dummystudent84,password,il,new trier township high school,winnetka,il,1.7,2023,Math,Art,473,728,22,22,6,16,16,230,497,244,226,331,423,297,263,746,6
+dummystudent85,password,va,james madison high school,vienna,va,2.7,2025,Math,Art,778,345,8,33,32,13,22,518,238,645,759,640,687,428,445,673,7
+dummystudent86,password,ar,haas hall academy,fayetteville,ar,1.8,2023,Math,Art,529,621,24,30,13,10,19,437,795,445,740,623,462,686,604,500,6
+dummystudent87,password,ny,island trees high school,levittown,ny,2.9,2024,Math,Art,593,383,34,16,6,2,14,204,717,227,225,516,286,531,701,328,8
+dummystudent88,password,ga,flowery branch high school,flowery branch,ga,3.9,2020,Math,Art,414,292,32,13,16,3,16,458,210,650,769,251,207,371,496,445,0
+dummystudent89,password,ny,staten island technical high school,staten island,ny,0.7,2025,Math,Art,258,272,19,18,7,8,13,501,214,337,754,631,559,269,782,567,1
+dummystudent90,password,tx,coppell high school,coppell,tx,3.9,2023,Math,Art,708,541,22,24,35,23,26,689,337,435,689,785,207,475,263,390,8
+dummystudent91,password,il,waubonsie valley,high school aurora,il,0.9,2023,Math,Art,441,247,4,35,2,24,16,742,765,325,552,216,711,435,489,450,9
+dummystudent92,password,mi,huron high school,ann arbor,mi,1.7,2022,Math,Art,578,445,26,16,12,25,20,308,737,473,570,487,665,366,255,795,9
+dummystudent93,password,ca,piedmont high school,piedmont,ca,3.9,2023,Math,Art,458,652,26,1,30,19,19,480,512,202,203,665,788,276,236,532,5
+dummystudent94,password,tx,memorial high school,houston,tx,2.8,2024,Math,Art,755,480,10,33,5,7,14,216,322,285,514,305,426,708,639,351,5
+dummystudent95,password,il,waubonsie valley,high school aurora,il,2.7,2023,Math,Art,418,335,17,9,30,36,23,784,593,417,493,631,735,668,615,273,1
+dummystudent96,password,il,crystal lake central high school,crystal lake,il,2.7,2025,Math,Art,446,721,30,9,3,34,19,751,517,326,534,405,610,585,767,650,8
+dummystudent97,password,nj,ridgewood high school,ridgewood,nj,1.8,2023,Math,Art,600,405,2,35,33,14,21,256,449,347,449,354,655,484,300,719,1
+dummystudent98,password,al,mt brook high school,mountain brook,al,0.8,2025,Math,Art,745,222,4,32,5,12,13,365,276,529,464,485,497,597,496,446,2
+dummystudent99,password,va,stone bridge high school,ashburn,va,1.9,2022,Math,Art,478,283,19,13,31,15,20,758,417,699,221,273,534,646,264,544,9
+dummystudent100,password,nc,north carolina school of science and mathematics,durham,nc,1.8,2020,Math,Art,381,730,14,25,23,16,20,431,375,762,603,721,375,775,283,643,9
+dummystudent101,password,tx,westlake academy,westlake,tx,3.9,2022,Math,Art,679,657,12,15,18,18,16,509,777,256,474,216,625,295,388,416,5
+dummystudent102,password,az,basis tucson,north tucson,az,1.7,2024,Math,Art,212,328,29,6,17,28,20,335,504,527,659,569,310,547,402,556,4
+dummystudent103,password,mi,otsego high school,otsego,mi,2.9,2022,Math,Art,265,304,24,26,27,24,25,497,306,401,519,215,242,422,639,375,9
+dummystudent104,password,pa,radnor senior high school,radnor,pa,2.9,2023,Math,Art,730,428,18,10,9,1,10,316,744,259,413,612,401,778,203,263,10
+dummystudent105,password,tx,richland high school,north richland hills,tx,0.7,2020,Math,Art,717,666,19,12,7,36,18,252,577,462,695,531,648,416,733,316,9
+dummystudent106,password,mo,bayless senior high school,st louis,mo,2.7,2025,Math,Art,506,612,13,13,11,7,11,649,759,289,640,438,272,366,417,375,6
+dummystudent107,password,mi,international academy,bloomfield hills,mi,0.7,2021,Math,Art,560,385,20,2,12,3,9,571,384,694,788,732,552,748,758,555,8
+dummystudent108,password,tx,memorial high school,houston,tx,1.8,2020,Math,Art,351,266,15,9,21,5,12,663,328,445,595,270,433,787,788,606,5
+dummystudent109,password,il,libertyville high school,libertyville,il,3.9,2021,Math,Art,564,583,29,22,17,12,20,278,226,580,696,433,783,443,752,390,3
+dummystudent110,password,ny,brighton high school,rochester,ny,0.9,2021,Math,Art,737,265,23,23,16,2,16,641,405,252,257,308,365,239,638,672,2
+dummystudent111,password,nh,hanover high school,hanover,nh,1.7,2024,Math,Art,728,320,36,35,36,36,36,253,203,429,712,704,284,233,675,546,2
+dummystudent112,password,ny,bard high school early college,new york,ny,0.8,2023,Math,Art,710,681,7,20,11,32,18,582,297,536,794,642,253,424,249,261,3
+dummystudent113,password,nc,providence high school,charlotte,nc,2.9,2021,Math,Art,208,343,15,19,14,5,13,637,336,616,402,516,221,416,633,200,1
+dummystudent114,password,pa,radnor senior high school,radnor,pa,0.9,2022,Math,Art,537,644,23,25,34,4,22,790,661,250,297,221,580,607,462,538,9
+dummystudent115,password,il,neuqua valley high school,naperville,il,0.8,2020,Math,Art,521,785,20,11,10,14,14,734,278,416,307,502,586,444,324,771,3
+dummystudent116,password,ca,whitney high school,cerritos,ca,1.7,2020,Math,Art,309,466,25,36,23,13,24,620,569,679,672,351,716,672,220,382,2
+dummystudent117,password,ca,granada hills charter high school,granada hills,ca,3.7,2025,Math,Art,800,367,35,3,10,29,19,231,475,518,254,328,449,369,725,506,10
+dummystudent118,password,il,new trier township high school,winnetka,il,3.9,2025,Math,Art,444,721,8,11,32,17,17,236,317,487,377,389,494,645,785,508,4
+dummystudent119,password,il,northside college preparatory high school,chicago,il,1.7,2024,Math,Art,327,664,33,19,10,30,23,338,488,251,543,339,330,486,395,339,5
+dummystudent120,password,tx,clements high school,sugar land,tx,0.8,2021,Math,Art,287,354,31,10,16,29,22,638,278,486,650,557,252,747,646,778,9
+dummystudent121,password,ny,south side high school,rockville centre,ny,0.7,2021,Math,Art,201,660,22,13,18,14,17,582,792,253,752,377,637,534,574,628,3
+dummystudent122,password,co,fairview high school,boulder,co,3.8,2019,Math,Art,244,256,24,15,15,12,16,255,429,476,516,389,223,236,250,281,4
+dummystudent123,password,ms,the mississippi school for mathematics and science,columbus,ms,0.7,2020,Math,Art,795,467,23,2,4,8,9,645,267,575,330,254,544,429,218,539,9
+dummystudent124,password,co,fairview high school,boulder,co,3.7,2024,Math,Art,692,444,33,25,14,28,25,706,639,777,325,549,622,364,543,716,8
+dummystudent125,password,il,illinois mathematics and science academy,aurora,il,1.7,2019,Math,Art,616,424,32,35,21,29,29,313,345,561,723,509,338,761,466,582,5
+dummystudent126,password,az,arizona college prep erie campus,chandler,az,0.8,2020,Math,Art,265,682,28,31,23,8,22,271,762,597,433,711,447,510,507,224,1
+dummystudent127,password,ca,whitney high school,cerritos,ca,0.9,2024,Math,Art,265,434,2,9,25,27,16,785,360,425,403,509,277,479,287,658,3
+dummystudent128,password,ny,pelham memorial high school,pelham,ny,0.9,2022,Math,Art,704,403,20,28,4,8,15,798,452,678,769,437,340,676,286,334,2
+dummystudent129,password,tx,lovejoy high school,lucas,tx,3.8,2025,Math,Art,272,370,35,2,24,1,16,533,234,502,266,557,520,309,367,795,8
+dummystudent130,password,az,arizona college prep erie campus,chandler,az,0.9,2022,Math,Art,586,619,7,3,7,22,10,368,730,639,565,213,440,491,761,285,5
+dummystudent131,password,ny,pelham memorial high school,pelham,ny,1.7,2025,Math,Art,234,612,32,5,35,21,23,266,291,496,602,309,608,234,591,392,3
+dummystudent132,password,tx,elsik high school,houston,tx,2.8,2025,Math,Art,552,376,2,19,7,19,12,587,760,263,348,710,562,284,798,419,1
+dummystudent133,password,ms,the mississippi school for mathematics and science,columbus,ms,0.8,2023,Math,Art,376,442,21,24,33,10,22,516,336,578,537,776,747,750,617,598,0
+dummystudent134,password,il,naperville central high school,naperville,il,2.8,2019,Math,Art,414,710,1,33,29,36,25,521,460,490,422,690,713,743,720,494,7
+dummystudent135,password,il,university high school,normal,il,1.9,2019,Math,Art,639,548,18,20,2,25,16,494,599,525,618,620,369,313,479,572,8
+dummystudent136,password,mi,international academy,bloomfield hills,mi,0.7,2022,Math,Art,772,243,31,3,3,20,14,709,491,686,730,312,730,534,383,281,3
+dummystudent137,password,mi,huron high school,ann arbor,mi,1.7,2024,Math,Art,515,610,14,20,32,36,26,542,261,411,359,381,666,585,629,281,9
+dummystudent138,password,il,neuqua valley high school,naperville,il,1.8,2020,Math,Art,635,642,15,7,5,3,8,587,389,693,768,353,544,536,676,730,8
+dummystudent139,password,ga,walton high school,marietta,ga,3.7,2025,Math,Art,616,682,4,29,24,4,15,531,504,257,770,720,239,619,719,494,3
+dummystudent140,password,ga,alpharetta high school,alpharetta,ga,3.8,2021,Math,Art,221,400,19,8,9,17,13,313,446,432,367,420,592,318,543,457,4
+dummystudent141,password,az,glendale high school,glendale,az,0.9,2024,Math,Art,390,613,18,31,8,13,18,573,382,382,454,376,557,204,403,792,10
+dummystudent142,password,ca,whitney high school,cerritos,ca,3.9,2025,Math,Art,515,711,8,29,16,22,19,721,358,273,349,500,584,202,766,770,1
+dummystudent143,password,mo,parkway central high school,chesterfield,mo,0.9,2019,Math,Art,555,312,26,18,35,21,25,474,609,688,513,569,265,796,220,640,10
+dummystudent144,password,nj,academy for information technology,scotch plains,nj,1.8,2024,Math,Art,480,442,26,4,17,16,16,663,499,597,264,308,749,479,385,620,7
+dummystudent145,password,ny,baccalaureate school for global education,long island city,ny,2.8,2020,Math,Art,207,347,32,2,2,8,11,379,547,792,457,330,387,446,226,755,9
+dummystudent146,password,tx,health careers high school,san antonio,tx,2.7,2024,Math,Art,508,790,5,6,11,1,6,426,213,409,445,355,448,744,626,583,5
+dummystudent147,password,mn,eagan senior high school,eagan,mn,3.8,2022,Math,Art,768,740,27,35,33,27,30,485,527,701,274,293,666,689,711,781,9
+dummystudent148,password,ks,blue valley north high school,overland park,ks,1.9,2022,Math,Art,731,658,19,19,4,29,18,776,745,585,345,338,785,325,237,721,6
+dummystudent149,password,pa,fox chapel area high school,pittsburgh,pa,3.8,2022,Math,Art,747,288,4,2,27,19,13,582,776,712,553,439,300,229,551,586,6
+dummystudent150,password,il,illinois mathematics and science academy,aurora,il,3.8,2025,Math,Art,404,435,27,29,32,4,23,590,346,690,677,255,679,319,470,243,2
+dummystudent151,password,ny,bard high school early college,new york,ny,2.8,2022,Math,Art,638,567,33,5,21,35,24,298,477,435,523,600,513,266,611,431,0
+dummystudent152,password,il,northside college preparatory high school,chicago,il,1.9,2023,Math,Art,669,788,11,15,32,11,17,278,493,434,416,580,793,387,493,719,0
+dummystudent153,password,ny,commack high school,commack,ny,3.9,2024,Math,Art,261,336,34,5,29,27,24,599,493,202,659,729,259,743,548,527,7
+dummystudent154,password,pa,harriton senior high school,rosemont,pa,3.8,2022,Math,Art,313,685,36,20,32,32,30,357,444,307,561,597,640,295,517,548,1
+dummystudent155,password,nc,carrboro high school,carrboro,nc,1.8,2020,Math,Art,339,715,5,16,33,36,22,262,459,668,534,689,750,260,470,751,10
+dummystudent156,password,tx,memorial high school,houston,tx,1.7,2019,Math,Art,395,282,2,27,36,14,20,379,723,637,309,463,206,214,280,456,5
+dummystudent157,password,il,highland park high school,highland park,il,1.9,2024,Math,Art,265,680,15,30,10,33,22,670,241,423,358,515,427,691,343,394,10
+dummystudent158,password,va,mclean high school,mclean,va,0.7,2023,Math,Art,713,401,15,19,31,35,25,557,269,292,392,580,763,555,546,799,6
+dummystudent159,password,mo,parkway central high school,chesterfield,mo,1.8,2021,Math,Art,482,658,28,19,31,8,22,397,799,747,681,255,626,560,598,466,5
+dummystudent160,password,sc,academic magnet high school,north charleston,sc,3.7,2020,Math,Art,448,507,23,4,15,24,16,302,305,298,250,526,202,572,628,760,6
+dummystudent161,password,mo,bayless senior high school,st louis,mo,3.9,2020,Math,Art,235,716,22,17,4,19,16,290,797,560,320,259,373,765,730,595,4
+dummystudent162,password,nm,volcano vista high school,albuquerque,nm,1.8,2025,Math,Art,453,572,7,9,27,23,16,319,266,453,380,576,629,496,216,386,8
+dummystudent163,password,ny,staten island technical high school,staten island,ny,3.7,2025,Math,Art,395,652,21,26,19,25,23,207,280,282,565,298,472,650,686,626,9
+dummystudent164,password,ar,haas hall academy,fayetteville,ar,1.7,2020,Math,Art,482,747,9,8,25,14,14,295,306,484,673,450,226,279,397,408,10
+dummystudent165,password,ny,pelham memorial high school,pelham,ny,2.8,2019,Math,Art,696,232,28,34,4,2,17,484,599,430,591,419,378,770,483,685,3
+dummystudent166,password,tx,carroll senior high school,southlake,tx,1.7,2019,Math,Art,364,776,15,32,18,34,25,685,450,239,591,308,285,548,535,751,2
+dummystudent167,password,ca,aragon high school,san mateo,ca,1.8,2025,Math,Art,752,745,28,20,19,26,23,780,540,448,371,223,207,462,791,746,1
+dummystudent168,password,il,new trier township high school,winnetka,il,0.9,2025,Math,Art,216,433,6,14,19,20,15,426,516,742,703,632,339,272,686,693,6
+dummystudent169,password,ca,aragon high school,san mateo,ca,2.9,2024,Math,Art,492,326,27,4,5,21,14,718,735,624,663,415,208,269,649,627,0
+dummystudent170,password,nc,east chapel hill high school,chapel hill,nc,3.7,2019,Math,Art,364,496,8,32,5,14,15,321,559,292,385,274,798,628,382,793,2
+dummystudent171,password,sc,south pointe high school,rock hill,sc,1.7,2022,Math,Art,708,742,26,4,4,19,13,549,629,256,621,233,203,632,753,258,10
+dummystudent172,password,md,richard montgomery high school,rockville,md,2.9,2022,Math,Art,357,691,25,1,16,1,11,274,346,241,283,593,594,528,662,393,9
+dummystudent173,password,ct,parish hill high school,chaplin,ct,0.8,2020,Math,Art,755,317,2,20,14,28,16,349,705,227,761,500,585,491,800,438,3
+dummystudent174,password,ny,island trees high school,levittown,ny,2.9,2024,Math,Art,259,402,24,31,24,27,26,696,316,636,340,661,459,656,689,259,2
+dummystudent175,password,nj,sterling high school,somerdale,nj,0.9,2022,Math,Art,690,274,3,36,3,19,15,394,473,427,621,583,432,328,714,500,2
+dummystudent176,password,ca,piedmont high school,piedmont,ca,0.8,2022,Math,Art,521,654,14,8,34,24,20,282,378,260,405,520,558,311,482,434,7
+dummystudent177,password,ca,westlake high school,westlake village,ca,1.8,2020,Math,Art,540,267,6,17,5,21,12,769,620,339,334,756,538,793,326,494,3
+dummystudent178,password,ny,staten island technical high school,staten island,ny,2.9,2021,Math,Art,378,639,4,29,8,36,19,325,362,475,465,355,383,551,413,741,8
+dummystudent179,password,ks,blue valley north high school,overland park,ks,1.9,2025,Math,Art,533,307,33,26,4,33,24,553,471,451,557,453,575,515,290,301,2
+dummystudent180,password,mi,lake city high school,lake city,mi,1.8,2020,Math,Art,507,276,13,18,11,16,14,229,257,712,745,583,768,428,556,517,5
+dummystudent181,password,tx,richland high school,north richland hills,tx,1.9,2021,Math,Art,412,289,24,10,23,12,17,737,784,302,753,610,707,678,616,228,7
+dummystudent182,password,sc,ashley ridge high school,summerville,sc,1.9,2022,Math,Art,491,747,26,24,36,7,23,358,487,289,585,726,640,400,503,592,5
+dummystudent183,password,ma,sutton high school,sutton,ma,3.7,2022,Math,Art,432,608,16,35,5,31,22,356,728,222,396,626,481,485,240,471,0
+dummystudent184,password,il,waubonsie valley,high school aurora,il,1.7,2019,Math,Art,462,437,7,7,35,35,21,586,582,617,494,568,660,412,276,499,7
+dummystudent185,password,tx,carroll senior high school,southlake,tx,0.7,2025,Math,Art,379,430,5,1,29,1,9,656,740,704,270,557,312,395,301,713,3
+dummystudent186,password,il,northside college preparatory high school,chicago,il,2.7,2020,Math,Art,785,721,6,34,26,25,23,436,572,562,456,435,749,317,377,466,4
+dummystudent187,password,ny,bronx high school of science,bronx,ny,3.9,2024,Math,Art,652,383,25,2,3,30,15,539,428,325,666,435,359,565,337,415,1
+dummystudent188,password,nj,mountain lakes high school,mountain lakes,nj,2.8,2022,Math,Art,550,759,35,2,17,7,15,771,371,377,776,602,765,450,384,252,2
+dummystudent189,password,nj,jp stevens high school,edison,nj,2.7,2023,Math,Art,402,462,28,2,19,8,14,578,558,384,561,285,699,719,358,686,2
+dummystudent190,password,ma,hopkinton high school,hopkinton,ma,3.8,2019,Math,Art,332,693,13,32,11,28,21,597,663,571,428,779,377,274,743,335,9
+dummystudent191,password,az,basis tucson,north tucson,az,0.8,2021,Math,Art,558,622,28,27,14,9,20,330,546,294,488,712,511,779,381,743,1
+dummystudent192,password,ca,santa monica high school,santa monica,ca,1.9,2020,Math,Art,735,541,23,24,32,7,22,421,405,700,696,469,757,321,328,624,0
+dummystudent193,password,il,highland park high school,highland park,il,2.9,2023,Math,Art,603,670,27,19,26,14,22,694,425,253,538,657,769,639,208,494,1
+dummystudent194,password,tx,health careers high school,san antonio,tx,3.9,2019,Math,Art,674,369,6,26,2,17,13,472,574,470,398,225,771,595,286,728,5
+dummystudent195,password,il,neuqua valley high school,naperville,il,2.8,2022,Math,Art,745,327,31,4,15,36,22,234,498,252,244,205,439,390,624,783,3
+dummystudent196,password,il,new trier township high school,winnetka,il,2.7,2022,Math,Art,612,650,11,28,11,17,17,684,377,285,541,415,305,268,284,552,1
+dummystudent197,password,nj,sterling high school,somerdale,nj,3.8,2019,Math,Art,654,377,10,26,36,24,24,368,513,634,490,473,221,206,756,701,6
+dummystudent198,password,mi,huron high school,ann arbor,mi,1.8,2023,Math,Art,667,771,13,20,34,25,23,233,280,356,239,709,502,663,604,258,3
+dummystudent199,password,az,basis tucson,north tucson,az,3.9,2020,Math,Art,233,337,6,17,5,31,15,596,518,355,579,226,246,255,586,398,8
+dummystudent200,password,al,mt brook high school,mountain brook,al,2.7,2021,Math,Art,404,699,13,23,36,20,23,230,785,572,366,480,281,732,603,232,7
+dummystudent201,password,nh,hanover high school,hanover,nh,0.7,2025,Math,Art,687,718,25,27,9,35,24,796,660,565,271,618,386,792,455,690,9
+dummystudent202,password,ca,campolindo high school,moraga,ca,1.9,2020,Math,Art,233,283,15,7,15,35,18,692,440,740,233,585,378,530,399,693,6
+dummystudent203,password,il,new trier township high school,winnetka,il,0.9,2022,Math,Art,565,783,13,14,5,23,14,233,416,464,541,497,620,270,617,478,10
+dummystudent204,password,ks,lawrence free state high school,lawrence,ks,1.9,2022,Math,Art,588,340,22,23,11,33,22,297,209,328,706,764,318,379,703,743,3
+dummystudent205,password,ca,westlake high school,westlake village,ca,2.9,2022,Math,Art,751,235,2,23,32,19,19,505,209,334,367,624,503,593,439,283,5
+dummystudent206,password,ma,sutton high school,sutton,ma,1.9,2024,Math,Art,304,643,33,28,26,11,24,537,707,527,627,625,362,677,653,766,7
+dummystudent207,password,ca,piedmont high school,piedmont,ca,0.9,2023,Math,Art,613,360,28,12,26,28,24,351,209,210,792,599,299,531,525,322,7
+dummystudent208,password,nc,panther creek high school,cary,nc,1.7,2023,Math,Art,442,517,8,15,33,32,22,648,768,762,354,218,460,411,665,290,3
+dummystudent209,password,il,illinois mathematics and science academy,aurora,il,2.9,2019,Math,Art,534,743,16,20,30,18,21,424,713,221,373,391,653,654,378,440,8
+dummystudent210,password,ma,concord carlisle high school,concord,ma,1.7,2021,Math,Art,326,665,3,6,34,24,17,447,372,221,229,218,287,369,489,687,4
+dummystudent211,password,md,richard montgomery high school,rockville,md,3.9,2021,Math,Art,496,701,2,1,23,34,15,558,571,234,248,543,216,682,692,601,10
+dummystudent212,password,il,hinsdale central high school,hinsdale,il,3.7,2021,Math,Art,234,671,12,2,5,36,14,757,451,360,538,405,617,534,452,557,7
+dummystudent213,password,tx,reedy high school,frisco,tx,1.8,2023,Math,Art,353,260,25,24,24,25,24,736,614,682,749,749,215,700,325,527,4
+dummystudent214,password,nj,academy for information technology,scotch plains,nj,3.9,2025,Math,Art,497,292,10,27,2,32,18,755,800,651,249,793,793,487,779,289,0
+dummystudent215,password,ks,lawrence free state high school,lawrence,ks,3.8,2019,Math,Art,439,309,2,27,27,32,22,279,434,519,558,293,202,465,257,253,9
+dummystudent216,password,ga,walton high school,marietta,ga,0.7,2024,Math,Art,575,541,1,16,1,12,8,753,598,609,702,438,556,498,505,346,9
+dummystudent217,password,ky,the gatton academy,bowling green,ky,1.9,2021,Math,Art,448,279,3,12,22,24,15,313,512,420,482,232,686,719,775,547,5
+dummystudent218,password,ny,pelham memorial high school,pelham,ny,0.7,2021,Math,Art,294,529,31,3,21,24,20,230,460,639,571,777,629,583,508,500,5
+dummystudent219,password,nc,east chapel hill high school,chapel hill,nc,1.8,2019,Math,Art,505,735,26,31,33,16,26,321,568,216,473,512,340,405,666,324,0
+dummystudent220,password,tx,westlake academy,westlake,tx,1.8,2024,Math,Art,694,600,8,7,8,7,8,599,698,766,581,396,501,518,224,264,7
+dummystudent221,password,tx,lovejoy high school,lucas,tx,1.7,2019,Math,Art,503,724,21,4,12,3,10,637,613,469,583,467,528,405,657,760,1
+dummystudent222,password,va,stone bridge high school,ashburn,va,0.7,2019,Math,Art,341,354,33,18,22,18,23,646,247,366,352,301,560,439,400,473,8
+dummystudent223,password,ma,lexington high school,lexington,ma,0.9,2021,Math,Art,755,217,24,32,9,29,24,322,570,796,614,504,585,703,220,333,3
+dummystudent224,password,tx,reedy high school,frisco,tx,1.9,2020,Math,Art,296,345,29,27,16,18,22,387,361,314,499,387,454,754,459,215,10
+dummystudent225,password,va,oakton high school,vienna,va,3.8,2020,Math,Art,673,716,2,28,11,23,16,740,606,472,800,767,726,566,330,307,2
+dummystudent226,password,il,university high school,normal,il,0.7,2020,Math,Art,390,547,28,20,19,28,24,546,471,499,222,492,795,652,441,611,2
+dummystudent227,password,il,naperville central high school,naperville,il,1.8,2019,Math,Art,759,584,23,25,13,24,21,384,799,753,449,567,616,699,307,394,0
+dummystudent228,password,az,glendale high school,glendale,az,0.7,2024,Math,Art,370,442,8,5,19,20,13,302,720,602,674,235,518,247,563,394,6
+dummystudent229,password,pa,radnor senior high school,radnor,pa,0.9,2022,Math,Art,585,515,4,1,6,25,9,280,303,711,763,557,681,787,375,235,2
+dummystudent230,password,al,mt brook high school,mountain brook,al,1.7,2024,Math,Art,292,388,3,25,3,23,14,563,677,514,765,350,512,591,493,700,6
+dummystudent231,password,ct,parish hill high school,chaplin,ct,1.8,2023,Math,Art,681,477,7,5,35,34,20,310,706,304,597,592,778,363,516,633,7
+dummystudent232,password,az,arizona college prep erie campus,chandler,az,0.9,2019,Math,Art,686,589,12,35,31,31,27,475,695,439,320,296,512,374,621,602,9
+dummystudent233,password,oh,madeira high school,cincinnati,oh,1.8,2023,Math,Art,644,448,31,8,33,29,25,684,690,371,466,320,398,449,312,266,7
+dummystudent234,password,ca,piedmont high school,piedmont,ca,2.8,2019,Math,Art,789,386,19,4,4,5,8,438,513,504,225,563,553,621,541,299,1
+dummystudent235,password,ny,mamaroneck high school,mamaroneck,ny,2.7,2019,Math,Art,769,696,18,23,8,16,16,312,266,490,599,325,326,568,302,543,10
+dummystudent236,password,md,richard montgomery high school,rockville,md,0.8,2022,Math,Art,658,301,10,23,1,6,10,522,633,707,731,712,644,767,795,481,2
+dummystudent237,password,co,fairview high school,boulder,co,0.8,2022,Math,Art,402,429,29,10,5,14,14,466,294,339,214,340,663,294,350,464,3
+dummystudent238,password,fl,cedar key high school,cedar key,fl,1.9,2024,Math,Art,793,518,24,34,33,36,32,388,592,278,383,658,206,660,383,545,0
+dummystudent239,password,al,mt brook high school,mountain brook,al,3.9,2023,Math,Art,563,495,5,23,8,25,15,297,743,337,229,792,425,428,219,407,5
+dummystudent240,password,il,naperville central high school,naperville,il,2.7,2021,Math,Art,234,552,19,1,13,34,17,285,378,513,471,204,717,313,243,206,10
+dummystudent241,password,ny,brooklyn technical high school,brooklyn,ny,1.7,2022,Math,Art,461,659,1,32,25,36,24,585,372,784,779,715,757,638,352,613,6
+dummystudent242,password,va,oakton high school,vienna,va,2.8,2020,Math,Art,340,522,23,15,28,31,24,343,375,707,224,243,779,238,760,628,1
+dummystudent243,password,il,niles north high school,skokie,il,3.8,2022,Math,Art,622,613,28,36,26,3,23,354,508,378,630,306,667,392,414,325,7
+dummystudent244,password,ct,parish hill high school,chaplin,ct,3.8,2025,Math,Art,602,299,21,9,27,5,16,332,667,729,271,317,435,508,492,291,10
+dummystudent245,password,nm,volcano vista high school,albuquerque,nm,0.8,2024,Math,Art,514,782,4,3,9,15,8,281,756,316,776,754,302,592,437,536,9
+dummystudent246,password,mi,international academy,bloomfield hills,mi,2.9,2023,Math,Art,282,283,34,36,16,19,26,520,782,410,359,284,520,255,529,272,3
+dummystudent247,password,ny,south side high school,rockville centre,ny,3.8,2025,Math,Art,505,599,13,26,9,18,16,453,243,731,789,360,210,415,684,557,10
+dummystudent248,password,sc,south pointe high school,rock hill,sc,1.8,2025,Math,Art,498,210,1,24,14,25,16,528,506,668,350,430,706,536,426,775,0
+dummystudent249,password,ny,staten island technical high school,staten island,ny,3.7,2019,Math,Art,371,315,27,30,13,30,25,214,709,636,294,735,794,583,497,389,1
+dummystudent250,password,ny,bronx high school of science,bronx,ny,3.8,2022,Math,Art,539,603,9,4,19,32,16,364,500,294,209,724,242,607,522,363,10
+dummystudent251,password,ca,westlake high school,westlake village,ca,2.8,2020,Math,Art,656,725,21,24,3,19,17,607,607,781,493,697,594,490,559,782,8
+dummystudent252,password,va,stone bridge high school,ashburn,va,0.8,2025,Math,Art,319,649,36,24,27,1,22,684,664,556,211,310,535,292,754,313,10
+dummystudent253,password,nc,providence high school,charlotte,nc,2.9,2025,Math,Art,340,681,8,2,32,31,18,531,625,593,370,417,706,392,628,493,0
+dummystudent254,password,ca,piedmont high school,piedmont,ca,2.9,2021,Math,Art,566,307,2,31,8,11,13,485,387,559,630,771,486,268,431,396,8
+dummystudent255,password,ny,staten island technical high school,staten island,ny,0.8,2020,Math,Art,202,413,30,6,15,29,20,381,271,598,432,616,714,722,333,400,3
+dummystudent256,password,ny,south side high school,rockville centre,ny,1.7,2019,Math,Art,661,765,1,17,6,33,14,465,302,649,319,439,794,517,267,691,1
+dummystudent257,password,ca,santa monica high school,santa monica,ca,1.7,2020,Math,Art,540,399,26,15,36,22,25,772,268,597,302,352,636,212,391,622,1
+dummystudent258,password,tx,coppell high school,coppell,tx,3.9,2025,Math,Art,706,584,15,30,14,7,16,477,422,225,508,750,273,721,523,740,4
+dummystudent259,password,tx,lovejoy high school,lucas,tx,2.9,2020,Math,Art,639,648,10,31,27,16,21,718,596,468,228,794,524,551,224,588,4
+dummystudent260,password,ma,lexington high school,lexington,ma,0.9,2019,Math,Art,363,336,4,18,16,18,14,237,578,562,682,224,359,794,296,663,9
+dummystudent261,password,tx,lovejoy high school,lucas,tx,3.9,2023,Math,Art,511,663,16,16,4,3,10,451,779,512,794,403,503,487,770,436,2
+dummystudent262,password,ma,sutton high school,sutton,ma,1.9,2023,Math,Art,318,302,6,23,15,1,11,506,632,672,243,791,605,373,690,408,7
+dummystudent263,password,oh,madeira high school,cincinnati,oh,1.9,2024,Math,Art,222,369,16,19,22,5,16,618,544,485,329,484,467,478,227,483,9
+dummystudent264,password,nc,panther creek high school,cary,nc,3.8,2020,Math,Art,596,428,35,29,29,13,26,620,241,381,408,583,676,419,457,442,1
+dummystudent265,password,nj,mountain lakes high school,mountain lakes,nj,1.7,2019,Math,Art,431,561,1,4,31,23,15,641,424,601,757,321,252,287,405,267,1
+dummystudent266,password,il,illinois mathematics and science academy,aurora,il,0.8,2019,Math,Art,734,218,26,5,13,5,12,784,659,411,621,382,207,382,232,459,1
+dummystudent267,password,il,libertyville high school,libertyville,il,0.8,2022,Math,Art,300,382,16,19,33,34,26,716,789,513,519,478,336,377,643,442,4
+dummystudent268,password,az,arizona college prep erie campus,chandler,az,1.9,2020,Math,Art,288,610,18,33,17,25,23,236,635,705,776,701,340,639,410,409,0
+dummystudent269,password,mi,international academy,bloomfield hills,mi,0.8,2019,Math,Art,569,525,1,30,11,36,20,420,786,408,693,228,570,431,518,729,4
+dummystudent270,password,ca,granada hills charter high school,granada hills,ca,3.8,2020,Math,Art,433,318,13,17,1,35,16,607,522,315,337,425,663,268,477,793,6
+dummystudent271,password,ks,blue valley north high school,overland park,ks,2.8,2024,Math,Art,387,468,14,9,34,35,23,298,248,633,313,643,310,585,472,231,9
+dummystudent272,password,tx,richland high school,north richland hills,tx,1.7,2022,Math,Art,257,202,22,29,16,14,20,362,303,588,235,456,581,766,564,670,0
+dummystudent273,password,ny,mamaroneck high school,mamaroneck,ny,0.9,2021,Math,Art,625,400,27,5,14,16,16,478,646,373,252,691,551,369,247,687,5
+dummystudent274,password,ca,granada hills charter high school,granada hills,ca,0.8,2022,Math,Art,485,397,21,4,5,1,8,606,266,688,289,710,451,391,311,353,8
+dummystudent275,password,nj,mountain lakes high school,mountain lakes,nj,3.7,2024,Math,Art,254,274,19,5,21,29,18,642,559,660,751,241,347,780,276,610,7
+dummystudent276,password,tx,fairfield high school,fairfield,tx,2.9,2025,Math,Art,628,617,17,1,33,4,14,322,283,357,231,739,748,657,465,785,9
+dummystudent277,password,tx,elsik high school,houston,tx,0.7,2022,Math,Art,462,336,26,29,7,28,22,280,319,471,533,636,402,586,518,290,7
+dummystudent278,password,ny,south side high school,rockville centre,ny,0.9,2024,Math,Art,369,392,23,19,22,13,19,239,595,455,788,392,297,494,392,538,5
+dummystudent279,password,va,stone bridge high school,ashburn,va,1.9,2024,Math,Art,778,726,7,33,19,30,22,527,732,786,274,472,417,697,713,677,9
+dummystudent280,password,wa,bellevue high school,bellevue,wa,2.9,2022,Math,Art,408,643,35,25,13,14,22,615,778,592,615,777,755,219,470,282,3
+dummystudent281,password,fl,cedar key high school,cedar key,fl,0.9,2024,Math,Art,793,284,9,7,12,36,16,585,421,406,482,260,322,612,388,695,0
+dummystudent282,password,ca,mira costa high school,manhattan beach,ca,3.7,2022,Math,Art,475,573,29,7,16,33,21,761,610,627,544,273,464,443,551,311,6
+dummystudent283,password,ny,south side high school,rockville centre,ny,1.8,2024,Math,Art,364,571,13,17,4,29,16,731,715,648,306,347,691,300,493,628,7
+dummystudent284,password,ca,whitney high school,cerritos,ca,3.9,2021,Math,Art,548,450,28,3,25,16,18,299,428,391,493,659,653,737,416,254,4
+dummystudent285,password,il,illinois mathematics and science academy,aurora,il,1.9,2024,Math,Art,603,452,10,25,1,17,13,495,721,784,418,462,796,568,283,545,2
+dummystudent286,password,ca,piedmont high school,piedmont,ca,3.8,2024,Math,Art,232,353,23,2,2,13,10,778,338,486,482,364,615,332,297,265,7
+dummystudent287,password,nj,academy for information technology,scotch plains,nj,3.8,2020,Math,Art,449,570,14,25,27,32,24,548,248,734,248,680,693,421,608,759,6
+dummystudent288,password,tx,coppell high school,coppell,tx,2.9,2022,Math,Art,564,413,25,24,28,2,20,688,759,748,542,647,362,251,649,267,4
+dummystudent289,password,va,mclean high school,mclean,va,1.8,2022,Math,Art,541,540,6,21,21,9,14,287,409,202,305,266,706,512,743,590,6
+dummystudent290,password,il,neuqua valley high school,naperville,il,1.8,2019,Math,Art,380,348,12,23,5,36,19,268,438,800,610,344,366,313,447,609,6
+dummystudent291,password,tx,elsik high school,houston,tx,2.9,2023,Math,Art,526,340,35,17,10,27,22,234,217,448,533,403,362,653,560,342,4
+dummystudent292,password,fl,cedar key high school,cedar key,fl,1.7,2023,Math,Art,408,702,13,6,21,33,18,507,784,413,507,298,217,274,573,245,1
+dummystudent293,password,ny,brooklyn technical high school,brooklyn,ny,1.7,2023,Math,Art,752,437,35,21,3,10,17,297,619,436,287,440,731,405,491,339,3
+dummystudent294,password,ny,island trees high school,levittown,ny,2.9,2024,Math,Art,370,778,34,24,27,12,24,424,264,521,695,789,767,240,362,508,4
+dummystudent295,password,pa,harriton senior high school,rosemont,pa,1.9,2025,Math,Art,725,734,30,27,27,17,25,489,597,560,292,727,569,452,292,723,7
+dummystudent296,password,wi,whitefish bay high school,whitefish bay,wi,0.9,2022,Math,Art,755,556,25,34,10,30,25,470,310,446,738,238,225,360,411,331,1
+dummystudent297,password,ga,walton high school,marietta,ga,2.9,2021,Math,Art,499,283,8,33,20,34,24,200,218,562,676,603,733,463,284,739,2
+dummystudent298,password,nc,carrboro high school,carrboro,nc,1.7,2021,Math,Art,377,504,24,19,28,26,24,455,582,279,253,604,337,682,293,420,10
+dummystudent299,password,nj,sterling high school,somerdale,nj,0.9,2019,Math,Art,376,347,6,30,9,11,14,641,592,362,745,656,282,232,691,459,7
+dummystudent300,password,nc,carrboro high school,carrboro,nc,2.9,2023,Math,Art,235,616,23,18,18,18,19,441,359,257,558,547,298,685,442,515,8
+dummystudent301,password,tx,memorial high school,houston,tx,2.8,2019,Math,Art,430,608,20,19,16,21,19,770,795,593,224,395,232,531,302,607,10
+dummystudent302,password,nh,hanover high school,hanover,nh,3.8,2020,Math,Art,394,556,7,3,12,24,12,718,693,489,696,668,501,390,371,481,1
+dummystudent303,password,wa,bellevue high school,bellevue,wa,1.8,2021,Math,Art,318,316,7,24,24,24,20,722,452,342,578,658,389,455,224,207,6
+dummystudent304,password,ny,bard high school early college,new york,ny,0.7,2021,Math,Art,409,320,15,7,33,13,17,723,631,662,551,411,552,634,508,376,1
+dummystudent305,password,sc,academic magnet high school,north charleston,sc,3.7,2024,Math,Art,255,457,31,7,23,20,20,441,341,518,671,713,304,527,592,585,0
+dummystudent306,password,il,waubonsie valley,high school aurora,il,2.7,2025,Math,Art,569,402,4,17,17,19,14,396,550,224,584,246,296,403,398,755,4
+dummystudent307,password,ca,westlake high school,westlake village,ca,3.9,2020,Math,Art,252,324,19,19,5,25,17,300,361,430,506,274,203,668,606,758,2
+dummystudent308,password,mo,parkway central high school,chesterfield,mo,3.8,2024,Math,Art,415,365,4,16,1,23,11,415,492,283,790,342,272,701,508,412,0
+dummystudent309,password,tx,elsik high school,houston,tx,2.8,2020,Math,Art,429,273,15,26,11,27,20,506,554,589,740,742,604,646,556,623,10
+dummystudent310,password,tx,reedy high school,frisco,tx,1.9,2022,Math,Art,298,334,3,13,2,13,8,519,662,568,364,305,722,505,297,680,4
+dummystudent311,password,il,hinsdale central high school,hinsdale,il,2.9,2023,Math,Art,322,590,9,34,16,30,22,709,460,539,654,530,267,470,290,744,10
+dummystudent312,password,nc,providence high school,charlotte,nc,1.9,2019,Math,Art,517,776,25,33,22,15,24,781,423,526,758,477,570,365,250,799,7
+dummystudent313,password,mi,lake city high school,lake city,mi,2.8,2019,Math,Art,321,522,16,32,27,3,20,570,390,796,429,222,400,401,230,406,3
+dummystudent314,password,tx,health careers high school,san antonio,tx,0.9,2025,Math,Art,723,529,11,24,17,18,18,397,689,309,496,202,373,582,696,476,0
+dummystudent315,password,ny,bard high school early college,new york,ny,1.9,2020,Math,Art,286,618,12,35,4,28,20,604,330,544,516,790,694,757,798,228,7
+dummystudent316,password,nj,ridgewood high school,ridgewood,nj,3.8,2023,Math,Art,685,354,13,29,30,15,22,217,568,653,232,615,536,399,682,240,5
+dummystudent317,password,co,fairview high school,boulder,co,3.7,2019,Math,Art,675,231,30,20,4,23,19,593,387,701,440,744,733,293,382,544,1
+dummystudent318,password,ca,redwood high school,larkspur,ca,0.9,2019,Math,Art,608,556,28,7,33,13,20,696,320,310,759,721,793,418,231,250,4
+dummystudent319,password,nm,volcano vista high school,albuquerque,nm,3.9,2025,Math,Art,625,251,7,3,20,20,12,743,412,315,657,518,243,618,512,371,5
+dummystudent320,password,va,stone bridge high school,ashburn,va,3.9,2024,Math,Art,289,716,36,8,36,12,23,357,678,513,719,612,320,245,741,354,1
+dummystudent321,password,nm,volcano vista high school,albuquerque,nm,2.8,2019,Math,Art,374,571,26,14,25,15,20,798,493,237,702,657,273,618,418,437,2
+dummystudent322,password,pa,harriton senior high school,rosemont,pa,1.7,2019,Math,Art,738,616,18,5,4,3,8,242,770,482,752,262,528,439,466,652,0
+dummystudent323,password,il,libertyville high school,libertyville,il,1.8,2024,Math,Art,639,416,16,28,8,20,18,446,438,409,746,356,293,429,689,738,10
+dummystudent324,password,nj,academy for information technology,scotch plains,nj,2.7,2022,Math,Art,680,714,1,7,23,11,10,401,687,617,746,572,362,428,701,717,6
+dummystudent325,password,ma,concord carlisle high school,concord,ma,3.8,2019,Math,Art,632,232,19,30,30,15,24,311,478,672,464,796,485,406,203,699,9
+dummystudent326,password,nj,academy for information technology,scotch plains,nj,1.9,2025,Math,Art,749,467,4,19,15,33,18,749,642,264,248,552,617,202,419,368,8
+dummystudent327,password,ca,redwood high school,larkspur,ca,0.8,2019,Math,Art,235,632,2,13,9,2,6,436,540,772,685,669,485,447,375,400,7
+dummystudent328,password,ga,walton high school,marietta,ga,1.9,2021,Math,Art,531,294,9,27,18,27,20,720,680,375,738,594,285,536,779,569,7
+dummystudent329,password,mn,eagan senior high school,eagan,mn,0.9,2019,Math,Art,450,662,30,13,11,28,20,554,328,241,643,554,280,239,762,720,1
+dummystudent330,password,pa,radnor senior high school,radnor,pa,1.7,2023,Math,Art,206,516,19,11,5,18,13,455,530,433,295,265,566,520,559,619,5
+dummystudent331,password,il,northside college preparatory high school,chicago,il,0.7,2025,Math,Art,677,329,2,12,28,26,17,299,430,788,746,285,500,347,701,399,9
+dummystudent332,password,ca,westlake high school,westlake village,ca,0.7,2019,Math,Art,396,713,21,14,5,11,13,649,305,499,719,634,278,410,682,474,0
+dummystudent333,password,ca,dougherty valley high school,san ramon,ca,0.9,2022,Math,Art,731,294,35,2,9,12,14,507,474,685,686,370,352,688,510,411,0
+dummystudent334,password,ky,the gatton academy,bowling green,ky,3.8,2025,Math,Art,215,364,22,6,32,30,22,275,401,538,427,317,669,398,576,352,10
+dummystudent335,password,ny,staten island technical high school,staten island,ny,3.8,2020,Math,Art,420,682,34,9,5,8,14,739,527,397,777,577,567,703,324,534,3
+dummystudent336,password,co,fairview high school,boulder,co,0.8,2024,Math,Art,778,717,21,1,24,1,12,543,308,326,318,769,395,592,349,593,10
+dummystudent337,password,ms,the mississippi school for mathematics and science,columbus,ms,1.7,2022,Math,Art,712,512,26,26,26,4,20,567,364,533,402,719,228,587,700,277,2
+dummystudent338,password,tx,westlake academy,westlake,tx,2.9,2023,Math,Art,679,671,3,4,2,29,10,270,596,425,670,787,266,418,701,259,2
+dummystudent339,password,tx,lovejoy high school,lucas,tx,1.7,2022,Math,Art,387,774,36,6,24,19,21,553,554,251,390,799,387,797,757,593,7
+dummystudent340,password,az,basis tucson,north tucson,az,3.7,2021,Math,Art,420,296,30,3,2,18,13,392,760,697,471,787,480,628,421,234,9
+dummystudent341,password,wi,whitefish bay high school,whitefish bay,wi,0.7,2020,Math,Art,637,358,20,34,27,34,29,201,200,776,445,709,659,612,649,398,8
+dummystudent342,password,tx,carroll senior high school,southlake,tx,1.9,2023,Math,Art,252,570,2,18,16,24,15,486,683,400,769,746,228,639,394,500,10
+dummystudent343,password,ny,bard high school early college,new york,ny,2.8,2021,Math,Art,347,570,28,14,31,2,19,249,468,735,316,452,289,353,460,344,6
+dummystudent344,password,ny,brooklyn technical high school,brooklyn,ny,0.8,2019,Math,Art,322,417,32,21,29,5,22,245,535,640,429,214,294,596,514,327,3
+dummystudent345,password,ga,columbus high school,columbus,ga,0.9,2020,Math,Art,527,712,21,35,31,11,24,260,697,507,241,378,684,597,374,390,9
+dummystudent346,password,az,basis tucson,north tucson,az,3.8,2025,Math,Art,349,593,22,21,1,21,16,393,290,490,633,236,274,210,486,372,7
+dummystudent347,password,ga,alpharetta high school,alpharetta,ga,0.8,2024,Math,Art,305,437,10,2,1,35,12,625,657,389,520,625,318,598,393,509,1
+dummystudent348,password,sc,south pointe high school,rock hill,sc,1.7,2023,Math,Art,373,269,14,20,20,19,18,258,665,467,441,542,200,538,620,310,0
+dummystudent349,password,pa,radnor senior high school,radnor,pa,1.9,2020,Math,Art,649,419,31,30,16,10,22,734,580,676,570,497,637,564,413,334,10
+dummystudent350,password,ca,campolindo high school,moraga,ca,3.7,2022,Math,Art,747,751,21,32,27,16,24,712,273,303,363,800,345,741,372,460,6
+dummystudent351,password,ny,brighton high school,rochester,ny,2.9,2023,Math,Art,367,507,34,19,31,35,30,729,217,335,590,701,758,444,506,204,6
+dummystudent352,password,tx,fairfield high school,fairfield,tx,2.9,2019,Math,Art,460,458,27,33,18,33,28,620,581,541,608,754,675,583,595,401,8
+dummystudent353,password,ny,baccalaureate school for global education,long island city,ny,2.8,2023,Math,Art,521,481,27,26,24,26,26,448,389,705,271,206,467,396,624,774,7
+dummystudent354,password,tx,richland high school,north richland hills,tx,1.7,2021,Math,Art,482,708,27,22,23,13,21,266,584,703,384,455,262,764,606,281,10
+dummystudent355,password,ny,commack high school,commack,ny,2.7,2019,Math,Art,364,647,9,23,3,7,10,279,657,200,530,357,211,288,564,619,0
+dummystudent356,password,ca,santa monica high school,santa monica,ca,3.7,2023,Math,Art,637,589,24,18,3,13,14,374,672,503,317,551,525,618,394,516,7
+dummystudent357,password,nj,sterling high school,somerdale,nj,0.8,2021,Math,Art,477,432,16,4,11,18,12,249,481,489,307,614,698,232,597,638,3
+dummystudent358,password,il,neuqua valley high school,naperville,il,0.8,2019,Math,Art,208,520,27,27,18,26,24,281,694,627,213,205,307,204,343,399,3
+dummystudent359,password,nc,panther creek high school,cary,nc,0.9,2024,Math,Art,358,437,7,4,21,15,12,461,733,688,372,721,300,682,284,306,9
+dummystudent360,password,tx,fairfield high school,fairfield,tx,2.9,2024,Math,Art,256,280,33,23,18,34,27,205,389,718,490,501,245,793,424,775,10
+dummystudent361,password,wi,whitefish bay high school,whitefish bay,wi,3.7,2020,Math,Art,736,344,20,27,8,15,18,590,440,412,406,243,528,407,561,248,5
+dummystudent362,password,nc,providence high school,charlotte,nc,2.8,2023,Math,Art,639,585,26,5,36,32,25,236,448,385,321,239,207,682,496,590,0
+dummystudent363,password,pa,radnor senior high school,radnor,pa,2.7,2025,Math,Art,651,433,17,2,19,14,13,262,488,624,678,210,203,508,272,205,9
+dummystudent364,password,nj,sterling high school,somerdale,nj,0.9,2021,Math,Art,663,364,6,27,11,29,18,250,790,728,779,414,793,486,622,723,1
+dummystudent365,password,nj,mountain lakes high school,mountain lakes,nj,1.7,2023,Math,Art,700,371,7,7,15,23,13,684,422,579,648,800,571,256,547,315,9
+dummystudent366,password,md,richard montgomery high school,rockville,md,2.7,2024,Math,Art,389,471,20,21,33,11,21,789,671,782,541,752,576,790,529,759,0
+dummystudent367,password,ca,mira costa high school,manhattan beach,ca,0.8,2021,Math,Art,336,245,13,5,14,7,10,328,245,579,282,357,392,247,755,298,6
+dummystudent368,password,pa,harriton senior high school,rosemont,pa,0.8,2020,Math,Art,231,421,17,9,11,6,11,612,325,279,290,697,389,678,543,678,10
+dummystudent369,password,az,basis tucson,north tucson,az,1.7,2021,Math,Art,495,781,35,26,10,3,18,376,755,234,782,208,347,477,288,499,0
+dummystudent370,password,az,basis flagstaff,flagstaff,az,3.9,2019,Math,Art,523,202,7,11,6,24,12,308,330,795,314,530,504,214,439,552,3
+dummystudent371,password,ma,sutton high school,sutton,ma,3.7,2025,Math,Art,543,530,19,16,5,6,12,331,750,669,389,488,400,557,664,775,6
+dummystudent372,password,il,highland park high school,highland park,il,3.9,2023,Math,Art,209,531,28,16,31,35,28,735,287,540,752,586,563,740,338,458,9
+dummystudent373,password,az,glendale high school,glendale,az,3.7,2024,Math,Art,401,395,14,11,27,20,18,348,619,381,651,635,293,622,656,557,0
+dummystudent374,password,ga,alpharetta high school,alpharetta,ga,0.8,2024,Math,Art,576,417,4,17,12,8,10,217,752,523,647,384,460,768,393,221,4
+dummystudent375,password,nj,academy for information technology,scotch plains,nj,2.9,2020,Math,Art,392,242,24,11,30,2,17,740,205,216,788,238,226,238,265,493,5
+dummystudent376,password,mi,lake city high school,lake city,mi,0.7,2019,Math,Art,772,383,30,34,1,27,23,502,297,468,448,771,738,625,579,314,1
+dummystudent377,password,sc,ashley ridge high school,summerville,sc,3.9,2024,Math,Art,299,391,17,14,34,24,22,787,217,792,619,709,257,729,589,545,10
+dummystudent378,password,nc,panther creek high school,cary,nc,2.7,2019,Math,Art,293,724,2,6,13,18,10,570,278,542,229,584,632,205,650,482,8
+dummystudent379,password,nh,hanover high school,hanover,nh,2.7,2019,Math,Art,407,499,12,28,35,33,27,341,437,336,516,762,507,480,229,272,5
+dummystudent380,password,az,basis tucson,north tucson,az,1.9,2019,Math,Art,517,232,26,32,6,6,18,688,670,569,410,489,271,448,593,491,9
+dummystudent381,password,ms,the mississippi school for mathematics and science,columbus,ms,3.8,2020,Math,Art,635,591,19,8,17,22,16,751,317,735,558,446,327,366,258,344,3
+dummystudent382,password,mi,otsego high school,otsego,mi,0.7,2024,Math,Art,276,761,7,36,7,35,21,450,287,575,735,713,575,656,796,288,6
+dummystudent383,password,ca,whitney high school,cerritos,ca,1.7,2025,Math,Art,448,500,14,1,22,35,18,318,385,499,770,419,644,299,704,416,6
+dummystudent384,password,va,oakton high school,vienna,va,2.7,2024,Math,Art,533,312,4,30,36,23,23,381,591,435,230,493,285,461,717,540,9
+dummystudent385,password,nc,carrboro high school,carrboro,nc,1.7,2022,Math,Art,331,781,26,25,17,35,26,240,792,338,367,322,228,330,797,419,7
+dummystudent386,password,va,stone bridge high school,ashburn,va,3.7,2021,Math,Art,720,539,36,23,2,4,16,368,694,708,590,235,205,771,498,292,8
+dummystudent387,password,va,stone bridge high school,ashburn,va,2.9,2024,Math,Art,685,485,16,7,21,36,20,397,211,627,245,650,424,666,509,714,7
+dummystudent388,password,nc,panther creek high school,cary,nc,1.7,2024,Math,Art,414,768,19,28,23,22,23,652,669,670,494,569,302,201,421,773,2
+dummystudent389,password,nc,north carolina school of science and mathematics,durham,nc,0.7,2023,Math,Art,639,358,36,7,11,4,14,736,302,254,310,414,353,326,652,449,6
+dummystudent390,password,ca,canyon crest academy,san diego,ca,1.8,2025,Math,Art,270,315,19,17,26,9,18,501,254,375,576,541,563,739,349,279,0
+dummystudent391,password,tx,westwood high school,austin,tx,2.8,2022,Math,Art,500,320,12,5,19,13,12,354,223,413,347,206,762,799,329,538,3
+dummystudent392,password,il,glenbrook south high school,glenview,il,2.8,2022,Math,Art,691,561,1,17,22,3,11,273,779,539,259,570,568,360,204,212,9
+dummystudent393,password,mn,eagan senior high school,eagan,mn,3.7,2020,Math,Art,221,470,17,13,25,30,21,748,449,656,711,266,540,427,476,209,9
+dummystudent394,password,ks,blue valley north high school,overland park,ks,1.9,2019,Math,Art,774,772,2,30,23,9,16,440,757,358,324,773,645,207,441,371,9
+dummystudent395,password,tx,richland high school,north richland hills,tx,3.9,2020,Math,Art,202,540,8,10,15,7,10,713,568,446,673,702,518,597,542,673,2
+dummystudent396,password,ny,commack high school,commack,ny,3.8,2019,Math,Art,459,596,13,35,10,24,20,405,748,480,768,584,210,564,324,324,5
+dummystudent397,password,pa,harriton senior high school,rosemont,pa,0.7,2021,Math,Art,377,787,7,11,12,24,14,533,312,740,312,391,703,317,382,356,4
+dummystudent398,password,az,arizona college prep erie campus,chandler,az,1.9,2022,Math,Art,710,249,25,35,5,6,18,506,424,288,359,722,315,499,569,701,2
+dummystudent399,password,mo,parkway central high school,chesterfield,mo,1.9,2024,Math,Art,494,200,15,1,20,2,10,279,227,592,652,384,334,477,521,674,8
+dummystudent400,password,sc,south pointe high school,rock hill,sc,0.9,2019,Math,Art,433,240,1,21,4,32,14,382,713,496,586,613,633,654,601,423,1
+dummystudent401,password,ny,pelham memorial high school,pelham,ny,1.9,2022,Math,Art,308,676,33,6,10,32,20,409,735,798,640,255,255,579,311,764,7
+dummystudent402,password,tx,westwood high school,austin,tx,2.8,2021,Math,Art,740,343,18,15,8,4,11,721,431,301,455,224,489,724,267,788,1
+dummystudent403,password,ny,bronx high school of science,bronx,ny,3.7,2025,Math,Art,576,268,6,13,33,8,15,568,524,637,347,787,434,324,447,665,4
+dummystudent404,password,ca,aragon high school,san mateo,ca,0.7,2020,Math,Art,750,774,13,3,10,23,12,200,374,708,741,317,405,661,642,572,1
+dummystudent405,password,il,crystal lake central high school,crystal lake,il,2.8,2024,Math,Art,437,627,33,32,11,32,27,453,527,695,243,270,669,553,265,547,2
+dummystudent406,password,wa,columbia river high school,vancouver,wa,0.8,2024,Math,Art,751,224,11,28,33,4,19,425,701,647,673,324,616,262,766,219,6
+dummystudent407,password,tx,memorial high school,houston,tx,0.9,2024,Math,Art,647,733,36,31,34,4,26,389,443,388,308,246,721,740,586,529,7
+dummystudent408,password,ct,parish hill high school,chaplin,ct,2.8,2019,Math,Art,694,261,20,33,31,20,26,563,778,271,295,206,215,597,340,305,4
+dummystudent409,password,tx,elsik high school,houston,tx,3.7,2022,Math,Art,777,311,21,1,1,7,8,690,408,269,404,220,318,435,212,353,8
+dummystudent410,password,ca,santa monica high school,santa monica,ca,1.9,2021,Math,Art,253,718,28,25,10,29,23,435,741,605,437,611,786,617,229,610,7
+dummystudent411,password,ks,lawrence free state high school,lawrence,ks,3.9,2020,Math,Art,692,762,32,6,29,34,25,601,702,216,655,702,568,421,218,800,0
+dummystudent412,password,ky,the gatton academy,bowling green,ky,2.8,2020,Math,Art,471,481,7,22,22,14,16,302,652,288,698,716,450,374,240,789,1
+dummystudent413,password,va,mclean high school,mclean,va,2.9,2025,Math,Art,592,797,19,36,28,9,23,229,473,701,747,224,467,216,483,403,0
+dummystudent414,password,ga,flowery branch high school,flowery branch,ga,3.8,2025,Math,Art,523,291,22,23,2,12,15,686,581,414,602,286,337,729,616,384,4
+dummystudent415,password,pa,fox chapel area high school,pittsburgh,pa,3.8,2020,Math,Art,440,794,18,3,30,27,20,561,722,700,445,458,389,631,657,695,2
+dummystudent416,password,ks,blue valley north high school,overland park,ks,2.7,2025,Math,Art,743,584,17,11,35,27,22,598,680,551,706,338,371,255,606,344,1
+dummystudent417,password,il,highland park high school,highland park,il,2.8,2022,Math,Art,678,237,7,15,26,14,16,788,795,334,245,734,495,271,209,583,6
+dummystudent418,password,pa,radnor senior high school,radnor,pa,2.9,2020,Math,Art,689,216,7,7,21,27,16,640,446,678,459,714,750,483,766,317,8
+dummystudent419,password,co,fairview high school,boulder,co,0.9,2019,Math,Art,790,335,1,33,22,12,17,288,345,595,238,681,363,641,566,502,2
+dummystudent420,password,il,highland park high school,highland park,il,0.9,2024,Math,Art,717,538,24,5,6,13,12,301,556,786,227,303,698,648,474,354,3
+dummystudent421,password,tx,coppell high school,coppell,tx,0.8,2021,Math,Art,668,570,29,33,15,17,24,568,232,643,582,320,770,205,303,526,2
+dummystudent422,password,nh,hanover high school,hanover,nh,0.9,2024,Math,Art,591,274,24,13,5,21,16,284,330,389,633,667,452,459,566,675,4
+dummystudent423,password,va,stone bridge high school,ashburn,va,1.8,2020,Math,Art,309,527,14,14,12,33,18,793,650,271,717,206,533,776,471,610,8
+dummystudent424,password,ct,parish hill high school,chaplin,ct,3.9,2020,Math,Art,493,577,3,31,24,8,16,224,507,756,570,644,635,411,630,800,2
+dummystudent425,password,nc,east chapel hill high school,chapel hill,nc,0.8,2025,Math,Art,315,670,21,15,31,29,24,535,746,666,210,336,668,423,434,297,10
+dummystudent426,password,mi,international academy,bloomfield hills,mi,2.9,2021,Math,Art,792,473,32,12,24,4,18,306,627,229,597,249,569,418,351,502,1
+dummystudent427,password,mo,parkway central high school,chesterfield,mo,1.7,2019,Math,Art,310,363,26,1,21,13,15,343,612,398,491,437,408,717,563,621,5
+dummystudent428,password,il,highland park high school,highland park,il,2.9,2025,Math,Art,260,577,36,11,29,31,27,691,212,331,243,645,228,545,703,509,2
+dummystudent429,password,mi,international academy,bloomfield hills,mi,2.8,2022,Math,Art,517,200,22,25,5,17,17,343,626,778,795,461,538,696,691,219,6
+dummystudent430,password,tx,health careers high school,san antonio,tx,2.8,2023,Math,Art,574,727,29,10,31,26,24,679,631,606,230,653,648,681,535,453,6
+dummystudent431,password,ga,walton high school,marietta,ga,2.9,2024,Math,Art,506,293,34,19,17,11,20,753,508,626,576,404,356,542,556,592,9
+dummystudent432,password,sc,academic magnet high school,north charleston,sc,1.9,2025,Math,Art,539,410,2,1,34,9,12,690,250,565,210,479,691,316,526,431,5
+dummystudent433,password,ny,pelham memorial high school,pelham,ny,0.7,2021,Math,Art,694,593,20,21,19,7,17,414,356,565,334,716,618,351,594,676,10
+dummystudent434,password,ca,canyon crest academy,san diego,ca,1.8,2020,Math,Art,595,287,30,4,28,27,22,666,353,785,491,508,295,507,604,569,5
+dummystudent435,password,ks,blue valley north high school,overland park,ks,2.8,2020,Math,Art,681,442,12,1,13,5,8,632,499,552,602,650,529,408,359,286,6
+dummystudent436,password,tx,westlake academy,westlake,tx,1.8,2024,Math,Art,633,303,10,10,5,31,14,381,445,579,387,708,598,525,421,538,7
+dummystudent437,password,ca,santa monica high school,santa monica,ca,3.9,2022,Math,Art,672,703,14,27,15,21,19,269,430,217,575,679,436,342,796,780,9
+dummystudent438,password,tx,richland high school,north richland hills,tx,3.7,2019,Math,Art,438,370,33,3,26,34,24,218,528,296,615,655,303,259,301,436,9
+dummystudent439,password,il,neuqua valley high school,naperville,il,1.8,2019,Math,Art,665,269,14,30,10,12,16,369,682,678,778,258,250,386,738,725,4
+dummystudent440,password,nj,jp stevens high school,edison,nj,1.7,2021,Math,Art,585,288,31,2,35,21,22,697,610,268,388,649,389,715,282,340,8
+dummystudent441,password,ny,bard high school early college,new york,ny,3.9,2019,Math,Art,696,613,7,4,20,18,12,311,627,398,727,476,240,529,719,555,8
+dummystudent442,password,nj,academy for information technology,scotch plains,nj,3.8,2020,Math,Art,409,267,28,35,28,36,32,555,384,580,503,296,489,534,476,441,0
+dummystudent443,password,ga,walton high school,marietta,ga,0.8,2023,Math,Art,614,209,20,2,30,8,15,315,711,331,564,304,433,403,653,715,10
+dummystudent444,password,ny,bronx high school of science,bronx,ny,0.8,2021,Math,Art,324,368,35,2,31,18,22,236,709,641,542,753,327,202,730,244,2
+dummystudent445,password,va,james madison high school,vienna,va,0.9,2022,Math,Art,662,392,29,6,15,27,19,452,505,626,286,310,366,552,770,360,0
+dummystudent446,password,mi,huron high school,ann arbor,mi,0.9,2019,Math,Art,350,394,15,21,30,29,24,208,739,533,733,501,518,237,550,315,1
+dummystudent447,password,tx,memorial high school,houston,tx,0.8,2020,Math,Art,323,350,26,16,27,32,25,415,256,603,605,524,202,466,534,769,0
+dummystudent448,password,nc,carrboro high school,carrboro,nc,1.7,2019,Math,Art,792,398,6,36,16,31,22,335,795,691,394,551,490,665,684,486,10
+dummystudent449,password,tx,coppell high school,coppell,tx,3.7,2021,Math,Art,405,594,31,23,34,17,26,694,300,622,712,717,436,495,272,326,2
+dummystudent450,password,il,new trier township high school,winnetka,il,1.7,2019,Math,Art,712,781,27,32,29,27,29,448,800,496,205,213,485,650,240,350,6
+dummystudent451,password,nh,goffstown high school,goffstown,nh,3.7,2020,Math,Art,631,503,28,32,21,31,28,304,353,629,278,557,390,693,519,630,7
+dummystudent452,password,il,university high school,normal,il,3.7,2022,Math,Art,601,656,27,34,24,19,26,774,701,645,781,673,376,518,699,499,3
+dummystudent453,password,il,naperville central high school,naperville,il,1.7,2019,Math,Art,624,239,28,28,26,22,26,252,597,252,419,630,539,526,799,700,5
+dummystudent454,password,co,fairview high school,boulder,co,1.9,2021,Math,Art,226,223,20,15,34,35,26,741,279,784,645,412,206,540,670,708,7
+dummystudent455,password,ms,the mississippi school for mathematics and science,columbus,ms,2.8,2019,Math,Art,653,535,26,28,18,36,27,262,366,725,281,606,574,221,285,424,10
+dummystudent456,password,ny,baccalaureate school for global education,long island city,ny,3.9,2019,Math,Art,638,620,15,31,20,6,18,659,768,493,601,531,745,777,450,336,0
+dummystudent457,password,il,neuqua valley high school,naperville,il,2.7,2025,Math,Art,593,439,29,5,3,13,12,655,727,384,442,289,648,284,398,508,1
+dummystudent458,password,ny,south side high school,rockville centre,ny,0.7,2020,Math,Art,741,790,9,35,9,6,15,586,734,711,783,524,644,706,522,343,6
+dummystudent459,password,fl,cedar key high school,cedar key,fl,0.9,2023,Math,Art,796,653,17,5,23,9,14,205,576,284,739,628,310,533,273,363,10
+dummystudent460,password,nj,ridgewood high school,ridgewood,nj,2.8,2022,Math,Art,605,564,8,20,25,1,14,499,206,511,773,281,402,617,631,571,8
+dummystudent461,password,va,oakton high school,vienna,va,0.7,2021,Math,Art,592,344,34,15,3,27,20,778,409,422,367,666,566,619,508,313,1
+dummystudent462,password,mi,otsego high school,otsego,mi,1.9,2019,Math,Art,689,640,34,20,26,7,22,230,614,356,592,457,532,679,690,752,9
+dummystudent463,password,ny,mamaroneck high school,mamaroneck,ny,0.7,2023,Math,Art,300,226,24,30,28,19,25,558,527,665,314,441,617,668,581,432,6
+dummystudent464,password,ar,haas hall academy,fayetteville,ar,2.9,2022,Math,Art,280,221,1,34,7,17,15,425,586,575,746,547,508,687,683,687,7
+dummystudent465,password,nc,carrboro high school,carrboro,nc,3.8,2019,Math,Art,733,205,32,22,25,2,20,732,359,326,431,235,770,306,754,513,6
+dummystudent466,password,al,mt brook high school,mountain brook,al,3.8,2020,Math,Art,650,230,10,24,33,21,22,636,481,584,565,750,579,646,349,295,4
+dummystudent467,password,ca,westlake high school,westlake village,ca,3.9,2020,Math,Art,406,427,2,25,32,22,20,260,613,339,767,746,694,647,220,310,2
+dummystudent468,password,ks,blue valley north high school,overland park,ks,0.8,2023,Math,Art,566,432,15,21,6,24,16,689,780,332,274,648,753,482,377,264,1
+dummystudent469,password,mn,eagan senior high school,eagan,mn,1.8,2020,Math,Art,768,508,1,17,9,6,8,724,454,679,316,648,323,462,571,777,7
+dummystudent470,password,ny,bronx high school of science,bronx,ny,1.9,2025,Math,Art,464,572,19,29,14,16,20,746,404,333,604,613,764,383,642,538,9
+dummystudent471,password,tx,health careers high school,san antonio,tx,1.9,2025,Math,Art,644,323,16,28,31,36,28,270,709,288,702,692,224,349,642,734,4
+dummystudent472,password,pa,fox chapel area high school,pittsburgh,pa,1.8,2022,Math,Art,738,233,17,25,7,7,14,433,459,488,515,716,228,763,444,287,9
+dummystudent473,password,mi,international academy,bloomfield hills,mi,2.7,2023,Math,Art,387,380,30,19,28,28,26,372,661,211,769,350,725,452,282,760,5
+dummystudent474,password,il,university high school,normal,il,2.7,2023,Math,Art,329,211,32,16,20,29,24,216,274,510,420,445,304,537,398,296,5
+dummystudent475,password,az,arizona college prep erie campus,chandler,az,1.8,2022,Math,Art,548,642,13,26,9,3,13,623,387,375,501,695,417,385,724,381,5
+dummystudent476,password,ga,alpharetta high school,alpharetta,ga,2.7,2023,Math,Art,786,770,5,23,2,9,10,423,531,246,584,734,237,463,487,309,8
+dummystudent477,password,tx,memorial high school,houston,tx,1.7,2019,Math,Art,421,444,14,26,2,6,12,458,668,298,692,786,744,424,621,778,0
+dummystudent478,password,nc,carrboro high school,carrboro,nc,2.9,2019,Math,Art,534,332,18,14,5,29,16,335,310,775,283,750,427,585,330,236,9
+dummystudent479,password,tx,fairfield high school,fairfield,tx,2.9,2019,Math,Art,333,377,28,7,2,21,14,743,260,282,261,514,624,496,461,500,0
+dummystudent480,password,mo,parkway central high school,chesterfield,mo,2.7,2025,Math,Art,523,754,10,10,34,28,20,362,301,267,776,701,726,496,549,254,10
+dummystudent481,password,sc,ashley ridge high school,summerville,sc,0.7,2020,Math,Art,624,585,29,19,19,23,22,400,290,704,300,657,463,361,655,723,6
+dummystudent482,password,wa,bellevue high school,bellevue,wa,0.8,2020,Math,Art,771,506,11,22,31,30,24,416,267,286,622,659,744,643,311,730,4
+dummystudent483,password,il,hinsdale central high school,hinsdale,il,1.7,2022,Math,Art,683,520,29,29,22,13,23,581,636,670,315,243,694,226,709,368,1
+dummystudent484,password,az,glendale high school,glendale,az,0.9,2022,Math,Art,672,483,35,20,33,14,26,483,267,746,786,388,310,291,624,757,3
+dummystudent485,password,nc,carrboro high school,carrboro,nc,3.7,2019,Math,Art,503,644,3,15,22,1,10,506,671,401,309,758,501,516,324,391,1
+dummystudent486,password,ca,aragon high school,san mateo,ca,2.8,2025,Math,Art,591,455,34,15,7,21,19,770,351,321,274,303,460,437,674,471,2
+dummystudent487,password,ca,granada hills charter high school,granada hills,ca,3.7,2020,Math,Art,558,372,33,1,18,24,19,584,689,204,475,270,606,792,303,471,6
+dummystudent488,password,ga,alpharetta high school,alpharetta,ga,1.7,2019,Math,Art,790,643,10,28,16,27,20,413,663,423,427,800,436,598,575,742,1
+dummystudent489,password,il,highland park high school,highland park,il,3.8,2022,Math,Art,571,545,34,16,6,29,21,547,740,767,429,355,757,634,276,720,9
+dummystudent490,password,sc,south pointe high school,rock hill,sc,2.7,2022,Math,Art,768,315,22,33,36,20,28,724,525,332,696,662,516,522,276,479,6
+dummystudent491,password,sc,south pointe high school,rock hill,sc,3.7,2020,Math,Art,201,624,15,18,7,10,12,722,634,646,571,403,357,462,296,593,5
+dummystudent492,password,ma,hopkinton high school,hopkinton,ma,1.7,2022,Math,Art,677,595,28,26,30,36,30,672,532,518,212,416,328,228,474,327,6
+dummystudent493,password,al,mt brook high school,mountain brook,al,1.9,2019,Math,Art,785,405,36,13,34,3,22,397,620,717,274,501,371,794,782,567,2
+dummystudent494,password,ca,dougherty valley high school,san ramon,ca,0.8,2023,Math,Art,411,765,19,18,35,24,24,279,727,459,336,446,366,502,214,545,6
+dummystudent495,password,tx,westwood high school,austin,tx,2.9,2023,Math,Art,241,366,36,14,26,10,22,415,645,633,561,494,365,651,407,568,1
+dummystudent496,password,ca,canyon crest academy,san diego,ca,3.7,2023,Math,Art,500,708,12,6,12,31,15,285,215,363,760,689,583,799,379,471,8
+dummystudent497,password,nj,mountain lakes high school,mountain lakes,nj,1.8,2024,Math,Art,269,799,35,22,34,9,25,576,401,700,257,762,319,200,670,420,0
+dummystudent498,password,az,basis flagstaff,flagstaff,az,1.9,2022,Math,Art,223,459,18,20,15,23,19,588,370,496,258,436,451,597,689,233,2
+dummystudent499,password,mo,parkway central high school,chesterfield,mo,2.8,2021,Math,Art,768,475,18,9,15,13,14,282,482,496,513,465,739,503,553,262,5
+dummystudent500,password,ca,redwood high school,larkspur,ca,1.8,2019,Math,Art,630,670,34,31,15,27,27,608,437,514,716,275,746,598,420,601,6
+dummystudent501,password,nj,jp stevens high school,edison,nj,3.8,2022,Math,Art,666,459,20,15,22,29,22,260,763,349,593,439,565,435,244,474,3
+dummystudent502,password,ky,the gatton academy,bowling green,ky,1.8,2019,Math,Art,632,242,18,14,10,5,12,297,350,582,424,697,471,762,754,363,9
+dummystudent503,password,wa,columbia river high school,vancouver,wa,0.7,2024,Math,Art,400,635,33,29,4,28,24,583,713,542,460,667,348,327,627,384,1
+dummystudent504,password,il,hinsdale central high school,hinsdale,il,2.9,2021,Math,Art,489,324,27,6,8,12,13,770,565,489,654,786,800,304,215,309,8
+dummystudent505,password,ny,baccalaureate school for global education,long island city,ny,2.7,2021,Math,Art,441,756,30,15,33,36,28,756,221,459,220,371,776,483,441,630,4
+dummystudent506,password,mi,huron high school,ann arbor,mi,3.8,2025,Math,Art,338,541,11,29,24,12,19,471,576,599,307,421,597,389,324,648,10
+dummystudent507,password,nj,jp stevens high school,edison,nj,0.7,2022,Math,Art,584,476,11,6,5,19,10,290,493,316,709,677,570,515,214,461,9
+dummystudent508,password,ma,hopkinton high school,hopkinton,ma,2.8,2020,Math,Art,421,511,3,35,33,36,27,356,529,328,250,554,292,699,554,432,7
+dummystudent509,password,oh,arcadia high school,arcadia,oh,3.9,2023,Math,Art,699,655,16,36,35,35,30,792,778,325,732,255,627,601,664,599,4
+dummystudent510,password,ga,flowery branch high school,flowery branch,ga,0.9,2022,Math,Art,569,544,16,4,7,31,14,590,703,542,649,573,548,485,586,201,5
+dummystudent511,password,ms,the mississippi school for mathematics and science,columbus,ms,3.9,2023,Math,Art,420,475,20,20,13,2,14,353,512,360,705,242,444,617,662,677,4
+dummystudent512,password,ny,brooklyn technical high school,brooklyn,ny,1.7,2022,Math,Art,773,391,17,18,19,24,20,573,627,732,490,648,213,484,417,796,3
+dummystudent513,password,ga,columbus high school,columbus,ga,1.7,2019,Math,Art,652,686,20,32,4,12,17,766,647,339,456,670,541,376,235,441,5
+dummystudent514,password,al,mt brook high school,mountain brook,al,3.9,2023,Math,Art,666,529,36,28,12,27,26,300,422,244,721,795,306,331,275,354,3
+dummystudent515,password,tx,richland high school,north richland hills,tx,3.9,2021,Math,Art,797,497,32,20,10,33,24,360,659,393,687,671,611,231,211,349,0
+dummystudent516,password,ga,flowery branch high school,flowery branch,ga,3.9,2023,Math,Art,781,454,7,16,2,16,10,357,432,653,280,280,767,478,592,661,6
+dummystudent517,password,tx,richland high school,north richland hills,tx,1.9,2019,Math,Art,541,207,36,16,35,25,28,250,575,710,585,772,484,222,736,378,4
+dummystudent518,password,wi,whitefish bay high school,whitefish bay,wi,2.9,2023,Math,Art,364,653,20,8,7,7,10,508,340,245,242,408,245,753,583,483,8
+dummystudent519,password,tx,lovejoy high school,lucas,tx,1.9,2021,Math,Art,684,564,1,24,14,13,13,535,702,503,246,628,737,452,505,524,7
+dummystudent520,password,ma,lexington high school,lexington,ma,3.7,2022,Math,Art,653,402,10,36,27,18,23,491,351,681,661,586,609,680,237,533,5
+dummystudent521,password,sc,ashley ridge high school,summerville,sc,2.8,2021,Math,Art,282,793,16,16,5,33,18,596,292,753,571,684,547,712,667,346,0
+dummystudent522,password,il,libertyville high school,libertyville,il,1.7,2025,Math,Art,459,621,27,12,27,17,21,669,733,403,756,647,565,734,685,477,6
+dummystudent523,password,sc,academic magnet high school,north charleston,sc,0.8,2023,Math,Art,655,392,25,19,27,25,24,588,210,727,412,528,785,578,700,317,2
+dummystudent524,password,nj,sterling high school,somerdale,nj,0.7,2022,Math,Art,237,562,5,7,28,5,11,386,213,349,657,250,231,593,417,530,0
+dummystudent525,password,ca,westlake high school,westlake village,ca,0.7,2022,Math,Art,216,697,35,33,12,32,28,525,363,579,298,730,409,652,277,332,10
+dummystudent526,password,mi,otsego high school,otsego,mi,1.9,2019,Math,Art,467,676,20,4,9,9,10,774,490,232,396,782,573,298,686,259,9
+dummystudent527,password,pa,harriton senior high school,rosemont,pa,1.9,2025,Math,Art,593,535,29,11,5,28,18,764,468,316,751,216,421,717,411,575,2
+dummystudent528,password,ga,alpharetta high school,alpharetta,ga,0.9,2024,Math,Art,750,745,15,6,14,15,12,730,452,276,550,354,443,789,588,367,6
+dummystudent529,password,va,oakton high school,vienna,va,2.8,2021,Math,Art,460,325,29,5,24,6,16,245,697,274,369,572,514,737,623,651,5
+dummystudent530,password,sc,south pointe high school,rock hill,sc,1.7,2021,Math,Art,718,464,32,21,4,11,17,370,728,219,690,259,495,781,707,797,8
+dummystudent531,password,wa,bellevue high school,bellevue,wa,0.9,2020,Math,Art,590,472,2,31,26,17,19,549,255,513,251,735,347,766,417,612,7
+dummystudent532,password,mo,bayless senior high school,st louis,mo,2.9,2021,Math,Art,365,566,5,17,22,26,18,712,559,216,409,535,551,554,516,725,4
+dummystudent533,password,ks,blue valley north high school,overland park,ks,3.9,2022,Math,Art,597,223,35,19,27,4,21,688,658,384,494,797,671,340,330,274,1
+dummystudent534,password,ma,hopkinton high school,hopkinton,ma,2.7,2021,Math,Art,470,273,31,19,33,9,23,412,500,799,369,741,230,685,786,409,1
+dummystudent535,password,tx,carroll senior high school,southlake,tx,2.8,2023,Math,Art,330,772,13,9,7,13,10,328,794,484,787,640,708,342,789,716,6
+dummystudent536,password,ga,columbus high school,columbus,ga,1.9,2022,Math,Art,258,271,36,24,35,34,32,429,700,339,468,439,555,350,643,210,1
+dummystudent537,password,mn,eagan senior high school,eagan,mn,3.7,2023,Math,Art,396,781,26,31,10,14,20,270,787,728,460,458,204,357,361,779,1
+dummystudent538,password,nc,panther creek high school,cary,nc,3.9,2024,Math,Art,498,267,27,15,9,7,14,226,598,469,622,553,635,316,457,487,1
+dummystudent539,password,ny,baccalaureate school for global education,long island city,ny,2.9,2021,Math,Art,465,281,35,34,34,11,28,668,519,498,505,444,569,737,678,660,0
+dummystudent540,password,tx,lovejoy high school,lucas,tx,0.9,2021,Math,Art,755,413,20,35,33,8,24,468,203,637,352,314,585,752,241,349,5
+dummystudent541,password,il,waubonsie valley,high school aurora,il,1.9,2024,Math,Art,426,219,4,32,26,31,23,396,453,787,767,637,716,441,771,307,2
+dummystudent542,password,mi,lake city high school,lake city,mi,3.7,2024,Math,Art,680,426,13,18,16,10,14,585,531,551,786,449,645,688,272,332,1
+dummystudent543,password,ca,riverside stem academy,riverside,ca,3.9,2023,Math,Art,493,354,29,35,9,6,20,762,367,347,526,321,593,682,480,418,8
+dummystudent544,password,oh,arcadia high school,arcadia,oh,2.9,2021,Math,Art,735,204,14,34,32,12,23,263,739,427,505,349,574,394,717,298,10
+dummystudent545,password,sc,south pointe high school,rock hill,sc,1.7,2023,Math,Art,685,296,2,17,7,27,13,678,483,627,311,693,724,609,716,377,0
+dummystudent546,password,tx,health careers high school,san antonio,tx,2.7,2019,Math,Art,252,750,26,33,24,14,24,689,438,603,275,332,725,490,209,395,7
+dummystudent547,password,ny,bard high school early college,new york,ny,1.8,2021,Math,Art,660,347,20,13,25,30,22,517,655,329,239,502,679,322,244,368,5
+dummystudent548,password,ny,mamaroneck high school,mamaroneck,ny,1.9,2022,Math,Art,788,244,20,36,23,30,27,403,496,366,238,327,752,242,701,690,8
+dummystudent549,password,nc,east chapel hill high school,chapel hill,nc,3.7,2025,Math,Art,314,281,16,6,25,2,12,334,742,712,625,637,453,674,242,594,8
+dummystudent550,password,ga,flowery branch high school,flowery branch,ga,3.7,2021,Math,Art,541,533,16,10,14,29,17,380,494,705,439,305,553,671,363,591,2
+dummystudent551,password,al,mt brook high school,mountain brook,al,1.9,2022,Math,Art,309,457,29,17,5,4,14,296,742,531,343,551,505,328,673,490,5
+dummystudent552,password,il,waubonsie valley,high school aurora,il,0.7,2020,Math,Art,519,661,27,29,1,27,21,233,297,524,380,267,702,591,618,553,0
+dummystudent553,password,ca,mira costa high school,manhattan beach,ca,0.7,2024,Math,Art,646,719,29,15,28,11,21,792,286,674,706,369,654,229,555,301,4
+dummystudent554,password,il,university high school,normal,il,1.9,2019,Math,Art,223,357,9,16,24,26,19,551,605,282,364,214,292,525,645,559,4
+dummystudent555,password,ny,pelham memorial high school,pelham,ny,2.7,2020,Math,Art,352,630,20,5,36,21,20,690,215,599,665,710,344,702,316,385,0
+dummystudent556,password,ny,baccalaureate school for global education,long island city,ny,1.9,2023,Math,Art,677,558,15,6,14,26,15,733,542,226,299,682,494,648,562,739,1
+dummystudent557,password,ma,concord carlisle high school,concord,ma,3.9,2025,Math,Art,605,275,23,30,28,11,23,475,731,456,291,435,312,451,793,393,8
+dummystudent558,password,nc,carrboro high school,carrboro,nc,3.7,2020,Math,Art,757,752,9,24,30,11,18,718,616,422,702,472,761,339,729,393,5
+dummystudent559,password,tx,elsik high school,houston,tx,3.7,2020,Math,Art,683,269,27,9,12,2,12,541,571,326,587,489,569,449,566,384,1
+dummystudent560,password,il,highland park high school,highland park,il,2.7,2020,Math,Art,794,419,4,27,35,24,22,212,290,791,232,496,482,743,422,435,0
+dummystudent561,password,ks,blue valley north high school,overland park,ks,1.7,2023,Math,Art,735,734,23,17,32,20,23,494,238,465,225,455,428,477,263,745,1
+dummystudent562,password,pa,radnor senior high school,radnor,pa,1.7,2025,Math,Art,256,321,11,22,26,5,16,697,510,800,464,208,504,463,290,787,0
+dummystudent563,password,va,mclean high school,mclean,va,0.9,2020,Math,Art,298,634,2,5,34,30,18,254,345,586,657,510,462,658,468,438,2
+dummystudent564,password,va,james madison high school,vienna,va,2.7,2024,Math,Art,475,501,1,18,34,23,19,688,544,246,470,267,720,338,753,605,6
+dummystudent565,password,ct,parish hill high school,chaplin,ct,2.7,2021,Math,Art,572,512,23,4,23,5,14,324,430,763,513,387,351,347,731,419,9
+dummystudent566,password,il,crystal lake central high school,crystal lake,il,2.7,2023,Math,Art,664,381,17,10,15,7,12,621,632,215,781,279,753,489,451,793,0
+dummystudent567,password,ny,staten island technical high school,staten island,ny,2.7,2025,Math,Art,466,650,22,2,30,17,18,309,507,346,470,464,319,496,372,362,10
+dummystudent568,password,mi,lake city high school,lake city,mi,2.8,2022,Math,Art,454,589,9,35,33,2,20,528,570,786,349,777,312,309,600,734,4
+dummystudent569,password,ga,flowery branch high school,flowery branch,ga,2.9,2024,Math,Art,717,604,10,25,26,15,19,572,365,592,346,297,245,480,353,358,6
+dummystudent570,password,wa,columbia river high school,vancouver,wa,2.9,2023,Math,Art,331,412,36,8,21,31,24,610,715,653,680,282,297,708,426,753,5
+dummystudent571,password,md,richard montgomery high school,rockville,md,1.7,2024,Math,Art,562,623,13,12,19,5,12,751,783,474,475,278,535,753,387,280,0
+dummystudent572,password,az,arizona college prep erie campus,chandler,az,0.8,2024,Math,Art,484,589,1,25,29,1,14,779,360,571,497,396,251,337,358,599,2
+dummystudent573,password,ga,walton high school,marietta,ga,3.9,2024,Math,Art,706,628,24,10,10,24,17,603,522,571,632,560,286,730,279,380,6
+dummystudent574,password,nh,goffstown high school,goffstown,nh,0.8,2022,Math,Art,447,339,18,9,17,23,17,777,217,356,501,712,252,749,638,239,0
+dummystudent575,password,tx,clements high school,sugar land,tx,1.9,2025,Math,Art,236,398,27,25,11,6,17,531,516,535,403,660,738,376,643,345,5
+dummystudent576,password,ar,haas hall academy,fayetteville,ar,2.7,2021,Math,Art,676,524,5,22,19,36,20,212,295,319,255,612,652,596,325,238,10
+dummystudent577,password,oh,madeira high school,cincinnati,oh,0.7,2025,Math,Art,548,752,4,29,26,4,16,331,464,790,420,344,622,428,682,660,2
+dummystudent578,password,tx,reedy high school,frisco,tx,0.8,2020,Math,Art,532,698,31,17,17,13,20,320,711,501,699,337,209,381,567,530,6
+dummystudent579,password,mi,lake city high school,lake city,mi,3.8,2025,Math,Art,556,349,12,6,9,13,10,703,623,727,576,426,319,625,624,614,5
+dummystudent580,password,ma,hopkinton high school,hopkinton,ma,3.9,2020,Math,Art,315,422,35,27,17,6,21,683,585,345,203,725,645,551,516,630,8
+dummystudent581,password,tx,westwood high school,austin,tx,1.9,2023,Math,Art,471,335,33,12,33,28,26,743,572,434,251,795,484,259,753,353,1
+dummystudent582,password,ny,south side high school,rockville centre,ny,1.8,2021,Math,Art,463,606,23,17,36,33,27,490,712,322,430,225,479,688,319,499,3
+dummystudent583,password,ma,hopkinton high school,hopkinton,ma,2.8,2025,Math,Art,399,702,29,27,30,7,23,644,385,239,323,574,656,753,323,443,8
+dummystudent584,password,ga,columbus high school,columbus,ga,3.9,2024,Math,Art,443,782,22,20,30,9,20,475,532,479,278,470,731,696,471,779,2
+dummystudent585,password,nj,academy for information technology,scotch plains,nj,0.8,2023,Math,Art,651,567,16,36,35,3,22,476,773,453,746,270,502,492,468,544,5
+dummystudent586,password,pa,fox chapel area high school,pittsburgh,pa,0.9,2019,Math,Art,490,300,33,14,3,9,15,386,800,572,239,612,585,322,680,650,2
+dummystudent587,password,il,new trier township high school,winnetka,il,1.9,2019,Math,Art,515,366,19,13,31,16,20,315,770,212,709,747,792,788,768,242,0
+dummystudent588,password,ca,redwood high school,larkspur,ca,0.8,2019,Math,Art,411,459,25,7,26,23,20,255,571,568,546,437,654,285,349,707,2
+dummystudent589,password,il,neuqua valley high school,naperville,il,0.9,2025,Math,Art,301,588,23,5,1,10,10,773,732,620,796,749,756,330,321,283,5
+dummystudent590,password,ny,island trees high school,levittown,ny,2.9,2024,Math,Art,679,562,27,13,15,21,19,551,742,755,313,270,301,510,253,223,7
+dummystudent591,password,nj,ridgewood high school,ridgewood,nj,0.8,2022,Math,Art,348,444,19,22,6,17,16,563,797,223,550,345,684,653,674,346,7
+dummystudent592,password,nh,hanover high school,hanover,nh,2.7,2022,Math,Art,323,444,2,5,22,7,9,716,375,346,311,286,346,740,308,254,10
+dummystudent593,password,tx,coppell high school,coppell,tx,3.7,2025,Math,Art,454,664,19,36,28,11,24,308,794,257,468,558,653,628,718,557,3
+dummystudent594,password,ky,the gatton academy,bowling green,ky,2.7,2021,Math,Art,334,230,26,12,1,24,16,238,573,343,726,481,268,557,501,292,10
+dummystudent595,password,az,basis flagstaff,flagstaff,az,2.8,2021,Math,Art,528,333,22,4,29,17,18,701,498,384,402,581,603,269,727,549,7
+dummystudent596,password,ca,piedmont high school,piedmont,ca,0.7,2024,Math,Art,765,289,26,2,28,4,15,530,254,629,703,759,257,223,555,405,1
+dummystudent597,password,mo,parkway central high school,chesterfield,mo,2.8,2019,Math,Art,557,723,34,14,34,7,22,413,675,453,266,744,685,682,727,731,6
+dummystudent598,password,il,waubonsie valley,high school aurora,il,0.8,2025,Math,Art,462,498,4,13,2,32,13,373,232,719,598,756,572,436,701,647,4
+dummystudent599,password,ny,staten island technical high school,staten island,ny,2.7,2022,Math,Art,309,363,19,14,11,27,18,355,775,684,440,761,609,773,361,295,10
+dummystudent600,password,ca,westlake high school,westlake village,ca,0.7,2019,Math,Art,234,205,17,16,25,11,17,616,548,696,206,220,370,540,728,556,2
+dummystudent601,password,il,libertyville high school,libertyville,il,1.7,2022,Math,Art,536,722,13,24,24,5,16,713,708,773,695,209,669,593,516,205,7
+dummystudent602,password,va,james madison high school,vienna,va,3.7,2021,Math,Art,451,220,6,11,32,6,14,566,735,294,452,243,732,552,360,592,10
+dummystudent603,password,ca,whitney high school,cerritos,ca,2.8,2020,Math,Art,597,311,17,24,28,6,19,345,204,613,671,319,740,566,523,471,7
+dummystudent604,password,ny,brooklyn technical high school,brooklyn,ny,3.7,2022,Math,Art,550,375,6,20,24,1,13,358,341,555,742,702,594,387,357,309,10
+dummystudent605,password,ct,parish hill high school,chaplin,ct,2.7,2021,Math,Art,700,334,32,11,15,26,21,660,792,653,656,532,280,618,318,374,10
+dummystudent606,password,ny,island trees high school,levittown,ny,2.8,2023,Math,Art,433,515,11,31,7,8,14,573,734,773,679,414,782,669,492,737,1
+dummystudent607,password,ca,riverside stem academy,riverside,ca,0.8,2022,Math,Art,211,219,13,21,9,14,14,335,620,632,638,666,294,742,473,296,10
+dummystudent608,password,il,hinsdale central high school,hinsdale,il,2.9,2025,Math,Art,501,368,36,21,34,27,30,364,751,429,614,362,674,227,742,366,1
+dummystudent609,password,tx,fairfield high school,fairfield,tx,0.9,2023,Math,Art,342,270,11,26,12,6,14,741,456,476,764,254,265,539,695,333,1
+dummystudent610,password,ca,dougherty valley high school,san ramon,ca,3.7,2022,Math,Art,511,290,5,22,15,28,18,521,516,774,700,557,632,436,593,258,8
+dummystudent611,password,tx,richland high school,north richland hills,tx,1.8,2020,Math,Art,311,684,30,6,13,31,20,386,273,289,681,543,358,662,664,481,8
+dummystudent612,password,nh,goffstown high school,goffstown,nh,2.7,2022,Math,Art,390,301,5,25,4,29,16,431,734,782,556,548,630,752,756,509,3
+dummystudent613,password,ms,the mississippi school for mathematics and science,columbus,ms,2.9,2024,Math,Art,358,595,30,3,7,12,13,257,563,539,652,394,231,734,332,405,4
+dummystudent614,password,ga,columbus high school,columbus,ga,3.7,2024,Math,Art,420,733,8,12,22,11,13,524,332,573,350,318,248,749,590,581,6
+dummystudent615,password,tx,reedy high school,frisco,tx,1.9,2023,Math,Art,606,219,32,22,9,25,22,492,628,458,786,483,424,603,379,667,6
+dummystudent616,password,fl,cedar key high school,cedar key,fl,2.9,2024,Math,Art,733,431,6,6,18,16,12,729,791,537,625,724,241,501,374,402,1
+dummystudent617,password,nc,carrboro high school,carrboro,nc,1.7,2022,Math,Art,339,790,6,16,31,5,14,788,362,573,715,589,656,408,353,216,1
+dummystudent618,password,ca,aragon high school,san mateo,ca,0.8,2025,Math,Art,340,359,33,16,31,32,28,644,207,666,706,227,714,494,677,272,3
+dummystudent619,password,nj,ridgewood high school,ridgewood,nj,2.8,2020,Math,Art,703,683,14,17,24,7,16,737,734,544,639,786,266,255,603,615,1
+dummystudent620,password,ny,brooklyn technical high school,brooklyn,ny,1.9,2020,Math,Art,223,523,8,1,6,21,9,399,274,284,275,671,425,220,601,488,4
+dummystudent621,password,ga,alpharetta high school,alpharetta,ga,2.8,2024,Math,Art,340,781,20,19,11,33,21,710,489,335,625,228,495,201,306,554,1
+dummystudent622,password,pa,fox chapel area high school,pittsburgh,pa,3.7,2019,Math,Art,560,586,18,21,31,23,23,568,572,605,620,551,216,469,284,349,6
+dummystudent623,password,il,highland park high school,highland park,il,2.8,2023,Math,Art,661,580,29,19,27,4,20,763,786,697,352,417,703,371,308,575,10
+dummystudent624,password,ar,haas hall academy,fayetteville,ar,0.8,2022,Math,Art,639,736,17,24,1,36,20,456,244,641,289,685,226,343,389,566,8
+dummystudent625,password,md,richard montgomery high school,rockville,md,2.8,2021,Math,Art,552,318,10,3,1,7,5,322,403,793,559,464,760,221,209,460,4
+dummystudent626,password,va,oakton high school,vienna,va,2.9,2020,Math,Art,498,545,14,27,18,3,16,588,636,251,380,398,322,643,533,435,5
+dummystudent627,password,nj,mountain lakes high school,mountain lakes,nj,3.8,2020,Math,Art,388,439,7,6,5,20,10,679,735,323,780,213,744,597,250,219,1
+dummystudent628,password,il,hinsdale central high school,hinsdale,il,2.8,2020,Math,Art,313,727,26,36,30,11,26,737,795,789,647,700,663,784,397,236,6
+dummystudent629,password,ny,mamaroneck high school,mamaroneck,ny,0.9,2022,Math,Art,374,575,17,15,6,30,17,433,410,246,394,769,528,247,379,368,7
+dummystudent630,password,mn,eagan senior high school,eagan,mn,3.8,2019,Math,Art,499,204,14,23,28,33,24,252,397,466,782,470,765,262,644,719,7
+dummystudent631,password,ky,the gatton academy,bowling green,ky,3.8,2022,Math,Art,714,694,33,16,28,2,20,689,261,249,674,682,293,281,410,800,7
+dummystudent632,password,ga,alpharetta high school,alpharetta,ga,0.7,2025,Math,Art,216,761,20,31,24,31,26,373,788,405,448,361,583,229,411,297,6
+dummystudent633,password,va,mclean high school,mclean,va,3.9,2022,Math,Art,339,669,7,26,27,4,16,588,512,362,717,744,491,587,688,602,7
+dummystudent634,password,tx,fairfield high school,fairfield,tx,0.9,2025,Math,Art,248,633,21,4,3,12,10,504,342,460,295,635,216,463,310,477,3
+dummystudent635,password,mn,eagan senior high school,eagan,mn,2.8,2023,Math,Art,781,326,28,5,20,25,20,317,330,352,384,221,733,364,630,500,6
+dummystudent636,password,tx,reedy high school,frisco,tx,1.9,2025,Math,Art,588,608,31,6,31,23,23,320,362,667,681,466,751,364,702,297,1
+dummystudent637,password,ga,walton high school,marietta,ga,3.9,2024,Math,Art,759,426,6,5,36,20,17,652,711,785,575,544,411,614,788,451,8
+dummystudent638,password,il,libertyville high school,libertyville,il,0.8,2025,Math,Art,776,290,1,28,7,22,14,551,764,272,717,518,350,589,338,780,6
+dummystudent639,password,il,northside college preparatory high school,chicago,il,1.9,2025,Math,Art,698,446,24,11,6,30,18,623,251,273,273,374,368,368,225,308,9
+dummystudent640,password,nc,north carolina school of science and mathematics,durham,nc,1.9,2024,Math,Art,304,497,3,19,32,22,19,279,249,422,714,723,229,427,616,404,7
+dummystudent641,password,ma,hopkinton high school,hopkinton,ma,3.7,2024,Math,Art,708,694,31,17,23,29,25,321,534,531,712,534,443,682,569,412,4
+dummystudent642,password,il,crystal lake central high school,crystal lake,il,3.9,2019,Math,Art,489,519,20,29,26,35,28,543,518,567,719,390,584,258,664,469,10
+dummystudent643,password,ma,sutton high school,sutton,ma,3.9,2024,Math,Art,434,793,7,7,23,22,15,574,461,731,222,635,502,729,800,509,9
+dummystudent644,password,ca,campolindo high school,moraga,ca,2.8,2022,Math,Art,370,281,27,16,7,34,21,646,444,686,263,466,384,724,693,529,9
+dummystudent645,password,mo,bayless senior high school,st louis,mo,0.8,2023,Math,Art,696,507,24,1,23,10,14,722,630,409,708,670,330,744,243,797,0
+dummystudent646,password,ca,aragon high school,san mateo,ca,0.8,2023,Math,Art,578,582,7,3,28,35,18,633,721,652,228,633,280,634,647,261,2
+dummystudent647,password,il,waubonsie valley,high school aurora,il,0.9,2019,Math,Art,210,229,25,33,7,27,23,584,267,415,234,475,407,689,729,694,8
+dummystudent648,password,wa,bellevue high school,bellevue,wa,2.8,2019,Math,Art,569,453,3,10,3,15,8,316,558,540,616,209,338,595,616,315,1
+dummystudent649,password,ca,redwood high school,larkspur,ca,2.7,2024,Math,Art,220,559,17,4,20,17,14,743,656,408,591,240,706,287,674,554,0
+dummystudent650,password,tx,richland high school,north richland hills,tx,2.8,2023,Math,Art,400,235,18,25,10,10,16,772,772,435,708,416,670,201,257,380,2
+dummystudent651,password,az,arizona college prep erie campus,chandler,az,2.8,2024,Math,Art,799,709,19,23,4,19,16,298,479,718,369,329,477,401,518,379,6
+dummystudent652,password,nc,east chapel hill high school,chapel hill,nc,0.7,2020,Math,Art,218,627,19,17,36,34,26,449,545,387,787,404,538,315,584,329,6
+dummystudent653,password,az,arizona college prep erie campus,chandler,az,0.7,2024,Math,Art,217,491,5,27,34,20,22,275,707,208,743,706,280,226,776,576,6
+dummystudent654,password,tx,clements high school,sugar land,tx,0.9,2025,Math,Art,729,566,15,3,12,5,9,472,372,539,755,712,646,700,785,204,9
+dummystudent655,password,pa,radnor senior high school,radnor,pa,3.9,2020,Math,Art,662,273,16,24,28,11,20,660,226,736,622,765,337,413,583,386,10
+dummystudent656,password,tx,elsik high school,houston,tx,0.9,2020,Math,Art,465,539,20,6,24,21,18,220,704,586,404,499,333,763,534,671,3
+dummystudent657,password,nc,panther creek high school,cary,nc,3.7,2021,Math,Art,453,396,7,32,33,9,20,731,471,493,324,740,605,238,653,659,4
+dummystudent658,password,tx,health careers high school,san antonio,tx,0.9,2025,Math,Art,441,439,4,36,29,13,20,211,385,478,478,788,447,602,533,444,9
+dummystudent659,password,va,oakton high school,vienna,va,3.7,2025,Math,Art,365,670,17,4,10,21,13,788,288,713,600,593,646,700,486,215,5
+dummystudent660,password,md,richard montgomery high school,rockville,md,2.7,2020,Math,Art,523,361,36,24,9,36,26,319,748,319,716,694,730,315,651,344,3
+dummystudent661,password,nc,north carolina school of science and mathematics,durham,nc,3.9,2020,Math,Art,660,235,17,27,23,26,23,692,603,760,250,601,342,387,328,308,3
+dummystudent662,password,fl,cedar key high school,cedar key,fl,2.8,2019,Math,Art,741,747,14,7,21,34,19,784,408,343,335,790,689,517,276,268,8
+dummystudent663,password,tx,lovejoy high school,lucas,tx,3.9,2019,Math,Art,396,510,31,35,27,24,29,377,339,668,723,514,355,691,413,365,4
+dummystudent664,password,ny,commack high school,commack,ny,3.8,2019,Math,Art,380,331,20,3,31,1,14,596,303,445,540,207,400,456,556,240,6
+dummystudent665,password,az,glendale high school,glendale,az,2.7,2024,Math,Art,624,347,7,15,29,14,16,337,512,237,389,605,783,335,300,538,5
+dummystudent666,password,az,glendale high school,glendale,az,1.7,2019,Math,Art,685,271,19,21,19,15,18,413,503,381,667,587,706,333,619,231,8
+dummystudent667,password,nj,ridgewood high school,ridgewood,nj,3.8,2019,Math,Art,464,743,2,30,8,13,13,776,272,340,570,614,691,488,664,460,6
+dummystudent668,password,co,fairview high school,boulder,co,0.9,2023,Math,Art,396,765,1,15,1,22,10,702,632,788,557,413,467,524,622,800,0
+dummystudent669,password,nh,hanover high school,hanover,nh,2.8,2023,Math,Art,278,717,5,7,20,23,14,714,513,511,774,529,408,698,690,317,2
+dummystudent670,password,ny,south side high school,rockville centre,ny,2.9,2020,Math,Art,750,477,4,17,17,12,12,371,233,271,561,577,435,544,303,391,2
+dummystudent671,password,ca,mira costa high school,manhattan beach,ca,1.7,2024,Math,Art,408,456,6,14,18,34,18,618,557,629,536,295,454,795,397,709,2
+dummystudent672,password,ny,brooklyn technical high school,brooklyn,ny,1.8,2025,Math,Art,605,520,26,30,36,31,31,759,273,268,557,799,263,734,357,736,8
+dummystudent673,password,az,arizona college prep erie campus,chandler,az,1.7,2024,Math,Art,751,404,10,33,25,14,20,535,399,505,647,364,590,396,562,560,9
+dummystudent674,password,mo,parkway central high school,chesterfield,mo,3.8,2019,Math,Art,331,250,32,25,20,11,22,739,311,415,246,386,579,280,602,321,2
+dummystudent675,password,tx,westwood high school,austin,tx,1.7,2022,Math,Art,300,693,11,36,22,26,24,688,725,520,559,680,469,447,396,720,8
+dummystudent676,password,mo,parkway central high school,chesterfield,mo,2.8,2019,Math,Art,239,274,36,17,23,13,22,413,518,250,756,448,759,535,685,687,7
+dummystudent677,password,mi,otsego high school,otsego,mi,2.7,2025,Math,Art,418,598,12,8,28,7,14,231,260,433,389,471,724,466,367,296,8
+dummystudent678,password,pa,harriton senior high school,rosemont,pa,3.7,2023,Math,Art,402,321,27,19,20,24,22,223,694,753,738,690,431,442,497,698,3
+dummystudent679,password,ga,alpharetta high school,alpharetta,ga,0.7,2023,Math,Art,631,729,30,2,25,23,20,440,771,399,754,548,619,305,653,258,3
+dummystudent680,password,oh,madeira high school,cincinnati,oh,1.9,2020,Math,Art,236,306,12,12,34,31,22,750,717,781,571,553,491,547,710,682,10
+dummystudent681,password,ca,mira costa high school,manhattan beach,ca,2.7,2019,Math,Art,789,372,1,22,23,25,18,239,391,742,375,376,369,741,281,391,2
+dummystudent682,password,wa,bellevue high school,bellevue,wa,0.7,2019,Math,Art,354,565,15,4,28,21,17,240,475,686,685,606,649,432,499,793,10
+dummystudent683,password,ny,island trees high school,levittown,ny,2.9,2021,Math,Art,305,438,25,25,23,31,26,564,711,658,712,327,423,223,210,564,10
+dummystudent684,password,va,james madison high school,vienna,va,3.7,2024,Math,Art,703,661,13,11,28,30,20,508,586,339,268,298,683,542,719,241,7
+dummystudent685,password,nc,east chapel hill high school,chapel hill,nc,1.9,2022,Math,Art,749,741,2,25,24,25,19,385,747,602,542,260,364,203,553,534,2
+dummystudent686,password,va,stone bridge high school,ashburn,va,1.7,2023,Math,Art,285,350,35,8,27,33,26,295,672,780,452,764,219,656,748,552,5
+dummystudent687,password,nc,north carolina school of science and mathematics,durham,nc,2.9,2020,Math,Art,645,655,25,28,2,23,20,629,202,800,640,679,354,767,365,588,10
+dummystudent688,password,ny,bard high school early college,new york,ny,1.8,2024,Math,Art,226,381,31,13,2,8,14,263,466,580,384,217,523,662,417,704,3
+dummystudent689,password,ny,bard high school early college,new york,ny,1.9,2019,Math,Art,514,256,23,4,29,4,15,468,425,452,580,476,434,420,536,249,0
+dummystudent690,password,il,libertyville high school,libertyville,il,0.9,2021,Math,Art,751,651,31,36,7,36,28,289,574,564,370,641,300,655,520,528,2
+dummystudent691,password,ny,island trees high school,levittown,ny,2.9,2025,Math,Art,350,466,30,10,12,29,20,568,258,646,209,628,405,222,493,784,0
+dummystudent692,password,il,hinsdale central high school,hinsdale,il,2.9,2022,Math,Art,428,291,7,33,2,8,12,286,454,741,789,691,780,227,590,241,6
+dummystudent693,password,al,mt brook high school,mountain brook,al,1.7,2020,Math,Art,451,257,28,15,34,25,26,788,743,474,212,286,765,770,771,695,9
+dummystudent694,password,ny,island trees high school,levittown,ny,1.7,2025,Math,Art,784,302,7,36,33,1,19,360,721,547,680,210,215,688,746,249,2
+dummystudent695,password,ga,flowery branch high school,flowery branch,ga,1.9,2024,Math,Art,543,285,24,3,24,28,20,516,282,360,221,576,612,728,438,706,5
+dummystudent696,password,sc,academic magnet high school,north charleston,sc,1.9,2024,Math,Art,531,265,29,11,2,30,18,579,621,205,337,708,341,490,577,542,0
+dummystudent697,password,mo,bayless senior high school,st louis,mo,3.7,2022,Math,Art,563,304,30,32,36,13,28,234,381,731,245,637,226,710,301,461,3
+dummystudent698,password,ga,flowery branch high school,flowery branch,ga,2.9,2023,Math,Art,764,739,10,8,28,3,12,532,686,714,204,264,491,549,263,560,10
+dummystudent699,password,tx,memorial high school,houston,tx,1.7,2022,Math,Art,605,213,31,34,29,6,25,427,456,684,244,330,549,674,289,319,9
+dummystudent700,password,il,libertyville high school,libertyville,il,2.7,2025,Math,Art,494,501,18,19,6,17,15,440,283,733,331,608,206,445,413,762,0
+dummystudent701,password,tx,elsik high school,houston,tx,0.8,2019,Math,Art,677,401,3,23,33,10,17,275,778,540,483,627,457,511,656,684,3
+dummystudent702,password,ny,staten island technical high school,staten island,ny,2.7,2019,Math,Art,336,202,19,8,15,15,14,609,398,464,799,212,653,444,283,447,9
+dummystudent703,password,wi,whitefish bay high school,whitefish bay,wi,2.7,2025,Math,Art,227,205,12,31,21,11,19,442,200,429,758,711,607,269,545,275,9
+dummystudent704,password,wa,columbia river high school,vancouver,wa,2.8,2024,Math,Art,255,430,18,7,2,27,14,760,718,624,552,287,420,589,652,711,3
+dummystudent705,password,mo,parkway central high school,chesterfield,mo,0.8,2021,Math,Art,682,319,6,36,5,29,19,219,427,260,339,778,574,751,550,731,7
+dummystudent706,password,il,highland park high school,highland park,il,0.9,2025,Math,Art,277,430,2,25,29,5,15,697,643,532,270,646,423,617,291,605,9
+dummystudent707,password,tx,health careers high school,san antonio,tx,0.7,2024,Math,Art,491,278,30,30,27,26,28,755,221,708,791,413,350,303,606,249,1
+dummystudent708,password,ca,dougherty valley high school,san ramon,ca,3.9,2022,Math,Art,617,249,17,10,17,15,15,504,350,776,327,398,536,768,565,305,7
+dummystudent709,password,sc,academic magnet high school,north charleston,sc,2.9,2021,Math,Art,445,410,20,12,35,2,17,476,249,758,453,247,205,305,419,316,3
+dummystudent710,password,mi,otsego high school,otsego,mi,3.7,2025,Math,Art,544,771,12,22,35,29,24,422,262,472,229,584,776,463,537,247,4
+dummystudent711,password,sc,academic magnet high school,north charleston,sc,3.9,2023,Math,Art,393,422,29,21,35,27,28,773,293,686,737,273,229,617,607,753,4
+dummystudent712,password,ny,staten island technical high school,staten island,ny,3.7,2020,Math,Art,385,471,22,27,28,33,28,446,517,390,615,379,641,299,306,667,4
+dummystudent713,password,tx,elsik high school,houston,tx,2.7,2019,Math,Art,361,744,23,18,20,21,20,677,558,760,504,412,396,395,299,386,9
+dummystudent714,password,nc,panther creek high school,cary,nc,1.9,2021,Math,Art,260,417,21,14,35,12,20,423,268,456,496,658,616,389,747,215,2
+dummystudent715,password,il,university high school,normal,il,3.8,2021,Math,Art,685,338,28,16,16,16,19,313,422,280,527,685,358,211,609,418,10
+dummystudent716,password,ny,south side high school,rockville centre,ny,1.7,2024,Math,Art,469,436,33,8,30,29,25,363,260,573,379,473,409,342,305,388,3
+dummystudent717,password,md,richard montgomery high school,rockville,md,2.9,2023,Math,Art,655,683,4,3,6,35,12,254,327,759,707,649,411,632,560,623,3
+dummystudent718,password,ms,the mississippi school for mathematics and science,columbus,ms,1.9,2019,Math,Art,457,244,4,16,31,17,17,569,430,304,327,775,493,770,709,200,6
+dummystudent719,password,nm,volcano vista high school,albuquerque,nm,1.8,2022,Math,Art,609,691,17,13,15,35,20,738,420,725,395,319,246,783,792,715,9
+dummystudent720,password,pa,fox chapel area high school,pittsburgh,pa,1.7,2021,Math,Art,375,756,36,33,26,30,31,629,684,566,637,387,792,435,508,710,9
+dummystudent721,password,ny,baccalaureate school for global education,long island city,ny,0.7,2022,Math,Art,605,706,17,26,24,8,19,635,286,387,689,509,738,284,284,365,0
+dummystudent722,password,ma,hopkinton high school,hopkinton,ma,3.9,2019,Math,Art,287,357,15,15,31,4,16,717,495,327,682,751,788,774,771,466,1
+dummystudent723,password,ny,staten island technical high school,staten island,ny,0.9,2025,Math,Art,391,621,8,31,31,9,20,636,470,526,484,620,565,587,226,432,6
+dummystudent724,password,az,basis tucson,north tucson,az,3.7,2025,Math,Art,385,584,16,4,28,8,14,751,478,309,419,615,738,264,755,272,4
+dummystudent725,password,nh,hanover high school,hanover,nh,0.9,2019,Math,Art,568,685,5,1,26,24,14,284,572,530,711,367,748,297,399,396,8
+dummystudent726,password,ny,bard high school early college,new york,ny,1.7,2025,Math,Art,523,269,27,20,29,15,23,668,649,307,699,308,682,419,586,646,6
+dummystudent727,password,il,new trier township high school,winnetka,il,2.7,2024,Math,Art,603,272,7,31,24,33,24,517,658,571,552,490,623,306,222,408,10
+dummystudent728,password,tx,westlake academy,westlake,tx,1.7,2021,Math,Art,700,377,36,15,16,25,23,612,359,686,514,631,775,347,773,394,4
+dummystudent729,password,va,james madison high school,vienna,va,3.7,2020,Math,Art,757,200,11,17,9,3,10,609,641,678,330,257,431,393,348,458,9
+dummystudent730,password,ca,campolindo high school,moraga,ca,1.8,2023,Math,Art,285,727,23,25,17,6,18,684,702,583,701,712,690,379,246,714,6
+dummystudent731,password,tx,health careers high school,san antonio,tx,3.7,2025,Math,Art,668,701,31,35,15,35,29,232,761,254,369,413,599,236,536,516,6
+dummystudent732,password,md,richard montgomery high school,rockville,md,3.9,2023,Math,Art,262,576,22,8,28,3,15,256,328,573,491,510,214,454,619,236,4
+dummystudent733,password,oh,arcadia high school,arcadia,oh,2.9,2020,Math,Art,252,790,32,33,2,30,24,591,598,719,690,298,235,510,515,203,4
+dummystudent734,password,ny,south side high school,rockville centre,ny,0.8,2023,Math,Art,508,689,25,30,23,15,23,285,590,616,271,551,462,602,331,272,8
+dummystudent735,password,tx,coppell high school,coppell,tx,2.9,2024,Math,Art,333,382,16,32,21,18,22,535,226,253,514,756,525,606,707,270,0
+dummystudent736,password,ca,blair high school,pasadena,ca,2.7,2022,Math,Art,529,327,13,16,22,2,13,570,298,249,620,329,311,220,533,675,0
+dummystudent737,password,fl,cedar key high school,cedar key,fl,1.7,2024,Math,Art,758,552,15,26,26,2,17,309,247,436,275,267,215,474,772,299,1
+dummystudent738,password,ny,bard high school early college,new york,ny,0.7,2024,Math,Art,339,344,8,35,15,29,22,477,499,676,250,473,789,460,400,288,8
+dummystudent739,password,ny,staten island technical high school,staten island,ny,3.7,2019,Math,Art,622,273,31,21,29,21,26,758,445,642,341,438,424,657,316,757,2
+dummystudent740,password,nh,hanover high school,hanover,nh,1.9,2019,Math,Art,544,480,11,4,6,23,11,427,450,713,436,596,314,340,786,737,9
+dummystudent741,password,tx,richland high school,north richland hills,tx,0.8,2024,Math,Art,418,227,9,6,1,14,8,483,256,761,717,409,506,246,430,631,9
+dummystudent742,password,ga,alpharetta high school,alpharetta,ga,1.9,2022,Math,Art,210,380,10,28,25,21,21,281,781,289,283,700,237,355,331,508,5
+dummystudent743,password,ky,the gatton academy,bowling green,ky,0.9,2022,Math,Art,543,547,27,7,6,11,13,742,549,387,607,254,736,315,741,372,5
+dummystudent744,password,mn,eagan senior high school,eagan,mn,2.8,2024,Math,Art,531,478,20,4,34,33,23,410,410,387,753,721,465,393,509,722,5
+dummystudent745,password,wa,columbia river high school,vancouver,wa,0.7,2019,Math,Art,392,557,34,14,23,36,27,549,603,247,499,416,245,799,480,694,7
+dummystudent746,password,nc,carrboro high school,carrboro,nc,0.8,2025,Math,Art,583,756,31,27,22,32,28,675,592,789,438,243,546,629,760,573,1
+dummystudent747,password,nc,north carolina school of science and mathematics,durham,nc,1.9,2020,Math,Art,476,202,7,17,32,23,20,668,422,446,383,731,338,418,631,664,9
+dummystudent748,password,az,basis flagstaff,flagstaff,az,3.9,2023,Math,Art,490,688,29,33,12,2,19,316,706,359,436,569,582,787,287,777,7
+dummystudent749,password,il,glenbrook south high school,glenview,il,3.9,2020,Math,Art,554,595,24,17,9,4,14,704,487,376,783,796,367,533,475,206,0
+dummystudent750,password,ar,haas hall academy,fayetteville,ar,3.9,2021,Math,Art,309,474,1,11,23,28,16,592,664,713,704,305,531,306,674,658,3
+dummystudent751,password,mi,otsego high school,otsego,mi,1.9,2025,Math,Art,720,549,2,12,8,26,12,486,334,394,605,289,547,684,754,785,1
+dummystudent752,password,ma,sutton high school,sutton,ma,0.9,2019,Math,Art,608,318,8,29,10,27,18,790,224,543,369,494,490,617,737,340,0
+dummystudent753,password,il,hinsdale central high school,hinsdale,il,3.7,2019,Math,Art,316,658,13,35,31,32,28,573,200,668,687,551,739,630,219,692,2
+dummystudent754,password,va,james madison high school,vienna,va,3.8,2021,Math,Art,620,486,36,6,15,21,20,526,729,788,616,381,542,231,652,208,8
+dummystudent755,password,il,libertyville high school,libertyville,il,1.7,2019,Math,Art,423,315,34,13,8,6,15,328,423,201,794,749,283,523,782,546,9
+dummystudent756,password,mi,international academy,bloomfield hills,mi,1.9,2020,Math,Art,642,313,18,8,27,12,16,623,555,308,720,611,674,577,703,650,9
+dummystudent757,password,ca,blair high school,pasadena,ca,2.8,2022,Math,Art,221,676,32,29,23,27,28,484,689,653,708,448,708,392,752,480,9
+dummystudent758,password,ny,brighton high school,rochester,ny,2.8,2022,Math,Art,724,602,8,9,25,33,19,419,770,629,265,729,295,271,365,490,8
+dummystudent759,password,al,mt brook high school,mountain brook,al,3.9,2021,Math,Art,481,724,7,8,4,23,10,478,212,221,282,669,226,414,759,222,1
+dummystudent760,password,nc,east chapel hill high school,chapel hill,nc,3.8,2019,Math,Art,441,624,34,13,13,11,18,710,700,432,237,648,300,325,345,333,5
+dummystudent761,password,ca,santa monica high school,santa monica,ca,2.9,2024,Math,Art,733,755,17,4,13,27,15,310,694,476,461,468,609,549,296,456,7
+dummystudent762,password,al,mt brook high school,mountain brook,al,1.9,2024,Math,Art,438,307,29,20,12,3,16,250,417,416,658,438,418,313,524,741,6
+dummystudent763,password,ny,mamaroneck high school,mamaroneck,ny,0.9,2020,Math,Art,328,745,5,14,9,26,14,798,596,375,308,257,554,480,272,368,2
+dummystudent764,password,ca,piedmont high school,piedmont,ca,0.9,2025,Math,Art,678,329,9,1,19,35,16,421,490,369,254,240,787,505,756,752,5
+dummystudent765,password,mo,parkway central high school,chesterfield,mo,0.9,2021,Math,Art,601,737,10,6,14,13,11,358,329,701,253,452,447,641,202,412,4
+dummystudent766,password,ny,brighton high school,rochester,ny,3.7,2021,Math,Art,438,768,26,34,4,6,18,240,550,453,686,379,685,476,236,797,2
+dummystudent767,password,ca,dougherty valley high school,san ramon,ca,0.9,2023,Math,Art,418,655,28,34,21,22,26,410,684,785,347,555,315,488,581,252,9
+dummystudent768,password,nj,academy for information technology,scotch plains,nj,0.7,2023,Math,Art,258,569,8,29,31,15,21,685,672,603,484,205,342,656,793,300,1
+dummystudent769,password,ny,baccalaureate school for global education,long island city,ny,1.8,2022,Math,Art,282,587,31,15,17,29,23,618,442,405,571,619,627,461,797,331,10
+dummystudent770,password,pa,radnor senior high school,radnor,pa,0.7,2024,Math,Art,541,734,20,4,7,35,16,306,711,792,723,450,239,501,671,531,9
+dummystudent771,password,co,fairview high school,boulder,co,3.9,2021,Math,Art,723,748,6,10,34,13,16,359,506,527,788,662,689,346,316,428,0
+dummystudent772,password,il,glenbrook south high school,glenview,il,3.9,2019,Math,Art,506,741,2,13,10,30,14,337,201,514,249,792,395,649,360,795,6
+dummystudent773,password,ca,redwood high school,larkspur,ca,2.7,2019,Math,Art,238,630,34,22,36,4,24,435,516,533,553,601,514,550,253,456,5
+dummystudent774,password,il,hinsdale central high school,hinsdale,il,0.9,2020,Math,Art,780,486,23,6,25,28,20,414,735,744,567,657,634,513,415,277,10
+dummystudent775,password,ca,redwood high school,larkspur,ca,2.8,2020,Math,Art,351,257,5,29,10,23,17,232,800,463,626,389,219,311,525,773,2
+dummystudent776,password,wa,columbia river high school,vancouver,wa,2.9,2019,Math,Art,405,379,14,5,16,11,12,660,284,710,580,454,582,755,320,374,0
+dummystudent777,password,tx,memorial high school,houston,tx,1.8,2021,Math,Art,592,655,15,9,18,13,14,487,584,385,657,649,384,207,209,421,7
+dummystudent778,password,tx,richland high school,north richland hills,tx,2.7,2022,Math,Art,595,496,22,33,4,9,17,539,659,747,204,737,368,701,424,279,3
+dummystudent779,password,ny,brooklyn technical high school,brooklyn,ny,1.7,2025,Math,Art,508,286,2,12,18,1,8,710,714,729,553,779,409,404,643,795,1
+dummystudent780,password,ga,flowery branch high school,flowery branch,ga,1.7,2020,Math,Art,577,689,23,18,15,4,15,664,568,654,699,388,340,651,533,572,7
+dummystudent781,password,tx,westwood high school,austin,tx,1.9,2025,Math,Art,427,353,25,32,13,4,18,598,429,356,334,775,338,257,261,740,8
+dummystudent782,password,sc,ashley ridge high school,summerville,sc,0.8,2024,Math,Art,435,592,4,5,9,21,10,398,598,574,259,283,378,732,271,410,1
+dummystudent783,password,il,neuqua valley high school,naperville,il,1.8,2019,Math,Art,777,242,9,10,22,11,13,514,316,739,649,211,378,265,662,480,1
+dummystudent784,password,mo,bayless senior high school,st louis,mo,3.8,2022,Math,Art,726,592,13,32,9,29,21,256,497,299,455,640,535,626,446,501,5
+dummystudent785,password,il,illinois mathematics and science academy,aurora,il,0.8,2019,Math,Art,299,361,10,12,26,2,12,467,326,321,793,631,647,796,493,746,1
+dummystudent786,password,nc,east chapel hill high school,chapel hill,nc,2.7,2021,Math,Art,274,684,18,23,6,27,18,710,215,566,533,353,438,411,721,224,0
+dummystudent787,password,nm,volcano vista high school,albuquerque,nm,0.9,2024,Math,Art,481,452,12,1,15,20,12,446,595,337,596,249,502,227,617,456,3
+dummystudent788,password,il,niles north high school,skokie,il,1.9,2025,Math,Art,776,470,23,20,18,24,21,376,227,279,728,747,537,662,630,554,4
+dummystudent789,password,ga,alpharetta high school,alpharetta,ga,0.9,2022,Math,Art,798,331,4,15,17,34,18,572,739,307,679,557,327,359,224,294,7
+dummystudent790,password,nc,panther creek high school,cary,nc,0.9,2020,Math,Art,513,506,5,3,21,27,14,395,686,476,338,257,636,616,526,703,9
+dummystudent791,password,tx,memorial high school,houston,tx,2.8,2022,Math,Art,291,744,29,13,20,30,23,320,787,233,687,286,455,596,635,455,6
+dummystudent792,password,ca,whitney high school,cerritos,ca,1.8,2023,Math,Art,334,643,22,2,17,5,12,474,795,468,259,226,748,435,217,539,0
+dummystudent793,password,ca,dougherty valley high school,san ramon,ca,2.8,2025,Math,Art,613,769,11,19,15,15,15,445,397,229,649,706,521,409,643,797,8
+dummystudent794,password,tx,health careers high school,san antonio,tx,0.9,2021,Math,Art,309,569,10,29,24,8,18,432,781,414,695,394,242,600,530,471,3
+dummystudent795,password,nj,sterling high school,somerdale,nj,2.8,2025,Math,Art,364,230,31,15,17,18,20,506,630,736,567,462,528,755,776,717,8
+dummystudent796,password,nc,east chapel hill high school,chapel hill,nc,2.9,2024,Math,Art,532,400,17,6,4,27,14,453,222,704,516,620,420,309,563,758,9
+dummystudent797,password,va,mclean high school,mclean,va,2.7,2022,Math,Art,566,716,24,26,13,35,24,437,800,460,792,472,323,643,690,505,9
+dummystudent798,password,mi,lake city high school,lake city,mi,2.9,2025,Math,Art,620,477,24,30,6,24,21,617,259,800,388,212,358,549,375,511,8
+dummystudent799,password,wi,whitefish bay high school,whitefish bay,wi,0.9,2019,Math,Art,678,380,31,7,14,6,14,234,379,723,516,752,634,379,600,775,1
+dummystudent800,password,sc,south pointe high school,rock hill,sc,3.8,2021,Math,Art,753,320,3,8,3,30,11,329,503,747,710,789,353,498,220,412,3
+dummystudent801,password,va,stone bridge high school,ashburn,va,2.9,2019,Math,Art,318,624,22,15,30,31,24,259,685,242,255,446,788,352,252,219,4
+dummystudent802,password,il,waubonsie valley,high school aurora,il,2.9,2025,Math,Art,555,424,29,18,6,22,19,344,254,359,299,637,661,716,586,746,5
+dummystudent803,password,nh,goffstown high school,goffstown,nh,2.9,2022,Math,Art,632,404,30,21,25,35,28,374,674,739,600,547,570,313,365,200,2
+dummystudent804,password,nm,volcano vista high school,albuquerque,nm,2.9,2022,Math,Art,520,385,2,5,21,31,15,533,201,259,545,276,786,432,599,350,5
+dummystudent805,password,al,mt brook high school,mountain brook,al,0.8,2025,Math,Art,293,347,11,22,2,34,17,657,723,644,379,664,521,542,331,709,3
+dummystudent806,password,ny,staten island technical high school,staten island,ny,2.8,2023,Math,Art,637,350,10,35,11,25,20,541,448,376,528,627,715,532,454,727,0
+dummystudent807,password,ny,commack high school,commack,ny,1.9,2024,Math,Art,686,772,31,12,4,17,16,492,209,695,760,475,471,420,381,356,1
+dummystudent808,password,wa,bellevue high school,bellevue,wa,1.7,2023,Math,Art,278,233,3,23,8,30,16,425,470,300,719,220,715,405,486,302,7
+dummystudent809,password,mo,parkway central high school,chesterfield,mo,2.8,2020,Math,Art,396,211,30,23,28,17,24,784,602,222,282,218,368,569,277,339,3
+dummystudent810,password,ny,south side high school,rockville centre,ny,1.8,2025,Math,Art,344,331,4,29,19,23,19,209,385,415,660,336,260,601,413,429,3
+dummystudent811,password,ca,canyon crest academy,san diego,ca,1.8,2025,Math,Art,304,296,13,26,10,33,20,316,529,369,351,215,767,636,365,368,4
+dummystudent812,password,nj,sterling high school,somerdale,nj,2.9,2019,Math,Art,677,200,18,1,34,19,18,210,665,548,652,266,283,567,424,546,2
+dummystudent813,password,ca,westlake high school,westlake village,ca,1.8,2019,Math,Art,354,365,23,11,15,11,15,617,357,672,202,537,378,267,435,794,0
+dummystudent814,password,ks,lawrence free state high school,lawrence,ks,0.9,2025,Math,Art,526,527,24,5,11,26,16,222,342,428,395,548,479,682,735,491,1
+dummystudent815,password,wi,whitefish bay high school,whitefish bay,wi,0.8,2019,Math,Art,648,388,3,31,32,25,23,504,749,279,547,500,551,412,693,682,8
+dummystudent816,password,ny,brighton high school,rochester,ny,1.9,2024,Math,Art,785,658,15,7,20,24,16,631,625,239,214,332,456,205,322,347,2
+dummystudent817,password,pa,harriton senior high school,rosemont,pa,2.9,2022,Math,Art,649,682,23,5,19,18,16,504,488,389,684,333,479,503,530,669,7
+dummystudent818,password,tx,lovejoy high school,lucas,tx,0.9,2023,Math,Art,222,780,33,33,35,21,30,446,690,777,585,346,712,401,762,240,5
+dummystudent819,password,tx,elsik high school,houston,tx,2.7,2019,Math,Art,350,478,9,8,4,6,7,582,707,296,610,420,204,605,303,628,8
+dummystudent820,password,tx,fairfield high school,fairfield,tx,0.7,2019,Math,Art,234,221,32,14,15,30,23,588,731,681,225,436,612,740,446,684,7
+dummystudent821,password,nc,east chapel hill high school,chapel hill,nc,0.9,2023,Math,Art,439,620,8,30,33,26,24,214,649,287,686,378,715,787,368,216,0
+dummystudent822,password,ca,mira costa high school,manhattan beach,ca,1.8,2024,Math,Art,277,220,10,23,27,13,18,403,661,696,749,497,294,660,376,414,8
+dummystudent823,password,sc,ashley ridge high school,summerville,sc,2.9,2020,Math,Art,657,335,13,23,6,12,14,581,586,348,622,681,689,333,640,529,5
+dummystudent824,password,ca,blair high school,pasadena,ca,0.9,2020,Math,Art,204,653,16,22,11,7,14,628,740,660,316,365,200,568,387,434,7
+dummystudent825,password,tx,elsik high school,houston,tx,1.9,2025,Math,Art,750,288,27,25,16,2,18,489,347,762,506,596,300,393,447,263,7
+dummystudent826,password,mi,otsego high school,otsego,mi,1.9,2022,Math,Art,707,666,28,13,29,33,26,750,247,609,294,793,330,775,771,551,0
+dummystudent827,password,il,waubonsie valley,high school aurora,il,3.8,2021,Math,Art,741,688,36,33,22,2,23,707,372,660,287,355,742,278,284,653,1
+dummystudent828,password,pa,harriton senior high school,rosemont,pa,0.9,2021,Math,Art,338,295,18,12,14,1,11,243,293,311,367,239,673,315,477,527,1
+dummystudent829,password,il,niles north high school,skokie,il,3.7,2022,Math,Art,276,384,2,26,3,31,16,725,389,613,601,393,622,369,437,246,6
+dummystudent830,password,nh,goffstown high school,goffstown,nh,2.8,2024,Math,Art,351,385,34,12,14,9,17,559,729,278,569,224,531,734,757,560,1
+dummystudent831,password,ma,sutton high school,sutton,ma,2.8,2022,Math,Art,560,652,14,5,6,21,12,574,607,531,756,461,632,328,565,593,3
+dummystudent832,password,il,university high school,normal,il,0.8,2024,Math,Art,772,608,7,30,30,2,17,622,385,764,786,449,606,224,574,753,10
+dummystudent833,password,oh,arcadia high school,arcadia,oh,0.9,2024,Math,Art,331,320,7,24,11,13,14,550,448,473,605,688,312,486,446,341,3
+dummystudent834,password,tx,westwood high school,austin,tx,3.8,2021,Math,Art,799,794,19,26,6,23,18,433,398,218,793,547,411,659,560,235,6
+dummystudent835,password,tx,carroll senior high school,southlake,tx,0.7,2022,Math,Art,759,576,19,21,21,1,16,448,217,392,621,311,688,477,693,567,5
+dummystudent836,password,md,richard montgomery high school,rockville,md,1.8,2022,Math,Art,455,642,14,21,5,25,16,800,571,412,519,754,375,231,217,717,10
+dummystudent837,password,il,libertyville high school,libertyville,il,2.9,2020,Math,Art,333,692,31,30,34,22,29,301,400,613,424,338,205,323,571,327,2
+dummystudent838,password,tx,richland high school,north richland hills,tx,1.7,2024,Math,Art,572,654,12,17,3,29,15,311,356,647,268,220,581,226,251,475,1
+dummystudent839,password,sc,south pointe high school,rock hill,sc,0.7,2020,Math,Art,558,675,21,20,3,34,20,552,730,487,423,721,234,528,591,416,7
+dummystudent840,password,mi,huron high school,ann arbor,mi,0.8,2025,Math,Art,430,531,18,31,28,34,28,368,397,323,744,517,748,488,771,365,0
+dummystudent841,password,ca,whitney high school,cerritos,ca,3.8,2025,Math,Art,510,677,13,2,22,1,10,278,756,538,495,259,680,424,697,222,6
+dummystudent842,password,tx,memorial high school,houston,tx,2.8,2022,Math,Art,795,739,28,7,6,12,13,340,652,405,443,580,650,421,274,514,7
+dummystudent843,password,nh,goffstown high school,goffstown,nh,0.7,2022,Math,Art,227,780,22,1,26,3,13,382,590,765,473,546,337,631,307,455,1
+dummystudent844,password,ma,sutton high school,sutton,ma,1.7,2022,Math,Art,297,402,32,31,32,9,26,308,290,244,284,249,470,380,466,234,6
+dummystudent845,password,ca,whitney high school,cerritos,ca,2.7,2024,Math,Art,458,652,18,10,21,28,19,344,460,663,407,489,482,483,221,362,7
+dummystudent846,password,ga,flowery branch high school,flowery branch,ga,2.8,2020,Math,Art,439,772,2,35,29,2,17,271,745,634,723,795,514,783,248,744,8
+dummystudent847,password,tx,reedy high school,frisco,tx,1.9,2021,Math,Art,348,421,7,28,16,20,18,555,493,630,503,574,603,667,308,345,3
+dummystudent848,password,ca,santa monica high school,santa monica,ca,1.9,2025,Math,Art,697,417,22,16,18,24,20,491,547,654,715,338,628,246,322,682,0
+dummystudent849,password,ga,alpharetta high school,alpharetta,ga,0.7,2021,Math,Art,729,345,4,18,4,12,10,759,435,506,375,698,402,635,395,575,0
+dummystudent850,password,sc,ashley ridge high school,summerville,sc,2.9,2022,Math,Art,778,550,31,10,12,24,19,470,556,359,255,323,559,631,544,481,8
+dummystudent851,password,ca,santa monica high school,santa monica,ca,2.9,2024,Math,Art,213,237,26,21,1,8,14,665,581,497,619,390,468,569,530,538,6
+dummystudent852,password,va,oakton high school,vienna,va,3.8,2024,Math,Art,597,735,29,8,20,9,16,484,641,643,366,651,200,551,770,363,2
+dummystudent853,password,ma,lexington high school,lexington,ma,1.9,2024,Math,Art,271,344,2,16,32,20,18,627,586,675,260,639,781,505,246,304,6
+dummystudent854,password,tx,elsik high school,houston,tx,1.7,2021,Math,Art,790,771,9,16,22,3,12,753,631,277,210,517,711,224,437,634,2
+dummystudent855,password,ma,lexington high school,lexington,ma,1.8,2020,Math,Art,661,280,32,34,18,12,24,384,430,269,570,639,569,393,322,494,0
+dummystudent856,password,ca,riverside stem academy,riverside,ca,2.8,2019,Math,Art,794,704,9,2,4,14,7,460,609,423,246,265,466,539,207,781,8
+dummystudent857,password,az,arizona college prep erie campus,chandler,az,0.7,2021,Math,Art,741,787,34,9,3,2,12,377,437,577,212,431,238,484,367,759,8
+dummystudent858,password,ma,sutton high school,sutton,ma,3.8,2019,Math,Art,658,255,22,21,11,14,17,513,665,621,252,653,673,456,755,430,3
+dummystudent859,password,co,fairview high school,boulder,co,1.9,2023,Math,Art,252,359,21,36,7,32,24,713,205,574,465,321,631,435,781,583,1
+dummystudent860,password,tx,fairfield high school,fairfield,tx,3.8,2024,Math,Art,606,496,4,18,29,6,14,723,210,455,333,679,583,632,336,625,4
+dummystudent861,password,nc,carrboro high school,carrboro,nc,3.9,2019,Math,Art,600,569,22,23,20,24,22,619,542,375,243,728,283,423,284,300,9
+dummystudent862,password,fl,cedar key high school,cedar key,fl,1.9,2019,Math,Art,225,362,32,18,27,7,21,577,217,329,458,243,653,793,594,501,3
+dummystudent863,password,ca,campolindo high school,moraga,ca,3.8,2025,Math,Art,566,400,11,16,18,4,12,575,617,771,390,621,490,767,472,573,7
+dummystudent864,password,nc,panther creek high school,cary,nc,1.7,2024,Math,Art,236,526,26,19,30,24,25,465,252,619,361,798,478,766,620,687,9
+dummystudent865,password,fl,cedar key high school,cedar key,fl,3.8,2020,Math,Art,598,292,32,27,16,6,20,635,404,662,382,437,595,311,740,787,10
+dummystudent866,password,il,university high school,normal,il,2.7,2022,Math,Art,769,390,12,27,11,22,18,328,757,689,388,407,287,333,306,393,10
+dummystudent867,password,tx,elsik high school,houston,tx,1.9,2023,Math,Art,796,788,32,4,24,1,15,350,319,274,459,599,353,448,659,288,2
+dummystudent868,password,ca,aragon high school,san mateo,ca,3.7,2020,Math,Art,243,599,11,11,12,30,16,594,487,611,301,677,601,674,241,800,2
+dummystudent869,password,ga,walton high school,marietta,ga,3.9,2023,Math,Art,786,358,29,21,1,36,22,263,549,772,627,236,290,402,755,439,9
+dummystudent870,password,pa,radnor senior high school,radnor,pa,2.9,2024,Math,Art,681,259,22,13,26,35,24,254,241,760,531,745,727,489,216,465,10
+dummystudent871,password,ca,piedmont high school,piedmont,ca,0.8,2023,Math,Art,775,663,28,16,14,16,18,567,322,247,481,759,301,665,294,757,2
+dummystudent872,password,ca,santa monica high school,santa monica,ca,3.8,2025,Math,Art,313,671,1,36,19,6,16,618,634,783,638,570,264,683,565,236,10
+dummystudent873,password,il,libertyville high school,libertyville,il,3.7,2022,Math,Art,648,683,2,11,19,14,12,298,777,444,476,495,601,421,734,495,9
+dummystudent874,password,ny,brooklyn technical high school,brooklyn,ny,0.9,2021,Math,Art,497,242,17,28,33,3,20,527,607,635,459,530,580,527,790,508,9
+dummystudent875,password,az,basis flagstaff,flagstaff,az,2.8,2022,Math,Art,274,236,30,36,4,16,22,320,374,695,628,537,310,701,489,550,6
+dummystudent876,password,il,naperville central high school,naperville,il,1.9,2023,Math,Art,648,222,15,6,33,25,20,624,292,518,644,251,653,451,463,667,5
+dummystudent877,password,ga,walton high school,marietta,ga,3.8,2025,Math,Art,234,419,11,27,5,22,16,708,565,213,333,349,416,748,457,402,3
+dummystudent878,password,pa,fox chapel area high school,pittsburgh,pa,1.9,2023,Math,Art,405,618,32,14,25,6,19,628,493,467,314,450,489,753,243,565,5
+dummystudent879,password,fl,cedar key high school,cedar key,fl,1.9,2019,Math,Art,504,612,6,9,17,25,14,779,696,771,632,216,438,349,261,653,0
+dummystudent880,password,wa,bellevue high school,bellevue,wa,3.9,2025,Math,Art,762,529,29,35,13,21,24,783,269,762,692,687,716,221,450,226,8
+dummystudent881,password,il,crystal lake central high school,crystal lake,il,3.9,2021,Math,Art,301,259,33,10,24,35,26,332,641,385,329,443,575,637,358,766,7
+dummystudent882,password,ks,blue valley north high school,overland park,ks,0.7,2020,Math,Art,597,709,27,14,7,34,20,203,663,298,216,777,701,492,270,666,6
+dummystudent883,password,ma,lexington high school,lexington,ma,0.9,2022,Math,Art,718,612,10,21,15,26,18,252,628,252,350,200,265,625,796,647,1
+dummystudent884,password,nc,north carolina school of science and mathematics,durham,nc,3.9,2024,Math,Art,247,257,4,14,1,30,12,229,235,767,261,286,660,230,325,343,9
+dummystudent885,password,tx,westwood high school,austin,tx,2.7,2020,Math,Art,373,542,1,21,25,6,13,636,511,432,643,637,674,770,725,271,7
+dummystudent886,password,il,neuqua valley high school,naperville,il,2.8,2020,Math,Art,571,523,27,14,13,2,14,474,731,649,346,364,614,708,245,544,10
+dummystudent887,password,ca,dougherty valley high school,san ramon,ca,3.8,2023,Math,Art,654,652,12,16,9,34,18,480,548,566,228,581,495,375,560,277,8
+dummystudent888,password,oh,arcadia high school,arcadia,oh,2.9,2020,Math,Art,796,286,22,29,7,7,16,675,390,639,203,572,734,444,401,670,4
+dummystudent889,password,ca,campolindo high school,moraga,ca,0.9,2020,Math,Art,636,738,33,16,31,12,23,766,751,431,289,336,294,690,625,493,6
+dummystudent890,password,sc,academic magnet high school,north charleston,sc,2.9,2025,Math,Art,491,691,32,29,5,12,20,381,337,479,578,340,312,566,232,262,0
+dummystudent891,password,al,mt brook high school,mountain brook,al,1.8,2021,Math,Art,294,510,20,21,28,22,23,708,401,325,532,232,202,568,246,311,2
+dummystudent892,password,ga,walton high school,marietta,ga,3.8,2025,Math,Art,677,427,26,18,14,18,19,430,722,345,495,293,528,382,460,795,3
+dummystudent893,password,il,highland park high school,highland park,il,1.8,2023,Math,Art,567,556,17,19,5,30,18,729,554,780,460,698,258,760,430,687,2
+dummystudent894,password,co,fairview high school,boulder,co,1.8,2020,Math,Art,478,505,18,22,33,36,27,362,704,259,500,202,719,251,769,671,10
+dummystudent895,password,nj,ridgewood high school,ridgewood,nj,0.7,2022,Math,Art,580,769,28,11,28,7,18,512,791,534,207,299,272,239,208,499,8
+dummystudent896,password,nc,providence high school,charlotte,nc,1.9,2020,Math,Art,231,603,30,18,23,35,26,311,462,258,774,303,321,232,705,705,8
+dummystudent897,password,mi,international academy,bloomfield hills,mi,3.9,2025,Math,Art,768,466,20,11,14,13,14,771,433,235,721,329,557,548,669,336,10
+dummystudent898,password,ca,westlake high school,westlake village,ca,2.9,2023,Math,Art,627,642,14,29,8,36,22,697,448,781,661,399,598,442,308,782,1
+dummystudent899,password,ca,westlake high school,westlake village,ca,3.9,2021,Math,Art,606,494,9,35,3,12,15,401,786,762,369,247,659,257,728,332,8
+dummystudent900,password,nj,ridgewood high school,ridgewood,nj,2.8,2022,Math,Art,518,740,4,12,25,22,16,798,558,613,323,364,745,275,736,514,3
+dummystudent901,password,nj,sterling high school,somerdale,nj,2.8,2023,Math,Art,608,225,9,8,26,18,15,792,536,555,788,549,447,497,471,273,3
+dummystudent902,password,pa,radnor senior high school,radnor,pa,0.9,2022,Math,Art,661,355,1,11,26,26,16,515,781,459,469,216,698,400,662,247,5
+dummystudent903,password,tx,westwood high school,austin,tx,0.8,2024,Math,Art,582,212,8,11,5,3,7,336,579,410,521,725,644,216,669,583,6
+dummystudent904,password,nc,panther creek high school,cary,nc,1.8,2019,Math,Art,588,217,33,12,10,32,22,275,636,498,265,538,505,430,678,619,10
+dummystudent905,password,va,stone bridge high school,ashburn,va,3.7,2025,Math,Art,394,442,32,34,8,31,26,775,469,376,255,565,437,302,222,442,7
+dummystudent906,password,tx,elsik high school,houston,tx,2.9,2025,Math,Art,356,323,29,34,34,9,26,578,684,586,718,361,395,528,470,274,9
+dummystudent907,password,va,oakton high school,vienna,va,1.9,2020,Math,Art,410,733,22,23,33,6,21,375,536,242,753,370,469,329,425,265,10
+dummystudent908,password,ms,the mississippi school for mathematics and science,columbus,ms,2.9,2024,Math,Art,523,271,35,10,4,32,20,626,240,300,284,428,349,707,255,530,5
+dummystudent909,password,sc,south pointe high school,rock hill,sc,0.8,2025,Math,Art,402,356,8,6,7,27,12,689,460,513,726,388,660,772,541,239,1
+dummystudent910,password,wa,bellevue high school,bellevue,wa,3.7,2019,Math,Art,663,775,17,34,33,33,29,528,267,430,546,398,286,615,430,550,1
+dummystudent911,password,ny,staten island technical high school,staten island,ny,0.9,2023,Math,Art,609,259,36,34,28,6,26,747,598,540,757,444,603,343,588,450,0
+dummystudent912,password,ny,bard high school early college,new york,ny,1.8,2019,Math,Art,672,780,1,26,22,18,17,393,577,344,701,306,368,742,493,760,5
+dummystudent913,password,ma,sutton high school,sutton,ma,2.7,2025,Math,Art,258,236,15,4,9,25,13,728,262,306,635,349,668,213,597,522,6
+dummystudent914,password,mn,eagan senior high school,eagan,mn,0.7,2019,Math,Art,344,727,35,30,28,14,27,406,368,521,216,795,407,254,376,696,5
+dummystudent915,password,mi,huron high school,ann arbor,mi,0.8,2021,Math,Art,560,416,23,4,8,31,16,464,383,288,399,758,334,582,290,311,5
+dummystudent916,password,il,naperville central high school,naperville,il,1.7,2019,Math,Art,650,742,18,4,4,25,13,514,497,714,559,774,670,361,361,219,4
+dummystudent917,password,ny,bard high school early college,new york,ny,1.9,2022,Math,Art,384,685,8,19,9,32,17,612,352,571,696,531,257,234,478,512,0
+dummystudent918,password,tx,elsik high school,houston,tx,3.7,2020,Math,Art,381,202,6,21,8,32,17,630,376,250,260,797,309,205,375,718,4
+dummystudent919,password,az,arizona college prep erie campus,chandler,az,3.8,2021,Math,Art,500,783,8,7,14,16,11,535,779,452,577,722,743,295,593,608,5
+dummystudent920,password,nh,goffstown high school,goffstown,nh,2.8,2025,Math,Art,371,329,9,11,22,3,11,239,734,271,511,557,281,794,462,242,8
+dummystudent921,password,il,waubonsie valley,high school aurora,il,3.7,2022,Math,Art,576,270,36,27,26,16,26,566,431,607,579,466,248,561,478,509,7
+dummystudent922,password,az,basis flagstaff,flagstaff,az,2.9,2024,Math,Art,543,294,16,18,16,35,21,646,359,518,769,225,580,587,798,464,3
+dummystudent923,password,az,arizona college prep erie campus,chandler,az,0.9,2023,Math,Art,431,400,3,36,34,16,22,588,709,316,714,714,559,333,300,257,5
+dummystudent924,password,nc,east chapel hill high school,chapel hill,nc,2.9,2021,Math,Art,533,608,11,1,12,9,8,778,201,591,603,245,794,669,451,680,1
+dummystudent925,password,ca,canyon crest academy,san diego,ca,0.9,2021,Math,Art,411,590,27,27,13,30,24,256,385,412,508,789,680,485,233,257,10
+dummystudent926,password,pa,radnor senior high school,radnor,pa,3.7,2019,Math,Art,678,655,19,6,6,29,15,509,311,427,562,712,630,678,562,794,2
+dummystudent927,password,ca,mira costa high school,manhattan beach,ca,2.7,2021,Math,Art,286,445,31,23,25,3,20,607,411,383,645,319,599,443,605,734,4
+dummystudent928,password,nc,north carolina school of science and mathematics,durham,nc,1.9,2024,Math,Art,241,211,7,30,4,13,14,699,790,428,400,775,384,746,573,393,8
+dummystudent929,password,il,hinsdale central high school,hinsdale,il,1.7,2019,Math,Art,443,505,19,14,30,11,18,671,738,757,584,266,529,611,327,221,5
+dummystudent930,password,nj,sterling high school,somerdale,nj,3.8,2024,Math,Art,280,210,22,22,24,20,22,225,254,400,401,270,405,211,743,338,6
+dummystudent931,password,az,basis flagstaff,flagstaff,az,1.8,2021,Math,Art,512,215,23,19,31,10,21,256,794,449,453,593,496,205,431,740,10
+dummystudent932,password,va,oakton high school,vienna,va,2.8,2025,Math,Art,745,210,21,3,31,4,15,355,731,279,514,592,326,650,234,760,7
+dummystudent933,password,il,glenbrook south high school,glenview,il,1.7,2022,Math,Art,287,554,17,22,9,28,19,666,463,555,421,342,623,678,599,551,2
+dummystudent934,password,ca,granada hills charter high school,granada hills,ca,3.9,2020,Math,Art,738,223,30,19,8,36,23,722,727,545,281,666,502,251,282,515,1
+dummystudent935,password,az,basis flagstaff,flagstaff,az,1.9,2020,Math,Art,293,365,34,22,7,8,18,466,261,363,516,350,779,629,415,376,5
+dummystudent936,password,il,naperville central high school,naperville,il,1.7,2022,Math,Art,543,583,2,15,19,6,10,463,385,495,534,719,597,515,522,278,5
+dummystudent937,password,il,northside college preparatory high school,chicago,il,1.7,2022,Math,Art,777,289,5,11,18,6,10,372,794,532,374,699,602,778,279,414,2
+dummystudent938,password,sc,ashley ridge high school,summerville,sc,1.8,2022,Math,Art,432,654,6,1,15,18,10,472,644,650,585,622,236,437,792,469,0
+dummystudent939,password,ny,commack high school,commack,ny,0.9,2025,Math,Art,766,314,23,36,3,14,19,215,773,336,508,405,758,360,623,383,5
+dummystudent940,password,il,university high school,normal,il,2.9,2022,Math,Art,445,565,9,8,16,29,16,239,556,418,227,788,308,395,763,227,2
+dummystudent941,password,ar,haas hall academy,fayetteville,ar,2.9,2020,Math,Art,316,303,27,13,7,13,15,284,270,498,536,286,564,615,278,345,6
+dummystudent942,password,tx,lovejoy high school,lucas,tx,0.7,2025,Math,Art,302,619,5,3,26,36,18,226,775,278,662,224,395,264,271,482,4
+dummystudent943,password,nj,jp stevens high school,edison,nj,3.9,2020,Math,Art,391,638,7,27,5,26,16,416,635,557,343,387,419,493,612,572,2
+dummystudent944,password,nh,hanover high school,hanover,nh,3.8,2025,Math,Art,786,523,19,26,7,26,20,649,612,555,614,487,453,496,637,483,0
+dummystudent945,password,ny,south side high school,rockville centre,ny,3.9,2024,Math,Art,487,492,17,10,36,8,18,403,224,317,270,377,504,506,364,536,6
+dummystudent946,password,ma,lexington high school,lexington,ma,2.9,2022,Math,Art,446,778,15,7,22,33,19,477,318,636,260,476,278,775,225,315,8
+dummystudent947,password,ny,island trees high school,levittown,ny,0.7,2022,Math,Art,354,654,27,27,21,11,22,679,673,545,467,466,482,767,540,306,0
+dummystudent948,password,ca,piedmont high school,piedmont,ca,3.9,2023,Math,Art,257,259,15,36,23,33,27,704,570,236,407,534,574,721,509,645,8
+dummystudent949,password,il,naperville central high school,naperville,il,0.7,2025,Math,Art,440,316,25,34,31,25,29,717,345,378,499,374,417,438,686,619,8
+dummystudent950,password,sc,academic magnet high school,north charleston,sc,1.8,2023,Math,Art,646,590,4,15,23,12,14,541,213,738,362,306,653,523,605,212,9
+dummystudent951,password,mo,bayless senior high school,st louis,mo,3.9,2025,Math,Art,800,240,8,31,9,28,19,628,469,410,230,765,761,312,664,358,9
+dummystudent952,password,ca,dougherty valley high school,san ramon,ca,3.9,2025,Math,Art,593,223,4,19,28,11,16,535,690,371,276,720,231,214,629,559,6
+dummystudent953,password,ca,piedmont high school,piedmont,ca,2.9,2025,Math,Art,661,678,15,1,25,8,12,426,403,726,292,446,290,750,527,272,9
+dummystudent954,password,nc,north carolina school of science and mathematics,durham,nc,3.8,2024,Math,Art,334,438,22,28,3,2,14,468,692,757,640,406,588,520,296,425,6
+dummystudent955,password,tx,elsik high school,houston,tx,0.9,2019,Math,Art,447,231,26,23,9,4,16,418,617,208,470,372,269,621,273,408,3
+dummystudent956,password,ma,concord carlisle high school,concord,ma,1.7,2023,Math,Art,312,330,27,29,27,28,28,599,377,797,658,710,467,754,469,604,2
+dummystudent957,password,ks,blue valley north high school,overland park,ks,2.7,2021,Math,Art,704,749,3,4,19,21,12,427,796,557,475,796,715,734,374,529,8
+dummystudent958,password,sc,academic magnet high school,north charleston,sc,2.8,2020,Math,Art,317,553,28,22,30,23,26,227,427,583,414,510,316,611,580,696,5
+dummystudent959,password,ga,walton high school,marietta,ga,1.7,2020,Math,Art,595,763,11,8,10,16,11,513,336,228,444,333,282,692,782,334,4
+dummystudent960,password,ca,whitney high school,cerritos,ca,1.7,2024,Math,Art,524,350,4,18,15,10,12,633,722,392,675,290,655,699,731,621,1
+dummystudent961,password,tx,coppell high school,coppell,tx,3.8,2025,Math,Art,551,746,19,24,36,30,27,395,692,515,526,632,769,498,572,790,2
+dummystudent962,password,tx,elsik high school,houston,tx,3.7,2022,Math,Art,627,448,35,21,8,29,23,585,791,204,647,416,601,553,705,369,3
+dummystudent963,password,sc,ashley ridge high school,summerville,sc,3.7,2020,Math,Art,719,754,35,19,30,22,26,386,500,625,622,589,662,244,607,388,2
+dummystudent964,password,nc,panther creek high school,cary,nc,0.8,2019,Math,Art,648,254,3,17,4,6,8,423,567,407,232,358,343,685,527,293,9
+dummystudent965,password,ca,westlake high school,westlake village,ca,3.8,2023,Math,Art,305,338,31,32,9,28,25,621,305,318,531,291,758,481,263,424,10
+dummystudent966,password,tx,memorial high school,houston,tx,3.9,2019,Math,Art,434,349,21,36,23,18,24,468,269,400,523,700,563,557,450,560,4
+dummystudent967,password,tx,lovejoy high school,lucas,tx,2.9,2020,Math,Art,437,667,12,26,28,5,18,450,599,270,509,523,437,449,561,367,4
+dummystudent968,password,ca,blair high school,pasadena,ca,2.8,2023,Math,Art,635,536,25,35,6,36,26,656,654,797,635,479,458,280,438,638,6
+dummystudent969,password,ny,south side high school,rockville centre,ny,3.9,2020,Math,Art,419,653,8,8,23,16,14,336,779,700,739,335,742,295,211,275,0
+dummystudent970,password,il,university high school,normal,il,3.7,2019,Math,Art,496,319,26,28,35,32,30,766,713,232,403,299,543,795,529,297,6
+dummystudent971,password,nc,north carolina school of science and mathematics,durham,nc,2.9,2021,Math,Art,669,429,8,5,19,13,11,640,782,522,410,473,653,286,309,788,5
+dummystudent972,password,nc,providence high school,charlotte,nc,1.9,2025,Math,Art,381,232,22,32,34,11,25,303,409,482,706,442,741,572,355,712,0
+dummystudent973,password,md,richard montgomery high school,rockville,md,1.7,2022,Math,Art,319,692,15,23,10,6,14,657,741,645,235,236,476,222,357,590,6
+dummystudent974,password,ny,baccalaureate school for global education,long island city,ny,1.7,2019,Math,Art,666,252,5,29,21,23,20,758,585,260,235,628,389,475,788,772,6
+dummystudent975,password,sc,academic magnet high school,north charleston,sc,2.7,2025,Math,Art,230,234,10,25,6,14,14,460,299,620,210,463,408,446,616,646,9
+dummystudent976,password,az,glendale high school,glendale,az,0.9,2021,Math,Art,635,432,14,5,28,32,20,480,728,546,232,608,384,476,308,324,0
+dummystudent977,password,ca,santa monica high school,santa monica,ca,3.9,2020,Math,Art,554,694,28,9,11,17,16,482,764,644,207,233,614,538,558,255,1
+dummystudent978,password,ks,blue valley north high school,overland park,ks,1.8,2020,Math,Art,469,580,21,35,10,12,20,422,503,440,571,377,533,484,257,274,6
+dummystudent979,password,az,basis tucson,north tucson,az,1.8,2024,Math,Art,455,410,25,36,5,16,20,222,275,755,623,205,422,349,474,637,9
+dummystudent980,password,ca,santa monica high school,santa monica,ca,0.9,2023,Math,Art,492,229,11,15,20,28,18,649,240,628,483,317,366,408,720,541,7
+dummystudent981,password,nj,sterling high school,somerdale,nj,1.8,2024,Math,Art,411,707,6,1,15,4,6,718,697,285,276,456,776,469,679,366,4
+dummystudent982,password,az,basis flagstaff,flagstaff,az,0.7,2023,Math,Art,627,463,20,36,13,19,22,258,727,244,738,548,374,477,709,499,0
+dummystudent983,password,ks,lawrence free state high school,lawrence,ks,0.9,2022,Math,Art,236,478,19,19,6,9,13,784,302,712,654,673,733,212,628,401,7
+dummystudent984,password,ks,blue valley north high school,overland park,ks,1.7,2019,Math,Art,656,540,13,21,24,24,20,246,404,544,721,742,213,506,461,512,3
+dummystudent985,password,az,arizona college prep erie campus,chandler,az,1.8,2019,Math,Art,369,793,29,18,7,27,20,682,274,385,207,779,587,377,652,639,5
+dummystudent986,password,ma,lexington high school,lexington,ma,3.9,2023,Math,Art,455,351,29,14,20,24,22,690,661,456,692,544,690,408,319,479,2
+dummystudent987,password,nc,panther creek high school,cary,nc,2.7,2021,Math,Art,647,485,23,10,14,30,19,560,292,642,222,652,659,567,791,607,9
+dummystudent988,password,ca,dougherty valley high school,san ramon,ca,0.7,2022,Math,Art,710,425,11,2,31,24,17,797,388,727,230,431,465,687,360,638,6
+dummystudent989,password,nc,north carolina school of science and mathematics,durham,nc,0.7,2024,Math,Art,653,686,28,13,15,12,17,361,419,373,202,296,449,555,597,212,9
+dummystudent990,password,ga,alpharetta high school,alpharetta,ga,2.8,2024,Math,Art,541,763,26,4,23,34,22,213,537,321,356,251,438,213,395,606,0
+dummystudent991,password,wa,columbia river high school,vancouver,wa,3.7,2023,Math,Art,486,373,18,23,26,14,20,620,734,378,632,787,290,304,370,651,8
+dummystudent992,password,il,hinsdale central high school,hinsdale,il,1.7,2023,Math,Art,322,432,5,1,27,24,14,751,537,616,358,508,766,482,251,704,8
+dummystudent993,password,il,neuqua valley high school,naperville,il,0.9,2021,Math,Art,506,413,4,26,4,30,16,392,300,584,266,335,361,544,505,319,3
+dummystudent994,password,ca,redwood high school,larkspur,ca,0.7,2024,Math,Art,493,364,27,7,32,5,18,440,504,439,603,368,566,796,311,542,7
+dummystudent995,password,mo,parkway central high school,chesterfield,mo,0.9,2019,Math,Art,628,706,34,22,30,32,30,560,509,591,336,510,437,522,680,322,0
+dummystudent996,password,ga,columbus high school,columbus,ga,2.8,2020,Math,Art,739,663,23,24,36,17,25,519,337,544,349,204,603,244,234,639,6
+dummystudent997,password,az,arizona college prep erie campus,chandler,az,2.9,2020,Math,Art,257,364,8,12,36,27,21,712,342,380,642,491,359,225,510,716,1
+dummystudent998,password,pa,radnor senior high school,radnor,pa,2.9,2023,Math,Art,475,349,22,18,32,14,22,529,616,332,505,408,436,529,658,791,6
+dummystudent999,password,il,waubonsie valley,high school aurora,il,0.8,2019,Math,Art,709,269,25,1,35,1,16,398,699,363,756,516,691,413,633,393,4
