@@ -297,7 +297,7 @@ export default class Profile extends React.Component{
               <label className="col-sm-2 text-left"> High School : </label>
               <Autocomplete
                 items= {hs_name}
-                shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                shouldItemRender={(item, value) => value ? item.label.toLowerCase().indexOf(value.toLowerCase()) > -1 : 0}
                 getItemValue={item => item.label}
                 //getOptionLabel={(item) => item.title}
                 renderItem={(item, highlighted) =>
