@@ -281,6 +281,7 @@ export default class Profile extends React.Component{
               <Form.Row className="justify-content-center">
               <label className="ml-5 col-sm-2 ">Password: </label>
               <Form.Control type = "Password"
+                            placeholder="Fill in profile"
                      className= "ml-4 col-sm-2"
                      name = "password"
                      value={(this.state.password != null) ? this.state.password : ""}
@@ -345,6 +346,7 @@ export default class Profile extends React.Component{
               <Form.Row className="justify-content-center">
               <label className="col-sm-2"> High School City: </label>
               <Form.Control type="text"
+                            placeholder="Fill in profile"
                      className = "col-sm-2"
                      name="high_school_city"
                      value={(this.state.high_school_city != null) ? this.state.high_school_city : ""}
@@ -368,6 +370,7 @@ export default class Profile extends React.Component{
               <label className="col-sm-2 "> Major 1 : </label>
               <Form.Control type = "text"
                             className = "col-sm-2"
+                            placeholder="Fill in profile"
                      name = "major_1"
                      value={(this.state.major_1 != null) ? this.state.major_1 : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
@@ -381,6 +384,7 @@ export default class Profile extends React.Component{
               <label className="col-sm-2 "> Major 2 : </label>
               <Form.Control type = "text"
                             className = "col-sm-2"
+                            placeholder="Fill in profile"
                      name="major_2"
                      value={(this.state.major_2 != null) ? this.state.major_2 : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
@@ -393,6 +397,7 @@ export default class Profile extends React.Component{
               <label className="col-sm-2"> GPA : </label>
               <Form.Control type="number"
                      className="col-sm-2"
+                            placeholder="Fill in profile"
                      name="GPA"
                      value={(this.state.GPA != null) ? this.state.GPA : ""}
                      disabled={(this.state.disabled) ? "disabled" : ""}
@@ -406,6 +411,7 @@ export default class Profile extends React.Component{
               <label className="col-sm-2 "> College Classes : </label>
               <Form.Control type = "number"
                             className = "col-sm-2"
+                            placeholder="Fill in profile"
                      name = "college_class"
                      value={(this.state.college_class != null) ? this.state.college_class : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
@@ -419,6 +425,7 @@ export default class Profile extends React.Component{
               <label className="col-sm-2 "> # of AP Passed : </label>
               <Form.Control type = "number"
                             className = "col-sm-2 text-left"
+                            placeholder="Fill in profile"
                      name = "num_AP_passed"
                      value={(this.state.num_AP_passed != null) ? this.state.num_AP_passed : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
