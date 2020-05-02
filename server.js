@@ -10,8 +10,8 @@ const backend = require('./backend');
 const PORT = process.env.PORT || 3001;
 const secret = process.env.JWT_SECRET_KEY || 'pokTGERW54389e#@$%mans12$@!$!#$^#%$';
 
-const studentDatasets = ['students-1.csv', 'dummies.csv', 'students-2.csv']; // ADD ALL DATASETS HERE
-const applicationDatasets = ['applications-1.csv', 'dummyapps.csv', 'applications-2.csv'];// ADD ALL DATASETS HERE
+const studentDatasets = ['students-1.csv', 'students-2.csv']; // ADD ALL DATASETS HERE
+const applicationDatasets = ['applications-1.csv', 'applications-2.csv'];// ADD ALL DATASETS HERE
 
 app = express();
 app.use(express.urlencoded({extended: true}));
@@ -133,7 +133,7 @@ app.post('/getuser', async (req, res) => {
 
 app.post('/setStudentInfo', async (req, res) => {
   try {
-    if ( (req.body.user.high_school_name && req.body.user.high_school_city )!== null  ){
+    if ( (req.body.user.high_school_name && req.body.user.high_school_city )!== null ) {
       req.body.user.high_school_name = req.body.user.high_school_name.toLowerCase();
       req.body.user.high_school_city = req.body.user.high_school_city.toLowerCase();
     }
@@ -157,7 +157,7 @@ app.post('/calculateSimilarHighschools', async (req, res) => {
 
 app.post('/calculateCollegeScore', async (req, res) => {
   const results = await backend.computeScores.calculateCollegeScore(req.body.student);
-  res.status(200).json({collegeScores : results});
+  res.status(200).json({collegeScores: results});
 });
 
 app.post('/getapplications', async (req, res) => {
@@ -172,25 +172,23 @@ app.post('/updateapplications', async (req, res) => {
     statusTracker,
     userid,
   } = req.body;
-  // console.log('Inside Update Applications');
-  // console.log('Status Tracker: ', statusTracker);
+
   const ids = Object.keys(statusTracker);
   const student = await collections.Student.findOne({userid}).lean();
   for (const _id of ids) {
-    // console.log('The status from statusTracker says', statusTracker[_id].status);
     await collections.Application.updateOne({_id}, {
       status: statusTracker[_id].status,
     });
-    const questionable = await backend.computeScores.isQuestionableApplication(statusTracker[_id].collegeName, student, _id);
-    console.log(`The application to ${statusTracker[_id].collegeName} is ${questionable}.`);
-    await collections.Application.updateOne({_id}, {
-      questionable,
-    });
+    try {
+      await backend.computeScores.isQuestionableApplication(statusTracker[_id].collegeName, student, _id);
+    } catch (err) {
+      console.err(err.message);
+      return;
+    }
   }
 
   const updatedApplications = await collections.Application.find({_id: {$in: ids}}).lean();
-  console.log('what i want');
-  console.log(updatedApplications);
+  // console.log(updatedApplications);
 
   res.status(200).send({
     applications: updatedApplications,
@@ -215,27 +213,19 @@ app.post('/addapplication', async (req, res) => {
   const doc = await collections.Application.create(newApplication);
   let student = await collections.Student.findOne({userid}).lean();
 
-  const questionable = await backend.computeScores.isQuestionableApplication(college, student, doc._id);
-  await collections.Application.updateOne({_id: doc._id}, {
-    questionable,
-  });
-  // console.log('New document inserted!');
-  // console.log(doc);
+  try {
+    await backend.computeScores.isQuestionableApplication(college, student, doc._id);
+  } catch (err) {
+    console.err(err.message);
+    return;
+  }
   student = await collections.Student.updateOne({userid}, {$push: {applications: doc._id}});
   statusTracker[doc._id] = {
     status,
     collegeName: college,
   };
-  // const updatedStudent = await collections.Student.findOne({userid}).lean();
-  // console.log('Updated Student Information');
-  // console.log(updatedStudent);
-
-  // console.log('Updated Status Tracker');
-  // console.log(statusTracker);
 
   student = await collections.Student.findOne({userid}).populate({path: 'applications'}).lean();
-  // console.log('Student After Populating Again');
-  // console.log(student);
 
   res.status(200).send({
     applications: student.applications,
@@ -296,8 +286,18 @@ app.post('/marknotquestionable', async (req, res) => {
 });
 
 app.post('/getallhighschools', async (req, res) => {
-  let hs = await collections.HighSchool.find({}).lean();
-  res.status(200).send({ highschools: hs });
+  const hs = await collections.HighSchool.find({}).lean();
+  res.status(200).send({highschools: hs});
+});
+
+app.post('/importahs', async (req, res) => {
+  try {
+    await backend.adminHandler.importHighschoolData(req.body.name, req.body.city, req.body.state);
+    res.status(200).send();
+  } catch (e) {
+    console.log(e);
+    res.status(404).send();
+  }
 });
 
 app.listen(PORT, ()=>{

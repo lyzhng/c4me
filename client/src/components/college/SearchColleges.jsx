@@ -17,7 +17,6 @@ function CollegeScoreModal(props)
 		state[event.target.name] = parseInt(event.target.value);
 	}
   const computeScore = (event) => {
-  		console.log("HELLO");
   		Axios.post("/calculateCollegeScore", {student : state}).then((resp) => {props.setScores(resp.data.collegeScores);});
   }
   return (
@@ -612,7 +611,7 @@ export default class SearchColleges extends React.Component{
 										</Col>
 									</Form.Row>
 								</Form.Group>
-								<div class = "container-fluid">
+								<div className = "container-fluid">
 											<div class = "row">
 												{
 		                                        this.state.locations.map((location,index) => {

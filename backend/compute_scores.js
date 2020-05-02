@@ -56,172 +56,44 @@ const calculateSimilarHighschools = async (name, city, state) => {
   return scoredHighschools;
 };
 
-const calculateSimilarStudent = (student1, student2) => {
-  let score = 0;
 
-  score += ((student1.SAT_math === null) || (student2.SAT_math === null)) ? 0
-  : ((Math.abs(student1.SAT_math - student2.SAT_math) <= 120) ? 1 : 0);
-
-  score += ((student1.SAT_EBRW === null) || (student2.SAT_EBRW === null)) ? 0
-  : ((Math.abs(student1.SAT_EBRW - student2.SAT_EBRW) <= 120) ? 1 : 0);
-
-  score += ((student1.GPA === null) || (student2.GPA === null)) ? 0
-  : ((Math.abs(student1.GPA - student2.GPA) <= .4) ? 1 : 0);
-
-  score += ((student1.ACT_composite === null) || (student2.ACT_composite === null)) ? 0
-  : ((Math.abs(student1.ACT_composite - student2.ACT_composite) <= 4) ? 1 : 0);
-
-  return score >= 3 ? true : false; //if score is 3 or greater, we'll say that the two students are both similar academically
-
-}
-
-const numStudentsInCollege = (students, college) =>
-{
-  let numStudents = 0;
-  for (let i = 0; i < students.length; i ++)
-  {
-    for (let p = 0; p < students[i].applications.length; p ++)
-    {
-      if (students[i].applications[p].college.toUpperCase() === college.name.toUpperCase())
-      {
-        numStudents ++;
-        break;
-      }
-    }
-  }
-}
-
-
-
-const calculateCollegeScore = async (student) => {
-
-  let scores = {};
-  let similarStudents = [];
-  //for storing the differences between student attributes and college attributes
-  let gpaDiff = {};
-  let satmathDiff = {};
-  let satengDiff = {};
-  let actDiff = {};
-  let costDiff = {};
-
-  let allStudents = await collections.Student.find({});
-  let allColleges = await collections.College.find();
-
-  //find all similar students in the database
-  for (let i = 0; i < allStudents.length; i ++)
-  {
-    if (calculateSimilarStudent(student, allStudents[i]))
-    {
-      similarStudents.push(allStudents[i]);
-    }
-  }
-
-  //retrieve their applications
-  allStudents = null;
-  for (let i = 0; i < similarStudents.length; i ++)
-  {
-    await similarStudents[i].populate({path: 'applications'}).lean();
-  }
-
-  //calculate all differences
-  for (let i = 0; i < allColleges.length; i++)
-  {
-    let college = allColleges[i];
-    scores[college.name] = 0;
-
-    if (college.gpa !== -1) 
-    {
-      gpaDiff[college.name] = Math.abs(student.GPA - college.gpa);
-    }
-    else //if missing college gpa, set to null
-    {
-      gpaDiff[college.name] = null;
-    }
-
-    if (college.sat.math_avg !== -1) 
-    {
-      satmathDiff[college.name] = Math.abs(student.SAT_math - college.sat.math_avg);
-    }
-    else //if missing college sat math
-    {
-      satmathDiff[college.name] = null;
-    }
-
-    if (college.sat.EBRW_avg !== -1) 
-    {
-      satengDiff[college.name] = Math.abs(student.SAT_EBRW - college.sat.EBRW_avg);
-    }
-    else //if missing college sat eng
-    {
-      satengDiff[college.name] = null;
-    }
-
-    if (college.act.avg !== -1) 
-    {
-      actDiff[college.name] = Math.abs(student.ACT_composite - college.act.avg);
-    }
-    else //if missing college act composite
-    {
-      actDiff[college.name] = null;
-    }
-
-    if ((college.aid !== -1) && (college.rec_aid !== -1) && (college.cost.attendance.in_state !== -1) (college.cost.attendance.out_state !== -1))
-    {
-      let cost = student.residence_state 
-      ? ( (student.residence_state.toUpperCase() === college.location.state.toUpperCase()) ? college.cost.attendance.in_state : college.cost.attendance.out_state) 
-      : college.cost.attendance.out_state;
-
-      costDiff[college.name] = cost - ((college.aid * college.rec_aid) + student.income);
-      costDiff[college.name] = cost < 0 ? 0 : cost;
-    }
-    else //missing cost / aid statistics
-    {
-      costDiff[college.name] = null;
-    }
-  }
-
-  //calculate scores
-  let maxGpaDiff = Math.max(...Object.values(gpaDiff));
-  let maxSatmathDiff = Math.max(...Object.values(satmathDiff));
-  let maxSatengDiff = Math.max(...Object.values(satengDiff));
-  let maxActDiff = Math.max(...Object.values(actDiff));
-  let maxCostDiff = Math.max(...Object.values(costDiff));
-
-  for (let i = 0; i < allColleges.length; i++)
-  {
-    let college = allColleges[i];
-    scores[college.name] = 0;
-    scores[college.name] += college.ranking / allColleges.length; //ranking score
-    scores[college.name] += (gpaDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxGpaDiff); //gpa score
-    scores[college.name] += (satmathDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxSatmathDiff); //sat math score
-    scores[college.name] += (satengDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxSatengDiff); //sat eng score
-    scores[college.name] += (actDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxActDiff); //act score
-    scores[college.name] += (costDiff[college.name] === null) ? 1 : (gpaDiff[college.name] / maxCostDiff); //cost score
-    scores[college.name] += similarStudents.length === 0 ? 1 : numStudentsInCollege(similarStudents, college) / similarStudents.length; //similar students score
-  }
-
-  return scores;
-};
 
 async function isQuestionableApplication(name, student, _id) {
   const college = await collections.College.findOne({name}).lean();
+  if (college === null) {
+    throw new Error(`${name} cannot be found in the database.`);
+  }
   console.log('The college that is being tested is', college.name);
   const application = await collections.Application.findOne({_id}).lean();
   let questionableSAT = null;
   let questionableACT = null;
   try {
     questionableSAT = isQuestionableSAT(college, student, application);
-    console.log('Questionable ACT?', questionableACT);
+    console.log('Questionable SAT?', questionableSAT);
   } catch (err) {
     console.error(err.message);
   }
   try {
     questionableACT = isQuestionableACT(college, student, application);
-    console.log('Questionable SAT?', questionableSAT);
+    console.log('Questionable ACT?', questionableACT);
   } catch (err) {
     console.error(err.message);
   }
-  return questionableSAT || questionableACT;
+  let isQuestionable = false;
+  if (questionableSAT === null && questionableACT === null) {
+    isQuestionable = false;
+  } else if (questionableSAT !== null && questionableACT === null) {
+    isQuestionable = questionableSAT;
+  } else if (questionableSAT === null && questionableACT !== null) {
+    isQuestionable = questionableACT;
+  } else if (questionableSAT !== null && questionableACT !== null) {
+    isQuestionable = questionableACT || questionableSAT;
+  }
+  await collections.Application.updateOne({ _id }, {
+    questionable: isQuestionable
+  });
+  const debugging = await collections.Application.findOne({_id});
+  console.log(`${debugging.college}: ${debugging.questionable}`);
 };
 
 function isQuestionableACT(college, student, application) {
@@ -238,7 +110,6 @@ function isQuestionableACT(college, student, application) {
   const upper = upperBound(college.act.composite_25, college.act.composite_75);
   const isAcceptedButLowScores = (lower > studentACT) && application.status === 'accepted';
   const isDeniedButHighScores = (studentACT > upper) && application.status === 'denied';
-  console.log('Student ACT', studentACT);
   console.log('Accepted But Low Scores?', isAcceptedButLowScores);
   console.log('Rejected But High Scores?', isDeniedButHighScores);
   return isAcceptedButLowScores || isDeniedButHighScores;
@@ -269,11 +140,6 @@ function isQuestionableSAT(college, student, application) {
     console.log('Is Questionable Math?', questionableMath);
     console.log('Is Questionable EBRW?', questionableEBRW);
 
-    console.log('Math is above:', isAboveUpperBound(mathQ1, mathQ3, student.SAT_math));
-    console.log('Math is below:', isBelowLowerBound(mathQ1, mathQ3, student.SAT_math));
-    console.log('EBRW is above:', isAboveUpperBound(ebrwQ1, ebrwQ3, student.SAT_EBRW));
-    console.log('EBRW is lower:', isBelowLowerBound(ebrwQ1, ebrwQ3, student.SAT_EBRW));
-
     // not questionable at all
     if (!questionableMath && !questionableEBRW) {
       if (application.status === 'accepted') {
@@ -282,7 +148,7 @@ function isQuestionableSAT(college, student, application) {
       }
       if (application.status === 'denied') {
         console.log('Neither SAT scores are questionable and student was denied.');
-        return true;
+        return false;
       }
     }
 
@@ -317,7 +183,7 @@ function isQuestionableSAT(college, student, application) {
       }
       if (application.status === 'denied') {
         console.log('Did normally on math but did below in EBRW. Gets denied.');
-        return true;
+        return false;
         // debug
       }
     }
@@ -335,13 +201,13 @@ function isQuestionableSAT(college, student, application) {
 
     if (!questionableEBRW && isBelowLowerBound(mathQ1, mathQ3, student.SAT_math)) {
       if (application.status === 'accepted') {
-        console.log('Did normally on math but did below in EBRW. Get accepted.');
+        console.log('Did normally on EBRW but did below in math. Get accepted.');
         return true;
         // debug
       }
       if (application.status === 'denied') {
-        console.log('Did normally on math but did below in EBRW. Get denied.');
-        return true;
+        console.log('Did normally on EBRW but did below in math. Get denied.');
+        return false;
         // debug
       }
     }

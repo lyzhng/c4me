@@ -145,6 +145,10 @@ h3 {
     left:50%;
     transform : translate(-50% ,-50%);
 }
+.dropdownHS{
+    position: relative;
+    z-index: 1000;
+}
 
 .btn-1:link,
 .btn-1:visited{

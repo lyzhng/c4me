@@ -13,28 +13,34 @@ export default class Admin extends React.Component{
 
 	scrapeCollegeRankings = (event) => {
 		event.preventDefault();
-		Axios.get("/scrapecollegerankings").then((resp) => {
-			this.setState({status:"Successfully scraped college rankings."});
-		}).catch(err =>{
-			this.setState({status:"Failed to scrape college rankings."});
+		this.setState({ status: 'Importing college rankings...' }, () => {
+			Axios.get("/scrapecollegerankings").then((resp) => {
+				this.setState({ status: "Successfully scraped college rankings." });
+			}).catch(err => {
+				this.setState({ status: "Failed to scrape college rankings." });
+			});
 		});
 	};
 
 	importCollegeScorecard = (event) => {
 		event.preventDefault();
-		Axios.get("/importcollegescorecard").then((resp) => {
-			this.setState({status:"Successfully imported college scorecard."});
-		}).catch(err =>{
-			this.setState({status:"Failed to import college scorecard."});
+		this.setState({ status: "Importing college scorecard csv..." }, () => {
+			Axios.get("/importcollegescorecard").then((resp) => {
+				this.setState({ status: "Successfully imported college scorecard." });
+			}).catch(err => {
+				this.setState({ status: "Failed to import college scorecard." });
+			});
 		});
 	}
 
 	importStudentProfiles = (event) => {
 		event.preventDefault();
-		Axios.get("/importstudentdatasets").then((resp) => {
-			this.setState({status:"Successfully imported student profiles."});
-		}).catch(err =>{
-			this.setState({status:"Failed to import student profiles."});
+		this.setState({ status: "Importing student profiles and applications..." }, () => {
+			Axios.get("/importstudentdatasets").then((resp) => {
+				this.setState({ status: "Successfully imported student profiles." });
+			}).catch(err => {
+				this.setState({ status: "Failed to import student profiles." });
+			});
 		});
 	}
 
@@ -49,11 +55,13 @@ export default class Admin extends React.Component{
 
 	importCollegeData = (event) => {
 		event.preventDefault();
-		Axios.get("/scrapecollegedata").then((resp) => {
-			this.setState({status:"Successfully scraped collegedata."});
-		}).catch(err =>{
-			this.setState({status:"Failed to scrape collegedata."});
-		});
+		this.setState({ status: "Importing college data..." }, () => {
+			Axios.get("/scrapecollegedata").then((resp) => {
+				this.setState({ status: "Successfully scraped collegedata." });
+			}).catch(err => {
+				this.setState({ status: "Failed to scrape collegedata." });
+			});
+		})
 	}
 
 	componentDidMount(){

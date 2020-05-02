@@ -12,6 +12,7 @@ const {JSDOM} = jsdom;
 // const userAgents = require('./user_agents');
 const getCollegeNames = require('../backend/get_college_names');
 const initCollege = require('./init_colleges.js');
+const computeScores = require('./compute_scores');
 
 mongoose.connect('mongodb://localhost/c4me', {useUnifiedTopology: true, useNewUrlParser: true});
 
@@ -75,7 +76,13 @@ const importApplication = async (newApp, resolve) => {
     const resp = await collections.Application.findOne({userid: newApp.userid, college: newApp.college});
     if (!resp) {
       const createdApp = await collections.Application.create(newApp);
-      await collections.Student.updateOne({userid: newApp.userid}, {$push: {applications: createdApp._id}});
+      const student = await collections.Student.findOne({ userid: newApp.userid });
+      await collections.Student.updateOne({ userid: newApp.userid }, { $push: { applications: createdApp._id } });
+      try {
+        const questionable = await computeScores.isQuestionableApplication(newApp.college, student, createdApp._id);
+      } catch (e) {
+        console.log(e);
+      }
       console.log('Added application for ' + newApp.userid + ' with college: ' + newApp.college + ' and status: ' + newApp.status);
     }
   }
@@ -657,7 +664,7 @@ const importHighschoolData = async (name, city, state) => {
       clearHSDupes(name, city, state);
     }).catch((err) => {
       console.log(err);
-      throw new error('Highschool not found');
+      throw new Error('Highschool not found');
       // console.log('Scrape for high school:', name, city, state, 'Gave the following error:', err.response.status, err.response.statusText);
     });
   }
