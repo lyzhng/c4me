@@ -72,9 +72,8 @@ export default class HomeScreen extends React.Component{
                 <div className="carousel-item active">
                   <div className="carousel-caption">
                     <h1 className="headerFront">c4Me</h1>
-                    <p className="paragraph">c4Me is made for graduating high school students to help them
-                      find the most fit colleges and see how other students do in similar high schools or
-                      applied for same colleges.
+                    <p className="paragraph">c4Me is made for graduating high school students. Use our search, sort, and filter 
+                      functionalites to find the college for you.
                     </p>
                   </div>
                   <img className="d-block w-100 Graduate"
@@ -86,8 +85,8 @@ export default class HomeScreen extends React.Component{
                 <div className="carousel-item">
                   <div className="carousel-caption">
                     <p className="paragraph paragraph-center">
-                      c4Me have different features such as college search, college recommeder, Application Tracker,
-                      and similar high school finder to help student target the best college for their future.
+                      c4Me has different features such as college search, college recommender, app tracker,
+                      and find similar high schools to help a student find the college for them.
                     </p>
                   </div>
                   <img className="d-block w-100 College"
@@ -99,9 +98,8 @@ export default class HomeScreen extends React.Component{
                 <div className="carousel-item">
                   <div className="carousel-caption">
                     <p className="paragraph paragraph-center">
-                      c4Me's purpose this help those student who about to graduate When they are confused about the choice of future universities,
-                      c4Me can provide some help and direction, and at the same time,
-                      student can understand what kind of university they can enter and best college that meet their preference.
+                      c4Me's purpose: to help graduating students choose the college for them.
+                      With c4Me a student can better understand what university best fits them.
                     </p>
                   </div>
                   <img className="d-block w-100 Students"
@@ -156,7 +154,7 @@ export default class HomeScreen extends React.Component{
                       <img src={require("../image/HS.png")} alt={"HS Button"} className="icon-inline"/>
                       Similar High Schools
                     </span>
-                    Find High school that are similar to yours
+                    Find high schools similar to your own
                   </a>
                 </div>
                 <div class = "wrapperHS">
@@ -165,7 +163,7 @@ export default class HomeScreen extends React.Component{
                       <img src={require("../image/thumbs up.png")} alt={"Recommend Button"} className="icon-inline"/>
                       College Recommender
                     </span>
-                    Find colleges that best fits you
+                    Get a personalized college recommendation
                   </a>
                 </div>
                 <div class = "wrapperHS">
@@ -215,7 +213,7 @@ export default class HomeScreen extends React.Component{
                   <div className="section-contest">
                     Search over colleges and filter to find the schools that match your preferences,
                     and go to a specific college and click Application Tracker, that will show the statistics of the college.
-                    You can see the who's applying to the college and see the application statuses by list and scatterplot.
+                    You can see who's applying to the college and see the application statuses by list and scatterplot.
                   </div>
                   <div class="box">
                     <a href={this.loginRedirect()? "/colleges":"/login"} class="btn-1 btn-white btn-animation-1">Try Application Tracker</a>
@@ -234,7 +232,7 @@ export default class HomeScreen extends React.Component{
                   </div>
                   <div className="section-contest">
                     College recommender will help the student find the colleges that are best fit for them by giving a recommended score of each college. These scores
-                    is calculated with the student's academics, admission and cost/aid, etc.
+                    is calculated with the student's academics alongside the college attributes such as cost/aid, etc.
                   </div>
                   <div className="box">
                     <a href={this.loginRedirect() ? "/colleges" : "/login"} className="btn-1 btn-blue btn-animation-1">Test
@@ -258,8 +256,8 @@ export default class HomeScreen extends React.Component{
                     Find Similar High School
                   </div>
                   <div className="section-contest">
-                    Search for highschools in our database, and get all the highschools that's similar to
-                    your specified ranked by our high school similarity score.
+                    Search for highschools in our database, and get all highschools similar to
+                    your specified highschool, ranked by our high school similarity score.
                   </div>
                   <div className="box">
                     <a href={this.loginRedirect() ? "/highschools" : "/login"} className="btn-1 btn-white btn-animation-1">Test
