@@ -72,7 +72,6 @@ export default class Profile extends React.Component{
       high_school_city: user.high_school_city,
       high_school_state: user.high_school_state,
       high_school_name: user.high_school_name,
-      applications: user.applications,
     });
   };
 
@@ -531,7 +530,6 @@ export default class Profile extends React.Component{
               <Form>
                 {
                   this.state.applications.map((application) => {
-                    console.log(this.state.applications);
                     return (
                       <Form.Group key={application._id}>
                         <Form.Row>
