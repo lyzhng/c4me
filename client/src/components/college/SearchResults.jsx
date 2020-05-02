@@ -71,7 +71,7 @@ export default class SearchResults extends React.Component {
               }
               {
                 this.props.similarStudents.map((student) => {
-                  return <div key={student._id} className = "col-3"> <Link to={`/profile/${student.userid}`}>{student.userid}</Link> </div>
+                  return <div key={student._id} className = "col-2"> <Link to={`/profile/${student.userid}`}>{student.userid}</Link> </div>
                 })
               }
               </div>

@@ -278,8 +278,10 @@ export default class Profile extends React.Component{
           <h1>User ID: {this.state.userid}</h1>
           <form>
             <div class="form-group ">
-              <label className="ml-5 col-sm-2 ">Password</label>
-              <input type = "Password"
+              <Form.Row className="justify-content-center">
+              <label className="ml-5 col-sm-2 ">Password: </label>
+              <Form.Control type = "Password"
+                            placeholder="Fill in profile"
                      className= "ml-4 col-sm-2"
                      name = "password"
                      value={(this.state.password != null) ? this.state.password : ""}
@@ -288,10 +290,11 @@ export default class Profile extends React.Component{
               />
                 <span className="ml-4">
                 <Button className="btn" onClick = {(this.state.btnState === "Edit")? this.edit : this.studentInfoSave } > {this.state.btnState}</Button>
-              </span>
+                </span>
+              </Form.Row>
             </div>
             <div className="form-group">
-              <label className="col-sm-2 text-left">Residence State</label>
+              <label className="col-sm-2 "> Residence State : </label>
               <select className="col-sm-2" name="residence_state" disabled={(this.state.disabled) ? "disabled" : ""}
                 onChange={(e) => this.handleChange(e)}
               >
@@ -301,7 +304,8 @@ export default class Profile extends React.Component{
               </select>
             </div>
             <div class="form-group">
-              <label className="col-sm-2 text-left">High School</label>
+              <Form.Row className="justify-content-center">
+              <label className="col-sm-2 "> High School : </label>
               <Autocomplete
                 items= {hs_name}
                 shouldItemRender={(item, value) => value ? item.label.toLowerCase().indexOf(value.toLowerCase()) > -1 : 0}
@@ -315,25 +319,44 @@ export default class Profile extends React.Component{
                     {item.label}
                   </div>
                 }
-                inputProps={{disabled : (this.state.disabled)? "disabled" :"", placeholder:"Fill in profile"}}
+                inputProps={{disabled : (this.state.disabled)? "disabled" :"",
+                  placeholder:"Fill in profile",
+                  style: {
+                    boxSizing: "border-box",
+                    display: "block",
+                    width: "100%",
+                    fontSize: "1rem",
+                    color: "#495057",
+                    lineHeight: "1.5",
+                    border: "1px solid #ced4da",
+                    padding: ".375rem .75rem",
+                    fontWeight: "400",
+                    height: "calc(1.5em + .75rem + 2px)",
+                    backgroundClip: "padding-box",
+                    borderRadius: ".25rem"
+                  }}}
                 value={this.state.high_school_name}
                 onChange={e => this.setState({ high_school_name : e.target.value })}
                 onSelect={value => this.autocompleteHS(value)}
                 wrapperStyle={{position:"relative", zIndex:1, display: "inline"}}
               />
+              </Form.Row>
             </div>
             <div className="form-group">
-              <label className="col-sm-2 text-left">High School City</label>
-              <input type="text"
+              <Form.Row className="justify-content-center">
+              <label className="col-sm-2"> High School City: </label>
+              <Form.Control type="text"
+                            placeholder="Fill in profile"
                      className = "col-sm-2"
                      name="high_school_city"
                      value={(this.state.high_school_city != null) ? this.state.high_school_city : ""}
                      disabled={(this.state.disabled) ? "disabled" : ""}
                      onChange={(e) => this.handleChange(e)}
               />
+              </Form.Row>
             </div>
             <div class="form-group">
-              <label class="col-sm-2 text-left">High School State</label>
+              <label class="col-sm-2"> High School State: </label>
               <select className="col-sm-2" name="high_school_state" disabled={(this.state.disabled) ? "disabled" : ""}
                 onChange={(e) => this.handleChange(e)}
               >
@@ -342,55 +365,73 @@ export default class Profile extends React.Component{
                 })}
               </select>
             </div>
-            <div class="form-group">
-              <label class="col-sm-2 ">Major 1</label>
-              <input type = "text"
-                     class = "col-sm-2"
+            <div className="form-group">
+              <Form.Row className="justify-content-center">
+              <label className="col-sm-2 "> Major 1 : </label>
+              <Form.Control type = "text"
+                            className = "col-sm-2"
+                            placeholder="Fill in profile"
                      name = "major_1"
                      value={(this.state.major_1 != null) ? this.state.major_1 : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
                      onChange={(e) => this.handleChange(e)}
               />
+              </Form.Row>
             </div>
-            <div class="form-group">
-              <label class="col-sm-2 ">Major 2</label>
-              <input type = "text"
-                     class = "col-sm-2"
+
+            <div className="form-group">
+              <Form.Row className="justify-content-center">
+              <label className="col-sm-2 "> Major 2 : </label>
+              <Form.Control type = "text"
+                            className = "col-sm-2"
+                            placeholder="Fill in profile"
                      name="major_2"
                      value={(this.state.major_2 != null) ? this.state.major_2 : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
                      onChange={(e) => this.handleChange(e)}
               />
+              </Form.Row>
             </div>
             <div className="form-group">
-              <label className="col-sm-2 text-center">GPA</label>
-              <input type="number"
+              <Form.Row className="justify-content-center">
+              <label className="col-sm-2"> GPA : </label>
+              <Form.Control type="number"
                      className="col-sm-2"
+                            placeholder="Fill in profile"
                      name="GPA"
                      value={(this.state.GPA != null) ? this.state.GPA : ""}
                      disabled={(this.state.disabled) ? "disabled" : ""}
                      onChange={(e) => this.handleGPAChange(e)}
               />
+              </Form.Row>
             </div>
-            <div class="form-group">
-              <label class="col-sm-2 text-left">College Classes</label>
-              <input type = "number"
-                     class = "col-sm-2"
+
+            <div className="form-group">
+              <Form.Row className="justify-content-center">
+              <label className="col-sm-2 "> College Classes : </label>
+              <Form.Control type = "number"
+                            className = "col-sm-2"
+                            placeholder="Fill in profile"
                      name = "college_class"
                      value={(this.state.college_class != null) ? this.state.college_class : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
                      onChange={(e) => this.handleAPChange(e)}
               />
+              </Form.Row>
             </div>
-            <div class="form-group">
-              <label class="col-sm-2 ">Number of APs Passed</label>
-              <input type = "number"
-                     class = "col-sm-2"
+
+            <div className="form-group">
+              <Form.Row className="justify-content-center">
+              <label className="col-sm-2 "> # of AP Passed : </label>
+              <Form.Control type = "number"
+                            className = "col-sm-2 text-left"
+                            placeholder="Fill in profile"
                      name = "num_AP_passed"
                      value={(this.state.num_AP_passed != null) ? this.state.num_AP_passed : ""}
                      disabled={(this.state.disabled)? "disabled" :""}
                      onChange={(e) => this.handleAPChange(e)}
               />
+              </Form.Row>
             </div>
 
           </form>
@@ -614,7 +655,12 @@ export default class Profile extends React.Component{
                 name='saveBtn'
                 variant="primary"
                 onClick={this.addApplication}
-                disabled={this.state.promptedCollege === '' || this.state.promptedStatus === 'no-option' || this.isDuplicateApp()}>
+                disabled={
+                  this.state.promptedCollege === '' 
+                  || this.state.promptedStatus === 'no-option' 
+                  || this.isDuplicateApp()
+                  || !collegeNames.includes(this.state.promptedCollege)
+                }>
                 Add New Application
             </Button>
           </Modal.Footer>
