@@ -236,6 +236,7 @@ async function isQuestionableApplication(name, student, _id) {
   const application = await collections.Application.findOne({_id}).lean();
   let questionableSAT = null;
   let questionableACT = null;
+  console.log(student);
   try {
     questionableSAT = isQuestionableSAT(college, student, application);
     console.log('Questionable SAT?', questionableSAT);
@@ -294,140 +295,208 @@ function isQuestionableSAT(college, student, application) {
     throw new Error(`Required SAT scores do not exist for ${college.name}.`);
   }
   try {
-    const ebrwQ1 = convertEBRW(college.sat.reading_25, college.sat.writing_25);
-    const ebrwQ3 = convertEBRW(college.sat.reading_75, college.sat.writing_75);
-    const mathQ1 = convertMath(college.sat.math_25);
-    const mathQ3 = convertMath(college.sat.math_75);
-    const questionableMath = isMathOutlier(mathQ1, mathQ3, student.SAT_math);
-    const questionableEBRW = isEBRWOutlier(ebrwQ1, ebrwQ3, student.SAT_EBRW);
-    console.log('Student EBRW', student.SAT_EBRW);
-    console.log('EBRW Q1', ebrwQ1);
-    console.log('EBRW Q3', ebrwQ3);
-    console.log('Student Math', student.SAT_math);
-    console.log('MATH Q1', mathQ1);
-    console.log('MATH Q3', mathQ3);
-    console.log('Is Questionable Math?', questionableMath);
-    console.log('Is Questionable EBRW?', questionableEBRW);
+        const ebrwQ1 = convertEBRW(
+          college.sat.reading_25,
+          college.sat.writing_25
+        );
+        const ebrwQ3 = convertEBRW(
+          college.sat.reading_75,
+          college.sat.writing_75
+        );
+        const mathQ1 = convertMath(college.sat.math_25);
+        const mathQ3 = convertMath(college.sat.math_75);
+        const questionableMath = isMathOutlier(
+          mathQ1,
+          mathQ3,
+          student.SAT_math
+        );
+        const questionableEBRW = isEBRWOutlier(
+          ebrwQ1,
+          ebrwQ3,
+          student.SAT_EBRW
+        );
+        console.log("Student EBRW", student.SAT_EBRW);
+        console.log("EBRW Q1", ebrwQ1);
+        console.log("EBRW Q3", ebrwQ3);
+        console.log("Student Math", student.SAT_math);
+        console.log("MATH Q1", mathQ1);
+        console.log("MATH Q3", mathQ3);
+        console.log("Is Questionable Math?", questionableMath);
+        console.log("Is Questionable EBRW?", questionableEBRW);
 
-    // not questionable at all
-    if (!questionableMath && !questionableEBRW) {
-      if (application.status === 'accepted') {
-        console.log('Neither SAT scores are questionable and student was accepted.');
-        return false;
-      }
-      if (application.status === 'denied') {
-        console.log('Neither SAT scores are questionable and student was denied.');
-        return false;
-      }
-    }
+        // not questionable at all
+        if (!questionableMath && !questionableEBRW) {
+          if (application.status === "accepted") {
+            console.log(
+              "Neither SAT scores are questionable and student was accepted."
+            );
+            return false;
+          }
+          if (application.status === "denied") {
+            console.log(
+              "Neither SAT scores are questionable and student was denied."
+            );
+            return false;
+          }
+        }
 
-    // if (questionableMath && questionableEBRW) {
-    //   if (application.status === 'accepted') {
-    //     console.log('Both SAT and EBRW are questionable but was accepted.');
-    //     return true;
-    //   }
-    //   if (application.status === 'denied') {
-    //     console.log('Both SAT and EBRW are questionable but was denied.');
-    //     return
-    //   }
-    // }
+        // if (questionableMath && questionableEBRW) {
+        //   if (application.status === 'accepted') {
+        //     console.log('Both SAT and EBRW are questionable but was accepted.');
+        //     return true;
+        //   }
+        //   if (application.status === 'denied') {
+        //     console.log('Both SAT and EBRW are questionable but was denied.');
+        //     return
+        //   }
+        // }
 
-    // do normal range in one and do bad/good in the other
-    if (!questionableMath && isAboveUpperBound(ebrwQ1, ebrwQ3, student.SAT_EBRW)) {
-      if (application.status === 'accepted') {
-        console.log('Did normally on math but did really well in EBRW. Gets accepted.');
+        // do normal range in one and do bad/good in the other
+        if (
+          !questionableMath &&
+          isAboveUpperBound(ebrwQ1, ebrwQ3, student.SAT_EBRW)
+        ) {
+          if (application.status === "accepted") {
+            console.log(
+              "Did normally on math but did really well in EBRW. Gets accepted."
+            );
+            return false;
+          }
+          if (application.status === "denied") {
+            console.log(
+              "Did normally on math but did really well in EBRW. Gets denied."
+            );
+            return true;
+          }
+        }
+
+        if (
+          !questionableMath &&
+          isBelowLowerBound(ebrwQ1, ebrwQ3, student.SAT_EBRW)
+        ) {
+          if (application.status === "accepted") {
+            console.log(
+              "Did normally on math but did below in EBRW. Gets accepted."
+            );
+            return true;
+            // debug
+          }
+          if (application.status === "denied") {
+            console.log(
+              "Did normally on math but did below in EBRW. Gets denied."
+            );
+            return false;
+            // debug
+          }
+        }
+
+        if (
+          !questionableEBRW &&
+          isAboveUpperBound(mathQ1, mathQ3, student.SAT_math)
+        ) {
+          if (application.status === "accepted") {
+            console.log(
+              "Did normally on EBRW but did really well in math. Gets accepted."
+            );
+            return false;
+          }
+          if (application.status === "denied") {
+            console.log(
+              "Did normally on EBRW but did really well in math. Gets denied."
+            );
+            return true;
+          }
+        }
+
+        if (
+          !questionableEBRW &&
+          isBelowLowerBound(mathQ1, mathQ3, student.SAT_math)
+        ) {
+          if (application.status === "accepted") {
+            console.log(
+              "Did normally on EBRW but did below in math. Get accepted."
+            );
+            return true;
+            // debug
+          }
+          if (application.status === "denied") {
+            console.log(
+              "Did normally on EBRW but did below in math. Get denied."
+            );
+            return false;
+            // debug
+          }
+        }
+
+        // questionable, only concerning really good and bad exam scores
+        if (
+          isAboveUpperBound(mathQ1, mathQ3, student.SAT_math) &&
+          isAboveUpperBound(ebrwQ1, ebrwQ3, student.SAT_EBRW)
+        ) {
+          if (application.status === "denied") {
+            console.log("Above and beyond in both SAT sections and denied.");
+            return true;
+          }
+          if (application.status === "accepted") {
+            console.log("Above and beyond in both SAT sections and accepted.");
+            return false;
+          }
+        }
+
+        if (
+          isAboveUpperBound(mathQ1, mathQ3, student.SAT_math) &&
+          isBelowLowerBound(ebrwQ1, ebrwQ3, student.SAT_EBRW)
+        ) {
+          if (application.status === "accepted") {
+            console.log(
+              "The student did really well in SAT Math but did below lower bound in EBRW."
+            );
+            return true;
+          }
+          if (application.status === "denied") {
+            console.log(
+              "The student did really well in SAT Math but did below lower bound in EBRW but got denied."
+            );
+            return false;
+          }
+        }
+
+        if (
+          isBelowLowerBound(mathQ1, mathQ3, student.SAT_math) &&
+          isAboveUpperBound(ebrwQ1, ebrwQ3, student.SAT_EBRW)
+        ) {
+          if (application.status === "accepted") {
+            console.log(
+              "The student did really well in EBRW but did below lower bound in Math."
+            );
+            return true;
+          }
+          if (application.status === "denied") {
+            console.log(
+              "The student did really well in EBRW but did below lower bound in Math."
+            );
+            return false;
+          }
+        }
+
+        if (
+          isBelowLowerBound(ebrwQ1, ebrwQ3, student.SAT_EBRW) &&
+          isBelowLowerBound(mathQ1, mathQ3, student.SAT_math)
+        ) {
+          if (application.status === "accepted") {
+            console.log("Below and below, accepted.");
+            return true;
+          }
+          if (application.status === "denied") {
+            console.log("Below and below, denied.");
+            return false;
+          }
+        }
+        console.log(
+          "Apparently did not fit any of those above, so default to questionable."
+        );
         return true;
-      }
-      if (application.status === 'denied') {
-        console.log('Did normally on math but did really well in EBRW. Gets denied.');
-        return false;
-      }
-    }
-
-    if (!questionableMath && isBelowLowerBound(ebrwQ1, ebrwQ3, student.SAT_EBRW)) {
-      if (application.status === 'accepted') {
-        console.log('Did normally on math but did below in EBRW. Gets accepted.');
-        return true;
-        // debug
-      }
-      if (application.status === 'denied') {
-        console.log('Did normally on math but did below in EBRW. Gets denied.');
-        return false;
-        // debug
-      }
-    }
-
-    if (!questionableEBRW && isAboveUpperBound(mathQ1, mathQ3, student.SAT_math)) {
-      if (application.status === 'accepted') {
-        console.log('Did normally on EBRW but did really well in math. Gets accepted.');
-        return false;
-      }
-      if (application.status === 'denied') {
-        console.log('Did normally on EBRW but did really well in math. Gets denied.');
-        return true;
-      }
-    }
-
-    if (!questionableEBRW && isBelowLowerBound(mathQ1, mathQ3, student.SAT_math)) {
-      if (application.status === 'accepted') {
-        console.log('Did normally on EBRW but did below in math. Get accepted.');
-        return true;
-        // debug
-      }
-      if (application.status === 'denied') {
-        console.log('Did normally on EBRW but did below in math. Get denied.');
-        return false;
-        // debug
-      }
-    }
-
-    // questionable, only concerning really good and bad exam scores
-    if (isAboveUpperBound(mathQ1, mathQ3, student.SAT_math) && isAboveUpperBound(ebrwQ1, ebrwQ3, student.SAT_EBRW)) {
-      if (application.status === 'denied') {
-        console.log('Above and beyond in both SAT sections and denied.');
-        return true;
-      }
-      if (application.status === 'accepted') {
-        console.log('Above and beyond in both SAT sections and accepted.');
-        return false;
-      }
-    }
-
-    if (isAboveUpperBound(mathQ1, mathQ3, student.SAT_math) && isBelowLowerBound(ebrwQ1, ebrwQ3, student.SAT_EBRW)) {
-      if (application.status === 'accepted') {
-        console.log('The student did really well in SAT Math but did below lower bound in EBRW.');
-        return false;
-      }
-      if (application.status === 'denied') {
-        console.log('The student did really well in SAT Math but did below lower bound in EBRW but got denied.');
-        return true;
-      }
-    }
-
-    if (isBelowLowerBound(mathQ1, mathQ3, student.SAT_math) && isAboveUpperBound(ebrwQ1, ebrwQ3, student.SAT_EBRW)) {
-      if (application.status === 'accepted') {
-        console.log('The student did really well in EBRW but did below lower bound in Math.');
-        return false;
-      }
-      if (application.status === 'denied') {
-        console.log('The student did really well in EBRW but did below lower bound in Math.');
-        return false;
-      }
-    }
-
-    if (isBelowLowerBound(ebrwQ1, ebrwQ3, student.SAT_EBRW) && isBelowLowerBound(mathQ1, mathQ3, student.SAT_math)) {
-      if (application.status === 'accepted') {
-        console.log('Below and below, accepted.');
-        return true;
-      }
-      if (application.status === 'denied') {
-        console.log('Below and below, denied.');
-        return false;
-      }
-    }
-    console.log('Apparently did not fit any of those above, so default to questionable.');
-    return true;
-  } catch (err) {
+      } catch (err) {
     console.log(err);
   }
 }
