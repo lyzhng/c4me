@@ -21,7 +21,7 @@ export default class Highschools extends React.Component {
     state = {
         name: "",
         city: "",
-        state: "al",
+        state: "",
         highschools: [],
         show: false,
     };
@@ -180,6 +180,7 @@ export default class Highschools extends React.Component {
                           value={this.state.state}
                           name="state"
                         >
+                          <option value={""}>No State Selected</option>
                           {states.map((state) => {
                             return (
                               <option key={state} value={state.toLowerCase()}>
