@@ -228,7 +228,7 @@ async function isQuestionableApplication(name, student, _id) {
     return;
   }
 
-  if (0.85 * college.gpa > student.gpa) {
+  if (0.85 * college.gpa > student.GPA && application.status === 'accepted') {
     // automatically flag
     await collections.Application.updateOne({_id}, {
       questionable: true,
@@ -262,8 +262,8 @@ async function isQuestionableApplication(name, student, _id) {
     isQuestionable = questionableACT || questionableSAT;
   }
 
-  console.log("IS QUESTIONABLE EXAM VALUE:",isQuestionable);
-  const questGPA = isQuestionableGPA(college.gpa, student.gpa);
+  console.log("IS QUESTIONABLE EXAM VALUE:", isQuestionable);
+  const questGPA = isQuestionableGPA(college.gpa, student.GPA, application.status);
   console.log("BOOLEAN GPA VALUE", questGPA);
   await collections.Application.updateOne({_id}, {
     questionable: isQuestionable || questGPA,
@@ -273,8 +273,9 @@ async function isQuestionableApplication(name, student, _id) {
   console.log(`${debugging.college}: ${debugging.questionable}`);
 }
 
-function isQuestionableGPA(collegeGPA, studentGPA) {
-  return 0.85 * collegeGPA > studentGPA || studentGPA > 1.15 * collegeGPA;
+function isQuestionableGPA(collegeGPA, studentGPA, applicationStatus) {
+  return (((0.85 * collegeGPA) > studentGPA) && (applicationStatus === 'accepted'))
+  || ((studentGPA > (1.15 * collegeGPA)) && (applicationStatus === 'denied'));
 }
 
 

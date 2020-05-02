@@ -216,7 +216,7 @@ app.post('/addapplication', async (req, res) => {
   try {
     await backend.computeScores.isQuestionableApplication(college, student, doc._id);
   } catch (err) {
-    console.err(err.message);
+    console.log(err);
     return;
   }
   student = await collections.Student.updateOne({userid}, {$push: {applications: doc._id}});
