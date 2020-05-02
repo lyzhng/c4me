@@ -267,7 +267,7 @@ async function isQuestionableApplication(name, student, _id) {
     }
   }
 
-  if (!isQuestionableExamScore(college, student, application) && ) {
+  if (!isQuestionableExamScore(college, student, application)) {
     if (application.status === 'accepted') {
       isQuestionable = true;
     }
