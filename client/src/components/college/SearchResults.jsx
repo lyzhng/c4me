@@ -58,14 +58,24 @@ export default class SearchResults extends React.Component {
             <div>{this.props.college.location.city}, {this.props.college.location.state}</div>
             {
               this.props.collegeScore !== null 
-              ? <h4> collegeScore: {this.props.collegeScore.score} </h4>
+              ? <div>
+               College Score: {Math.floor((1 - (this.props.collegeScore.score / 20)) * 10000) / 100} 
+               </div>
               : ""
             }
-            {
-              this.props.similarStudents.map((student) => {
-                return <Link to={`/profile/${student.userid}`}><h3>{student.userid}</h3></Link>
-              })
-            }
+
+            <div className = "container-fluid">
+              <div className = "row">
+              {
+                this.props.similarStudents.length !== 0 ? <div className = "col-12 pl-0"> Similar Students Who Applied </div> : ""
+              }
+              {
+                this.props.similarStudents.map((student) => {
+                  return <div key={student._id} className = "col-3"> <Link to={`/profile/${student.userid}`}>{student.userid}</Link> </div>
+                })
+              }
+              </div>
+            </div>
             <AppTrackerModal college = {this.props.college}/>
 
             <Accordion>
@@ -78,6 +88,7 @@ export default class SearchResults extends React.Component {
                 <Accordion.Collapse eventKey="0">
                   <Card.Body>
                     <div><b>Size:</b> {this.props.college.size}</div>
+                    <div><b>GPA:</b> {this.props.college.gpa}</div>
                     <div><b>SAT Math Average:</b> {this.props.college.sat.math_avg}</div>
                     <div><b>SAT English Average:</b> {this.props.college.sat.EBRW_avg}</div>
                     <div><b>ACT Average:</b> {this.props.college.act.avg}</div>
