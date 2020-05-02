@@ -235,7 +235,8 @@ async function isQuestionableApplication(name, student, _id) {
     });
     return;
   }
-
+  let questionableSAT = null;
+  let questionableACT = null;
   // checking for upper gpa
   try {
     questionableSAT = isQuestionableSAT(college, student, application);
@@ -249,7 +250,7 @@ async function isQuestionableApplication(name, student, _id) {
   } catch (err) {
     console.error(err.message);
   }
-  
+
   let isQuestionable = false;
   if (questionableSAT === null && questionableACT === null) {
     isQuestionable = false;
