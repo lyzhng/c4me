@@ -237,45 +237,31 @@ async function isQuestionableApplication(name, student, _id) {
   }
 
   // checking for upper gpa
-
+  try {
+    questionableSAT = isQuestionableSAT(college, student, application);
+    console.log("Questionable SAT?", questionableSAT);
+  } catch (err) {
+    console.error(err.message);
+  }
+  try {
+    questionableACT = isQuestionableACT(college, student, application);
+    console.log("Questionable ACT?", questionableACT);
+  } catch (err) {
+    console.error(err.message);
+  }
+  
   let isQuestionable = false;
-
-  if (isQuestionableExamScore(college, student, application) && isQuestionableGPA(college.gpa, student.gpa)) {
-    if (application.status === 'accepted') {
-      isQuestionable = true;
-    }
-    if (application.status === 'denied') {
-      isQuestionable = false;
-    }
+  if (questionableSAT === null && questionableACT === null) {
+    isQuestionable = false;
+  } else if (questionableSAT !== null && questionableACT === null) {
+    isQuestionable = questionableSAT;
+  } else if (questionableSAT === null && questionableACT !== null) {
+    isQuestionable = questionableACT;
+  } else if (questionableSAT !== null && questionableACT !== null) {
+    isQuestionable = questionableACT || questionableSAT;
   }
 
-  if (!isQuestionableExamScore(college, student, application)) {
-    if (application.status === 'accepted') {
-      isQuestionable = false;
-    }
-    if (application.status === 'denied') {
-      isQuestionable = true;
-    }
-  }
-
-  if (isQuestionableExamScore(college, student, application)) {
-    if (application.status === 'accepted') {
-      isQuestionable = false;
-    }
-    if (application.status === 'denied') {
-      isQuestionable = true;
-    }
-  }
-
-  if (!isQuestionableExamScore(college, student, application)) {
-    if (application.status === 'accepted') {
-      isQuestionable = true;
-    }
-    if (application.status === 'denied') {
-      isQuestionable = true;
-    }
-  }
-
+  console.log("IS QUESTIONABLE EXAM VALUE:",isQuestionable);
   const questGPA = isQuestionableGPA(college.gpa, student.gpa);
   console.log("BOOLEAN GPA VALUE", questGPA);
   await collections.Application.updateOne({_id}, {
@@ -290,34 +276,6 @@ function isQuestionableGPA(collegeGPA, studentGPA) {
   return 0.85 * collegeGPA > studentGPA || studentGPA > 1.15 * collegeGPA;
 }
 
-function isQuestionableExamScore(college, student, application) {
-  let questionableSAT = null;
-  let questionableACT = null;
-  console.log(student);
-  try {
-    questionableSAT = isQuestionableSAT(college, student, application);
-    console.log('Questionable SAT?', questionableSAT);
-  } catch (err) {
-    console.error(err.message);
-  }
-  try {
-    questionableACT = isQuestionableACT(college, student, application);
-    console.log('Questionable ACT?', questionableACT);
-  } catch (err) {
-    console.error(err.message);
-  }
-  let isQuestionable = false;
-  if (questionableSAT === null && questionableACT === null) {
-    isQuestionable = false;
-  } else if (questionableSAT !== null && questionableACT === null) {
-    isQuestionable = questionableSAT;
-  } else if (questionableSAT === null && questionableACT !== null) {
-    isQuestionable = questionableACT;
-  } else if (questionableSAT !== null && questionableACT !== null) {
-    isQuestionable = questionableACT || questionableSAT;
-  }
-  return isQuestionable;
-};
 
 function isQuestionableACT(college, student, application) {
   // doesn't concern the algorithm
