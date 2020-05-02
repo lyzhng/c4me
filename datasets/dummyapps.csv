@@ -1,51 +1,2001 @@
 userid,college,status
-dummystudent0,Stony Brook University,denied
-dummystudent1,Stony Brook University,wait-listed
-dummystudent2,Stony Brook University,withdrawn
-dummystudent3,Stony Brook University,pending
-dummystudent4,Stony Brook University,pending
-dummystudent5,Stony Brook University,withdrawn
-dummystudent6,Stony Brook University,withdrawn
-dummystudent7,Stony Brook University,wait-listed
-dummystudent8,Stony Brook University,denied
-dummystudent9,Stony Brook University,denied
-dummystudent10,Stony Brook University,denied
-dummystudent11,Stony Brook University,withdrawn
-dummystudent12,Stony Brook University,pending
-dummystudent13,Stony Brook University,deferred
-dummystudent14,Stony Brook University,denied
-dummystudent15,Stony Brook University,withdrawn
-dummystudent16,Stony Brook University,withdrawn
-dummystudent17,Stony Brook University,pending
-dummystudent18,Stony Brook University,deferred
-dummystudent19,Stony Brook University,withdrawn
-dummystudent20,Stony Brook University,wait-listed
-dummystudent21,Stony Brook University,accepted
-dummystudent22,Stony Brook University,accepted
-dummystudent23,Stony Brook University,withdrawn
-dummystudent24,Stony Brook University,accepted
-dummystudent25,Stony Brook University,denied
-dummystudent26,Stony Brook University,wait-listed
-dummystudent27,Stony Brook University,denied
-dummystudent28,Stony Brook University,denied
-dummystudent29,Stony Brook University,deferred
-dummystudent30,Stony Brook University,wait-listed
-dummystudent31,Stony Brook University,accepted
-dummystudent32,Stony Brook University,denied
-dummystudent33,Stony Brook University,deferred
-dummystudent34,Stony Brook University,denied
-dummystudent35,Stony Brook University,wait-listed
-dummystudent36,Stony Brook University,wait-listed
-dummystudent37,Stony Brook University,denied
-dummystudent38,Stony Brook University,denied
-dummystudent39,Stony Brook University,withdrawn
-dummystudent40,Stony Brook University,denied
-dummystudent41,Stony Brook University,accepted
-dummystudent42,Stony Brook University,wait-listed
-dummystudent43,Stony Brook University,accepted
-dummystudent44,Stony Brook University,pending
-dummystudent45,Stony Brook University,deferred
-dummystudent46,Stony Brook University,accepted
-dummystudent47,Stony Brook University,wait-listed
-dummystudent48,Stony Brook University,deferred
-dummystudent49,Stony Brook University,withdrawn
+dummystudent0,Gettysburg College,withdrawn
+dummystudent0,University of San Diego,withdrawn
+dummystudent1,Clarkson University,accepted
+dummystudent1,John Carroll University,deferred
+dummystudent2,DePauw University,accepted
+dummystudent2,University of Alabama,denied
+dummystudent3,University of Alabama at Birmingham,denied
+dummystudent3,John Carroll University,deferred
+dummystudent4,Kennesaw State University,pending
+dummystudent4,Hendrix College,denied
+dummystudent5,Carnegie Mellon University,withdrawn
+dummystudent5,University of Alabama,withdrawn
+dummystudent6,Mississippi State University,accepted
+dummystudent6,Carnegie Mellon University,pending
+dummystudent7,Mercer University,denied
+dummystudent7,Illinois College,wait-listed
+dummystudent8,SUNY College of Environmental Science and Forestry,wait-listed
+dummystudent8,Westmont College,denied
+dummystudent9,Campbell University,pending
+dummystudent9,University of Massachusetts Amherst,pending
+dummystudent10,University of Alabama,denied
+dummystudent10,St Bonaventure University,denied
+dummystudent11,DePaul University,deferred
+dummystudent11,The College of Wooster,wait-listed
+dummystudent12,Temple University,withdrawn
+dummystudent12,Stevenson University,wait-listed
+dummystudent13,Providence College,denied
+dummystudent13,University of Delaware,deferred
+dummystudent14,University of Arizona,wait-listed
+dummystudent14,Texas Tech University,denied
+dummystudent15,California State University, Monterey Bay,wait-listed
+dummystudent15,Carnegie Mellon University,deferred
+dummystudent16,California State University, Monterey Bay,withdrawn
+dummystudent16,Kennesaw State University,accepted
+dummystudent17,Barnard College,denied
+dummystudent17,Stony Brook University,deferred
+dummystudent18,Mercer University,accepted
+dummystudent18,University of Arkansas,withdrawn
+dummystudent19,University of Utah,wait-listed
+dummystudent19,Lawrence Technological University,denied
+dummystudent20,University of Massachusetts Amherst,accepted
+dummystudent20,University of Houston,wait-listed
+dummystudent21,Indiana University Bloomington,deferred
+dummystudent21,University of Hartford,accepted
+dummystudent22,University of Hartford,accepted
+dummystudent22,Campbell University,denied
+dummystudent23,North Park University,denied
+dummystudent23,Texas Christian University,wait-listed
+dummystudent24,Eastern Illinois University,deferred
+dummystudent24,Kalamazoo College,accepted
+dummystudent25,Kennesaw State University,withdrawn
+dummystudent25,Smith College,withdrawn
+dummystudent26,Northwestern University,deferred
+dummystudent26,Mount Holyoke College,accepted
+dummystudent27,University of Delaware,wait-listed
+dummystudent27,Moravian College,accepted
+dummystudent28,DePauw University,accepted
+dummystudent28,Kalamazoo College,wait-listed
+dummystudent29,North Park University,wait-listed
+dummystudent29,Mercer University,withdrawn
+dummystudent30,Kalamazoo College,pending
+dummystudent30,Stony Brook University,accepted
+dummystudent31,University of Alabama at Birmingham,deferred
+dummystudent31,University of Massachusetts Amherst,deferred
+dummystudent32,Samford University,pending
+dummystudent32,University of Massachusetts Amherst,accepted
+dummystudent33,Texas Tech University,withdrawn
+dummystudent33,San Diego State University,deferred
+dummystudent34,Westmont College,deferred
+dummystudent34,The College of St Scholastica,deferred
+dummystudent35,University of Alabama,wait-listed
+dummystudent35,Westmont College,withdrawn
+dummystudent36,School of the Art Institute of Chicago,pending
+dummystudent36,University of Hartford,deferred
+dummystudent37,Suffolk University,denied
+dummystudent37,Indiana University Bloomington,withdrawn
+dummystudent38,University of Richmond,withdrawn
+dummystudent38,University of Montana,accepted
+dummystudent39,Franklin & Marshall College,accepted
+dummystudent39,Merrimack College,accepted
+dummystudent40,University of Nevada, Las Vegas,withdrawn
+dummystudent40,Centre College,withdrawn
+dummystudent41,Utah State University,wait-listed
+dummystudent41,University of Illinois at Chicago,withdrawn
+dummystudent42,University of Arkansas,deferred
+dummystudent42,University of Maine,denied
+dummystudent43,Rice University,denied
+dummystudent43,Massachusetts Institute of Technology,withdrawn
+dummystudent44,Washington & Jefferson College,wait-listed
+dummystudent44,Williams College,accepted
+dummystudent45,Drake University,wait-listed
+dummystudent45,University of Montana,deferred
+dummystudent46,Indiana University Bloomington,pending
+dummystudent46,New Jersey Institute of Technology,denied
+dummystudent47,DePauw University,withdrawn
+dummystudent47,Stony Brook University,pending
+dummystudent48,Vassar College,pending
+dummystudent48,Merrimack College,pending
+dummystudent49,Saint Louis University,withdrawn
+dummystudent49,Temple University,denied
+dummystudent50,University of Arizona,accepted
+dummystudent50,Franklin & Marshall College,accepted
+dummystudent51,Iona College,accepted
+dummystudent51,Westmont College,wait-listed
+dummystudent52,Moravian College,denied
+dummystudent52,John Carroll University,denied
+dummystudent53,John Carroll University,pending
+dummystudent53,California State University, East Bay,wait-listed
+dummystudent54,Centre College,accepted
+dummystudent54,Texas Tech University,pending
+dummystudent55,Stony Brook University,wait-listed
+dummystudent55,Hendrix College,pending
+dummystudent56,North Park University,accepted
+dummystudent56,Saint Louis University,withdrawn
+dummystudent57,University of Utah,withdrawn
+dummystudent57,Manhattan College,pending
+dummystudent58,Utah State University,denied
+dummystudent58,Saint Louis University,withdrawn
+dummystudent59,Smith College,withdrawn
+dummystudent59,Stevenson University,wait-listed
+dummystudent60,Texas Christian University,withdrawn
+dummystudent60,Centre College,wait-listed
+dummystudent61,Texas Tech University,deferred
+dummystudent61,University of Maine,denied
+dummystudent62,Salve Regina University,denied
+dummystudent62,Lawrence Technological University,deferred
+dummystudent63,Vassar College,withdrawn
+dummystudent63,North Park University,pending
+dummystudent64,Centre College,denied
+dummystudent64,Clarkson University,wait-listed
+dummystudent65,Colorado College,pending
+dummystudent65,Temple University,deferred
+dummystudent66,Iona College,accepted
+dummystudent66,Manhattan College,deferred
+dummystudent67,Campbell University,withdrawn
+dummystudent67,DePauw University,accepted
+dummystudent68,Texas Christian University,withdrawn
+dummystudent68,University of San Diego,wait-listed
+dummystudent69,Saint Louis University,withdrawn
+dummystudent69,University of Nevada, Las Vegas,wait-listed
+dummystudent70,Barnard College,deferred
+dummystudent70,DePauw University,pending
+dummystudent71,University of California, Santa Barbara,denied
+dummystudent71,Washington & Jefferson College,denied
+dummystudent72,University of Alabama at Birmingham,deferred
+dummystudent72,Siena College,pending
+dummystudent73,Providence College,wait-listed
+dummystudent73,Massachusetts Institute of Technology,denied
+dummystudent74,University of Arizona,denied
+dummystudent74,William Jewell College,wait-listed
+dummystudent75,Idaho State University,pending
+dummystudent75,Utah State University,deferred
+dummystudent76,Missouri University of Science and Technology,pending
+dummystudent76,Gettysburg College,withdrawn
+dummystudent77,Suffolk University,deferred
+dummystudent77,Texas Tech University,accepted
+dummystudent78,Fordham University,wait-listed
+dummystudent78,Temple University,wait-listed
+dummystudent79,Kennesaw State University,withdrawn
+dummystudent79,Temple University,pending
+dummystudent80,Franklin & Marshall College,accepted
+dummystudent80,Rochester Institute of Technology,accepted
+dummystudent81,Campbell University,accepted
+dummystudent81,New Jersey Institute of Technology,withdrawn
+dummystudent82,Eastern Washington University,deferred
+dummystudent82,California State University, Monterey Bay,accepted
+dummystudent83,Nova Southeastern University,pending
+dummystudent83,Mercer University,withdrawn
+dummystudent84,Rider University,withdrawn
+dummystudent84,The College of Wooster,deferred
+dummystudent85,Rochester Institute of Technology,accepted
+dummystudent85,Massachusetts Institute of Technology,withdrawn
+dummystudent86,University of San Diego,pending
+dummystudent86,Rider University,wait-listed
+dummystudent87,University of Central Florida,pending
+dummystudent87,Saint Louis University,pending
+dummystudent88,Central Connecticut State University,withdrawn
+dummystudent88,California State University, Fresno,denied
+dummystudent89,Mississippi State University,pending
+dummystudent89,Transylvania University,deferred
+dummystudent90,Colorado College,wait-listed
+dummystudent90,University of San Diego,accepted
+dummystudent91,SUNY College of Environmental Science and Forestry,wait-listed
+dummystudent91,University of Utah,wait-listed
+dummystudent92,Hendrix College,withdrawn
+dummystudent92,John Carroll University,deferred
+dummystudent93,Providence College,withdrawn
+dummystudent93,John Carroll University,accepted
+dummystudent94,Washington & Jefferson College,wait-listed
+dummystudent94,Gannon University,wait-listed
+dummystudent95,Westmont College,pending
+dummystudent95,SUNY College of Environmental Science and Forestry,deferred
+dummystudent96,Lawrence Technological University,pending
+dummystudent96,Salve Regina University,withdrawn
+dummystudent97,Northwestern University,denied
+dummystudent97,Hendrix College,accepted
+dummystudent98,Williams College,denied
+dummystudent98,Roger Williams University,pending
+dummystudent99,University of Massachusetts Amherst,accepted
+dummystudent99,University of Central Florida,withdrawn
+dummystudent100,Hope College,wait-listed
+dummystudent100,Transylvania University,wait-listed
+dummystudent101,Gordon College,accepted
+dummystudent101,Salve Regina University,wait-listed
+dummystudent102,University of San Diego,wait-listed
+dummystudent102,Rider University,deferred
+dummystudent103,Hope College,deferred
+dummystudent103,University of Central Florida,pending
+dummystudent104,Idaho State University,wait-listed
+dummystudent104,University of California, Davis,wait-listed
+dummystudent105,Nova Southeastern University,accepted
+dummystudent105,California State University, Monterey Bay,deferred
+dummystudent106,University of Alabama,pending
+dummystudent106,Stony Brook University,pending
+dummystudent107,Hendrix College,pending
+dummystudent107,Vassar College,withdrawn
+dummystudent108,University of Kentucky,deferred
+dummystudent108,William Jewell College,pending
+dummystudent109,Stevenson University,withdrawn
+dummystudent109,Gordon College,denied
+dummystudent110,Gettysburg College,denied
+dummystudent110,Illinois College,accepted
+dummystudent111,Moravian College,withdrawn
+dummystudent111,Indiana University Bloomington,pending
+dummystudent112,University of Utah,deferred
+dummystudent112,Florida Gulf Coast University,pending
+dummystudent113,Central Connecticut State University,deferred
+dummystudent113,Suffolk University,withdrawn
+dummystudent114,Hope College,withdrawn
+dummystudent114,University of Nevada, Las Vegas,deferred
+dummystudent115,Missouri University of Science and Technology,denied
+dummystudent115,Reed College,wait-listed
+dummystudent116,Kennesaw State University,pending
+dummystudent116,University of Richmond,pending
+dummystudent117,Stevenson University,withdrawn
+dummystudent117,Stevenson University,wait-listed
+dummystudent118,American University,denied
+dummystudent118,Westmont College,wait-listed
+dummystudent119,University of Delaware,withdrawn
+dummystudent119,The College of Wooster,pending
+dummystudent120,St Bonaventure University,wait-listed
+dummystudent120,Rice University,deferred
+dummystudent121,Gettysburg College,wait-listed
+dummystudent121,New York University,denied
+dummystudent122,Nova Southeastern University,accepted
+dummystudent122,Campbell University,withdrawn
+dummystudent123,Merrimack College,deferred
+dummystudent123,Washington & Jefferson College,accepted
+dummystudent124,Salve Regina University,wait-listed
+dummystudent124,Stevenson University,accepted
+dummystudent125,University of Maine,accepted
+dummystudent125,Hendrix College,denied
+dummystudent126,Washington & Jefferson College,pending
+dummystudent126,Drake University,wait-listed
+dummystudent127,DePauw University,withdrawn
+dummystudent127,Clarkson University,wait-listed
+dummystudent128,Kennesaw State University,pending
+dummystudent128,North Park University,deferred
+dummystudent129,Williams College,wait-listed
+dummystudent129,Rider University,deferred
+dummystudent130,Northwestern University,deferred
+dummystudent130,William Jewell College,denied
+dummystudent131,University of Illinois at Chicago,accepted
+dummystudent131,University of California, Santa Cruz,deferred
+dummystudent132,Gettysburg College,wait-listed
+dummystudent132,Indiana University Bloomington,deferred
+dummystudent133,University of Maine,pending
+dummystudent133,Samford University,accepted
+dummystudent134,Kennesaw State University,deferred
+dummystudent134,Mercer University,withdrawn
+dummystudent135,Saint Louis University,pending
+dummystudent135,Siena College,accepted
+dummystudent136,Saint Louis University,withdrawn
+dummystudent136,University of California, Santa Cruz,deferred
+dummystudent137,Salve Regina University,accepted
+dummystudent137,Utah State University,pending
+dummystudent138,University of Maine,denied
+dummystudent138,University of Nevada, Las Vegas,accepted
+dummystudent139,Florida Gulf Coast University,pending
+dummystudent139,University of Massachusetts Amherst,accepted
+dummystudent140,Gettysburg College,deferred
+dummystudent140,School of the Art Institute of Chicago,withdrawn
+dummystudent141,San Diego State University,denied
+dummystudent141,Hendrix College,pending
+dummystudent142,Missouri University of Science and Technology,deferred
+dummystudent142,Stony Brook University,denied
+dummystudent143,Franklin & Marshall College,pending
+dummystudent143,Texas Tech University,wait-listed
+dummystudent144,University of Delaware,withdrawn
+dummystudent144,Transylvania University,denied
+dummystudent145,Mercer University,withdrawn
+dummystudent145,The College of Wooster,deferred
+dummystudent146,Massachusetts Institute of Technology,wait-listed
+dummystudent146,University of Arkansas,wait-listed
+dummystudent147,Saint Louis University,wait-listed
+dummystudent147,Washington & Jefferson College,denied
+dummystudent148,Florida Gulf Coast University,accepted
+dummystudent148,Rice University,wait-listed
+dummystudent149,Rochester Institute of Technology,wait-listed
+dummystudent149,University of Nevada, Reno,accepted
+dummystudent150,Reed College,deferred
+dummystudent150,University of Arkansas,denied
+dummystudent151,Drake University,denied
+dummystudent151,Colorado College,denied
+dummystudent152,Roger Williams University,wait-listed
+dummystudent152,Siena College,accepted
+dummystudent153,Idaho State University,denied
+dummystudent153,California State University, Monterey Bay,deferred
+dummystudent154,San Diego State University,denied
+dummystudent154,Fordham University,withdrawn
+dummystudent155,Missouri University of Science and Technology,denied
+dummystudent155,University of California, Davis,pending
+dummystudent156,Rice University,withdrawn
+dummystudent156,Roger Williams University,withdrawn
+dummystudent157,Illinois College,withdrawn
+dummystudent157,Texas Tech University,deferred
+dummystudent158,Merrimack College,deferred
+dummystudent158,SUNY College of Environmental Science and Forestry,pending
+dummystudent159,Reed College,accepted
+dummystudent159,University of Maine,denied
+dummystudent160,University of Delaware,accepted
+dummystudent160,Drake University,wait-listed
+dummystudent161,University of Nevada, Las Vegas,denied
+dummystudent161,Centre College,withdrawn
+dummystudent162,Texas Tech University,wait-listed
+dummystudent162,Transylvania University,pending
+dummystudent163,Texas Tech University,withdrawn
+dummystudent163,Kalamazoo College,wait-listed
+dummystudent164,Campbell University,pending
+dummystudent164,Centre College,accepted
+dummystudent165,Central Connecticut State University,wait-listed
+dummystudent165,New York University,wait-listed
+dummystudent166,Roger Williams University,withdrawn
+dummystudent166,William Jewell College,accepted
+dummystudent167,University of California, Santa Barbara,pending
+dummystudent167,John Carroll University,denied
+dummystudent168,University of Delaware,pending
+dummystudent168,Williams College,deferred
+dummystudent169,Moravian College,withdrawn
+dummystudent169,University of Maine,denied
+dummystudent170,Washington & Jefferson College,deferred
+dummystudent170,Lawrence Technological University,wait-listed
+dummystudent171,American University,deferred
+dummystudent171,Wagner College,accepted
+dummystudent172,Texas Tech University,wait-listed
+dummystudent172,University of Nevada, Las Vegas,withdrawn
+dummystudent173,Mercer University,deferred
+dummystudent173,Washington & Jefferson College,pending
+dummystudent174,Temple University,accepted
+dummystudent174,University of Delaware,deferred
+dummystudent175,California State University, East Bay,withdrawn
+dummystudent175,Nova Southeastern University,deferred
+dummystudent176,Temple University,wait-listed
+dummystudent176,The College of Wooster,deferred
+dummystudent177,University of Illinois at Chicago,denied
+dummystudent177,California State University, East Bay,accepted
+dummystudent178,University of Arizona,deferred
+dummystudent178,University of Alabama at Birmingham,pending
+dummystudent179,Temple University,accepted
+dummystudent179,John Carroll University,pending
+dummystudent180,Westmont College,denied
+dummystudent180,Mount Holyoke College,withdrawn
+dummystudent181,Clarkson University,accepted
+dummystudent181,Drake University,deferred
+dummystudent182,University of Utah,deferred
+dummystudent182,The College of Wooster,pending
+dummystudent183,Drake University,withdrawn
+dummystudent183,Westmont College,denied
+dummystudent184,Eastern Illinois University,pending
+dummystudent184,Barnard College,deferred
+dummystudent185,Gannon University,withdrawn
+dummystudent185,Missouri University of Science and Technology,deferred
+dummystudent186,University of California, Santa Cruz,wait-listed
+dummystudent186,Missouri University of Science and Technology,deferred
+dummystudent187,Idaho State University,accepted
+dummystudent187,Kennesaw State University,denied
+dummystudent188,Gettysburg College,accepted
+dummystudent188,Idaho State University,accepted
+dummystudent189,Mercer University,deferred
+dummystudent189,Wagner College,pending
+dummystudent190,Nova Southeastern University,withdrawn
+dummystudent190,Iona College,withdrawn
+dummystudent191,Kalamazoo College,denied
+dummystudent191,Saint Louis University,pending
+dummystudent192,Rice University,pending
+dummystudent192,Rider University,withdrawn
+dummystudent193,Mount Holyoke College,pending
+dummystudent193,University of Nevada, Reno,denied
+dummystudent194,Washington & Jefferson College,withdrawn
+dummystudent194,DePaul University,wait-listed
+dummystudent195,Florida Gulf Coast University,pending
+dummystudent195,Stony Brook University,wait-listed
+dummystudent196,Manhattan College,wait-listed
+dummystudent196,Texas Tech University,wait-listed
+dummystudent197,University of Arizona,wait-listed
+dummystudent197,Texas Tech University,accepted
+dummystudent198,New York University,wait-listed
+dummystudent198,Central Connecticut State University,withdrawn
+dummystudent199,Utah State University,denied
+dummystudent199,John Carroll University,accepted
+dummystudent200,University of Richmond,withdrawn
+dummystudent200,Salve Regina University,pending
+dummystudent201,Massachusetts Institute of Technology,deferred
+dummystudent201,University of Hartford,wait-listed
+dummystudent202,University of San Diego,withdrawn
+dummystudent202,University of Maine,pending
+dummystudent203,Stony Brook University,pending
+dummystudent203,University of Illinois at Chicago,deferred
+dummystudent204,Eastern Illinois University,deferred
+dummystudent204,Utah State University,deferred
+dummystudent205,Merrimack College,denied
+dummystudent205,University of Nevada, Las Vegas,wait-listed
+dummystudent206,Hope College,pending
+dummystudent206,Salve Regina University,denied
+dummystudent207,Williams College,withdrawn
+dummystudent207,Siena College,denied
+dummystudent208,Mercer University,withdrawn
+dummystudent208,Moravian College,denied
+dummystudent209,Merrimack College,wait-listed
+dummystudent209,Moravian College,withdrawn
+dummystudent210,University of Hartford,accepted
+dummystudent210,Fordham University,denied
+dummystudent211,Berry College,withdrawn
+dummystudent211,Hope College,pending
+dummystudent212,University of Montana,denied
+dummystudent212,Rider University,denied
+dummystudent213,Westmont College,pending
+dummystudent213,Gannon University,deferred
+dummystudent214,Clarkson University,deferred
+dummystudent214,North Park University,withdrawn
+dummystudent215,Stony Brook University,pending
+dummystudent215,William Jewell College,denied
+dummystudent216,University of Hartford,withdrawn
+dummystudent216,John Carroll University,accepted
+dummystudent217,Carnegie Mellon University,pending
+dummystudent217,University of Kentucky,wait-listed
+dummystudent218,San Diego State University,accepted
+dummystudent218,DePauw University,accepted
+dummystudent219,American University,accepted
+dummystudent219,Washington & Jefferson College,accepted
+dummystudent220,Centre College,wait-listed
+dummystudent220,Lawrence Technological University,withdrawn
+dummystudent221,Wagner College,denied
+dummystudent221,Indiana University Bloomington,pending
+dummystudent222,University of Houston,wait-listed
+dummystudent222,California State University, Monterey Bay,denied
+dummystudent223,School of the Art Institute of Chicago,wait-listed
+dummystudent223,SUNY College of Environmental Science and Forestry,wait-listed
+dummystudent224,Missouri University of Science and Technology,accepted
+dummystudent224,University of Houston,denied
+dummystudent225,Missouri University of Science and Technology,denied
+dummystudent225,Mississippi State University,denied
+dummystudent226,Samford University,withdrawn
+dummystudent226,Samford University,deferred
+dummystudent227,Texas Tech University,denied
+dummystudent227,Stevenson University,denied
+dummystudent228,Manhattan College,deferred
+dummystudent228,Mercer University,pending
+dummystudent229,Stony Brook University,withdrawn
+dummystudent229,Kalamazoo College,withdrawn
+dummystudent230,DePaul University,withdrawn
+dummystudent230,Stony Brook University,pending
+dummystudent231,University of Arizona,denied
+dummystudent231,Providence College,denied
+dummystudent232,Clarkson University,denied
+dummystudent232,The College of St Scholastica,pending
+dummystudent233,SUNY College of Environmental Science and Forestry,pending
+dummystudent233,Indiana University Bloomington,denied
+dummystudent234,Centre College,pending
+dummystudent234,University of Central Florida,pending
+dummystudent235,The College of St Scholastica,denied
+dummystudent235,American University,denied
+dummystudent236,Smith College,denied
+dummystudent236,The College of Wooster,deferred
+dummystudent237,Texas Tech University,accepted
+dummystudent237,University of San Diego,denied
+dummystudent238,Kennesaw State University,denied
+dummystudent238,Manhattan College,withdrawn
+dummystudent239,SUNY College of Environmental Science and Forestry,denied
+dummystudent239,University of Massachusetts Amherst,denied
+dummystudent240,Kennesaw State University,wait-listed
+dummystudent240,Missouri University of Science and Technology,withdrawn
+dummystudent241,Kennesaw State University,denied
+dummystudent241,Barnard College,withdrawn
+dummystudent242,University of Central Florida,denied
+dummystudent242,Providence College,deferred
+dummystudent243,DePaul University,wait-listed
+dummystudent243,Barnard College,wait-listed
+dummystudent244,University of Delaware,denied
+dummystudent244,Carnegie Mellon University,pending
+dummystudent245,Williams College,wait-listed
+dummystudent245,Texas Christian University,deferred
+dummystudent246,Gettysburg College,accepted
+dummystudent246,Gordon College,accepted
+dummystudent247,Iona College,pending
+dummystudent247,Wagner College,withdrawn
+dummystudent248,University of Richmond,wait-listed
+dummystudent248,Mercer University,deferred
+dummystudent249,New York University,denied
+dummystudent249,William Jewell College,deferred
+dummystudent250,University of Alabama,pending
+dummystudent250,Florida Gulf Coast University,pending
+dummystudent251,Merrimack College,pending
+dummystudent251,Gordon College,wait-listed
+dummystudent252,Texas Tech University,deferred
+dummystudent252,Gettysburg College,denied
+dummystudent253,California State University, Fresno,accepted
+dummystudent253,Vassar College,accepted
+dummystudent254,Mount Holyoke College,withdrawn
+dummystudent254,Nova Southeastern University,wait-listed
+dummystudent255,University of Alabama,wait-listed
+dummystudent255,Gannon University,withdrawn
+dummystudent256,University of Delaware,withdrawn
+dummystudent256,University of Utah,deferred
+dummystudent257,Hope College,denied
+dummystudent257,Franklin & Marshall College,pending
+dummystudent258,Salve Regina University,withdrawn
+dummystudent258,University of Kentucky,withdrawn
+dummystudent259,Kennesaw State University,wait-listed
+dummystudent259,Stevenson University,deferred
+dummystudent260,Wagner College,wait-listed
+dummystudent260,Carnegie Mellon University,deferred
+dummystudent261,Mississippi State University,accepted
+dummystudent261,University of Arkansas,accepted
+dummystudent262,Clarkson University,deferred
+dummystudent262,Texas Tech University,accepted
+dummystudent263,Hendrix College,denied
+dummystudent263,Vassar College,wait-listed
+dummystudent264,Temple University,wait-listed
+dummystudent264,Northwestern University,accepted
+dummystudent265,California State University, Monterey Bay,wait-listed
+dummystudent265,California State University, Fresno,pending
+dummystudent266,Massachusetts Institute of Technology,accepted
+dummystudent266,Siena College,withdrawn
+dummystudent267,University of Alabama at Birmingham,wait-listed
+dummystudent267,Siena College,denied
+dummystudent268,Eastern Washington University,denied
+dummystudent268,University of Richmond,denied
+dummystudent269,California State University, Monterey Bay,pending
+dummystudent269,Franklin & Marshall College,pending
+dummystudent270,Hope College,wait-listed
+dummystudent270,New Jersey Institute of Technology,denied
+dummystudent271,Northwestern University,accepted
+dummystudent271,University of Richmond,pending
+dummystudent272,SUNY College of Environmental Science and Forestry,withdrawn
+dummystudent272,University of Utah,withdrawn
+dummystudent273,University of Alabama at Birmingham,withdrawn
+dummystudent273,Mississippi State University,withdrawn
+dummystudent274,Kalamazoo College,withdrawn
+dummystudent274,Mississippi State University,pending
+dummystudent275,University of Illinois at Chicago,wait-listed
+dummystudent275,Wagner College,wait-listed
+dummystudent276,Centre College,denied
+dummystudent276,University of Central Florida,wait-listed
+dummystudent277,Gettysburg College,wait-listed
+dummystudent277,Utah State University,pending
+dummystudent278,Kennesaw State University,deferred
+dummystudent278,University of Richmond,pending
+dummystudent279,Stevenson University,withdrawn
+dummystudent279,Hendrix College,pending
+dummystudent280,Saint Louis University,pending
+dummystudent280,University of Montana,withdrawn
+dummystudent281,Samford University,pending
+dummystudent281,Franklin & Marshall College,accepted
+dummystudent282,The College of St Scholastica,denied
+dummystudent282,Washington & Jefferson College,wait-listed
+dummystudent283,Eastern Illinois University,deferred
+dummystudent283,Rochester Institute of Technology,pending
+dummystudent284,Massachusetts Institute of Technology,pending
+dummystudent284,Providence College,wait-listed
+dummystudent285,Hendrix College,pending
+dummystudent285,Transylvania University,wait-listed
+dummystudent286,School of the Art Institute of Chicago,deferred
+dummystudent286,Florida Gulf Coast University,accepted
+dummystudent287,San Diego State University,withdrawn
+dummystudent287,Texas Christian University,denied
+dummystudent288,DePauw University,deferred
+dummystudent288,San Diego State University,withdrawn
+dummystudent289,Providence College,denied
+dummystudent289,Barnard College,accepted
+dummystudent290,California State University, East Bay,deferred
+dummystudent290,Illinois College,accepted
+dummystudent291,Drexel University,wait-listed
+dummystudent291,University of San Diego,denied
+dummystudent292,Massachusetts Institute of Technology,wait-listed
+dummystudent292,Princeton University,withdrawn
+dummystudent293,Mercer University,deferred
+dummystudent293,Rice University,deferred
+dummystudent294,Idaho State University,withdrawn
+dummystudent294,Texas Christian University,pending
+dummystudent295,Idaho State University,withdrawn
+dummystudent295,University of Arkansas,withdrawn
+dummystudent296,John Carroll University,accepted
+dummystudent296,Moravian College,pending
+dummystudent297,Merrimack College,withdrawn
+dummystudent297,Idaho State University,denied
+dummystudent298,The College of St Scholastica,withdrawn
+dummystudent298,University of California, Davis,accepted
+dummystudent299,Texas Tech University,deferred
+dummystudent299,Roger Williams University,pending
+dummystudent300,Missouri University of Science and Technology,wait-listed
+dummystudent300,Temple University,wait-listed
+dummystudent301,San Diego State University,pending
+dummystudent301,Stony Brook University,denied
+dummystudent302,Illinois College,pending
+dummystudent302,University of Nevada, Reno,denied
+dummystudent303,Northwestern University,pending
+dummystudent303,Indiana University Bloomington,pending
+dummystudent304,University of Montana,wait-listed
+dummystudent304,University of California, Santa Cruz,pending
+dummystudent305,San Diego State University,wait-listed
+dummystudent305,Mercer University,pending
+dummystudent306,Roger Williams University,withdrawn
+dummystudent306,Siena College,deferred
+dummystudent307,Smith College,withdrawn
+dummystudent307,John Carroll University,accepted
+dummystudent308,University of Kentucky,deferred
+dummystudent308,Gettysburg College,wait-listed
+dummystudent309,Texas Tech University,denied
+dummystudent309,The College of Wooster,wait-listed
+dummystudent310,Westmont College,pending
+dummystudent310,University of Arkansas,withdrawn
+dummystudent311,Stevenson University,pending
+dummystudent311,Carnegie Mellon University,withdrawn
+dummystudent312,Providence College,deferred
+dummystudent312,San Diego State University,accepted
+dummystudent313,University of Alabama at Birmingham,denied
+dummystudent313,Iona College,denied
+dummystudent314,University of Maine,withdrawn
+dummystudent314,Samford University,accepted
+dummystudent315,Hendrix College,pending
+dummystudent315,University of Maine,withdrawn
+dummystudent316,DePauw University,denied
+dummystudent316,Iona College,pending
+dummystudent317,University of Hartford,accepted
+dummystudent317,The College of Wooster,pending
+dummystudent318,The College of Wooster,wait-listed
+dummystudent318,University of Delaware,withdrawn
+dummystudent319,William Jewell College,pending
+dummystudent319,Colgate University,accepted
+dummystudent320,Fordham University,accepted
+dummystudent320,Suffolk University,withdrawn
+dummystudent321,Drexel University,denied
+dummystudent321,Central Connecticut State University,accepted
+dummystudent322,University of Illinois at Chicago,pending
+dummystudent322,Samford University,withdrawn
+dummystudent323,University of Hartford,deferred
+dummystudent323,Gordon College,pending
+dummystudent324,Moravian College,denied
+dummystudent324,Rice University,wait-listed
+dummystudent325,Merrimack College,accepted
+dummystudent325,The College of Wooster,withdrawn
+dummystudent326,Gannon University,pending
+dummystudent326,Central Connecticut State University,deferred
+dummystudent327,Clarkson University,deferred
+dummystudent327,University of Arkansas,deferred
+dummystudent328,Stevenson University,accepted
+dummystudent328,Nova Southeastern University,deferred
+dummystudent329,Reed College,denied
+dummystudent329,The College of Wooster,pending
+dummystudent330,New York University,withdrawn
+dummystudent330,University of Central Florida,denied
+dummystudent331,Massachusetts Institute of Technology,pending
+dummystudent331,John Carroll University,denied
+dummystudent332,Samford University,wait-listed
+dummystudent332,Kalamazoo College,deferred
+dummystudent333,SUNY College of Environmental Science and Forestry,pending
+dummystudent333,DePauw University,accepted
+dummystudent334,Massachusetts Institute of Technology,deferred
+dummystudent334,Central Connecticut State University,denied
+dummystudent335,Smith College,withdrawn
+dummystudent335,The College of St Scholastica,denied
+dummystudent336,Indiana University Bloomington,pending
+dummystudent336,Manhattan College,deferred
+dummystudent337,Indiana University Bloomington,denied
+dummystudent337,University of Maine,wait-listed
+dummystudent338,Smith College,wait-listed
+dummystudent338,University of Nevada, Reno,pending
+dummystudent339,The College of St Scholastica,denied
+dummystudent339,Moravian College,accepted
+dummystudent340,School of the Art Institute of Chicago,wait-listed
+dummystudent340,Stony Brook University,denied
+dummystudent341,Stevenson University,accepted
+dummystudent341,Carnegie Mellon University,denied
+dummystudent342,Carnegie Mellon University,withdrawn
+dummystudent342,University of Arizona,withdrawn
+dummystudent343,Berry College,wait-listed
+dummystudent343,Eastern Illinois University,withdrawn
+dummystudent344,California State University, Monterey Bay,accepted
+dummystudent344,Wagner College,wait-listed
+dummystudent345,Manhattan College,deferred
+dummystudent345,Nova Southeastern University,accepted
+dummystudent346,Mercer University,wait-listed
+dummystudent346,St Bonaventure University,accepted
+dummystudent347,Temple University,withdrawn
+dummystudent347,University of Massachusetts Amherst,accepted
+dummystudent348,Stevenson University,denied
+dummystudent348,Colorado College,withdrawn
+dummystudent349,Clarkson University,deferred
+dummystudent349,Merrimack College,denied
+dummystudent350,Siena College,accepted
+dummystudent350,Utah State University,deferred
+dummystudent351,Suffolk University,deferred
+dummystudent351,Drake University,pending
+dummystudent352,Iona College,pending
+dummystudent352,Mount Holyoke College,denied
+dummystudent353,Texas Tech University,denied
+dummystudent353,Princeton University,accepted
+dummystudent354,California State University, Monterey Bay,deferred
+dummystudent354,Texas Christian University,wait-listed
+dummystudent355,Colgate University,withdrawn
+dummystudent355,Stony Brook University,deferred
+dummystudent356,University of San Diego,wait-listed
+dummystudent356,California State University, East Bay,pending
+dummystudent357,Florida Gulf Coast University,pending
+dummystudent357,The College of St Scholastica,withdrawn
+dummystudent358,Illinois College,pending
+dummystudent358,Fordham University,denied
+dummystudent359,University of Richmond,denied
+dummystudent359,Central Connecticut State University,denied
+dummystudent360,Colgate University,deferred
+dummystudent360,University of Nevada, Las Vegas,denied
+dummystudent361,Smith College,accepted
+dummystudent361,University of Delaware,accepted
+dummystudent362,California State University, Monterey Bay,denied
+dummystudent362,University of Richmond,deferred
+dummystudent363,Utah State University,deferred
+dummystudent363,University of Richmond,wait-listed
+dummystudent364,Princeton University,accepted
+dummystudent364,California State University, East Bay,deferred
+dummystudent365,University of Illinois at Chicago,deferred
+dummystudent365,Stevenson University,wait-listed
+dummystudent366,DePaul University,denied
+dummystudent366,Texas Christian University,denied
+dummystudent367,Temple University,pending
+dummystudent367,Colgate University,deferred
+dummystudent368,The College of St Scholastica,deferred
+dummystudent368,Mercer University,deferred
+dummystudent369,Colgate University,pending
+dummystudent369,Texas Tech University,denied
+dummystudent370,Providence College,wait-listed
+dummystudent370,The College of St Scholastica,wait-listed
+dummystudent371,John Carroll University,pending
+dummystudent371,Hendrix College,accepted
+dummystudent372,Stevenson University,deferred
+dummystudent372,Franklin & Marshall College,pending
+dummystudent373,University of Nevada, Las Vegas,pending
+dummystudent373,Hope College,withdrawn
+dummystudent374,Rice University,deferred
+dummystudent374,John Carroll University,deferred
+dummystudent375,University of Alabama,denied
+dummystudent375,Siena College,pending
+dummystudent376,DePaul University,denied
+dummystudent376,University of Nevada, Reno,withdrawn
+dummystudent377,University of Richmond,denied
+dummystudent377,University of Richmond,pending
+dummystudent378,Clarkson University,withdrawn
+dummystudent378,DePaul University,wait-listed
+dummystudent379,Eastern Washington University,denied
+dummystudent379,Clarkson University,wait-listed
+dummystudent380,Central Connecticut State University,wait-listed
+dummystudent380,Clarkson University,deferred
+dummystudent381,Colorado College,denied
+dummystudent381,Moravian College,denied
+dummystudent382,Franklin & Marshall College,denied
+dummystudent382,University of Hartford,accepted
+dummystudent383,Samford University,pending
+dummystudent383,Reed College,withdrawn
+dummystudent384,Mount Holyoke College,withdrawn
+dummystudent384,Saint Louis University,accepted
+dummystudent385,Princeton University,denied
+dummystudent385,Eastern Washington University,withdrawn
+dummystudent386,Idaho State University,deferred
+dummystudent386,University of Arkansas,accepted
+dummystudent387,Fordham University,denied
+dummystudent387,Rochester Institute of Technology,denied
+dummystudent388,University of Hartford,accepted
+dummystudent388,Vassar College,deferred
+dummystudent389,Saint Louis University,withdrawn
+dummystudent389,Smith College,withdrawn
+dummystudent390,Eastern Illinois University,accepted
+dummystudent390,University of Kentucky,deferred
+dummystudent391,University of Richmond,pending
+dummystudent391,SUNY College of Environmental Science and Forestry,denied
+dummystudent392,Indiana University Bloomington,denied
+dummystudent392,Hendrix College,deferred
+dummystudent393,University of Montana,denied
+dummystudent393,St Bonaventure University,withdrawn
+dummystudent394,Vassar College,withdrawn
+dummystudent394,Moravian College,denied
+dummystudent395,Drake University,accepted
+dummystudent395,Westmont College,wait-listed
+dummystudent396,Rider University,pending
+dummystudent396,University of Nevada, Reno,denied
+dummystudent397,Centre College,accepted
+dummystudent397,New Jersey Institute of Technology,wait-listed
+dummystudent398,Vassar College,denied
+dummystudent398,Missouri University of Science and Technology,wait-listed
+dummystudent399,Stevenson University,wait-listed
+dummystudent399,Iona College,denied
+dummystudent400,University of Illinois at Chicago,pending
+dummystudent400,University of Delaware,wait-listed
+dummystudent401,American University,withdrawn
+dummystudent401,Gannon University,accepted
+dummystudent402,DePauw University,deferred
+dummystudent402,Colorado College,wait-listed
+dummystudent403,Carnegie Mellon University,denied
+dummystudent403,Missouri University of Science and Technology,accepted
+dummystudent404,Berry College,deferred
+dummystudent404,American University,pending
+dummystudent405,San Diego State University,wait-listed
+dummystudent405,Reed College,accepted
+dummystudent406,Centre College,denied
+dummystudent406,University of Hartford,denied
+dummystudent407,Eastern Washington University,accepted
+dummystudent407,Drexel University,pending
+dummystudent408,Moravian College,wait-listed
+dummystudent408,Washington & Jefferson College,withdrawn
+dummystudent409,School of the Art Institute of Chicago,withdrawn
+dummystudent409,University of Houston,denied
+dummystudent410,Hendrix College,denied
+dummystudent410,Utah State University,accepted
+dummystudent411,Berry College,wait-listed
+dummystudent411,University of Richmond,withdrawn
+dummystudent412,Rice University,accepted
+dummystudent412,Lawrence Technological University,denied
+dummystudent413,University of California, Santa Barbara,withdrawn
+dummystudent413,University of San Diego,withdrawn
+dummystudent414,The College of St Scholastica,pending
+dummystudent414,University of Arkansas,denied
+dummystudent415,Utah State University,withdrawn
+dummystudent415,University of Alabama at Birmingham,denied
+dummystudent416,Drake University,denied
+dummystudent416,Gordon College,pending
+dummystudent417,Fordham University,accepted
+dummystudent417,Indiana University Bloomington,deferred
+dummystudent418,New Jersey Institute of Technology,wait-listed
+dummystudent418,Indiana University Bloomington,accepted
+dummystudent419,California State University, Fresno,denied
+dummystudent419,Kalamazoo College,pending
+dummystudent420,California State University, Fresno,deferred
+dummystudent420,Franklin & Marshall College,deferred
+dummystudent421,University of Alabama at Birmingham,deferred
+dummystudent421,Mount Holyoke College,withdrawn
+dummystudent422,Missouri University of Science and Technology,withdrawn
+dummystudent422,Washington & Jefferson College,wait-listed
+dummystudent423,Merrimack College,wait-listed
+dummystudent423,University of Massachusetts Amherst,deferred
+dummystudent424,Drexel University,deferred
+dummystudent424,DePauw University,denied
+dummystudent425,Mercer University,deferred
+dummystudent425,University of Arkansas,denied
+dummystudent426,University of Richmond,withdrawn
+dummystudent426,California State University, East Bay,deferred
+dummystudent427,Washington & Jefferson College,withdrawn
+dummystudent427,John Carroll University,accepted
+dummystudent428,Hope College,deferred
+dummystudent428,Princeton University,wait-listed
+dummystudent429,William Jewell College,accepted
+dummystudent429,University of Massachusetts Amherst,pending
+dummystudent430,University of Central Florida,withdrawn
+dummystudent430,Gordon College,accepted
+dummystudent431,Northwestern University,denied
+dummystudent431,Roger Williams University,pending
+dummystudent432,California State University, East Bay,wait-listed
+dummystudent432,University of Alabama at Birmingham,pending
+dummystudent433,Suffolk University,withdrawn
+dummystudent433,Franklin & Marshall College,withdrawn
+dummystudent434,Missouri University of Science and Technology,pending
+dummystudent434,Washington & Jefferson College,accepted
+dummystudent435,University of Alabama,denied
+dummystudent435,Missouri University of Science and Technology,wait-listed
+dummystudent436,University of Kentucky,denied
+dummystudent436,Barnard College,denied
+dummystudent437,Temple University,accepted
+dummystudent437,Roger Williams University,wait-listed
+dummystudent438,Franklin & Marshall College,wait-listed
+dummystudent438,Central Connecticut State University,accepted
+dummystudent439,University of Houston,pending
+dummystudent439,SUNY College of Environmental Science and Forestry,accepted
+dummystudent440,Idaho State University,withdrawn
+dummystudent440,American University,denied
+dummystudent441,Providence College,wait-listed
+dummystudent441,Wagner College,accepted
+dummystudent442,University of Massachusetts Amherst,denied
+dummystudent442,California State University, East Bay,wait-listed
+dummystudent443,University of Houston,withdrawn
+dummystudent443,University of California, Davis,accepted
+dummystudent444,Smith College,denied
+dummystudent444,Mount Holyoke College,wait-listed
+dummystudent445,Princeton University,pending
+dummystudent445,University of Kentucky,accepted
+dummystudent446,Vassar College,denied
+dummystudent446,Rochester Institute of Technology,accepted
+dummystudent447,Barnard College,pending
+dummystudent447,SUNY College of Environmental Science and Forestry,pending
+dummystudent448,Manhattan College,denied
+dummystudent448,Lawrence Technological University,deferred
+dummystudent449,Colgate University,deferred
+dummystudent449,Eastern Illinois University,wait-listed
+dummystudent450,Saint Louis University,withdrawn
+dummystudent450,Eastern Illinois University,wait-listed
+dummystudent451,Mercer University,deferred
+dummystudent451,Wagner College,pending
+dummystudent452,Utah State University,deferred
+dummystudent452,Westmont College,accepted
+dummystudent453,California State University, Fresno,denied
+dummystudent453,University of Alabama at Birmingham,withdrawn
+dummystudent454,Drake University,accepted
+dummystudent454,Washington & Jefferson College,wait-listed
+dummystudent455,University of Alabama,withdrawn
+dummystudent455,Hope College,accepted
+dummystudent456,Hope College,wait-listed
+dummystudent456,University of Richmond,denied
+dummystudent457,Smith College,accepted
+dummystudent457,Siena College,withdrawn
+dummystudent458,Idaho State University,accepted
+dummystudent458,Carnegie Mellon University,wait-listed
+dummystudent459,Stony Brook University,denied
+dummystudent459,John Carroll University,accepted
+dummystudent460,Mississippi State University,denied
+dummystudent460,University of California, Santa Barbara,accepted
+dummystudent461,Providence College,deferred
+dummystudent461,School of the Art Institute of Chicago,accepted
+dummystudent462,Temple University,deferred
+dummystudent462,Westmont College,pending
+dummystudent463,Carnegie Mellon University,pending
+dummystudent463,San Diego State University,wait-listed
+dummystudent464,Eastern Washington University,denied
+dummystudent464,Temple University,denied
+dummystudent465,Iona College,accepted
+dummystudent465,Eastern Illinois University,pending
+dummystudent466,Roger Williams University,wait-listed
+dummystudent466,Westmont College,pending
+dummystudent467,Siena College,accepted
+dummystudent467,Franklin & Marshall College,withdrawn
+dummystudent468,University of California, Davis,accepted
+dummystudent468,Florida Gulf Coast University,deferred
+dummystudent469,Barnard College,deferred
+dummystudent469,Indiana University Bloomington,wait-listed
+dummystudent470,Northwestern University,deferred
+dummystudent470,Iona College,accepted
+dummystudent471,University of Central Florida,pending
+dummystudent471,Hendrix College,denied
+dummystudent472,Washington & Jefferson College,accepted
+dummystudent472,University of Kentucky,withdrawn
+dummystudent473,Massachusetts Institute of Technology,deferred
+dummystudent473,University of Nevada, Las Vegas,denied
+dummystudent474,Texas Christian University,deferred
+dummystudent474,Samford University,pending
+dummystudent475,Drexel University,pending
+dummystudent475,Franklin & Marshall College,accepted
+dummystudent476,University of Kentucky,withdrawn
+dummystudent476,University of California, Santa Cruz,deferred
+dummystudent477,Rice University,withdrawn
+dummystudent477,University of Alabama at Birmingham,wait-listed
+dummystudent478,University of California, Santa Barbara,accepted
+dummystudent478,University of Montana,pending
+dummystudent479,California State University, Fresno,withdrawn
+dummystudent479,University of Delaware,withdrawn
+dummystudent480,University of Houston,accepted
+dummystudent480,Siena College,wait-listed
+dummystudent481,Centre College,wait-listed
+dummystudent481,Centre College,accepted
+dummystudent482,University of Massachusetts Amherst,deferred
+dummystudent482,Mount Holyoke College,withdrawn
+dummystudent483,Siena College,wait-listed
+dummystudent483,Princeton University,deferred
+dummystudent484,University of Kentucky,accepted
+dummystudent484,University of San Diego,denied
+dummystudent485,University of Richmond,deferred
+dummystudent485,University of Nevada, Reno,pending
+dummystudent486,Centre College,withdrawn
+dummystudent486,DePauw University,pending
+dummystudent487,University of Arizona,wait-listed
+dummystudent487,St Bonaventure University,denied
+dummystudent488,Princeton University,denied
+dummystudent488,University of Arizona,wait-listed
+dummystudent489,Williams College,deferred
+dummystudent489,Rice University,denied
+dummystudent490,Mercer University,denied
+dummystudent490,University of Utah,accepted
+dummystudent491,Drexel University,pending
+dummystudent491,Mount Holyoke College,denied
+dummystudent492,Missouri University of Science and Technology,denied
+dummystudent492,Eastern Illinois University,accepted
+dummystudent493,Utah State University,withdrawn
+dummystudent493,University of Montana,withdrawn
+dummystudent494,California State University, East Bay,pending
+dummystudent494,University of Central Florida,deferred
+dummystudent495,University of Alabama at Birmingham,deferred
+dummystudent495,University of Maine,wait-listed
+dummystudent496,Stevenson University,pending
+dummystudent496,University of Maine,deferred
+dummystudent497,University of Arkansas,denied
+dummystudent497,Central Connecticut State University,denied
+dummystudent498,Campbell University,denied
+dummystudent498,Smith College,accepted
+dummystudent499,Princeton University,deferred
+dummystudent499,University of California, Santa Barbara,denied
+dummystudent500,University of Arkansas,wait-listed
+dummystudent500,Moravian College,denied
+dummystudent501,Moravian College,accepted
+dummystudent501,Hendrix College,deferred
+dummystudent502,North Park University,deferred
+dummystudent502,Stevenson University,denied
+dummystudent503,California State University, Fresno,denied
+dummystudent503,DePaul University,pending
+dummystudent504,Campbell University,accepted
+dummystudent504,Saint Louis University,deferred
+dummystudent505,Hope College,pending
+dummystudent505,California State University, East Bay,accepted
+dummystudent506,Temple University,deferred
+dummystudent506,University of Utah,pending
+dummystudent507,California State University, Fresno,denied
+dummystudent507,Nova Southeastern University,accepted
+dummystudent508,California State University, Fresno,accepted
+dummystudent508,New Jersey Institute of Technology,deferred
+dummystudent509,University of Maine,accepted
+dummystudent509,Franklin & Marshall College,pending
+dummystudent510,Transylvania University,denied
+dummystudent510,California State University, Fresno,deferred
+dummystudent511,Drexel University,deferred
+dummystudent511,Idaho State University,denied
+dummystudent512,Iona College,denied
+dummystudent512,University of Richmond,deferred
+dummystudent513,Northwestern University,withdrawn
+dummystudent513,California State University, Fresno,accepted
+dummystudent514,Stevenson University,wait-listed
+dummystudent514,Franklin & Marshall College,pending
+dummystudent515,Kalamazoo College,wait-listed
+dummystudent515,University of Hartford,wait-listed
+dummystudent516,Merrimack College,denied
+dummystudent516,Campbell University,pending
+dummystudent517,Saint Louis University,deferred
+dummystudent517,Transylvania University,denied
+dummystudent518,Illinois College,wait-listed
+dummystudent518,Rochester Institute of Technology,denied
+dummystudent519,School of the Art Institute of Chicago,withdrawn
+dummystudent519,School of the Art Institute of Chicago,pending
+dummystudent520,University of Richmond,withdrawn
+dummystudent520,University of Massachusetts Amherst,accepted
+dummystudent521,John Carroll University,pending
+dummystudent521,University of California, Davis,denied
+dummystudent522,Drake University,deferred
+dummystudent522,University of Utah,withdrawn
+dummystudent523,Nova Southeastern University,denied
+dummystudent523,University of California, Santa Barbara,accepted
+dummystudent524,Eastern Illinois University,denied
+dummystudent524,Clarkson University,deferred
+dummystudent525,Fordham University,wait-listed
+dummystudent525,Hope College,accepted
+dummystudent526,New York University,withdrawn
+dummystudent526,Northwestern University,denied
+dummystudent527,Gannon University,deferred
+dummystudent527,Siena College,withdrawn
+dummystudent528,DePaul University,pending
+dummystudent528,Stony Brook University,accepted
+dummystudent529,Lawrence Technological University,deferred
+dummystudent529,University of Nevada, Reno,deferred
+dummystudent530,St Bonaventure University,pending
+dummystudent530,Saint Louis University,accepted
+dummystudent531,Gettysburg College,denied
+dummystudent531,Mount Holyoke College,denied
+dummystudent532,University of Delaware,withdrawn
+dummystudent532,California State University, Fresno,accepted
+dummystudent533,Fordham University,pending
+dummystudent533,University of California, Davis,withdrawn
+dummystudent534,University of Houston,deferred
+dummystudent534,Princeton University,wait-listed
+dummystudent535,New Jersey Institute of Technology,withdrawn
+dummystudent535,The College of St Scholastica,denied
+dummystudent536,Centre College,wait-listed
+dummystudent536,DePauw University,wait-listed
+dummystudent537,California State University, Fresno,pending
+dummystudent537,Samford University,withdrawn
+dummystudent538,New York University,deferred
+dummystudent538,Campbell University,pending
+dummystudent539,Temple University,pending
+dummystudent539,Williams College,pending
+dummystudent540,Illinois College,pending
+dummystudent540,California State University, Fresno,pending
+dummystudent541,Massachusetts Institute of Technology,accepted
+dummystudent541,University of San Diego,deferred
+dummystudent542,University of Alabama,withdrawn
+dummystudent542,University of Nevada, Reno,withdrawn
+dummystudent543,Gannon University,accepted
+dummystudent543,Rider University,denied
+dummystudent544,California State University, East Bay,withdrawn
+dummystudent544,University of Massachusetts Amherst,deferred
+dummystudent545,Lawrence Technological University,denied
+dummystudent545,University of Massachusetts Amherst,deferred
+dummystudent546,Iona College,accepted
+dummystudent546,Stevenson University,withdrawn
+dummystudent547,Rider University,wait-listed
+dummystudent547,Eastern Washington University,accepted
+dummystudent548,Transylvania University,denied
+dummystudent548,Texas Christian University,withdrawn
+dummystudent549,University of San Diego,pending
+dummystudent549,Smith College,deferred
+dummystudent550,Illinois College,pending
+dummystudent550,Carnegie Mellon University,deferred
+dummystudent551,Gettysburg College,wait-listed
+dummystudent551,Princeton University,withdrawn
+dummystudent552,Samford University,accepted
+dummystudent552,Manhattan College,wait-listed
+dummystudent553,University of Houston,pending
+dummystudent553,Gannon University,pending
+dummystudent554,Florida Gulf Coast University,denied
+dummystudent554,John Carroll University,denied
+dummystudent555,Barnard College,wait-listed
+dummystudent555,Iona College,wait-listed
+dummystudent556,Manhattan College,wait-listed
+dummystudent556,Hope College,withdrawn
+dummystudent557,Princeton University,accepted
+dummystudent557,Kennesaw State University,denied
+dummystudent558,University of Richmond,accepted
+dummystudent558,DePauw University,deferred
+dummystudent559,Colgate University,accepted
+dummystudent559,Williams College,denied
+dummystudent560,Drexel University,wait-listed
+dummystudent560,Lawrence Technological University,withdrawn
+dummystudent561,University of Kentucky,wait-listed
+dummystudent561,John Carroll University,pending
+dummystudent562,University of Montana,pending
+dummystudent562,University of California, Santa Barbara,withdrawn
+dummystudent563,North Park University,wait-listed
+dummystudent563,Texas Christian University,wait-listed
+dummystudent564,San Diego State University,pending
+dummystudent564,Fordham University,wait-listed
+dummystudent565,American University,denied
+dummystudent565,Smith College,wait-listed
+dummystudent566,Eastern Illinois University,denied
+dummystudent566,Saint Louis University,deferred
+dummystudent567,Salve Regina University,wait-listed
+dummystudent567,Stony Brook University,denied
+dummystudent568,SUNY College of Environmental Science and Forestry,pending
+dummystudent568,University of Illinois at Chicago,denied
+dummystudent569,Mercer University,pending
+dummystudent569,Washington & Jefferson College,withdrawn
+dummystudent570,Hendrix College,accepted
+dummystudent570,Northwestern University,wait-listed
+dummystudent571,Eastern Illinois University,deferred
+dummystudent571,Mount Holyoke College,pending
+dummystudent572,University of Kentucky,withdrawn
+dummystudent572,University of Central Florida,withdrawn
+dummystudent573,Siena College,wait-listed
+dummystudent573,Providence College,wait-listed
+dummystudent574,Drexel University,withdrawn
+dummystudent574,DePauw University,deferred
+dummystudent575,University of Nevada, Las Vegas,withdrawn
+dummystudent575,California State University, Fresno,wait-listed
+dummystudent576,Reed College,denied
+dummystudent576,Mount Holyoke College,wait-listed
+dummystudent577,Vassar College,denied
+dummystudent577,The College of St Scholastica,accepted
+dummystudent578,Berry College,deferred
+dummystudent578,Roger Williams University,wait-listed
+dummystudent579,Indiana University Bloomington,wait-listed
+dummystudent579,Texas Christian University,accepted
+dummystudent580,Stony Brook University,withdrawn
+dummystudent580,Williams College,pending
+dummystudent581,Mississippi State University,pending
+dummystudent581,John Carroll University,accepted
+dummystudent582,Rochester Institute of Technology,denied
+dummystudent582,University of Massachusetts Amherst,deferred
+dummystudent583,New Jersey Institute of Technology,withdrawn
+dummystudent583,Westmont College,withdrawn
+dummystudent584,Berry College,wait-listed
+dummystudent584,Eastern Illinois University,accepted
+dummystudent585,Gettysburg College,accepted
+dummystudent585,Washington & Jefferson College,withdrawn
+dummystudent586,University of Hartford,accepted
+dummystudent586,Texas Tech University,withdrawn
+dummystudent587,Lawrence Technological University,withdrawn
+dummystudent587,California State University, East Bay,wait-listed
+dummystudent588,Vassar College,wait-listed
+dummystudent588,Gettysburg College,denied
+dummystudent589,New Jersey Institute of Technology,withdrawn
+dummystudent589,DePaul University,wait-listed
+dummystudent590,University of Richmond,withdrawn
+dummystudent590,Texas Christian University,deferred
+dummystudent591,Suffolk University,deferred
+dummystudent591,Princeton University,wait-listed
+dummystudent592,Iona College,pending
+dummystudent592,Transylvania University,deferred
+dummystudent593,Mercer University,deferred
+dummystudent593,Drake University,deferred
+dummystudent594,Illinois College,deferred
+dummystudent594,Roger Williams University,deferred
+dummystudent595,Providence College,deferred
+dummystudent595,Illinois College,denied
+dummystudent596,Kennesaw State University,deferred
+dummystudent596,The College of Wooster,denied
+dummystudent597,University of Arkansas,wait-listed
+dummystudent597,Stevenson University,wait-listed
+dummystudent598,Rider University,deferred
+dummystudent598,University of California, Santa Cruz,denied
+dummystudent599,University of California, Santa Barbara,deferred
+dummystudent599,Temple University,accepted
+dummystudent600,Iona College,accepted
+dummystudent600,Washington & Jefferson College,withdrawn
+dummystudent601,University of Kentucky,wait-listed
+dummystudent601,University of Illinois at Chicago,accepted
+dummystudent602,Stony Brook University,denied
+dummystudent602,Colgate University,denied
+dummystudent603,The College of Wooster,accepted
+dummystudent603,Clarkson University,denied
+dummystudent604,DePaul University,deferred
+dummystudent604,Berry College,deferred
+dummystudent605,Drexel University,deferred
+dummystudent605,Rider University,withdrawn
+dummystudent606,University of California, Davis,pending
+dummystudent606,Eastern Washington University,denied
+dummystudent607,University of Nevada, Las Vegas,withdrawn
+dummystudent607,Nova Southeastern University,withdrawn
+dummystudent608,Campbell University,deferred
+dummystudent608,Colorado College,accepted
+dummystudent609,DePaul University,withdrawn
+dummystudent609,Florida Gulf Coast University,accepted
+dummystudent610,University of Delaware,pending
+dummystudent610,Centre College,withdrawn
+dummystudent611,Saint Louis University,withdrawn
+dummystudent611,Hendrix College,accepted
+dummystudent612,The College of Wooster,withdrawn
+dummystudent612,San Diego State University,wait-listed
+dummystudent613,Franklin & Marshall College,accepted
+dummystudent613,University of Alabama,wait-listed
+dummystudent614,American University,denied
+dummystudent614,Mercer University,denied
+dummystudent615,California State University, East Bay,pending
+dummystudent615,Roger Williams University,denied
+dummystudent616,The College of St Scholastica,pending
+dummystudent616,University of Richmond,withdrawn
+dummystudent617,University of Massachusetts Amherst,deferred
+dummystudent617,Stevenson University,deferred
+dummystudent618,Northwestern University,wait-listed
+dummystudent618,Washington & Jefferson College,deferred
+dummystudent619,Siena College,accepted
+dummystudent619,Wagner College,accepted
+dummystudent620,University of Illinois at Chicago,denied
+dummystudent620,Central Connecticut State University,wait-listed
+dummystudent621,Rice University,wait-listed
+dummystudent621,Carnegie Mellon University,pending
+dummystudent622,University of Kentucky,accepted
+dummystudent622,University of Hartford,wait-listed
+dummystudent623,St Bonaventure University,wait-listed
+dummystudent623,Samford University,accepted
+dummystudent624,DePauw University,wait-listed
+dummystudent624,University of Maine,deferred
+dummystudent625,Central Connecticut State University,pending
+dummystudent625,Fordham University,withdrawn
+dummystudent626,Transylvania University,deferred
+dummystudent626,University of Houston,deferred
+dummystudent627,Merrimack College,denied
+dummystudent627,The College of St Scholastica,withdrawn
+dummystudent628,Berry College,accepted
+dummystudent628,Drake University,pending
+dummystudent629,Gannon University,accepted
+dummystudent629,American University,withdrawn
+dummystudent630,University of Massachusetts Amherst,pending
+dummystudent630,University of Nevada, Reno,withdrawn
+dummystudent631,University of Central Florida,accepted
+dummystudent631,Iona College,wait-listed
+dummystudent632,Stevenson University,pending
+dummystudent632,Wagner College,withdrawn
+dummystudent633,University of California, Santa Cruz,pending
+dummystudent633,Centre College,wait-listed
+dummystudent634,Samford University,pending
+dummystudent634,Gettysburg College,denied
+dummystudent635,Saint Louis University,denied
+dummystudent635,Rider University,withdrawn
+dummystudent636,Nova Southeastern University,withdrawn
+dummystudent636,Rider University,accepted
+dummystudent637,DePauw University,denied
+dummystudent637,University of Delaware,accepted
+dummystudent638,St Bonaventure University,accepted
+dummystudent638,Gannon University,deferred
+dummystudent639,University of California, Davis,deferred
+dummystudent639,Moravian College,accepted
+dummystudent640,Temple University,denied
+dummystudent640,University of Houston,denied
+dummystudent641,Missouri University of Science and Technology,wait-listed
+dummystudent641,Utah State University,withdrawn
+dummystudent642,University of Montana,withdrawn
+dummystudent642,Eastern Illinois University,wait-listed
+dummystudent643,Wagner College,accepted
+dummystudent643,Drake University,denied
+dummystudent644,Rice University,wait-listed
+dummystudent644,SUNY College of Environmental Science and Forestry,denied
+dummystudent645,Reed College,wait-listed
+dummystudent645,University of Utah,pending
+dummystudent646,Centre College,deferred
+dummystudent646,Carnegie Mellon University,denied
+dummystudent647,Moravian College,denied
+dummystudent647,Rider University,accepted
+dummystudent648,School of the Art Institute of Chicago,deferred
+dummystudent648,Fordham University,denied
+dummystudent649,John Carroll University,denied
+dummystudent649,Lawrence Technological University,denied
+dummystudent650,Colorado College,withdrawn
+dummystudent650,Central Connecticut State University,deferred
+dummystudent651,Texas Tech University,denied
+dummystudent651,Rice University,withdrawn
+dummystudent652,Stony Brook University,withdrawn
+dummystudent652,Rochester Institute of Technology,withdrawn
+dummystudent653,University of Nevada, Las Vegas,deferred
+dummystudent653,University of Alabama,denied
+dummystudent654,Carnegie Mellon University,wait-listed
+dummystudent654,St Bonaventure University,withdrawn
+dummystudent655,Gannon University,withdrawn
+dummystudent655,St Bonaventure University,deferred
+dummystudent656,Illinois College,withdrawn
+dummystudent656,Indiana University Bloomington,accepted
+dummystudent657,University of Illinois at Chicago,withdrawn
+dummystudent657,Siena College,withdrawn
+dummystudent658,SUNY College of Environmental Science and Forestry,deferred
+dummystudent658,Mount Holyoke College,wait-listed
+dummystudent659,DePauw University,deferred
+dummystudent659,Colgate University,denied
+dummystudent660,Lawrence Technological University,wait-listed
+dummystudent660,Suffolk University,wait-listed
+dummystudent661,Rice University,denied
+dummystudent661,California State University, East Bay,deferred
+dummystudent662,Smith College,wait-listed
+dummystudent662,Iona College,accepted
+dummystudent663,Gordon College,denied
+dummystudent663,Drake University,accepted
+dummystudent664,New York University,denied
+dummystudent664,John Carroll University,accepted
+dummystudent665,Siena College,wait-listed
+dummystudent665,John Carroll University,withdrawn
+dummystudent666,University of Montana,accepted
+dummystudent666,Clarkson University,withdrawn
+dummystudent667,Manhattan College,accepted
+dummystudent667,University of Alabama,denied
+dummystudent668,Lawrence Technological University,pending
+dummystudent668,Eastern Washington University,accepted
+dummystudent669,San Diego State University,deferred
+dummystudent669,University of California, Santa Barbara,wait-listed
+dummystudent670,University of Houston,accepted
+dummystudent670,Hendrix College,wait-listed
+dummystudent671,Mount Holyoke College,accepted
+dummystudent671,Clarkson University,pending
+dummystudent672,Reed College,deferred
+dummystudent672,San Diego State University,wait-listed
+dummystudent673,Colorado College,accepted
+dummystudent673,Moravian College,withdrawn
+dummystudent674,Rider University,accepted
+dummystudent674,Fordham University,denied
+dummystudent675,Temple University,wait-listed
+dummystudent675,Northwestern University,wait-listed
+dummystudent676,Barnard College,withdrawn
+dummystudent676,Massachusetts Institute of Technology,wait-listed
+dummystudent677,Colorado College,pending
+dummystudent677,Wagner College,pending
+dummystudent678,University of Central Florida,accepted
+dummystudent678,John Carroll University,accepted
+dummystudent679,William Jewell College,wait-listed
+dummystudent679,DePauw University,accepted
+dummystudent680,University of Delaware,denied
+dummystudent680,Missouri University of Science and Technology,accepted
+dummystudent681,School of the Art Institute of Chicago,pending
+dummystudent681,University of Nevada, Las Vegas,withdrawn
+dummystudent682,Centre College,accepted
+dummystudent682,SUNY College of Environmental Science and Forestry,denied
+dummystudent683,Fordham University,withdrawn
+dummystudent683,University of Arizona,accepted
+dummystudent684,North Park University,wait-listed
+dummystudent684,University of Houston,withdrawn
+dummystudent685,University of Maine,denied
+dummystudent685,Samford University,accepted
+dummystudent686,Drake University,withdrawn
+dummystudent686,Stevenson University,withdrawn
+dummystudent687,Stevenson University,accepted
+dummystudent687,School of the Art Institute of Chicago,denied
+dummystudent688,Nova Southeastern University,deferred
+dummystudent688,Lawrence Technological University,denied
+dummystudent689,Samford University,wait-listed
+dummystudent689,The College of Wooster,deferred
+dummystudent690,University of Montana,wait-listed
+dummystudent690,Siena College,withdrawn
+dummystudent691,Roger Williams University,deferred
+dummystudent691,Stony Brook University,withdrawn
+dummystudent692,University of Hartford,accepted
+dummystudent692,Washington & Jefferson College,withdrawn
+dummystudent693,Utah State University,pending
+dummystudent693,New York University,denied
+dummystudent694,University of Arkansas,denied
+dummystudent694,Rice University,denied
+dummystudent695,School of the Art Institute of Chicago,accepted
+dummystudent695,Gordon College,deferred
+dummystudent696,Illinois College,wait-listed
+dummystudent696,Drexel University,wait-listed
+dummystudent697,American University,wait-listed
+dummystudent697,Princeton University,denied
+dummystudent698,Wagner College,denied
+dummystudent698,Salve Regina University,accepted
+dummystudent699,Siena College,withdrawn
+dummystudent699,University of Nevada, Reno,deferred
+dummystudent700,Colgate University,withdrawn
+dummystudent700,Florida Gulf Coast University,accepted
+dummystudent701,DePauw University,accepted
+dummystudent701,William Jewell College,withdrawn
+dummystudent702,Mississippi State University,deferred
+dummystudent702,Texas Tech University,denied
+dummystudent703,University of Utah,wait-listed
+dummystudent703,The College of St Scholastica,deferred
+dummystudent704,Nova Southeastern University,deferred
+dummystudent704,Saint Louis University,deferred
+dummystudent705,Drake University,wait-listed
+dummystudent705,Fordham University,denied
+dummystudent706,Franklin & Marshall College,accepted
+dummystudent706,Berry College,denied
+dummystudent707,The College of St Scholastica,deferred
+dummystudent707,Eastern Illinois University,deferred
+dummystudent708,Northwestern University,accepted
+dummystudent708,Campbell University,withdrawn
+dummystudent709,Kalamazoo College,denied
+dummystudent709,Florida Gulf Coast University,accepted
+dummystudent710,Gordon College,deferred
+dummystudent710,School of the Art Institute of Chicago,withdrawn
+dummystudent711,Drake University,denied
+dummystudent711,Clarkson University,deferred
+dummystudent712,Idaho State University,denied
+dummystudent712,Transylvania University,accepted
+dummystudent713,Smith College,withdrawn
+dummystudent713,Saint Louis University,denied
+dummystudent714,Moravian College,wait-listed
+dummystudent714,Washington & Jefferson College,withdrawn
+dummystudent715,Drake University,wait-listed
+dummystudent715,Hendrix College,withdrawn
+dummystudent716,Texas Christian University,deferred
+dummystudent716,California State University, Fresno,accepted
+dummystudent717,Moravian College,wait-listed
+dummystudent717,Vassar College,pending
+dummystudent718,University of Hartford,deferred
+dummystudent718,Temple University,wait-listed
+dummystudent719,Siena College,withdrawn
+dummystudent719,SUNY College of Environmental Science and Forestry,denied
+dummystudent720,SUNY College of Environmental Science and Forestry,accepted
+dummystudent720,Gannon University,wait-listed
+dummystudent721,Roger Williams University,withdrawn
+dummystudent721,Utah State University,wait-listed
+dummystudent722,Missouri University of Science and Technology,deferred
+dummystudent722,Providence College,withdrawn
+dummystudent723,Indiana University Bloomington,withdrawn
+dummystudent723,University of Maine,wait-listed
+dummystudent724,SUNY College of Environmental Science and Forestry,pending
+dummystudent724,Fordham University,deferred
+dummystudent725,Hendrix College,withdrawn
+dummystudent725,Mississippi State University,accepted
+dummystudent726,American University,deferred
+dummystudent726,University of Utah,wait-listed
+dummystudent727,California State University, East Bay,pending
+dummystudent727,Barnard College,deferred
+dummystudent728,University of Delaware,deferred
+dummystudent728,Iona College,wait-listed
+dummystudent729,SUNY College of Environmental Science and Forestry,deferred
+dummystudent729,University of Hartford,withdrawn
+dummystudent730,University of San Diego,accepted
+dummystudent730,Indiana University Bloomington,wait-listed
+dummystudent731,California State University, East Bay,pending
+dummystudent731,Franklin & Marshall College,wait-listed
+dummystudent732,Eastern Illinois University,deferred
+dummystudent732,University of Arizona,accepted
+dummystudent733,Indiana University Bloomington,denied
+dummystudent733,Providence College,accepted
+dummystudent734,University of California, Davis,pending
+dummystudent734,University of Arkansas,withdrawn
+dummystudent735,Stevenson University,denied
+dummystudent735,Gettysburg College,deferred
+dummystudent736,University of Nevada, Las Vegas,withdrawn
+dummystudent736,Mount Holyoke College,withdrawn
+dummystudent737,University of San Diego,pending
+dummystudent737,University of San Diego,deferred
+dummystudent738,DePauw University,wait-listed
+dummystudent738,Stevenson University,denied
+dummystudent739,California State University, East Bay,deferred
+dummystudent739,University of Kentucky,withdrawn
+dummystudent740,Franklin & Marshall College,pending
+dummystudent740,Rochester Institute of Technology,denied
+dummystudent741,Samford University,pending
+dummystudent741,Barnard College,denied
+dummystudent742,SUNY College of Environmental Science and Forestry,wait-listed
+dummystudent742,Manhattan College,withdrawn
+dummystudent743,Saint Louis University,deferred
+dummystudent743,Rice University,deferred
+dummystudent744,Clarkson University,denied
+dummystudent744,Salve Regina University,withdrawn
+dummystudent745,Salve Regina University,withdrawn
+dummystudent745,Hendrix College,withdrawn
+dummystudent746,North Park University,wait-listed
+dummystudent746,Williams College,denied
+dummystudent747,Suffolk University,pending
+dummystudent747,Mercer University,accepted
+dummystudent748,California State University, East Bay,wait-listed
+dummystudent748,Indiana University Bloomington,withdrawn
+dummystudent749,School of the Art Institute of Chicago,accepted
+dummystudent749,Merrimack College,denied
+dummystudent750,Kalamazoo College,wait-listed
+dummystudent750,University of Houston,denied
+dummystudent751,University of Kentucky,wait-listed
+dummystudent751,Saint Louis University,deferred
+dummystudent752,Colgate University,pending
+dummystudent752,John Carroll University,pending
+dummystudent753,University of Delaware,accepted
+dummystudent753,Illinois College,deferred
+dummystudent754,University of Alabama,withdrawn
+dummystudent754,Colgate University,pending
+dummystudent755,Franklin & Marshall College,wait-listed
+dummystudent755,Salve Regina University,denied
+dummystudent756,California State University, East Bay,denied
+dummystudent756,Providence College,pending
+dummystudent757,Rice University,wait-listed
+dummystudent757,Texas Tech University,deferred
+dummystudent758,Drexel University,withdrawn
+dummystudent758,Saint Louis University,denied
+dummystudent759,University of Nevada, Reno,deferred
+dummystudent759,Carnegie Mellon University,accepted
+dummystudent760,University of Alabama at Birmingham,withdrawn
+dummystudent760,Lawrence Technological University,denied
+dummystudent761,Mount Holyoke College,accepted
+dummystudent761,Gettysburg College,deferred
+dummystudent762,University of Hartford,pending
+dummystudent762,John Carroll University,denied
+dummystudent763,Westmont College,deferred
+dummystudent763,University of Nevada, Reno,denied
+dummystudent764,University of Massachusetts Amherst,denied
+dummystudent764,The College of St Scholastica,wait-listed
+dummystudent765,Colgate University,withdrawn
+dummystudent765,Iona College,deferred
+dummystudent766,University of Delaware,deferred
+dummystudent766,Wagner College,pending
+dummystudent767,Massachusetts Institute of Technology,wait-listed
+dummystudent767,Reed College,withdrawn
+dummystudent768,Suffolk University,wait-listed
+dummystudent768,Florida Gulf Coast University,withdrawn
+dummystudent769,William Jewell College,wait-listed
+dummystudent769,Merrimack College,wait-listed
+dummystudent770,Eastern Washington University,withdrawn
+dummystudent770,Princeton University,accepted
+dummystudent771,University of Alabama,denied
+dummystudent771,University of Alabama,accepted
+dummystudent772,Iona College,pending
+dummystudent772,Hope College,deferred
+dummystudent773,Central Connecticut State University,deferred
+dummystudent773,Iona College,withdrawn
+dummystudent774,University of Massachusetts Amherst,wait-listed
+dummystudent774,University of Utah,denied
+dummystudent775,Idaho State University,accepted
+dummystudent775,Berry College,denied
+dummystudent776,William Jewell College,pending
+dummystudent776,Rochester Institute of Technology,deferred
+dummystudent777,University of Alabama,deferred
+dummystudent777,Rider University,pending
+dummystudent778,Temple University,accepted
+dummystudent778,University of San Diego,pending
+dummystudent779,Eastern Washington University,deferred
+dummystudent779,Iona College,denied
+dummystudent780,Carnegie Mellon University,pending
+dummystudent780,Mississippi State University,pending
+dummystudent781,Kennesaw State University,deferred
+dummystudent781,University of San Diego,denied
+dummystudent782,The College of St Scholastica,deferred
+dummystudent782,University of Alabama,deferred
+dummystudent783,University of Houston,deferred
+dummystudent783,University of California, Santa Barbara,pending
+dummystudent784,Rochester Institute of Technology,wait-listed
+dummystudent784,University of Richmond,accepted
+dummystudent785,Clarkson University,wait-listed
+dummystudent785,Missouri University of Science and Technology,accepted
+dummystudent786,Wagner College,deferred
+dummystudent786,Transylvania University,withdrawn
+dummystudent787,Gettysburg College,withdrawn
+dummystudent787,University of California, Davis,pending
+dummystudent788,DePauw University,accepted
+dummystudent788,University of Arkansas,deferred
+dummystudent789,Drexel University,withdrawn
+dummystudent789,University of Delaware,accepted
+dummystudent790,Eastern Washington University,accepted
+dummystudent790,Gordon College,pending
+dummystudent791,New York University,denied
+dummystudent791,American University,withdrawn
+dummystudent792,St Bonaventure University,wait-listed
+dummystudent792,Central Connecticut State University,withdrawn
+dummystudent793,Nova Southeastern University,accepted
+dummystudent793,William Jewell College,accepted
+dummystudent794,William Jewell College,pending
+dummystudent794,University of Nevada, Las Vegas,wait-listed
+dummystudent795,Drexel University,denied
+dummystudent795,Temple University,deferred
+dummystudent796,Rice University,pending
+dummystudent796,Northwestern University,withdrawn
+dummystudent797,Stevenson University,wait-listed
+dummystudent797,Drake University,denied
+dummystudent798,San Diego State University,accepted
+dummystudent798,Stevenson University,pending
+dummystudent799,University of Hartford,wait-listed
+dummystudent799,Colorado College,pending
+dummystudent800,North Park University,pending
+dummystudent800,Vassar College,withdrawn
+dummystudent801,Franklin & Marshall College,denied
+dummystudent801,The College of St Scholastica,pending
+dummystudent802,Carnegie Mellon University,denied
+dummystudent802,University of Arizona,accepted
+dummystudent803,Eastern Illinois University,pending
+dummystudent803,New York University,withdrawn
+dummystudent804,School of the Art Institute of Chicago,withdrawn
+dummystudent804,Centre College,withdrawn
+dummystudent805,University of Nevada, Las Vegas,denied
+dummystudent805,Clarkson University,accepted
+dummystudent806,University of Alabama at Birmingham,withdrawn
+dummystudent806,Campbell University,accepted
+dummystudent807,Idaho State University,pending
+dummystudent807,Moravian College,pending
+dummystudent808,Eastern Washington University,denied
+dummystudent808,DePauw University,pending
+dummystudent809,American University,deferred
+dummystudent809,Mississippi State University,denied
+dummystudent810,Siena College,denied
+dummystudent810,University of Utah,deferred
+dummystudent811,University of Richmond,denied
+dummystudent811,Wagner College,accepted
+dummystudent812,Vassar College,denied
+dummystudent812,Eastern Washington University,denied
+dummystudent813,The College of St Scholastica,pending
+dummystudent813,University of Alabama,denied
+dummystudent814,Clarkson University,deferred
+dummystudent814,Indiana University Bloomington,accepted
+dummystudent815,Princeton University,wait-listed
+dummystudent815,University of Arkansas,deferred
+dummystudent816,Saint Louis University,denied
+dummystudent816,Campbell University,wait-listed
+dummystudent817,Texas Tech University,wait-listed
+dummystudent817,Williams College,denied
+dummystudent818,Princeton University,wait-listed
+dummystudent818,Clarkson University,wait-listed
+dummystudent819,University of Delaware,deferred
+dummystudent819,Drexel University,accepted
+dummystudent820,New York University,deferred
+dummystudent820,Centre College,withdrawn
+dummystudent821,Gordon College,wait-listed
+dummystudent821,University of Montana,denied
+dummystudent822,University of Richmond,withdrawn
+dummystudent822,Fordham University,wait-listed
+dummystudent823,University of Central Florida,pending
+dummystudent823,University of San Diego,deferred
+dummystudent824,Rice University,withdrawn
+dummystudent824,Saint Louis University,deferred
+dummystudent825,University of Arkansas,wait-listed
+dummystudent825,Smith College,denied
+dummystudent826,Mount Holyoke College,accepted
+dummystudent826,University of Arizona,withdrawn
+dummystudent827,Centre College,pending
+dummystudent827,John Carroll University,withdrawn
+dummystudent828,Eastern Illinois University,wait-listed
+dummystudent828,University of Nevada, Reno,deferred
+dummystudent829,Stony Brook University,wait-listed
+dummystudent829,School of the Art Institute of Chicago,denied
+dummystudent830,Texas Christian University,deferred
+dummystudent830,Idaho State University,wait-listed
+dummystudent831,Rider University,pending
+dummystudent831,Stony Brook University,withdrawn
+dummystudent832,University of Richmond,wait-listed
+dummystudent832,Siena College,accepted
+dummystudent833,University of Nevada, Las Vegas,accepted
+dummystudent833,Gettysburg College,denied
+dummystudent834,SUNY College of Environmental Science and Forestry,wait-listed
+dummystudent834,California State University, East Bay,accepted
+dummystudent835,Nova Southeastern University,deferred
+dummystudent835,Gettysburg College,deferred
+dummystudent836,Lawrence Technological University,accepted
+dummystudent836,University of California, Davis,deferred
+dummystudent837,Carnegie Mellon University,deferred
+dummystudent837,William Jewell College,withdrawn
+dummystudent838,Westmont College,withdrawn
+dummystudent838,Northwestern University,wait-listed
+dummystudent839,University of Montana,deferred
+dummystudent839,Drake University,accepted
+dummystudent840,Texas Christian University,wait-listed
+dummystudent840,San Diego State University,denied
+dummystudent841,Barnard College,deferred
+dummystudent841,Merrimack College,withdrawn
+dummystudent842,University of Arkansas,accepted
+dummystudent842,Eastern Illinois University,pending
+dummystudent843,Kalamazoo College,denied
+dummystudent843,Gettysburg College,accepted
+dummystudent844,University of Arkansas,wait-listed
+dummystudent844,Mercer University,denied
+dummystudent845,University of San Diego,wait-listed
+dummystudent845,Rochester Institute of Technology,accepted
+dummystudent846,Siena College,pending
+dummystudent846,University of California, Davis,wait-listed
+dummystudent847,Rice University,denied
+dummystudent847,Berry College,withdrawn
+dummystudent848,California State University, Fresno,denied
+dummystudent848,Westmont College,wait-listed
+dummystudent849,University of California, Davis,withdrawn
+dummystudent849,Franklin & Marshall College,deferred
+dummystudent850,Manhattan College,wait-listed
+dummystudent850,University of California, Santa Cruz,accepted
+dummystudent851,California State University, East Bay,deferred
+dummystudent851,University of California, Santa Barbara,withdrawn
+dummystudent852,Central Connecticut State University,accepted
+dummystudent852,Suffolk University,denied
+dummystudent853,University of Delaware,deferred
+dummystudent853,John Carroll University,accepted
+dummystudent854,Gettysburg College,deferred
+dummystudent854,Florida Gulf Coast University,withdrawn
+dummystudent855,University of Illinois at Chicago,denied
+dummystudent855,Rochester Institute of Technology,denied
+dummystudent856,Suffolk University,accepted
+dummystudent856,Westmont College,deferred
+dummystudent857,Iona College,denied
+dummystudent857,Idaho State University,deferred
+dummystudent858,Samford University,pending
+dummystudent858,Drexel University,withdrawn
+dummystudent859,Missouri University of Science and Technology,denied
+dummystudent859,Colorado College,withdrawn
+dummystudent860,Eastern Washington University,pending
+dummystudent860,University of Arkansas,deferred
+dummystudent861,Hendrix College,withdrawn
+dummystudent861,University of Arkansas,wait-listed
+dummystudent862,Stevenson University,accepted
+dummystudent862,University of Nevada, Reno,accepted
+dummystudent863,Mississippi State University,pending
+dummystudent863,Clarkson University,withdrawn
+dummystudent864,Kennesaw State University,denied
+dummystudent864,Samford University,accepted
+dummystudent865,Washington & Jefferson College,accepted
+dummystudent865,John Carroll University,pending
+dummystudent866,Mississippi State University,withdrawn
+dummystudent866,University of Massachusetts Amherst,pending
+dummystudent867,University of Montana,deferred
+dummystudent867,School of the Art Institute of Chicago,denied
+dummystudent868,University of Arizona,withdrawn
+dummystudent868,Washington & Jefferson College,deferred
+dummystudent869,University of Houston,withdrawn
+dummystudent869,University of Delaware,denied
+dummystudent870,University of Delaware,pending
+dummystudent870,American University,wait-listed
+dummystudent871,Missouri University of Science and Technology,deferred
+dummystudent871,Missouri University of Science and Technology,wait-listed
+dummystudent872,Salve Regina University,wait-listed
+dummystudent872,University of Kentucky,pending
+dummystudent873,Texas Christian University,wait-listed
+dummystudent873,University of San Diego,wait-listed
+dummystudent874,University of California, Santa Cruz,accepted
+dummystudent874,University of San Diego,wait-listed
+dummystudent875,University of Montana,pending
+dummystudent875,Temple University,withdrawn
+dummystudent876,University of Utah,withdrawn
+dummystudent876,Kalamazoo College,wait-listed
+dummystudent877,DePaul University,wait-listed
+dummystudent877,University of Delaware,wait-listed
+dummystudent878,SUNY College of Environmental Science and Forestry,denied
+dummystudent878,Siena College,wait-listed
+dummystudent879,University of Nevada, Las Vegas,accepted
+dummystudent879,Texas Christian University,deferred
+dummystudent880,Drake University,deferred
+dummystudent880,Manhattan College,pending
+dummystudent881,University of Maine,pending
+dummystudent881,American University,deferred
+dummystudent882,Drexel University,deferred
+dummystudent882,Indiana University Bloomington,pending
+dummystudent883,University of Massachusetts Amherst,deferred
+dummystudent883,Massachusetts Institute of Technology,denied
+dummystudent884,University of Arkansas,withdrawn
+dummystudent884,University of Central Florida,accepted
+dummystudent885,Saint Louis University,deferred
+dummystudent885,Manhattan College,deferred
+dummystudent886,Eastern Washington University,deferred
+dummystudent886,Mount Holyoke College,deferred
+dummystudent887,The College of Wooster,accepted
+dummystudent887,Westmont College,deferred
+dummystudent888,Illinois College,wait-listed
+dummystudent888,Gannon University,withdrawn
+dummystudent889,Centre College,wait-listed
+dummystudent889,University of Utah,withdrawn
+dummystudent890,Iona College,pending
+dummystudent890,Northwestern University,denied
+dummystudent891,Mercer University,denied
+dummystudent891,Rider University,withdrawn
+dummystudent892,Lawrence Technological University,accepted
+dummystudent892,Nova Southeastern University,wait-listed
+dummystudent893,St Bonaventure University,pending
+dummystudent893,Samford University,deferred
+dummystudent894,Berry College,pending
+dummystudent894,Berry College,pending
+dummystudent895,DePauw University,denied
+dummystudent895,Mount Holyoke College,deferred
+dummystudent896,Franklin & Marshall College,withdrawn
+dummystudent896,Smith College,deferred
+dummystudent897,University of Alabama at Birmingham,deferred
+dummystudent897,University of Hartford,deferred
+dummystudent898,University of California, Santa Barbara,denied
+dummystudent898,California State University, East Bay,wait-listed
+dummystudent899,Roger Williams University,wait-listed
+dummystudent899,Wagner College,pending
+dummystudent900,Berry College,pending
+dummystudent900,University of Massachusetts Amherst,wait-listed
+dummystudent901,Iona College,pending
+dummystudent901,University of California, Davis,deferred
+dummystudent902,Stevenson University,wait-listed
+dummystudent902,Saint Louis University,denied
+dummystudent903,Clarkson University,withdrawn
+dummystudent903,Drake University,deferred
+dummystudent904,Northwestern University,denied
+dummystudent904,Missouri University of Science and Technology,withdrawn
+dummystudent905,Texas Christian University,accepted
+dummystudent905,Massachusetts Institute of Technology,denied
+dummystudent906,University of Alabama at Birmingham,wait-listed
+dummystudent906,Temple University,pending
+dummystudent907,Roger Williams University,pending
+dummystudent907,Stevenson University,deferred
+dummystudent908,American University,accepted
+dummystudent908,Kalamazoo College,deferred
+dummystudent909,Princeton University,deferred
+dummystudent909,John Carroll University,wait-listed
+dummystudent910,Gettysburg College,pending
+dummystudent910,University of Nevada, Reno,pending
+dummystudent911,University of Alabama,deferred
+dummystudent911,University of Utah,denied
+dummystudent912,University of Arizona,accepted
+dummystudent912,North Park University,accepted
+dummystudent913,Gettysburg College,pending
+dummystudent913,Transylvania University,accepted
+dummystudent914,Centre College,denied
+dummystudent914,Texas Tech University,accepted
+dummystudent915,The College of St Scholastica,withdrawn
+dummystudent915,Texas Christian University,pending
+dummystudent916,Merrimack College,withdrawn
+dummystudent916,Wagner College,deferred
+dummystudent917,Texas Tech University,denied
+dummystudent917,Nova Southeastern University,deferred
+dummystudent918,University of San Diego,deferred
+dummystudent918,Idaho State University,wait-listed
+dummystudent919,School of the Art Institute of Chicago,denied
+dummystudent919,Drexel University,denied
+dummystudent920,William Jewell College,pending
+dummystudent920,Rider University,deferred
+dummystudent921,School of the Art Institute of Chicago,accepted
+dummystudent921,University of Nevada, Reno,pending
+dummystudent922,Gettysburg College,pending
+dummystudent922,Samford University,wait-listed
+dummystudent923,Central Connecticut State University,withdrawn
+dummystudent923,William Jewell College,deferred
+dummystudent924,Reed College,denied
+dummystudent924,Roger Williams University,denied
+dummystudent925,Illinois College,deferred
+dummystudent925,John Carroll University,withdrawn
+dummystudent926,Fordham University,deferred
+dummystudent926,Texas Tech University,pending
+dummystudent927,Carnegie Mellon University,deferred
+dummystudent927,California State University, Monterey Bay,accepted
+dummystudent928,Berry College,denied
+dummystudent928,Lawrence Technological University,accepted
+dummystudent929,The College of St Scholastica,pending
+dummystudent929,DePaul University,pending
+dummystudent930,Manhattan College,withdrawn
+dummystudent930,Princeton University,accepted
+dummystudent931,University of Alabama at Birmingham,denied
+dummystudent931,Eastern Illinois University,deferred
+dummystudent932,Gettysburg College,deferred
+dummystudent932,DePaul University,wait-listed
+dummystudent933,Indiana University Bloomington,deferred
+dummystudent933,Idaho State University,pending
+dummystudent934,Barnard College,withdrawn
+dummystudent934,Stony Brook University,denied
+dummystudent935,Merrimack College,accepted
+dummystudent935,Mount Holyoke College,pending
+dummystudent936,Massachusetts Institute of Technology,accepted
+dummystudent936,University of Alabama,withdrawn
+dummystudent937,Centre College,pending
+dummystudent937,Indiana University Bloomington,deferred
+dummystudent938,Stony Brook University,denied
+dummystudent938,Merrimack College,accepted
+dummystudent939,Florida Gulf Coast University,pending
+dummystudent939,California State University, Fresno,accepted
+dummystudent940,University of Hartford,deferred
+dummystudent940,Rider University,deferred
+dummystudent941,Illinois College,deferred
+dummystudent941,Kennesaw State University,wait-listed
+dummystudent942,Hope College,accepted
+dummystudent942,Lawrence Technological University,wait-listed
+dummystudent943,Idaho State University,denied
+dummystudent943,Drexel University,deferred
+dummystudent944,Carnegie Mellon University,deferred
+dummystudent944,University of Massachusetts Amherst,accepted
+dummystudent945,University of Kentucky,withdrawn
+dummystudent945,Idaho State University,pending
+dummystudent946,University of Arizona,accepted
+dummystudent946,California State University, Monterey Bay,wait-listed
+dummystudent947,American University,accepted
+dummystudent947,Central Connecticut State University,denied
+dummystudent948,Texas Tech University,denied
+dummystudent948,Kennesaw State University,deferred
+dummystudent949,Gettysburg College,withdrawn
+dummystudent949,California State University, Monterey Bay,pending
+dummystudent950,University of San Diego,withdrawn
+dummystudent950,California State University, Monterey Bay,wait-listed
+dummystudent951,Siena College,accepted
+dummystudent951,University of Alabama at Birmingham,wait-listed
+dummystudent952,Mercer University,pending
+dummystudent952,Clarkson University,pending
+dummystudent953,University of Utah,denied
+dummystudent953,Illinois College,pending
+dummystudent954,New Jersey Institute of Technology,pending
+dummystudent954,The College of St Scholastica,deferred
+dummystudent955,Clarkson University,accepted
+dummystudent955,New Jersey Institute of Technology,withdrawn
+dummystudent956,Providence College,accepted
+dummystudent956,Washington & Jefferson College,accepted
+dummystudent957,Gannon University,wait-listed
+dummystudent957,Clarkson University,wait-listed
+dummystudent958,Mississippi State University,pending
+dummystudent958,Washington & Jefferson College,withdrawn
+dummystudent959,University of California, Santa Cruz,denied
+dummystudent959,University of Utah,deferred
+dummystudent960,Mercer University,pending
+dummystudent960,American University,accepted
+dummystudent961,California State University, Fresno,deferred
+dummystudent961,University of Montana,deferred
+dummystudent962,Wagner College,withdrawn
+dummystudent962,University of Houston,wait-listed
+dummystudent963,North Park University,accepted
+dummystudent963,University of Hartford,pending
+dummystudent964,Mississippi State University,deferred
+dummystudent964,Merrimack College,wait-listed
+dummystudent965,New Jersey Institute of Technology,denied
+dummystudent965,SUNY College of Environmental Science and Forestry,wait-listed
+dummystudent966,University of Alabama,wait-listed
+dummystudent966,University of Kentucky,wait-listed
+dummystudent967,Mercer University,pending
+dummystudent967,Westmont College,pending
+dummystudent968,Clarkson University,denied
+dummystudent968,New Jersey Institute of Technology,pending
+dummystudent969,Colgate University,denied
+dummystudent969,Carnegie Mellon University,wait-listed
+dummystudent970,Kennesaw State University,withdrawn
+dummystudent970,The College of St Scholastica,deferred
+dummystudent971,University of Massachusetts Amherst,deferred
+dummystudent971,University of Arizona,pending
+dummystudent972,School of the Art Institute of Chicago,withdrawn
+dummystudent972,Manhattan College,pending
+dummystudent973,Wagner College,withdrawn
+dummystudent973,University of Kentucky,accepted
+dummystudent974,The College of Wooster,denied
+dummystudent974,Illinois College,withdrawn
+dummystudent975,University of Arizona,wait-listed
+dummystudent975,University of Massachusetts Amherst,withdrawn
+dummystudent976,University of Kentucky,pending
+dummystudent976,Siena College,pending
+dummystudent977,Hendrix College,denied
+dummystudent977,University of Alabama,denied
+dummystudent978,Samford University,wait-listed
+dummystudent978,Eastern Washington University,deferred
+dummystudent979,School of the Art Institute of Chicago,wait-listed
+dummystudent979,Providence College,deferred
+dummystudent980,St Bonaventure University,pending
+dummystudent980,The College of St Scholastica,withdrawn
+dummystudent981,Massachusetts Institute of Technology,pending
+dummystudent981,Rider University,accepted
+dummystudent982,Samford University,wait-listed
+dummystudent982,Texas Tech University,pending
+dummystudent983,DePauw University,deferred
+dummystudent983,Vassar College,wait-listed
+dummystudent984,University of Montana,deferred
+dummystudent984,Transylvania University,accepted
+dummystudent985,Illinois College,withdrawn
+dummystudent985,Siena College,deferred
+dummystudent986,SUNY College of Environmental Science and Forestry,accepted
+dummystudent986,Vassar College,withdrawn
+dummystudent987,Clarkson University,withdrawn
+dummystudent987,American University,wait-listed
+dummystudent988,Iona College,wait-listed
+dummystudent988,University of Houston,withdrawn
+dummystudent989,School of the Art Institute of Chicago,deferred
+dummystudent989,University of Hartford,deferred
+dummystudent990,Rice University,deferred
+dummystudent990,Merrimack College,pending
+dummystudent991,University of Arizona,denied
+dummystudent991,John Carroll University,pending
+dummystudent992,California State University, East Bay,withdrawn
+dummystudent992,Williams College,accepted
+dummystudent993,Eastern Washington University,pending
+dummystudent993,New York University,deferred
+dummystudent994,DePauw University,deferred
+dummystudent994,Eastern Illinois University,denied
+dummystudent995,William Jewell College,wait-listed
+dummystudent995,Berry College,denied
+dummystudent996,Stevenson University,accepted
+dummystudent996,Transylvania University,wait-listed
+dummystudent997,Smith College,deferred
+dummystudent997,Stony Brook University,pending
+dummystudent998,Franklin & Marshall College,deferred
+dummystudent998,University of Arizona,accepted
+dummystudent999,Eastern Washington University,deferred
+dummystudent999,Colgate University,deferred
