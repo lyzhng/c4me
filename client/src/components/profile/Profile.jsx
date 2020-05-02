@@ -81,18 +81,21 @@ export default class Profile extends React.Component{
       this.userDefaultState(resp.data.user);
     });
     Axios.post("/getallhighschools").then((resp)=> {
-      console.log(resp.data.highschools.length);
       for (let i = 0 ; resp.data.highschools.length > i; i++){
-        hs_name.push(
-          {id : i ,
-            label : resp.data.highschools[i].name,
-            city : resp.data.highschools[i].city,
-            state : resp.data.highschools[i].state
-          }
-        )
+        if (resp.data.highschools[i].name !== null ){
+          console.log("no name");
+        }else {
+          hs_name.push(
+            {id : i ,
+              label : resp.data.highschools[i].name,
+              city : resp.data.highschools[i].city,
+              state : resp.data.highschools[i].state
+            }
+          )
+        }
+
       }
     });
-    console.log(hs_name);
     await this.getApplications();
   }
   autocompleteHS= (e)=>{
