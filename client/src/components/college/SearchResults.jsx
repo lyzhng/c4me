@@ -64,11 +64,18 @@ export default class SearchResults extends React.Component {
               : ""
             }
 
-            {
-              this.props.similarStudents.map((student) => {
-                return <Link key = {student._id} to={`/profile/${student.userid}`}><h3>{student.userid}</h3></Link>
-              })
-            }
+            <div className = "container-fluid">
+              <div className = "row">
+              {
+                this.props.similarStudents.length !== 0 ? <div className = "col-12 text-align"> Similar Students Who Applied </div> : ""
+              }
+              {
+                this.props.similarStudents.map((student) => {
+                  return <div className = "col-3"> <Link key = {student._id} to={`/profile/${student.userid}`}><h3>{student.userid}</h3></Link> </div>
+                })
+              }
+              </div>
+            </div>
             <AppTrackerModal college = {this.props.college}/>
 
             <Accordion>
