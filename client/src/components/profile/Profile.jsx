@@ -307,7 +307,7 @@ export default class Profile extends React.Component{
                     {item.label}
                   </div>
                 }
-                inputProps={{disabled : (this.state.disabled)? "disabled" :""}}
+                inputProps={{disabled : (this.state.disabled)? "disabled" :"", placeholder:"Fill in profile"}}
                 value={this.state.high_school_name}
                 onChange={e => this.setState({ high_school_name : e.target.value })}
                 onSelect={value => this.autocompleteHS(value)}
